@@ -1,0 +1,8 @@
+node_modules
+.next
+.claude
+data/raw
+data/videos.local.json
+public/local-videos
+*.mp4
+*.mov
