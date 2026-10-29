@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}</style>
+<script>window.GS_VIDEOS = {"titan-500-smart-device":{"src":"test-videos/titan-500-smart.mp4","poster":"test-videos/titan-500-smart.webp"},"eagle-eye-rjx6550":{"src":"test-videos/rjx6550-luggage.mp4","poster":"test-videos/rjx6550-luggage.webp"}};</script>
 <title>Golden Spark Detector Guide</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -413,7 +414,8 @@ function depthFact(mode, value) {
 }
 
 // Video links go here as they arrive: { "water": { src: "...mp4", poster: "...jpg" }, "river-f-smart-detector": {...} }
-const VIDEOS = {};
+// The Vercel test page sets window.GS_VIDEOS; the Claude sample has none and shows placeholders.
+const VIDEOS = window.GS_VIDEOS || {};
 const rich = (s) => s.replace(/\*\*(.+?)\*\*/g, '<strong class="kw">$1</strong>');
 
 // Video-first media box. With a video: autoplay, muted, loop, inline; tap-to-play shows if autoplay is blocked.
@@ -608,6 +610,10 @@ function setupMedia(root) {
   root.querySelectorAll(".media").forEach((box) => {
     if (watcher) watcher.observe(box);
     const video = box.querySelector("video"), btn = box.querySelector(".fallback");
+    if (video) {
+      video.muted = true; // iOS only autoplays when the property is set, not just the attribute
+      if (!watcher) video.play().catch(() => { if (btn) btn.hidden = false; });
+    }
     if (video && btn) btn.onclick = (e) => { e.preventDefault(); video.play().then(() => (btn.hidden = true)).catch(() => {}); };
   });
   root.querySelectorAll(".kw").forEach((k) => (k.onclick = () => k.classList.toggle("on")));
