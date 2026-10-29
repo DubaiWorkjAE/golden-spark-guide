@@ -1,0 +1,68 @@
+{
+  "_howToEdit": "Each section lists product slugs in the order they show on the page. Slugs come from data/products.json. Remove, add or reorder freely. DRAFT: 3 per section for the example.",
+
+  "how-basic": [
+    "nokta-makro-simplex-metal-detector",
+    "garrett-ace-apex-metal-detector",
+    "manticore"
+  ],
+  "how-gold-nugget": [
+    "nokta-makro-gold-finder-2000",
+    "gold-monster-1000",
+    "gpx-6000-gold-detector"
+  ],
+  "how-ground-scanner": [
+    "uig-ground-scanner-3d-metal-detector",
+    "okm-exp-5500-professional-metal-detector",
+    "okm-exp-7000-professional-plus"
+  ],
+  "how-mineral-gpr": [
+    "ger-titan-x13",
+    "okm-gepard-gpr-3d",
+    "ks-800-professional-grounding-radar"
+  ],
+
+  "level-beginner": [
+    "vanquish-340-metal-detector",
+    "x-terra-pro",
+    "ace-400i-metal-detector"
+  ],
+  "level-prospector": [
+    "garrett-goldmaster-24k-metal-detector",
+    "garrett-axiom-ultra-pulse-gold-detector",
+    "gpz-7000"
+  ],
+  "level-mining": [
+    "ger-gold-seeker-device",
+    "deep-seeker-detector",
+    "titan-ger-1000"
+  ],
+
+  "specialty-security": [
+    "super-scanner-v-hand-held-metal-detector",
+    "pd-6500i-walk-through-metal-detector",
+    "rjx6550-x-ray-luggage-scanner"
+  ],
+  "specialty-xrf": [
+    "niton-dxl-precious-metal-analyzer",
+    "niton-xl2-980-goldd-xrf-analyzer",
+    "vanta-element-handheld-xrf-analyzer"
+  ],
+  "specialty-long-range": [
+    "ger-gold-hunter-smart-detector",
+    "titan-500-smart-device",
+    "ger-detect-titan-400-smart-detector"
+  ],
+  "specialty-water": [
+    "river-f-smart-detector",
+    "fresh-result-2-system-device-ground-water-detector"
+  ],
+  "specialty-gems": [
+    "presidium-multi-tester-iii",
+    "presidium-diamond-mate-a-c"
+  ],
+  "specialty-mining-equipment": [
+    "drywasher",
+    "highbanker"
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "_howToEdit": "Paste a video link (Cloudinary, or any direct .mp4 link) as \"src\". Poster is optional: Cloudinary links get one made automatically. null = shows 'Video coming soon'. All videos must be vertical 9:16.",
+
+  "sections": {
+    "how-basic": null,
+    "how-gold-nugget": null,
+    "how-ground-scanner": null,
+    "how-mineral-gpr": null,
+    "specialty-security": null,
+    "specialty-xrf": null,
+    "specialty-long-range": null,
+    "specialty-water": null,
+    "specialty-gems": null,
+    "specialty-mining-equipment": null
+  },
+
+  "products": {
+    "titan-500-smart-device": null,
+    "rjx6550-x-ray-luggage-scanner": null
+  }
+}

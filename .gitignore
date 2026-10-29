@@ -1,0 +1,13 @@
+node_modules/
+.next/
+out/
+.vercel/
+.env*
+data/raw/
+data/videos.local.json
+public/local-videos/
+*.mp4
+*.mov
+next-env.d.ts
+*.tsbuildinfo
+.claude/

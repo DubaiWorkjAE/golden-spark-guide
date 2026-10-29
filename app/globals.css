@@ -1,0 +1,54 @@
+@import "tailwindcss";
+
+/* Brand colours sampled from the Golden Spark logo. */
+@theme {
+  --color-navy: #282c55;
+  --color-navy-deep: #262948;
+  --color-navy-light: #282e65;
+  --color-gold: #f1c854;
+  --color-gold-soft: #e2b95e;
+  --color-gold-deep: #98702b;
+  --color-mist: #f5f5f7;
+  --color-ink: #1d1d1f;
+  --color-muted: #6e6e73;
+  --color-wa: #0b7f3d;
+  --color-wa-hover: #096b33;
+}
+
+@theme inline {
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  background: #ffffff;
+  color: var(--color-ink);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Anchor targets stop below the sticky nav. */
+[id] {
+  scroll-margin-top: 4.5rem;
+}
+
+.no-scrollbar {
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+dialog::backdrop {
+  background: rgb(0 0 0 / 0.82);
+  backdrop-filter: blur(4px);
+}

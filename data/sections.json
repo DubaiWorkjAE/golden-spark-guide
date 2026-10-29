@@ -1,0 +1,180 @@
+{
+  "_howToEdit": "All page text lives here. Every text marked \"review\": \"NEEDS MY REVIEW\" is a DRAFT written only from your product pages on gsdetectors.com. When you approve a text, delete its review line. Set showReviewBadges to false to hide the yellow draft labels on the page. Words between ** ** show in bold.",
+  "showReviewBadges": true,
+
+  "hero": {
+    "eyebrow": "Golden Spark Detectors · Dubai",
+    "title": "Which detector is right for you?",
+    "subtitle": "Pick what you want to find. We show you the right technology. Then we help you on WhatsApp.",
+    "cards": [
+      { "title": "Beginner", "text": "Coins, jewelry and relics. Easy to start.", "href": "#beginner", "icon": "coin" },
+      { "title": "Gold nuggets", "text": "Small gold in hard, mineralized ground.", "href": "#gold-nugget", "icon": "nugget" },
+      { "title": "Mining & deep search", "text": "Big areas, deep targets, 3D and GPR.", "href": "#mining", "icon": "layers" },
+      { "title": "Security & testing", "text": "Gates, X-ray, gold and diamond testers.", "href": "#specialty", "icon": "shield" }
+    ],
+    "trust": [
+      "Shop in Deira, Dubai",
+      "Help on WhatsApp",
+      "Warranty shown on each product",
+      "Minelab · Garrett · OKM · GER Detect · Nokta Makro · XP"
+    ]
+  },
+
+  "groups": [
+    {
+      "id": "how",
+      "eyebrow": "Step 1",
+      "title": "How detection works",
+      "intro": "There are 4 main types of detector. Each one finds different things. Find your type first, then ask us about price.",
+      "sections": ["how-basic", "how-gold-nugget", "how-ground-scanner", "how-mineral-gpr"],
+      "video": true
+    },
+    {
+      "id": "levels",
+      "eyebrow": "Step 2",
+      "title": "What level are you?",
+      "intro": "Three good options for each type of customer.",
+      "sections": ["level-beginner", "level-prospector", "level-mining"],
+      "video": false
+    },
+    {
+      "id": "specialty",
+      "eyebrow": "More",
+      "title": "Specialty equipment",
+      "intro": "Security screening, gold and diamond testing, water, long-range and mining tools.",
+      "sections": [
+        "specialty-security",
+        "specialty-xrf",
+        "specialty-long-range",
+        "specialty-water",
+        "specialty-gems",
+        "specialty-mining-equipment"
+      ],
+      "video": true
+    }
+  ],
+
+  "sections": {
+    "how-basic": {
+      "anchor": "basic",
+      "title": "Basic metal detectors",
+      "callout": "If you are a **BEGINNER** and want to find coins, jewelry or relics, start here.",
+      "finds": "Coins, jewelry, relics and other metal",
+      "bestFor": "Beginners and weekend treasure hunters",
+      "explanation": "Easy detectors for coins, jewelry and relics. Some use one frequency (VLF). Others, like the Ace Apex and Manticore, use several frequencies at the same time (multi-frequency). A target ID on the screen helps you dig more good targets and less trash.",
+      "review": "NEEDS MY REVIEW"
+    },
+    "how-gold-nugget": {
+      "anchor": "gold-nugget",
+      "title": "Gold nugget detectors",
+      "callout": "If you are a **SERIOUS GOLD PROSPECTOR** looking for small nuggets in mineralized ground, look here.",
+      "finds": "Gold nuggets (natural gold)",
+      "bestFor": "Prospectors in mineralized soil",
+      "explanation": "Made for natural gold in the goldfields. The Gold Finder 2000 and Gold Monster 1000 work automatically: switch on and go. The GPX 6000 uses pulse induction (GeoSense-PI) to find all forms of gold.",
+      "review": "NEEDS MY REVIEW"
+    },
+    "how-ground-scanner": {
+      "anchor": "ground-scanner",
+      "title": "3D ground scanners",
+      "callout": "If you are looking for **TREASURE CHESTS, CAVITIES or TUNNELS**, a 3D scanner shows you an image of the ground.",
+      "finds": "Treasure chests, cavities and tunnels",
+      "bestFor": "Treasure hunters and archaeology",
+      "explanation": "The device scans the ground and builds a 3D image of what is below. You can watch it live on the screen. The OKM models also include VLF detection and extra scan modes.",
+      "review": "NEEDS MY REVIEW"
+    },
+    "how-mineral-gpr": {
+      "anchor": "mineral-gpr",
+      "title": "Mineral scanners & GPR",
+      "callout": "If you run a **MINING OPERATION** or a big survey and need to look deep into the ground, start here.",
+      "finds": "Cavities, tunnels, pipes and deep objects",
+      "bestFor": "Mining, geotechnical and archaeology teams",
+      "explanation": "GPR means ground penetrating radar. The OKM Gepard GPR 3D shows results as a live stream or a ground scan. The GER Titan X13 combines 11 search systems in one device.",
+      "review": "NEEDS MY REVIEW"
+    },
+
+    "level-beginner": {
+      "anchor": "beginner",
+      "title": "Beginner",
+      "callout": "If you are a **BEGINNER** and want to start metal detecting, choose a simple machine first.",
+      "finds": "Coins, jewelry and relics",
+      "bestFor": "Your first detector: park, field and beach",
+      "explanation": "These models are simple to set up. The Vanquish 340 is made for anyone starting out. The X-TERRA PRO has Park, Field and Beach modes: pick your place and start.",
+      "review": "NEEDS MY REVIEW"
+    },
+    "level-prospector": {
+      "anchor": "prospector",
+      "title": "Serious nugget prospector",
+      "callout": "If you are a **SERIOUS GOLD PROSPECTOR** working in hard, mineralized ground, look at these.",
+      "finds": "Gold nuggets, from large to very small",
+      "bestFor": "Prospectors in highly mineralized soil",
+      "explanation": "The Goldmaster 24K uses a ground tracking system (XGB) for stable work. The Axiom uses pulse timings made for extreme mineralized soil. The GPZ 7000 is made for depth and sensitivity on all gold (manufacturer claim).",
+      "review": "NEEDS MY REVIEW"
+    },
+    "level-mining": {
+      "anchor": "mining",
+      "title": "Mining operation",
+      "callout": "If you run a **MINING OPERATION** or search large areas, look at multi-system devices.",
+      "finds": "Gold, precious metals and buried treasure",
+      "bestFor": "Teams who want several search systems in one device",
+      "explanation": "These devices put several search systems in one unit. The Titan GER-1000 and Deep Seeker each have 5 search systems. The Gold Seeker uses pulse induction to tell precious from non-precious metals.",
+      "review": "NEEDS MY REVIEW"
+    },
+
+    "specialty-security": {
+      "anchor": "security",
+      "title": "Security screening",
+      "callout": "If you run **SECURITY** at an airport, event, mall or prison, these check people and bags.",
+      "finds": "Guns, coins and all metal on people. Items inside bags (X-ray).",
+      "bestFor": "Airports, events, malls and prisons",
+      "explanation": "Hand-held scanners check one person at a time, with sound or silent vibration alerts. Walk-through gates like the PD 6500i check people as they walk in. The X-ray scanner shows what is inside bags and parcels without opening them. Also available: under-vehicle inspection mirror.",
+      "review": "NEEDS MY REVIEW"
+    },
+    "specialty-xrf": {
+      "anchor": "xrf",
+      "title": "XRF gold & metal testers",
+      "callout": "If you **BUY OR SELL GOLD** and need to check purity, an XRF analyzer tests metal at the push of a button.",
+      "finds": "Gold purity and metal type (alloys)",
+      "bestFor": "Gold shops and metal buyers",
+      "explanation": "The Niton DXL is made for shops. The handheld Niton XL2 and Vanta Element are rugged and sealed against dust and moisture. The Vanta Element gives precise alloy identification.",
+      "review": "NEEDS MY REVIEW"
+    },
+    "specialty-long-range": {
+      "anchor": "long-range",
+      "title": "Long-range locators",
+      "callout": "If you want to **SEARCH A WIDE AREA** from one place, ask us about long-range locators.",
+      "finds": "Manufacturer states: gold, precious metals, diamonds and cavities",
+      "bestFor": "Customers who want to search wide areas",
+      "explanation": "The manufacturer states these German-made devices use several search systems and an adjustable forward range. Results depend on the ground and conditions and are not guaranteed. Ask us on WhatsApp what they can and cannot do.",
+      "neutral": true,
+      "review": "NEEDS MY REVIEW"
+    },
+    "specialty-water": {
+      "anchor": "water",
+      "title": "Water detectors",
+      "callout": "If you are looking for **UNDERGROUND WATER** or a place for a well, see these.",
+      "finds": "Manufacturer states: groundwater, fresh and salt water, artesian wells",
+      "bestFor": "Customers searching for groundwater",
+      "explanation": "The manufacturer states these long-range devices have separate fresh-water and salt-water modes. Results depend on the ground and conditions and are not guaranteed.",
+      "neutral": true,
+      "review": "NEEDS MY REVIEW"
+    },
+    "specialty-gems": {
+      "anchor": "gems",
+      "title": "Diamond & gem testers",
+      "callout": "If you **BUY OR SELL DIAMONDS**, check every stone before you pay.",
+      "finds": "Real diamonds vs. moissanite and simulants",
+      "bestFor": "Jewelers and diamond buyers",
+      "explanation": "Pocket-sized testers. The Multi Tester III uses thermal and electrical properties to separate diamonds from moissanite. The Diamond Mate checks diamonds by their thermal properties.",
+      "review": "NEEDS MY REVIEW"
+    },
+    "specialty-mining-equipment": {
+      "anchor": "mining-equipment",
+      "title": "Mining equipment",
+      "callout": "If you already work a gold area and want to **PROCESS MORE SOIL**, see this equipment.",
+      "finds": "Gold from dry soil, creeks and streams",
+      "bestFor": "Prospectors who process soil on site",
+      "explanation": "The Drywasher is for dry ground. The Highbanker is a 54-inch wide sluice box for creeks and streams.",
+      "review": "NEEDS MY REVIEW"
+    }
+  }
+}
