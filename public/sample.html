@@ -118,6 +118,7 @@ html[lang="ar"] .cat-title { font-family: var(--arabic); }
 .tile-name { font: 700 15px/1.25 var(--display); color: var(--navy); }
 .tile-blurb { font-size: 13px; line-height: 1.35; }
 .tile-meta { font-size: 12px; color: var(--muted); }
+.tile-uses { font-size: 12px; font-weight: 600; color: var(--navy); }
 .tile-later { font-size: 12px; color: var(--muted); font-style: italic; }
 .pkg { align-self: flex-start; padding: 2px 9px; border-radius: 10px; background: #FBEFC6; color: var(--note-ink); font-size: 12px; font-weight: 600; }
 .subgroup h2 { font-size: 20px; }
@@ -167,8 +168,9 @@ footer .wrap { padding-block: 24px 120px; display: grid; gap: 12px; }
 
 /* Video-first media placeholders (real videos: autoplay, muted, loop, inline; tap-to-play fallback) */
 .media { position: relative; overflow: hidden; border-radius: 12px; background: var(--ph); }
-.media-inner { position: absolute; inset: 0; border: 1px dashed var(--ph-line); border-radius: inherit; display: grid; place-content: center; justify-items: center; gap: 8px; padding: 8px; text-align: center; color: var(--muted); font-size: 12px; background: var(--ph); transition: transform 1.2s cubic-bezier(.2, .7, .2, 1); }
-.media video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s cubic-bezier(.2, .7, .2, 1); }
+.media-inner { position: absolute; inset: 0; border: 1px dashed var(--ph-line); border-radius: inherit; display: grid; place-content: center; justify-items: center; gap: 8px; padding: 8px; text-align: center; color: var(--muted); font-size: 12px; background: var(--ph); }
+.media.ph-photo .media-inner { transition: transform 1.2s cubic-bezier(.2, .7, .2, 1); }
+.media video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .media .tagline { font-size: 11px; opacity: .85; }
 .media .fallback { position: absolute; inset: 0; margin: auto; width: 76px; height: 76px; padding: 0; border: 0; border-radius: 38px; background: transparent; z-index: 2; }
 .media .fallback .play { width: 64px; height: 64px; border-radius: 32px; }
@@ -182,8 +184,8 @@ footer .wrap { padding-block: 24px 120px; display: grid; gap: 12px; }
 .verr { position: absolute; inset: auto 10px 62px; z-index: 2; margin: 0; padding: 8px 10px; border-radius: 8px; background: rgba(20, 22, 45, 0.88); color: #FFFFFF; font-size: 13px; }
 .media.photo { background: #FFFFFF; border: 1px solid var(--line); }
 .media.photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; padding: 6%; transition: transform 1.2s cubic-bezier(.2, .7, .2, 1); }
-.tile:hover .media img, .media.photo:hover img { transform: scale(1.06); }
-.media.inview img { transform: scale(1.04); }
+.tile:hover .media.photo img, .media.photo:hover img { transform: scale(1.06); }
+.media.photo.inview img { transform: scale(1.04); }
 .thumbs { display: flex; justify-content: center; gap: 10px; }
 .thumbs button { position: relative; width: 64px; height: 64px; padding: 0; border-radius: 10px; border: 2px solid var(--line); background: #FFFFFF; overflow: hidden; transition: border-color .25s ease; }
 .thumbs button[aria-pressed="true"] { border-color: var(--navy); }
@@ -198,9 +200,9 @@ footer .wrap { padding-block: 24px 120px; display: grid; gap: 12px; }
 .media.sq { aspect-ratio: 1; }
 .media.sm .play { width: 34px; height: 34px; }
 .media.sm .play svg { width: 14px; height: 14px; }
-.tile:hover .media-inner, .cat:hover .media-inner, .media:hover .media-inner,
-.tile:hover .media video, .cat:hover .media video, .media:hover video { transform: scale(1.06); }
-.media.inview .media-inner, .media.inview video { transform: scale(1.04); }
+/* Slow zoom is for photos only (real photos and photo placeholders). Videos and video placeholders never move. */
+.tile:hover .media.ph-photo .media-inner, .media.ph-photo:hover .media-inner { transform: scale(1.06); }
+.media.ph-photo.inview .media-inner { transform: scale(1.04); }
 .hero-media { position: absolute; inset: 0; border-radius: 0; background: #3A3E66; }
 .hero-media .media-inner { background: #3A3E66; border-color: #6C70A0; color: #D5D7E8; place-content: start end; justify-items: end; padding: 14px; }
 
@@ -303,27 +305,30 @@ const P = {
   luggage: [["eagle-eye-rjx6550","RJX6550 X-Ray Luggage Scanner","Eagle Eye",null,null,null,null,"1 Year",null]]
 };
 
-// depth: "claim" = Max depth (manufacturer claim), "neutral" = Manufacturer states, null = no depth shown
+// Depth (user request 2026-10-30): hidden on category pages and their product cards, shown on the product page itself.
+const SHOW_DEPTH = false;
+const SHOW_DEPTH_PRODUCT = true;
+// depth: "claim" = Max depth (manufacturer claim), "neutral" = Manufacturer states (+ "not guaranteed" line), null = no depth
 const CATS = [
   { id: "mining", group: "det", depth: "claim", items: "mining", level: "Professional",
     title: { en: "Mining operations", fr: "Exploitations minières", ar: "عمليات التعدين" },
-    line: { en: "Gold and deposits, deep in the ground", fr: "Or et gisements, en profondeur", ar: "الذهب والرواسب في عمق الأرض" },
-    intro: "For **mining teams** who search **big areas** deep in the ground.",
+    line: { en: "Gold and deposits over big areas", fr: "Or et gisements sur de grandes zones", ar: "الذهب والرواسب في مساحات واسعة" },
+    intro: "For **mining operations**, **gold prospecting** and **treasure hunting** over big areas.",
     finds: "Gold, precious metals, buried treasure and cavities", bestFor: "Mining teams and serious treasure hunters" },
   { id: "gold", group: "det", depth: null, items: "gold", level: "Beginner → Advanced",
     title: { en: "Gold nuggets", fr: "Pépites d'or", ar: "كتل الذهب" },
     line: { en: "Gold nuggets near the surface", fr: "Pépites d'or près de la surface", ar: "كتل الذهب القريبة من السطح" },
-    intro: "For finding **gold nuggets near the surface**. Good for your **first day** and for **serious prospecting**.",
+    intro: "For **gold nugget** hunting near the surface. Good for your **first day** and for **serious prospecting**.",
     finds: "Gold nuggets (natural gold)", bestFor: "Targets near the surface" },
   { id: "longrange", group: "det", depth: "neutral", items: "longrange", level: "We guide you",
     title: { en: "Long range", fr: "Longue portée", ar: "بعيد المدى" },
     line: { en: "Manufacturer states: gold, gems and metals over a wide area", fr: "Selon le fabricant : or, pierres et métaux sur une grande zone", ar: "حسب الشركة المصنعة: ذهب وأحجار كريمة ومعادن في مساحة واسعة" },
-    intro: "For searching a **wide area**. Ask us on **WhatsApp** what these devices can and cannot do.",
+    intro: "For **long-range** searches for **gold** and **treasure** over a wide area. Ask us on **WhatsApp** what these devices can and cannot do.",
     finds: "Manufacturer states: gold, diamonds, gemstones and metals", bestFor: "Customers who want to search wide areas" },
   { id: "treasure", group: "det", depth: "claim", items: "treasure", level: "Beginner → Professional",
     title: { en: "Treasure hunting", fr: "Chasse au trésor", ar: "البحث عن الكنوز" },
     line: { en: "Treasure, cavities and tunnels", fr: "Trésors, cavités et tunnels", ar: "الكنوز والفراغات والأنفاق" },
-    intro: "A **3D scanner** shows you an image of what is **in the ground**.",
+    intro: "For **treasure hunting**. A **3D scanner** shows you an image of what is in the ground.",
     finds: "Treasure chests, cavities and tunnels", bestFor: "Treasure hunters, archaeology and construction" },
   { id: "water", group: "det", depth: "neutral", items: "water", level: "We guide you",
     title: { en: "Water detectors", fr: "Détecteurs d'eau", ar: "كاشفات المياه" },
@@ -353,15 +358,16 @@ const T = {
     how: "How it works", s1: "Tap what you want to find", s2: "Watch the video, pick a detector", s3: "Ask us on WhatsApp for the price",
     all: "All categories", finds: "What it finds", best: "Best for", level: "Level", depth: "Depth", maxDepth: "Max depth (manufacturer claim)",
     states: "Manufacturer states: up to", range: "Forward range", made: "Made in", warranty: "Warranty",
-    depthNote: "<b>About depth:</b> depth depends on the size of the target. The bigger the target, the deeper it can be found. Smaller targets are found less deep.",
+    depthNote: "<b>About depth:</b> bigger targets can be detected deeper. Smaller targets, like gold nuggets, are usually found closer to the surface.",
     noGuarantee: "Results depend on the ground and conditions and are not guaranteed.",
+    depends: "Results depend on the ground and conditions.", usedFor: "Used for",
     wa: "Learn more on WhatsApp", ask: "Not sure which one? Ask us", photo: "Photo", video: "Video", videoHere: "Video goes here (9:16)",
     photoHere: "Product photo goes here", other: "Other products in this category", contact: "Contact", type: "Choose a type", products: "products",
     later: "One-line blurb (added later)", draft: "", lang: "Language",
     autoplay: "Autoplay · muted · loop", heroVideo: "Hero video", zoom: "Zooms slowly on hover",
     soundOn: "Turn sound on", soundOff: "Turn sound off", tapSound: "Tap for sound",
     playVideo: "Play video", pauseVideo: "Pause video", videoError: "This video could not load. Check your connection and refresh.",
-    msgProduct: (n) => `Hello Golden Spark, I'm interested in the ${n}. Please send me the price and details.`,
+    msgProduct: (n) => `Hello! I'm interested in the ${n}. Could you please share more details, specifications?`,
     msgCat: (n) => `Hello Golden Spark, I'm not sure which ${n.toLowerCase()} is right for me. Can you help?`,
     msgGeneral: "Hello Golden Spark, I need help choosing the right detector." },
   fr: { title: "Quel détecteur vous convient ?", sub: "Choisissez ce que vous cherchez. Regardez la vidéo. Écrivez-nous sur WhatsApp.", cta: "Trouver mon détecteur",
@@ -369,15 +375,16 @@ const T = {
     how: "Comment ça marche", s1: "Choisissez ce que vous cherchez", s2: "Regardez la vidéo, choisissez un détecteur", s3: "Demandez le prix sur WhatsApp",
     all: "Toutes les catégories", finds: "Ce qu'il détecte", best: "Idéal pour", level: "Niveau", depth: "Profondeur", maxDepth: "Profondeur max (selon le fabricant)",
     states: "Selon le fabricant : jusqu'à", range: "Portée frontale", made: "Fabriqué en", warranty: "Garantie",
-    depthNote: "<b>À propos de la profondeur :</b> elle dépend de la taille de la cible. Plus la cible est grande, plus elle peut être détectée en profondeur. Les petites cibles sont détectées moins profondément.",
+    depthNote: "<b>À propos de la profondeur :</b> les grandes cibles sont détectées plus profondément. Les petites cibles, comme les pépites d'or, sont en général trouvées plus près de la surface.",
     noGuarantee: "Les résultats dépendent du terrain et des conditions et ne sont pas garantis.",
+    depends: "Les résultats dépendent du terrain et des conditions.", usedFor: "Utilisé pour",
     wa: "En savoir plus sur WhatsApp", ask: "Pas sûr ? Demandez-nous", photo: "Photo", video: "Vidéo", videoHere: "Emplacement vidéo (9:16)",
     photoHere: "Emplacement photo du produit", other: "Autres produits de cette catégorie", contact: "Contact", type: "Choisissez un type", products: "produits",
     later: "Phrase courte (ajoutée plus tard)", draft: "Aperçu de traduction (brouillon à relire) : les textes produits sont encore en anglais.", lang: "Langue",
     autoplay: "Lecture auto · sans son · en boucle", heroVideo: "Vidéo principale", zoom: "Zoom lent au survol",
     soundOn: "Activer le son", soundOff: "Couper le son", tapSound: "Touchez pour le son",
     playVideo: "Lire la vidéo", pauseVideo: "Mettre la vidéo en pause", videoError: "La vidéo n'a pas pu se charger. Vérifiez votre connexion et actualisez.",
-    msgProduct: (n) => `Bonjour Golden Spark, je suis intéressé(e) par le ${n}. Merci de m'envoyer le prix et les détails.`,
+    msgProduct: (n) => `Bonjour ! Je suis intéressé(e) par le ${n}. Pourriez-vous me donner plus de détails et les caractéristiques ?`,
     msgCat: (n) => `Bonjour Golden Spark, je ne sais pas quel produit choisir (${n}). Pouvez-vous m'aider ?`,
     msgGeneral: "Bonjour Golden Spark, j'ai besoin d'aide pour choisir le bon détecteur." },
   ar: { title: "أي جهاز كشف يناسبك؟", sub: "اختر ما تريد أن تجده، شاهد الفيديو، ثم اسألنا عبر واتساب.", cta: "اعثر على جهازك",
@@ -385,21 +392,23 @@ const T = {
     how: "كيف يعمل", s1: "اختر ما تريد أن تجده", s2: "شاهد الفيديو واختر جهازك", s3: "اسألنا عن السعر عبر واتساب",
     all: "كل الفئات", finds: "ما الذي يكتشفه", best: "الأنسب لـ", level: "المستوى", depth: "العمق", maxDepth: "أقصى عمق (حسب الشركة المصنعة)",
     states: "حسب الشركة المصنعة: حتى", range: "المدى الأمامي", made: "بلد الصنع", warranty: "الضمان",
-    depthNote: "<b>عن العمق:</b> العمق يعتمد على حجم الهدف. كلما كان الهدف أكبر أمكن كشفه على عمق أكبر، والأهداف الأصغر تُكشف على عمق أقل.",
+    depthNote: "<b>عن العمق:</b> الأهداف الأكبر تُكشف على عمق أكبر، أما الأهداف الصغيرة مثل كتل الذهب فتوجد عادةً قرب السطح.",
     noGuarantee: "النتائج تعتمد على طبيعة الأرض والظروف وليست مضمونة.",
+    depends: "النتائج تعتمد على طبيعة الأرض والظروف.", usedFor: "يُستخدم في",
     wa: "اعرف المزيد عبر واتساب", ask: "لست متأكدًا؟ اسألنا", photo: "صورة", video: "فيديو", videoHere: "مكان الفيديو (9:16)",
     photoHere: "مكان صورة المنتج", other: "منتجات أخرى في هذه الفئة", contact: "تواصل معنا", type: "اختر النوع", products: "منتجات",
     later: "وصف قصير (يضاف لاحقًا)", draft: "معاينة ترجمة أولية (تحتاج مراجعة): نصوص المنتجات ما زالت بالإنجليزية.", lang: "اللغة",
     autoplay: "تشغيل تلقائي · بدون صوت · متكرر", heroVideo: "الفيديو الرئيسي", zoom: "تكبير بطيء عند المرور",
     soundOn: "تشغيل الصوت", soundOff: "كتم الصوت", tapSound: "اضغط لتشغيل الصوت",
     playVideo: "تشغيل الفيديو", pauseVideo: "إيقاف الفيديو مؤقتًا", videoError: "تعذّر تحميل الفيديو. تحقق من الاتصال ثم حدّث الصفحة.",
-    msgProduct: (n) => `مرحبًا Golden Spark، أنا مهتم بجهاز ${n}. أرجو إرسال السعر والتفاصيل.`,
+    msgProduct: (n) => `مرحبًا! أنا مهتم بجهاز ${n}. هل يمكنكم مشاركة المزيد من التفاصيل والمواصفات؟`,
     msgCat: (n) => `مرحبًا Golden Spark، لست متأكدًا أي جهاز (${n}) يناسبني. هل يمكنكم مساعدتي؟`,
     msgGeneral: "مرحبًا Golden Spark، أحتاج مساعدة في اختيار جهاز الكشف المناسب." }
 };
 
 const LANGS = [["en", "English", "EN"], ["ar", "العربية", "عربي"], ["fr", "Français", "FR"]];
-const WA = { en: "971522448875", fr: "971522448875", ar: "971554268455" };
+// WhatsApp number for every button (user request 2026-10-30): +971 50 587 8831
+const WA_NUMBER = "971505878831";
 const ICON = {
   chev: '<svg class="chev" aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 5 7 7-7 7"/></svg>',
   back: '<svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#282C55" stroke-width="2"><path d="m15 5-7 7 7 7"/></svg>',
@@ -418,7 +427,36 @@ try { lang = localStorage.getItem("gs-lang") || "en"; } catch (e) {}
 if (!T[lang]) lang = "en";
 const t = (k) => T[lang][k];
 const L = (o) => (typeof o === "string" ? o : o[lang] || o.en);
-const wa = (msg) => `https://wa.me/${WA[lang]}?text=${encodeURIComponent(msg)}`;
+const wa = (msg) => `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`;
+// "Garrett Axiom · Full package" reads as "Garrett Axiom (Full package)" in the message
+const msgName = (name) => name.replace(/ · (.+)$/, " ($1)");
+
+// What each metal detector is used for. From each product's page on gsdetectors.com (use cases, targets,
+// long-range system) and the category you placed it in. Security, XRF and water products have none.
+const USE_LABELS = {
+  treasure: { en: "Treasure hunting", fr: "Chasse au trésor", ar: "البحث عن الكنوز" },
+  mining: { en: "Mining", fr: "Exploitation minière", ar: "التعدين" },
+  longrange: { en: "Long range", fr: "Longue portée", ar: "بعيد المدى" },
+  gold: { en: "Gold nuggets", fr: "Pépites d'or", ar: "كتل الذهب" }
+};
+const USES = {
+  "okm-exp-7000-professional-plus": ["mining", "gold", "treasure"],
+  "okm-rover-c4": ["mining", "gold", "treasure"],
+  "ger-titan-x13": ["mining", "gold", "treasure", "longrange"],
+  "nokta-makro-gold-finder-2000": ["gold"],
+  "garrett-goldmaster-24k-metal-detector": ["gold"],
+  "xp-deus-ii": ["gold"],
+  "nokta-magnetar-9000": ["gold"],
+  "garrett-axiom-full": ["gold"],
+  "garrett-axiom-lite": ["gold"],
+  "titan-500-smart-device": ["longrange", "gold", "treasure"],
+  "ger-gold-hunter-smart-detector": ["longrange", "gold", "treasure"],
+  "okm-fusion-light-standard": ["treasure"],
+  "okm-fusion-light-lite": ["treasure"],
+  "okm-delta-ranger": ["treasure", "longrange"],
+  "okm-gepard-gpr-3d": ["treasure"]
+};
+const usesOf = (key) => (USES[key] || []).map((u) => L(USE_LABELS[u])).join(" · ");
 
 const toProduct = ([key, name, brand, blurb, depth, range, made, warranty, pkg]) => ({ key, name, brand, blurb, depth, range, made, warranty, pkg });
 const itemsOf = (cat) => (cat.groups ? cat.groups.flatMap((g) => P[g.id]) : P[cat.items]).map(toProduct);
@@ -438,8 +476,8 @@ function depthRange(items) {
   if (!ds.length) return null;
   return ds[0] === ds[ds.length - 1] ? ds[0] : `${ds[0]} – ${ds[ds.length - 1]}`;
 }
-function depthFact(mode, value) {
-  if (!mode || !value) return "";
+function depthFact(mode, value, show = SHOW_DEPTH) {
+  if (!show || !mode || !value) return "";
   return mode === "neutral"
     ? `<div><dt>${t("depth")}</dt><dd>${t("states")} ${value}</dd></div>`
     : `<div><dt>${t("maxDepth")}</dt><dd>${value}</dd></div>`;
@@ -451,9 +489,9 @@ const VIDEOS = window.GS_VIDEOS || {};
 const PHOTOS = window.GS_PHOTOS || {};
 const rich = (s) => s.replace(/\*\*(.+?)\*\*/g, '<strong class="kw">$1</strong>');
 
-function placeholder(shape, label) {
+function placeholder(shape, label, isPhoto = false) {
   const small = shape.includes("sm");
-  return `<div class="media ${shape}"><div class="media-inner">${ICON.play}${small ? "" : `<span>${label}</span><span class="tagline">${t("autoplay")}</span>`}</div></div>`;
+  return `<div class="media ${shape}${isPhoto ? " ph-photo" : ""}"><div class="media-inner">${isPhoto ? `<span>${label}</span>` : ICON.play}${small ? "" : `<span>${label}</span><span class="tagline">${t("autoplay")}</span>`}</div></div>`;
 }
 
 // A real video: muted, looping, inline. setupMedia() starts it when on screen, with a play/pause button,
@@ -479,11 +517,12 @@ function photo(key, shape, alt) {
 // Cards never play video: they show the product photo, or a placeholder until one arrives.
 function tile(p, cat) {
   const blurb = p.blurb ? `<span class="tile-blurb">${p.blurb}</span>` : `<span class="tile-later">${t("later")}</span>`;
-  const depth = cat.depth && p.depth ? `<span class="tile-meta">${cat.depth === "neutral" ? t("states") + " " + p.depth : t("depth") + ": " + p.depth}</span>` : "";
+  const depth = SHOW_DEPTH && cat.depth && p.depth ? `<span class="tile-meta">${cat.depth === "neutral" ? t("states") + " " + p.depth : t("depth") + ": " + p.depth}</span>` : "";
   return `<a class="tile" href="#p-${p.key}">
-    ${photo(p.key, "sq sm", p.name) || placeholder("sq sm", t("photo"))}
+    ${photo(p.key, "sq sm", p.name) || placeholder("sq sm", t("photo"), true)}
     ${p.brand ? `<span class="tile-brand">${p.brand}</span>` : ""}
     <span class="tile-name">${p.name}</span>
+    ${usesOf(p.key) ? `<span class="tile-uses">${usesOf(p.key)}</span>` : ""}
     ${p.pkg ? `<span class="pkg">${p.pkg}</span>` : ""}
     ${blurb}${depth}
   </a>`;
@@ -535,7 +574,7 @@ function renderHome() {
 
 function renderCat(cat) {
   const items = itemsOf(cat);
-  const notes = cat.depth ? `<p class="note">${t("depthNote")}</p>` : "";
+  const notes = SHOW_DEPTH && cat.depth ? `<p class="note">${t("depthNote")}</p>` : "";
   const groups = cat.groups
     ? `<p style="margin:4px 0 0;font-weight:600;color:var(--navy)">${t("type")}</p>
        <div class="types">${cat.groups.map((g) => `<button type="button" class="type" data-jump="${g.id}">${ICON[g.icon]}${L(g.title)}</button>`).join("")}</div>`
@@ -572,7 +611,7 @@ function renderCat(cat) {
 function renderProduct({ cat, p }, tab) {
   const neutral = cat.depth === "neutral" || Boolean(p.range);
   const others = itemsOf(cat).filter((x) => x.key !== p.key);
-  const showDepth = cat.depth && p.depth;
+  const showDepth = SHOW_DEPTH_PRODUCT && cat.depth && p.depth;
   return `<div class="wrap">
     <section class="page-head prod-split">
       <a class="crumb" href="#${cat.id}">← ${L(cat.title)}</a>
@@ -583,7 +622,7 @@ function renderProduct({ cat, p }, tab) {
         </div>
         ${tab === "video"
           ? media(p.key, "v916", `${p.name} · ${t("video")}`)
-          : photo(p.key, "sq", p.name) || `<div class="media sq"><div class="media-inner"><span>${t("photoHere")}</span><span class="tagline">${t("zoom")}</span></div></div>`}
+          : photo(p.key, "sq", p.name) || `<div class="media sq ph-photo"><div class="media-inner"><span>${t("photoHere")}</span><span class="tagline">${t("zoom")}</span></div></div>`}
         ${VIDEOS[p.key] && PHOTOS[p.key] ? `<div class="thumbs">
           <button type="button" data-media="video" aria-pressed="${tab === "video"}" aria-label="${t("video")}"><img src="${VIDEOS[p.key].poster}" alt=""><span class="mini-play">${ICON.play}</span></button>
           <button type="button" data-media="photo" aria-pressed="${tab === "photo"}" aria-label="${t("photo")}" class="photo-thumb"><img src="${PHOTOS[p.key]}" alt=""></button>
@@ -595,15 +634,16 @@ function renderProduct({ cat, p }, tab) {
       ${p.pkg ? `<span class="pkg">${p.pkg}</span>` : ""}
       <p class="intro">${p.blurb || `<span class="tile-later">${t("later")}</span>`}</p>
       <dl class="facts">
-        ${showDepth ? depthFact(neutral ? "neutral" : "claim", p.depth) : ""}
+        ${showDepth ? depthFact(neutral ? "neutral" : "claim", p.depth, true) : ""}
         ${showDepth && p.range ? `<div><dt>${t("range")}</dt><dd>${t("states")} ${p.range}</dd></div>` : ""}
+        ${usesOf(p.key) ? `<div><dt>${t("usedFor")}</dt><dd>${usesOf(p.key)}</dd></div>` : ""}
         ${p.made ? `<div><dt>${t("made")}</dt><dd>${p.made}</dd></div>` : ""}
         ${p.warranty ? `<div><dt>${t("warranty")}</dt><dd>${p.warranty}</dd></div>` : ""}
         ${cat.id === "gold" ? `<div><dt>${t("best")}</dt><dd>${cat.bestFor}</dd></div>` : ""}
       </dl>
-      ${showDepth ? `<p class="note">${t("depthNote")}</p>` : ""}
-      ${showDepth && neutral ? `<p class="small">${t("noGuarantee")}</p>` : ""}
-      <a class="btn-wa" href="${wa(t("msgProduct")(p.name))}" target="_blank" rel="noopener">${ICON.wa}${t("wa")}</a>
+      ${["mining", "gold", "longrange", "treasure"].includes(cat.id) ? `<p class="note">${t("depthNote")}</p>` : ""}
+      ${cat.depth === "neutral" ? `<p class="small">${t("depends")}</p>` : ""}
+      <a class="btn-wa" href="${wa(t("msgProduct")(msgName(p.name)))}" target="_blank" rel="noopener">${ICON.wa}${t("wa")}</a>
       </div>
     </section>
     ${others.length ? `<section class="section"><h2 class="display" style="font-size:18px">${t("other")}</h2>
