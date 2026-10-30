@@ -145,6 +145,28 @@ footer .wrap { padding-block: 24px 120px; display: grid; gap: 12px; }
 .float { position: fixed; z-index: 30; right: calc(16px + env(safe-area-inset-right, 0px)); bottom: calc(20px + env(safe-area-inset-bottom, 0px)); display: flex; align-items: center; gap: 10px; direction: ltr; }
 .lang-btn { height: 44px; padding-inline: 14px; border-radius: 22px; border: 1px solid #D5D5DC; background: var(--paper); display: flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 600; box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12); }
 .wa-fab { width: 56px; height: 56px; border-radius: 28px; background: var(--wa); display: grid; place-items: center; box-shadow: 0 6px 18px rgba(0, 0, 0, 0.22); }
+/* WhatsApp language chooser: bottom sheet on phones, centred card on larger screens */
+.wa-dialog { width: 100%; max-width: 100%; margin: auto 0 0; padding: 0; border: 0; border-radius: 20px 20px 0 0; background: var(--paper); color: var(--ink); }
+.wa-dialog::backdrop { background: rgba(20, 22, 45, 0.55); }
+.wa-sheet { padding: 18px max(18px, env(safe-area-inset-right, 0px)) calc(20px + env(safe-area-inset-bottom, 0px)) max(18px, env(safe-area-inset-left, 0px)); display: grid; gap: 10px; }
+.wa-head { display: flex; align-items: center; gap: 10px; }
+.wa-head h2 { margin: 0; flex: 1; font-size: 20px; color: var(--navy); }
+.wa-close { width: 44px; height: 44px; border: 0; border-radius: 22px; background: var(--mist); display: grid; place-items: center; }
+.wa-close:hover { background: #E2E3EE; }
+.wa-product { margin: 0; font-weight: 600; color: var(--gold-ink); }
+.wa-sub { margin: 0; color: var(--muted); font-size: 14px; }
+.wa-options { display: grid; gap: 8px; margin-top: 4px; }
+.wa-opt { min-height: 60px; padding: 10px 12px 10px 16px; border-radius: 14px; border: 1px solid var(--line); display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--ink); transition: border-color .25s ease, background-color .25s ease; }
+.wa-opt[aria-current="true"] { border-color: var(--navy); }
+.wa-opt:hover, .wa-opt:active { border-color: var(--wa); background: #F2FAF5; }
+.wa-opt-text { flex: 1; display: grid; gap: 2px; }
+.wa-opt-name { font-size: 17px; font-weight: 600; color: var(--navy); }
+.wa-opt-note { font-size: 13px; color: var(--muted); }
+.wa-opt[lang="ar"] .wa-opt-name, .wa-opt[lang="ar"] .wa-opt-note { font-family: var(--arabic); }
+.wa-opt-icon { width: 40px; height: 40px; border-radius: 20px; background: var(--wa); display: grid; place-items: center; flex: none; }
+@media (min-width: 640px) {
+  .wa-dialog { max-width: 420px; margin: auto; border-radius: 20px; }
+}
 .menu { position: absolute; right: 0; bottom: 64px; width: 220px; padding: 6px; border-radius: 16px; background: var(--paper); box-shadow: 0 12px 32px rgba(0, 0, 0, 0.25); display: grid; }
 .menu p { margin: 0; padding: 8px 10px; color: var(--muted); font-size: 12px; font-weight: 600; }
 .menu button { height: 46px; padding-inline: 12px; border: 0; border-radius: 10px; background: transparent; display: flex; align-items: center; justify-content: space-between; font-size: 16px; text-align: start; }
@@ -281,13 +303,25 @@ footer .wrap { padding-block: 24px 120px; display: grid; gap: 12px; }
   </div>
 </footer>
 
+<dialog class="wa-dialog" id="wa-dialog" aria-labelledby="wa-title">
+  <div class="wa-sheet">
+    <div class="wa-head">
+      <h2 class="display" id="wa-title">Chat on WhatsApp</h2>
+      <button type="button" class="wa-close" aria-label="Close"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#282C55" stroke-width="2"><path d="m6 6 12 12M18 6 6 18"/></svg></button>
+    </div>
+    <p class="wa-product" id="wa-product" hidden></p>
+    <p class="wa-sub" id="wa-sub">Choose the language you want to chat in.</p>
+    <div class="wa-options" id="wa-options"></div>
+  </div>
+</dialog>
+
 <div class="float">
   <div class="menu" id="lang-menu" role="menu" hidden></div>
   <button type="button" class="lang-btn" id="lang-btn" aria-haspopup="menu" aria-expanded="false" aria-controls="lang-menu">
     <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#282C55" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 3.8 5.7 3.8 9s-1.3 6.3-3.8 9c-2.5-2.7-3.8-5.7-3.8-9S9.5 5.7 12 3Z"/></svg>
     <span id="lang-code">EN</span>
   </button>
-  <a class="wa-fab" id="wa-fab" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+  <a class="wa-fab" id="wa-fab" target="_blank" rel="noopener" aria-label="Chat on WhatsApp" data-wa-kind="general">
     <svg aria-hidden="true" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8"><path d="M4 20l1.3-3.9A8 8 0 1 1 8 19z"/><path d="M9 9.5c.3 2 2.2 4.2 4.8 5l1-1.2 2 .9-.4 1.6c-3.6.4-7.8-3.3-8-7l1.6-.5.9 2z"/></svg>
   </a>
 </div>
@@ -366,6 +400,7 @@ const T = {
     wa: "Learn more on WhatsApp", ask: "Not sure which one? Ask us", photo: "Photo", video: "Video", videoHere: "Video goes here (9:16)",
     photoHere: "Product photo goes here", other: "Other products in this category", contact: "Contact", type: "Choose a type", products: "products",
     later: "One-line blurb (added later)", draft: "", lang: "Language",
+    waTitle: "Chat on WhatsApp", waSub: "Choose the language you want to chat in.", close: "Close",
     autoplay: "Autoplay · muted · loop", heroVideo: "Hero video", zoom: "Zooms slowly on hover",
     soundOn: "Turn sound on", soundOff: "Turn sound off", tapSound: "Tap for sound",
     playVideo: "Play video", pauseVideo: "Pause video", videoError: "This video could not load. Check your connection and refresh.",
@@ -384,6 +419,7 @@ const T = {
     wa: "En savoir plus sur WhatsApp", ask: "Pas sûr ? Demandez-nous", photo: "Photo", video: "Vidéo", videoHere: "Emplacement vidéo (9:16)",
     photoHere: "Emplacement photo du produit", other: "Autres produits de cette catégorie", contact: "Contact", type: "Choisissez un type", products: "produits",
     later: "Phrase courte (ajoutée plus tard)", draft: "Aperçu de traduction (brouillon à relire) : les textes produits sont encore en anglais.", lang: "Langue",
+    waTitle: "Discuter sur WhatsApp", waSub: "Choisissez la langue de la conversation.", close: "Fermer",
     autoplay: "Lecture auto · sans son · en boucle", heroVideo: "Vidéo principale", zoom: "Zoom lent au survol",
     soundOn: "Activer le son", soundOff: "Couper le son", tapSound: "Touchez pour le son",
     playVideo: "Lire la vidéo", pauseVideo: "Mettre la vidéo en pause", videoError: "La vidéo n'a pas pu se charger. Vérifiez votre connexion et actualisez.",
@@ -402,6 +438,7 @@ const T = {
     wa: "اعرف المزيد عبر واتساب", ask: "لست متأكدًا؟ اسألنا", photo: "صورة", video: "فيديو", videoHere: "مكان الفيديو (9:16)",
     photoHere: "مكان صورة المنتج", other: "منتجات أخرى في هذه الفئة", contact: "تواصل معنا", type: "اختر النوع", products: "منتجات",
     later: "وصف قصير (يضاف لاحقًا)", draft: "معاينة ترجمة أولية (تحتاج مراجعة): نصوص المنتجات ما زالت بالإنجليزية.", lang: "اللغة",
+    waTitle: "تواصل عبر واتساب", waSub: "اختر اللغة التي تريد التحدث بها.", close: "إغلاق",
     autoplay: "تشغيل تلقائي · بدون صوت · متكرر", heroVideo: "الفيديو الرئيسي", zoom: "تكبير بطيء عند المرور",
     soundOn: "تشغيل الصوت", soundOff: "كتم الصوت", tapSound: "اضغط لتشغيل الصوت",
     playVideo: "تشغيل الفيديو", pauseVideo: "إيقاف الفيديو مؤقتًا", videoError: "تعذّر تحميل الفيديو. تحقق من الاتصال ثم حدّث الصفحة.",
@@ -412,8 +449,13 @@ const T = {
 };
 
 const LANGS = [["en", "English", "EN"], ["ar", "العربية", "عربي"], ["fr", "Français", "FR"]];
-// WhatsApp number for every button (user request 2026-10-30): +971 50 587 8831
-const WA_NUMBER = "971505878831";
+// WhatsApp lines per chat language (user request 2026-10-30). A language with several lines gives each
+// visitor one of them at random (kept for the visit), so chats are shared evenly between the agents.
+const WA_LINES = {
+  en: ["971588199399", "971505878831"], // +971 58 819 9399, +971 50 587 8831
+  fr: ["971554268455"],                 // +971 55 426 8455
+  ar: ["971522448875"]                  // +971 52 244 8875
+};
 const ICON = {
   chev: '<svg class="chev" aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 5 7 7-7 7"/></svg>',
   back: '<svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#282C55" stroke-width="2"><path d="m15 5-7 7 7 7"/></svg>',
@@ -432,7 +474,19 @@ try { lang = localStorage.getItem("gs-lang") || "en"; } catch (e) {}
 if (!T[lang]) lang = "en";
 const t = (k) => T[lang][k];
 const L = (o) => (typeof o === "string" ? o : o[lang] || o.en);
-const wa = (msg) => `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`;
+function waNumber(l) {
+  const lines = WA_LINES[l];
+  let i = null;
+  try { i = sessionStorage.getItem("gs-wa-" + l); } catch (e) {}
+  if (i === null || !lines[i]) {
+    i = Math.floor(Math.random() * lines.length);
+    try { sessionStorage.setItem("gs-wa-" + l, String(i)); } catch (e) {}
+  }
+  return lines[i];
+}
+const waLink = (l, msg) => `https://wa.me/${waNumber(l)}?text=${encodeURIComponent(msg)}`;
+// Button hrefs work without the chooser too (page language); a click opens the language chooser instead.
+const wa = (msg) => waLink(lang, msg);
 // Product link in WhatsApp enquiries = this guide's own product page (user request 2026-10-30),
 // so visits are counted by this site's analytics. Built from wherever the guide is hosted.
 const productUrl = (key) => location.origin + location.pathname + "#p-" + key;
@@ -449,23 +503,60 @@ const CAMPAIGN = (() => {
   return [c.source, c.campaign].filter(Boolean).join(" · ");
 })();
 
-function productMessage(p) {
+function productMessage(p, l = lang) {
   const url = productUrl(p.key);
-  return t("msgProduct")(msgName(p.name)) + (url ? `
-${t("msgLink")}: ${url}` : "") + (CAMPAIGN ? `
+  return T[l].msgProduct(msgName(p.name)) + (url ? `
+${T[l].msgLink}: ${url}` : "") + (CAMPAIGN ? `
 Ref: ${CAMPAIGN}` : "");
 }
 
-// Click events for Google Analytics / Google Tag Manager / Meta Pixel once their codes are added to the page.
+// What each button sends, in the chosen chat language
+function waMessage(btn, l) {
+  if (btn.dataset.waKind === "product") return productMessage(findProduct(btn.dataset.waKey).p, l);
+  if (btn.dataset.waKind === "cat") { const c = catById(btn.dataset.waKey); return T[l].msgCat(c.title[l] || c.title.en); }
+  return T[l].msgGeneral;
+}
+
+// Language chooser: every WhatsApp button asks which language to chat in, then opens that language's line.
+const WA_CHOICES = [["en", "English", "Chat in English"], ["fr", "Français", "Discuter en français"], ["ar", "العربية", "تحدّث بالعربية"]];
+const waDialog = document.getElementById("wa-dialog");
+let waSource = null;
+function openWaChooser(btn) {
+  waSource = btn;
+  document.getElementById("wa-title").textContent = t("waTitle");
+  document.getElementById("wa-sub").textContent = t("waSub");
+  waDialog.querySelector(".wa-close").setAttribute("aria-label", t("close"));
+  const product = btn.dataset.waKind === "product" ? findProduct(btn.dataset.waKey).p.name : "";
+  document.getElementById("wa-product").textContent = product;
+  document.getElementById("wa-product").hidden = !product;
+  document.getElementById("wa-options").innerHTML = WA_CHOICES.map(([l, name, note]) =>
+    `<a class="wa-opt" href="${waLink(l, waMessage(btn, l))}" target="_blank" rel="noopener" data-wa-lang="${l}" lang="${l}"${l === lang ? ' aria-current="true"' : ""}>
+      <span class="wa-opt-text"><span class="wa-opt-name">${name}</span><span class="wa-opt-note">${note}</span></span>
+      <span class="wa-opt-icon">${ICON.wa}</span></a>`).join("");
+  if (typeof waDialog.showModal === "function") waDialog.showModal(); else waDialog.setAttribute("open", "");
+}
+function closeWaChooser() {
+  if (!waDialog.open) return;
+  if (typeof waDialog.close === "function") waDialog.close(); else waDialog.removeAttribute("open");
+}
+
 document.addEventListener("click", (e) => {
-  const a = e.target.closest("a[data-wa-product]");
-  if (!a) return;
-  const detail = { product: a.dataset.waProduct, product_url: a.dataset.waUrl || "", campaign: CAMPAIGN };
-  try {
-    (window.dataLayer = window.dataLayer || []).push({ event: "whatsapp_click", ...detail });
-    if (window.gtag) window.gtag("event", "whatsapp_click", detail);
-    if (window.fbq) window.fbq("track", "Contact", { content_name: detail.product });
-  } catch (err) {}
+  const btn = e.target.closest("a[data-wa-kind]");
+  if (btn) { e.preventDefault(); openWaChooser(btn); return; }
+  const opt = e.target.closest(".wa-opt");
+  if (opt && waSource) {
+    // Click events for Google Analytics / Google Tag Manager / Meta Pixel once their codes are added to the page.
+    const product = waSource.dataset.waKind === "product" ? findProduct(waSource.dataset.waKey).p : null;
+    const detail = { product: product ? product.name : waSource.dataset.waKind, product_url: product ? productUrl(product.key) : "", chat_language: opt.dataset.waLang, campaign: CAMPAIGN };
+    try {
+      (window.dataLayer = window.dataLayer || []).push({ event: "whatsapp_click", ...detail });
+      if (window.gtag) window.gtag("event", "whatsapp_click", detail);
+      if (window.fbq) window.fbq("track", "Contact", { content_name: detail.product });
+    } catch (err) {}
+    setTimeout(closeWaChooser, 50); // let the link open first
+    return;
+  }
+  if (e.target === waDialog || e.target.closest(".wa-close")) closeWaChooser();
 });
 
 // "Garrett Axiom · Full package" reads as "Garrett Axiom (Full package)" in the message
@@ -644,7 +735,7 @@ function renderCat(cat) {
       </div>
     </section>
     ${list}
-    <section class="section"><a class="ask" href="${wa(t("msgCat")(L(cat.title)))}" target="_blank" rel="noopener">${t("ask")}</a></section>
+    <section class="section"><a class="ask" href="${wa(t("msgCat")(L(cat.title)))}" target="_blank" rel="noopener" data-wa-kind="cat" data-wa-key="${cat.id}">${t("ask")}</a></section>
   </div>`;
 }
 
@@ -683,7 +774,7 @@ function renderProduct({ cat, p }, tab) {
       </dl>
       ${["mining", "gold", "longrange", "treasure"].includes(cat.id) ? `<p class="note">${t("depthNote")}</p>` : ""}
       ${cat.depth === "neutral" ? `<p class="small">${t("depends")}</p>` : ""}
-      <a class="btn-wa" href="${wa(productMessage(p))}" target="_blank" rel="noopener" data-wa-product="${p.name}" data-wa-url="${productUrl(p.key) || ""}">${ICON.wa}${t("wa")}</a>
+      <a class="btn-wa" href="${wa(productMessage(p))}" target="_blank" rel="noopener" data-wa-kind="product" data-wa-key="${p.key}">${ICON.wa}${t("wa")}</a>
       </div>
     </section>
     ${others.length ? `<section class="section"><h2 class="display" style="font-size:18px">${t("other")}</h2>
