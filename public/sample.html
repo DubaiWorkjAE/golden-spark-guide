@@ -175,6 +175,10 @@ footer .wrap { padding-block: 24px 120px; display: grid; gap: 12px; }
 .vctl { position: absolute; inset-inline-end: 10px; bottom: 10px; z-index: 2; width: 44px; height: 44px; padding: 0; border: 0; border-radius: 22px; background: rgba(20, 22, 45, 0.72); display: grid; place-items: center; }
 .vctl .play { width: auto; height: auto; background: none; }
 .vctl:hover { background: var(--navy); }
+.vsnd { position: absolute; inset-inline-start: 10px; bottom: 10px; z-index: 2; height: 44px; padding-inline: 12px 14px; border: 0; border-radius: 22px; background: rgba(20, 22, 45, 0.72); color: #FFFFFF; display: flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 600; transition: background-color .25s ease; }
+.vsnd:hover, .vsnd[aria-pressed="true"] { background: var(--navy); }
+.vsnd[aria-pressed="true"] span { display: none; }
+.vsnd[aria-pressed="true"] { padding-inline: 13px; }
 .verr { position: absolute; inset: auto 10px 62px; z-index: 2; margin: 0; padding: 8px 10px; border-radius: 8px; background: rgba(20, 22, 45, 0.88); color: #FFFFFF; font-size: 13px; }
 .media.photo { background: #FFFFFF; border: 1px solid var(--line); }
 .media.photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; padding: 6%; transition: transform 1.2s cubic-bezier(.2, .7, .2, 1); }
@@ -355,6 +359,7 @@ const T = {
     photoHere: "Product photo goes here", other: "Other products in this category", contact: "Contact", type: "Choose a type", products: "products",
     later: "One-line blurb (added later)", draft: "", lang: "Language",
     autoplay: "Autoplay · muted · loop", heroVideo: "Hero video", zoom: "Zooms slowly on hover",
+    soundOn: "Turn sound on", soundOff: "Turn sound off", tapSound: "Tap for sound",
     playVideo: "Play video", pauseVideo: "Pause video", videoError: "This video could not load. Check your connection and refresh.",
     msgProduct: (n) => `Hello Golden Spark, I'm interested in the ${n}. Please send me the price and details.`,
     msgCat: (n) => `Hello Golden Spark, I'm not sure which ${n.toLowerCase()} is right for me. Can you help?`,
@@ -370,6 +375,7 @@ const T = {
     photoHere: "Emplacement photo du produit", other: "Autres produits de cette catégorie", contact: "Contact", type: "Choisissez un type", products: "produits",
     later: "Phrase courte (ajoutée plus tard)", draft: "Aperçu de traduction (brouillon à relire) : les textes produits sont encore en anglais.", lang: "Langue",
     autoplay: "Lecture auto · sans son · en boucle", heroVideo: "Vidéo principale", zoom: "Zoom lent au survol",
+    soundOn: "Activer le son", soundOff: "Couper le son", tapSound: "Touchez pour le son",
     playVideo: "Lire la vidéo", pauseVideo: "Mettre la vidéo en pause", videoError: "La vidéo n'a pas pu se charger. Vérifiez votre connexion et actualisez.",
     msgProduct: (n) => `Bonjour Golden Spark, je suis intéressé(e) par le ${n}. Merci de m'envoyer le prix et les détails.`,
     msgCat: (n) => `Bonjour Golden Spark, je ne sais pas quel produit choisir (${n}). Pouvez-vous m'aider ?`,
@@ -385,6 +391,7 @@ const T = {
     photoHere: "مكان صورة المنتج", other: "منتجات أخرى في هذه الفئة", contact: "تواصل معنا", type: "اختر النوع", products: "منتجات",
     later: "وصف قصير (يضاف لاحقًا)", draft: "معاينة ترجمة أولية (تحتاج مراجعة): نصوص المنتجات ما زالت بالإنجليزية.", lang: "اللغة",
     autoplay: "تشغيل تلقائي · بدون صوت · متكرر", heroVideo: "الفيديو الرئيسي", zoom: "تكبير بطيء عند المرور",
+    soundOn: "تشغيل الصوت", soundOff: "كتم الصوت", tapSound: "اضغط لتشغيل الصوت",
     playVideo: "تشغيل الفيديو", pauseVideo: "إيقاف الفيديو مؤقتًا", videoError: "تعذّر تحميل الفيديو. تحقق من الاتصال ثم حدّث الصفحة.",
     msgProduct: (n) => `مرحبًا Golden Spark، أنا مهتم بجهاز ${n}. أرجو إرسال السعر والتفاصيل.`,
     msgCat: (n) => `مرحبًا Golden Spark، لست متأكدًا أي جهاز (${n}) يناسبني. هل يمكنكم مساعدتي؟`,
@@ -396,6 +403,8 @@ const WA = { en: "971522448875", fr: "971522448875", ar: "971554268455" };
 const ICON = {
   chev: '<svg class="chev" aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 5 7 7-7 7"/></svg>',
   back: '<svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#282C55" stroke-width="2"><path d="m15 5-7 7 7 7"/></svg>',
+  muted: '<svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.9"><path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z"/><path d="m16 9.5 5 5m0-5-5 5"/></svg>',
+  sound: '<svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.9"><path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z"/><path d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11"/></svg>',
   pause: '<svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="#FFFFFF"><rect x="6.5" y="5" width="4" height="14" rx="1"/><rect x="13.5" y="5" width="4" height="14" rx="1"/></svg>',
   play: '<span class="play"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="#FFFFFF"><path d="M8 5.5v13l10.5-6.5z"/></svg></span>',
   wa: '<svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8"><path d="M4 20l1.3-3.9A8 8 0 1 1 8 19z"/></svg>',
@@ -456,6 +465,7 @@ function media(key, shape, label) {
     <video src="${v.src}"${v.poster ? ` poster="${v.poster}"` : ""} muted autoplay loop playsinline preload="auto" aria-label="${label}"></video>
     <button type="button" class="fallback" hidden aria-label="${t("playVideo")}">${ICON.play}</button>
     <button type="button" class="vctl" aria-label="${t("pauseVideo")}">${ICON.pause}</button>
+    <button type="button" class="vsnd" aria-pressed="false" aria-label="${t("soundOn")}">${ICON.muted}<span>${t("tapSound")}</span></button>
     <p class="verr" hidden>${t("videoError")}</p>
   </div>`;
 }
@@ -657,7 +667,16 @@ function setupMedia(root) {
     if (watcher) watcher.observe(box);
     const video = box.querySelector("video");
     if (!video) return;
-    const big = box.querySelector(".fallback"), ctl = box.querySelector(".vctl"), err = box.querySelector(".verr");
+    const big = box.querySelector(".fallback"), ctl = box.querySelector(".vctl"), err = box.querySelector(".verr"), snd = box.querySelector(".vsnd");
+    // Sound is always off at start (browsers only autoplay muted); the visitor turns it on with one tap.
+    snd.onclick = (e) => {
+      e.preventDefault(); e.stopPropagation();
+      video.muted = !video.muted;
+      snd.setAttribute("aria-pressed", String(!video.muted));
+      snd.setAttribute("aria-label", video.muted ? t("soundOn") : t("soundOff"));
+      snd.innerHTML = (video.muted ? ICON.muted : ICON.sound) + `<span>${t("tapSound")}</span>`;
+      if (!video.muted && video.paused) { delete video.dataset.userPaused; video.play().catch(() => {}); }
+    };
     video.muted = true; // iOS only autoplays when the property is set, not just the attribute
     video.defaultMuted = true;
     const showState = () => {
