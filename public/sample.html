@@ -190,6 +190,44 @@ footer .wrap { padding-block: 24px 120px; display: grid; gap: 12px; }
 .type:active svg { color: var(--gold); }
 .btn-gold:active, .btn-wa:active { transform: scale(.98); }
 
+/* Premium tap feel: every button presses in softly and a gold glow spreads from the finger or cursor. */
+.chip, .btn-wa, .btn-gold, .ask, .type, .wa-opt, .cat, .tile, .seg button, .thumbs button, .wa-fab, .lang-btn, .back, .wa-close, .menu button { position: relative; overflow: hidden; -webkit-tap-highlight-color: transparent; }
+.vctl, .vsnd { overflow: hidden; -webkit-tap-highlight-color: transparent; }
+.tile, .cat, .wa-opt, .thumbs button, .wa-fab, .lang-btn, .back, .vctl, .vsnd, .wa-close, .menu button {
+  transition: transform .18s cubic-bezier(.2, .7, .2, 1), border-color .25s ease, background-color .25s ease, box-shadow .25s ease;
+}
+.chip:active, .btn-wa:active, .btn-gold:active, .ask:active, .type:active, .wa-opt:active, .cat:active, .tile:active, .seg button:active,
+.thumbs button:active, .wa-fab:active, .lang-btn:active, .back:active, .vctl:active, .vsnd:active, .wa-close:active, .menu button:active { transform: scale(.97); }
+.ripple { position: absolute; border-radius: 50%; pointer-events: none; transform: translate(-50%, -50%) scale(0); background: radial-gradient(circle, var(--ripple) 0%, transparent 70%); animation: ripple .7s cubic-bezier(.2, .7, .2, 1) forwards; }
+:root { --ripple: rgba(241, 200, 84, 0.55); }
+.btn-wa, .wa-fab, .vctl, .vsnd, .seg button[aria-selected="true"] { --ripple: rgba(255, 255, 255, 0.5); }
+@keyframes ripple { to { transform: translate(-50%, -50%) scale(1); opacity: 0; } }
+
+/* Smooth entries: WhatsApp panel slides up (pops in on larger screens), options follow one by one, pages fade in */
+@keyframes sheet-up { from { transform: translateY(100%); } }
+@keyframes sheet-down { to { transform: translateY(100%); } }
+@keyframes pop-in { from { opacity: 0; transform: translateY(10px) scale(.97); } }
+@keyframes pop-out { to { opacity: 0; transform: scale(.97); } }
+@keyframes fade-in { from { opacity: 0; } }
+@keyframes fade-out { to { opacity: 0; } }
+@keyframes rise-in { from { opacity: 0; transform: translateY(10px); } }
+@media (prefers-reduced-motion: no-preference) {
+  .wa-dialog[open] { animation: sheet-up .42s cubic-bezier(.2, .8, .2, 1); }
+  .wa-dialog[open]::backdrop { animation: fade-in .3s ease; }
+  .wa-dialog.closing { animation: sheet-down .22s ease-in forwards; }
+  .wa-dialog.closing::backdrop { animation: fade-out .22s ease-in forwards; }
+  .wa-dialog[open] .wa-opt { animation: rise-in .45s cubic-bezier(.2, .8, .2, 1) backwards; }
+  .wa-dialog[open] .wa-opt:nth-child(1) { animation-delay: .08s; }
+  .wa-dialog[open] .wa-opt:nth-child(2) { animation-delay: .14s; }
+  .wa-dialog[open] .wa-opt:nth-child(3) { animation-delay: .2s; }
+  .menu:not([hidden]) { animation: pop-in .22s cubic-bezier(.2, .8, .2, 1); transform-origin: bottom right; }
+  #view.enter { animation: rise-in .38s cubic-bezier(.2, .8, .2, 1); }
+  @media (min-width: 640px) {
+    .wa-dialog[open] { animation: pop-in .3s cubic-bezier(.2, .8, .2, 1); }
+    .wa-dialog.closing { animation: pop-out .18s ease-in forwards; }
+  }
+}
+
 /* Video-first media placeholders (real videos: autoplay, muted, loop, inline; tap-to-play fallback) */
 .media { position: relative; overflow: hidden; border-radius: 12px; background: var(--ph); }
 .media-inner { position: absolute; inset: 0; border: 1px dashed var(--ph-line); border-radius: inherit; display: grid; place-content: center; justify-items: center; gap: 8px; padding: 8px; text-align: center; color: var(--muted); font-size: 12px; background: var(--ph); }
@@ -274,6 +312,7 @@ footer .wrap { padding-block: 24px 120px; display: grid; gap: 12px; }
 @media (hover: hover) { .tile, .cat { transition: border-color .25s ease, box-shadow .25s ease; } .tile:hover, .cat:hover { box-shadow: 0 10px 28px -16px rgba(38, 41, 72, .45); } }
 @media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
 @media (prefers-reduced-motion: reduce) {
+  .ripple { display: none; }
   .media-inner, .media video, .kw, .tile, .cat, .chip, .type, .ask, .seg button, .btn-gold, .btn-wa { transition: none !important; transform: none !important; }
   .tile:hover .media-inner, .cat:hover .media-inner, .media:hover .media-inner, .media.inview .media-inner,
   .tile:hover .media video, .cat:hover .media video, .media:hover video, .media.inview video,
@@ -535,10 +574,36 @@ function openWaChooser(btn) {
       <span class="wa-opt-icon">${ICON.wa}</span></a>`).join("");
   if (typeof waDialog.showModal === "function") waDialog.showModal(); else waDialog.setAttribute("open", "");
 }
+const calmMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 function closeWaChooser() {
-  if (!waDialog.open) return;
-  if (typeof waDialog.close === "function") waDialog.close(); else waDialog.removeAttribute("open");
+  if (!waDialog.open || waDialog.classList.contains("closing")) return;
+  const finish = () => {
+    waDialog.classList.remove("closing");
+    if (typeof waDialog.close === "function") waDialog.close(); else waDialog.removeAttribute("open");
+  };
+  if (calmMotion.matches) return finish();
+  waDialog.classList.add("closing");
+  setTimeout(finish, 210);
 }
+waDialog.addEventListener("cancel", (e) => { e.preventDefault(); closeWaChooser(); }); // Esc key closes with the same animation
+
+// Tap feel: gold glow from the tap point, plus a very short vibration on phones that support it (Android).
+const TAPPABLE = ".chip, .btn-wa, .btn-gold, .ask, .type, .wa-opt, .cat, .tile, .seg button, .thumbs button, .wa-fab, .lang-btn, .back, .vctl, .vsnd, .wa-close, .menu button";
+document.addEventListener("pointerdown", (e) => {
+  const el = e.target.closest(TAPPABLE);
+  if (!el || e.button > 0) return;
+  if (e.pointerType === "touch" && navigator.vibrate) { try { navigator.vibrate(8); } catch (err) {} }
+  if (calmMotion.matches) return;
+  const box = el.getBoundingClientRect();
+  const size = Math.max(box.width, box.height) * 2.4;
+  const glow = document.createElement("span");
+  glow.className = "ripple";
+  glow.setAttribute("aria-hidden", "true");
+  glow.style.cssText = `width:${size}px;height:${size}px;left:${e.clientX - box.left}px;top:${e.clientY - box.top}px`;
+  el.appendChild(glow);
+  glow.addEventListener("animationend", () => glow.remove());
+  setTimeout(() => glow.remove(), 900); // also when the browser skips the animation (background tab)
+}, { passive: true });
 
 document.addEventListener("click", (e) => {
   const btn = e.target.closest("a[data-wa-kind]");
@@ -811,7 +876,12 @@ function render(scrollTop = true) {
   setupMedia(view);
   const chip = document.querySelector('.chip[aria-current="page"]');
   if (chip) chip.parentElement.scrollLeft = chip.offsetLeft - chip.parentElement.clientWidth / 2 + chip.clientWidth / 2;
-  if (scrollTop) window.scrollTo(0, 0);
+  if (scrollTop) {
+    window.scrollTo(0, 0);
+    view.classList.remove("enter");
+    void view.offsetWidth; // restart the entry animation
+    view.classList.add("enter");
+  }
 }
 
 // Videos: start muted when on screen, pause when off screen. Only a real autoplay block (NotAllowedError) shows the
