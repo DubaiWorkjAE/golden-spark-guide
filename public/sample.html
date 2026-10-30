@@ -367,7 +367,8 @@ const T = {
     autoplay: "Autoplay · muted · loop", heroVideo: "Hero video", zoom: "Zooms slowly on hover",
     soundOn: "Turn sound on", soundOff: "Turn sound off", tapSound: "Tap for sound",
     playVideo: "Play video", pauseVideo: "Pause video", videoError: "This video could not load. Check your connection and refresh.",
-    msgProduct: (n) => `Hello! I'm interested in the ${n}. Could you please share more details, specifications?`,
+    msgProduct: (n) => `Hello! I'm interested in the ${n}. I'd like to know more about its features, specifications, and pricing.`,
+    msgLink: "Product link",
     msgCat: (n) => `Hello Golden Spark, I'm not sure which ${n.toLowerCase()} is right for me. Can you help?`,
     msgGeneral: "Hello Golden Spark, I need help choosing the right detector." },
   fr: { title: "Quel détecteur vous convient ?", sub: "Choisissez ce que vous cherchez. Regardez la vidéo. Écrivez-nous sur WhatsApp.", cta: "Trouver mon détecteur",
@@ -384,7 +385,8 @@ const T = {
     autoplay: "Lecture auto · sans son · en boucle", heroVideo: "Vidéo principale", zoom: "Zoom lent au survol",
     soundOn: "Activer le son", soundOff: "Couper le son", tapSound: "Touchez pour le son",
     playVideo: "Lire la vidéo", pauseVideo: "Mettre la vidéo en pause", videoError: "La vidéo n'a pas pu se charger. Vérifiez votre connexion et actualisez.",
-    msgProduct: (n) => `Bonjour ! Je suis intéressé(e) par le ${n}. Pourriez-vous me donner plus de détails et les caractéristiques ?`,
+    msgProduct: (n) => `Bonjour ! Je suis intéressé(e) par le ${n}. J'aimerais en savoir plus sur ses fonctions, ses caractéristiques et son prix.`,
+    msgLink: "Lien du produit",
     msgCat: (n) => `Bonjour Golden Spark, je ne sais pas quel produit choisir (${n}). Pouvez-vous m'aider ?`,
     msgGeneral: "Bonjour Golden Spark, j'ai besoin d'aide pour choisir le bon détecteur." },
   ar: { title: "أي جهاز كشف يناسبك؟", sub: "اختر ما تريد أن تجده، شاهد الفيديو، ثم اسألنا عبر واتساب.", cta: "اعثر على جهازك",
@@ -401,7 +403,8 @@ const T = {
     autoplay: "تشغيل تلقائي · بدون صوت · متكرر", heroVideo: "الفيديو الرئيسي", zoom: "تكبير بطيء عند المرور",
     soundOn: "تشغيل الصوت", soundOff: "كتم الصوت", tapSound: "اضغط لتشغيل الصوت",
     playVideo: "تشغيل الفيديو", pauseVideo: "إيقاف الفيديو مؤقتًا", videoError: "تعذّر تحميل الفيديو. تحقق من الاتصال ثم حدّث الصفحة.",
-    msgProduct: (n) => `مرحبًا! أنا مهتم بجهاز ${n}. هل يمكنكم مشاركة المزيد من التفاصيل والمواصفات؟`,
+    msgProduct: (n) => `مرحبًا! أنا مهتم بجهاز ${n}. أود معرفة المزيد عن مميزاته ومواصفاته وسعره.`,
+    msgLink: "رابط المنتج",
     msgCat: (n) => `مرحبًا Golden Spark، لست متأكدًا أي جهاز (${n}) يناسبني. هل يمكنكم مساعدتي؟`,
     msgGeneral: "مرحبًا Golden Spark، أحتاج مساعدة في اختيار جهاز الكشف المناسب." }
 };
@@ -428,6 +431,59 @@ if (!T[lang]) lang = "en";
 const t = (k) => T[lang][k];
 const L = (o) => (typeof o === "string" ? o : o[lang] || o.en);
 const wa = (msg) => `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`;
+// Each product's own page on gsdetectors.com (all checked: load directly, no redirect, 2026-10-30).
+// Packages share their product's page. No link yet for Niton XL2 (3 models on the site), DXL 800 and
+// Super Scanner (not on the site): their message is sent without a link, never with the homepage.
+const SITE = "https://gsdetectors.com/product/";
+const PRODUCT_URLS = {
+  "okm-exp-7000-professional-plus": "okm-exp-7000-professional-plus", "okm-rover-c4": "okm-rover-c4", "ger-titan-x13": "ger-titan-x13",
+  "nokta-makro-gold-finder-2000": "nokta-makro-gold-finder-2000", "garrett-goldmaster-24k-metal-detector": "garrett-goldmaster-24k-metal-detector",
+  "xp-deus-ii": "xp-deus-ii", "nokta-magnetar-9000": "nokta-magnetar-9000",
+  "garrett-axiom-full": "garrett-axiom-ultra-pulse-gold-detector", "garrett-axiom-lite": "garrett-axiom-ultra-pulse-gold-detector",
+  "titan-500-smart-device": "titan-500-smart-device", "ger-gold-hunter-smart-detector": "ger-gold-hunter-smart-detector",
+  "okm-fusion-light-standard": "okm-fusion-light", "okm-fusion-light-lite": "okm-fusion-light",
+  "okm-delta-ranger": "okm-delta-ranger", "okm-gepard-gpr-3d": "okm-gepard-gpr-3d",
+  "river-f-smart-detector": "river-f-smart-detector", "fresh-result-2": "fresh-result-2-system-device-ground-water-detector",
+  "okm-geoseeker": "okm-geoseeker", "river-g-device": "river-g-device",
+  "vanta-element": "vanta-element-handheld-xrf-analyzer",
+  "garrett-multi-zone": "garrett-multi-zone-walk-through-metal-detector", "pd-6500i": "pd-6500i-walk-through-metal-detector",
+  "garrett-paragon": "garrett-paragon-walk-through-metal-detector", "super-scanner-v": "super-scanner-v-hand-held-metal-detector",
+  "superwand": "superwand-hand-held-metal-detector", "garrett-guide": "garrett-guide-hand-held-security-metal-detector",
+  "eagle-eye-rjx6550": "rjx6550-x-ray-luggage-scanner"
+};
+const productUrl = (key) => (PRODUCT_URLS[key] ? SITE + PRODUCT_URLS[key] + "/" : null);
+
+// Ad campaign tracking: if the visitor arrived from an ad link (utm_source / utm_campaign), remember it for
+// this visit and add a short "Ref:" line to product enquiries so the team knows which ad brought them.
+const CAMPAIGN = (() => {
+  const q = new URLSearchParams(location.search);
+  let c = { source: q.get("utm_source"), campaign: q.get("utm_campaign") };
+  try {
+    if (c.source || c.campaign) sessionStorage.setItem("gs-campaign", JSON.stringify(c));
+    else c = JSON.parse(sessionStorage.getItem("gs-campaign") || "{}");
+  } catch (e) {}
+  return [c.source, c.campaign].filter(Boolean).join(" · ");
+})();
+
+function productMessage(p) {
+  const url = productUrl(p.key);
+  return t("msgProduct")(msgName(p.name)) + (url ? `
+${t("msgLink")}: ${url}` : "") + (CAMPAIGN ? `
+Ref: ${CAMPAIGN}` : "");
+}
+
+// Click events for Google Analytics / Google Tag Manager / Meta Pixel once their codes are added to the page.
+document.addEventListener("click", (e) => {
+  const a = e.target.closest("a[data-wa-product]");
+  if (!a) return;
+  const detail = { product: a.dataset.waProduct, product_url: a.dataset.waUrl || "", campaign: CAMPAIGN };
+  try {
+    (window.dataLayer = window.dataLayer || []).push({ event: "whatsapp_click", ...detail });
+    if (window.gtag) window.gtag("event", "whatsapp_click", detail);
+    if (window.fbq) window.fbq("track", "Contact", { content_name: detail.product });
+  } catch (err) {}
+});
+
 // "Garrett Axiom · Full package" reads as "Garrett Axiom (Full package)" in the message
 const msgName = (name) => name.replace(/ · (.+)$/, " ($1)");
 
@@ -643,7 +699,7 @@ function renderProduct({ cat, p }, tab) {
       </dl>
       ${["mining", "gold", "longrange", "treasure"].includes(cat.id) ? `<p class="note">${t("depthNote")}</p>` : ""}
       ${cat.depth === "neutral" ? `<p class="small">${t("depends")}</p>` : ""}
-      <a class="btn-wa" href="${wa(t("msgProduct")(msgName(p.name)))}" target="_blank" rel="noopener">${ICON.wa}${t("wa")}</a>
+      <a class="btn-wa" href="${wa(productMessage(p))}" target="_blank" rel="noopener" data-wa-product="${p.name}" data-wa-url="${productUrl(p.key) || ""}">${ICON.wa}${t("wa")}</a>
       </div>
     </section>
     ${others.length ? `<section class="section"><h2 class="display" style="font-size:18px">${t("other")}</h2>
