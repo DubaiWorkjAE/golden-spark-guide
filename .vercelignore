@@ -4,5 +4,4 @@ node_modules
 data/raw
 data/videos.local.json
 public/local-videos
-*.mp4
 *.mov
