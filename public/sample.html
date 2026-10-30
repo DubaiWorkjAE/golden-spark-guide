@@ -151,6 +151,11 @@ footer .wrap { padding-block: 24px 120px; display: grid; gap: 12px; }
 .address { display: flex; align-items: center; gap: 10px; }
 /* The flag never mirrors in Arabic; a hairline keeps the white stripe visible on light backgrounds */
 .uae-flag { flex: none; border-radius: 2px; box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15); }
+.cat-head { padding-block: 20px 0; }
+.cat-head .intro { max-width: 60ch; }
+.cat-products { padding-block: 18px 6px; display: grid; gap: 12px; scroll-margin-top: 120px; }
+.cat-products.subgroup { padding-top: 22px; }
+.cat-products.subgroup h2 { margin: 0; font-size: 20px; color: var(--navy); }
 .a-info .headline { margin: -4px 0 0; font-size: 17px; font-weight: 700; color: var(--gold-ink); }
 .terms { grid-column: 1 / -1; margin-top: 10px; padding-top: 18px; border-top: 1px solid var(--line); display: grid; gap: 14px; }
 .terms h2 { margin: 0; font-size: 18px; color: var(--navy); }
@@ -947,36 +952,23 @@ function renderHome() {
     </div>`;
 }
 
+// Category page (user request 2026-10-30): title and the keyword line, then the products straight away.
+// No facts table, notes or category video here; details live on each product page.
 function renderCat(cat) {
   const items = itemsOf(cat);
-  const notes = SHOW_DEPTH && cat.depth ? `<p class="note">${t("depthNote")}</p>` : "";
   const groups = cat.groups
-    ? `<p style="margin:4px 0 0;font-weight:600;color:var(--navy)">${t("type")}</p>
-       <div class="types">${cat.groups.map((g) => `<button type="button" class="type" data-jump="${g.id}">${ICON[g.icon]}${L(g.title)}</button>`).join("")}</div>`
+    ? `<div class="types">${cat.groups.map((g) => `<button type="button" class="type" data-jump="${g.id}">${ICON[g.icon]}${L(g.title)}</button>`).join("")}</div>`
     : "";
   const list = cat.groups
-    ? cat.groups.map((g) => `<section class="section subgroup" id="${g.id}"><h2 class="display">${L(g.title)}</h2><p class="lead">${g.desc}</p>
+    ? cat.groups.map((g) => `<section class="cat-products subgroup" id="${g.id}"><h2 class="display">${L(g.title)}</h2>
         <div class="grid">${P[g.id].map(toProduct).map((p) => tile(p, cat)).join("")}</div></section>`).join("")
-    : `<section class="section"><h2 class="display" style="font-size:20px">${items.length} ${t("products")}</h2><div class="grid">${items.map((p) => tile(p, cat)).join("")}</div></section>`;
+    : `<section class="cat-products"><div class="grid">${items.map((p) => tile(p, cat)).join("")}</div></section>`;
   return `<div class="wrap">
-    <section class="page-head ph-split">
-      <div class="a-head">
-        <a class="crumb" href="#home">← ${t("all")}</a>
-        <h1 class="display">${L(cat.title)}</h1>
-        <p class="intro">${rich(cat.intro)}</p>
-      </div>
-      <div class="a-media">${media(cat.id, "v916", t("videoHere"))}</div>
-      <div class="a-body">
-      <dl class="facts">
-        <div><dt>${t("finds")}</dt><dd>${cat.finds}</dd></div>
-        ${depthFact(cat.depth, depthRange(items))}
-        <div><dt>${t("best")}</dt><dd>${cat.bestFor}</dd></div>
-        <div><dt>${t("level")}</dt><dd>${cat.level}</dd></div>
-      </dl>
-      ${notes}
-      ${cat.depth === "neutral" ? `<p class="small">${t("noGuarantee")}</p>` : ""}
+    <section class="page-head cat-head">
+      <a class="crumb" href="#home">← ${t("all")}</a>
+      <h1 class="display">${L(cat.title)}</h1>
+      <p class="intro">${rich(cat.intro)}</p>
       ${groups}
-      </div>
     </section>
     ${list}
     <section class="section"><a class="ask" href="${wa(t("msgCat")(L(cat.title)))}" target="_blank" rel="noopener" data-wa-kind="cat" data-wa-key="${cat.id}">${t("ask")}</a></section>
