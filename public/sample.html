@@ -1294,9 +1294,9 @@ const FINDER_ENV = [
   ["mineral", { en: "Highly Mineralized Ground", fr: "Sol très minéralisé", ar: "أرض عالية التمعدن" }],
   ["team", { en: "Ask Our Team", fr: "Demander à notre équipe", ar: "اسأل فريقنا" }, true]
 ];
-// Preferred language -> WhatsApp line. Filipino and Other go to the English line (no separate line yet).
-const FINDER_LANGS = [["en", "English", "en"], ["ar", "العربية (Arabic)", "ar"], ["fil", "Filipino", "en"], ["other", null, "en"]];
-const finder = { find: [], env: [], name: "", email: "", lang: "", other: "", phone: null, saved: null };
+// Preferred language: value, label, name in the message. Each one opens its own WhatsApp line (WA_LINES).
+const FINDER_LANGS = [["en", "English", "English"], ["ar", "العربية (Arabic)", "Arabic"], ["fr", "Français (French)", "French"]];
+const finder = { find: [], env: [], name: "", email: "", lang: "", phone: null, saved: null };
 const tickIcon = '<svg aria-hidden="true" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="3.5"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>';
 const optCards = (q, list) => list.map(([v, label]) =>
   `<button type="button" class="opt-card" data-q="${q}" data-v="${v}" aria-pressed="${finder[q].includes(v)}"><span class="tick">${tickIcon}</span><span>${L(label)}</span></button>`).join("");
@@ -1337,10 +1337,8 @@ function renderFinder() {
         <div class="field"><label for="f-lang">${t("fLang")}</label>
           <select id="f-lang" required aria-describedby="f-lang-err">
             <option value="">${t("pickLang")}</option>
-            ${FINDER_LANGS.map(([v, label]) => `<option value="${v}"${finder.lang === v ? " selected" : ""}>${label || t("langOther")}</option>`).join("")}
+            ${FINDER_LANGS.map(([v, label]) => `<option value="${v}" lang="${v}"${finder.lang === v ? " selected" : ""}>${label}</option>`).join("")}
           </select><p class="err" id="f-lang-err" hidden></p></div>
-        <div class="field" id="f-other-field"${finder.lang === "other" ? "" : " hidden"}><label for="f-other">${t("otherLabel")}</label>
-          <input id="f-other" type="text" aria-describedby="f-other-err" value="${esc(finder.other)}"><p class="err" id="f-other-err" hidden></p></div>
       </div>
       <button type="submit" class="btn-wa finder-send">${ICON.wa}${t("getRec")}</button>
     </form>
@@ -1360,14 +1358,10 @@ function setupFinder(root) {
     const err = document.getElementById(`f-${q}-err`); if (picked.length) err.hidden = true;
   }));
   // Keep typed values if the page is redrawn (e.g. language switch)
-  [["f-name", "name"], ["f-email", "email"], ["f-other", "other"]].forEach(([id, key]) =>
+  [["f-name", "name"], ["f-email", "email"]].forEach(([id, key]) =>
     document.getElementById(id).addEventListener("input", (e) => { finder[key] = e.target.value; if (e.target.getAttribute("aria-invalid")) showError(id, ""); }));
   const select = document.getElementById("f-lang");
-  select.addEventListener("change", () => {
-    finder.lang = select.value; showError("f-lang", "");
-    document.getElementById("f-other-field").hidden = select.value !== "other";
-    if (select.value === "other") document.getElementById("f-other").focus();
-  });
+  select.addEventListener("change", () => { finder.lang = select.value; showError("f-lang", ""); });
   const phoneInput = document.getElementById("f-phone");
   finder.phone = makePhone(phoneInput, finder.saved);
   const remember = () => { finder.saved = savePhone(finder.phone); if (phoneInput.getAttribute("aria-invalid")) showError("f-phone", ""); };
@@ -1378,7 +1372,6 @@ function setupFinder(root) {
     e.preventDefault();
     const name = document.getElementById("f-name").value.trim();
     const email = document.getElementById("f-email").value.trim();
-    const other = document.getElementById("f-other").value.trim();
     const phone = checkPhoneField(finder.phone, phoneInput);
     const groupErr = (q, msg) => { const el = document.getElementById(`f-${q}-err`); el.textContent = msg; el.hidden = !msg; };
     groupErr("find", finder.find.length ? "" : t("errQ1"));
@@ -1387,8 +1380,7 @@ function setupFinder(root) {
       "f-name": name.length >= 2 ? "" : t("errName"),
       "f-email": /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email) ? "" : t("errEmail"),
       "f-phone": phone.error || "",
-      "f-lang": finder.lang ? "" : t("errLang"),
-      "f-other": finder.lang === "other" && !other ? t("errOther") : ""
+      "f-lang": finder.lang ? "" : t("errLang")
     };
     Object.entries(errors).forEach(([id, msg]) => showError(id, msg));
     const firstBad = !finder.find.length ? form.querySelector('.opt-card[data-q="find"]') : !finder.env.length ? form.querySelector('.opt-card[data-q="env"]')
@@ -1396,8 +1388,7 @@ function setupFinder(root) {
     if (firstBad) { firstBad.focus(); firstBad.scrollIntoView({ block: "center" }); return; }
 
     const en = (list, picked) => picked.map((v) => list.find((o) => o[0] === v)[1].en).join(", ");
-    const langEntry = FINDER_LANGS.find(([v]) => v === finder.lang);
-    const langName = finder.lang === "other" ? `Other (${other})` : finder.lang === "ar" ? "Arabic" : langEntry[1];
+    const langName = FINDER_LANGS.find(([v]) => v === finder.lang)[2];
     // Format requested by the user (2026-10-30)
     const message = [
       "DETECTOR RECOMMENDATION REQUEST",
@@ -1406,7 +1397,7 @@ function setupFinder(root) {
       "CUSTOMER DETAILS:",
       `Name: ${name} Email: ${email} Contact No: ${phone.number} Preferred Language: ${langName}`
     ].join("\n") + (CAMPAIGN ? `\nRef: ${CAMPAIGN}` : "");
-    const link = waLink(langEntry[2], message);
+    const link = waLink(finder.lang, message); // English, Arabic or French line
     try { (window.dataLayer = window.dataLayer || []).push({ event: "recommendation_request", find: finder.find.join(","), environment: finder.env.join(","), chat_language: finder.lang, campaign: CAMPAIGN }); } catch (err) {}
     const tab = window.open(link, "_blank");
     if (tab) tab.opener = null; else location.href = link; // pop-up blocked: open WhatsApp in this tab
