@@ -196,6 +196,25 @@ footer .wrap { padding-block: 24px 120px; display: grid; gap: 12px; }
 @media (min-width: 640px) {
   .wa-dialog { max-width: 420px; margin: auto; border-radius: 20px; }
 }
+/* Request Quote form (same sheet as the WhatsApp chooser) */
+.quote-dialog { max-height: 92vh; overflow-y: auto; }
+.quote-form .field { display: grid; gap: 6px; }
+.quote-form label { font-size: 14px; font-weight: 600; color: var(--navy); }
+.quote-form input[type="text"], .quote-form input[type="email"], .quote-form input[type="tel"] { height: 48px; padding: 0 14px; border-radius: 12px; border: 1px solid #CFCFD8; background: var(--paper); color: var(--ink); font: 16px var(--body); }
+html[lang="ar"] .quote-form input[type="text"] { font-family: var(--arabic); }
+.quote-form input:focus { outline: 3px solid var(--gold); outline-offset: 1px; border-color: var(--navy); }
+.quote-form input[aria-invalid="true"] { border-color: #B3261E; }
+.quote-form .err { margin: 0; color: #B3261E; font-size: 13px; }
+.chat-lang { margin: 2px 0 0; padding: 0; border: 0; display: grid; gap: 8px; min-width: 0; }
+.chat-lang legend { padding: 0; margin-bottom: 8px; font-size: 14px; font-weight: 600; color: var(--navy); }
+.chat-lang .opts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.chat-lang .opt { position: relative; min-height: 44px; border: 1px solid var(--line); border-radius: 12px; display: grid; place-items: center; font-weight: 600; cursor: pointer; transition: border-color .2s ease, background-color .2s ease; }
+.chat-lang .opt[lang="ar"] { font-family: var(--arabic); }
+.chat-lang .opt input { position: absolute; opacity: 0; inset: 0; margin: 0; cursor: pointer; }
+.chat-lang .opt:has(input:checked) { border-color: var(--navy); background: var(--mist); color: var(--navy); }
+.chat-lang .opt:has(input:focus-visible) { outline: 3px solid var(--gold); outline-offset: 2px; }
+.quote-send { margin-top: 6px; width: 100%; border: 0; cursor: pointer; font: 600 16px var(--body); }
+html[lang="ar"] .quote-send { font-family: var(--arabic); }
 .menu { position: absolute; right: 0; bottom: 64px; width: 220px; padding: 6px; border-radius: 16px; background: var(--paper); box-shadow: 0 12px 32px rgba(0, 0, 0, 0.25); display: grid; }
 .menu p { margin: 0; padding: 8px 10px; color: var(--muted); font-size: 12px; font-weight: 600; }
 .menu button { height: 46px; padding-inline: 12px; border: 0; border-radius: 10px; background: transparent; display: flex; align-items: center; justify-content: space-between; font-size: 16px; text-align: start; }
@@ -381,6 +400,37 @@ footer .wrap { padding-block: 24px 120px; display: grid; gap: 12px; }
   </div>
 </dialog>
 
+<dialog class="wa-dialog quote-dialog" id="quote-dialog" aria-labelledby="quote-title">
+  <form class="wa-sheet quote-form" id="quote-form" novalidate>
+    <div class="wa-head">
+      <h2 class="display" id="quote-title">Request a quote</h2>
+      <button type="button" class="wa-close quote-close" aria-label="Close"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#282C55" stroke-width="2"><path d="m6 6 12 12M18 6 6 18"/></svg></button>
+    </div>
+    <p class="wa-product" id="quote-product"></p>
+    <p class="wa-sub" id="quote-sub"></p>
+    <div class="field">
+      <label for="q-name" id="q-name-label">Name</label>
+      <input id="q-name" name="name" type="text" autocomplete="name" required aria-describedby="q-name-err">
+      <p class="err" id="q-name-err" hidden></p>
+    </div>
+    <div class="field">
+      <label for="q-email" id="q-email-label">Email address</label>
+      <input id="q-email" name="email" type="email" autocomplete="email" inputmode="email" required aria-describedby="q-email-err" dir="ltr">
+      <p class="err" id="q-email-err" hidden></p>
+    </div>
+    <div class="field">
+      <label for="q-phone" id="q-phone-label">Contact number</label>
+      <input id="q-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" required aria-describedby="q-phone-err" dir="ltr" placeholder="+971 5X XXX XXXX">
+      <p class="err" id="q-phone-err" hidden></p>
+    </div>
+    <fieldset class="chat-lang">
+      <legend id="q-chat-label">Chat on WhatsApp in</legend>
+      <div class="opts" id="q-chat-opts"></div>
+    </fieldset>
+    <button type="submit" class="btn-wa quote-send" id="quote-send">Send on WhatsApp</button>
+  </form>
+</dialog>
+
 <div class="float">
   <div class="menu" id="lang-menu" role="menu" hidden></div>
   <button type="button" class="lang-btn" id="lang-btn" aria-haspopup="menu" aria-expanded="false" aria-controls="lang-menu">
@@ -438,7 +488,7 @@ const CATS = [
     intro: "For groups looking for **underground water** or a place for a **borewell**.",
     finds: "Manufacturer states: groundwater, artesian wells, fresh and salt water", bestFor: "Small and big groups looking for borewell locations" },
   { id: "xrf", group: "test", depth: null, items: "xrf", level: "For gold shops",
-    title: { en: "XRF gold testers", fr: "Testeurs d'or XRF", ar: "أجهزة فحص الذهب XRF" },
+    title: { en: "XRF Analyzers", fr: "Analyseurs XRF", ar: "أجهزة تحليل XRF" },
     line: { en: "Check gold purity and metal type", fr: "Vérifier la pureté de l'or et le type de métal", ar: "فحص نقاء الذهب ونوع المعدن" },
     intro: "For **gold shops and buyers** who need to **check purity** before they pay.",
     finds: "Gold purity and metal type (alloys)", bestFor: "Gold shops and metal buyers" },
@@ -467,6 +517,9 @@ const T = {
     photoHere: "Product photo goes here", other: "Other products in this category", contact: "Contact", type: "Choose a type", products: "products",
     later: "One-line blurb (added later)", draft: "", lang: "Language",
     waTitle: "Chat on WhatsApp", waSub: "Choose the language you want to chat in.", close: "Close",
+    requestQuote: "Request Quote", quoteTitle: "Request a quote", quoteSub: "Leave your details. WhatsApp opens with your request ready to send.",
+    fName: "Name", fEmail: "Email address", fPhone: "Contact number", fChat: "Chat on WhatsApp in", send: "Send on WhatsApp",
+    errName: "Please enter your name.", errEmail: "Please enter a valid email address.", errPhone: "Please enter a valid phone number.",
     termsTitle: "Shipping & payment", partners: "Shipping & payment partners",
     terms: [
       ["UAE delivery", "Free. Allow at least 2 days to prepare and deliver (not on Sundays or holidays). We need your address and a working phone number."],
@@ -495,6 +548,9 @@ const T = {
     photoHere: "Emplacement photo du produit", other: "Autres produits de cette catégorie", contact: "Contact", type: "Choisissez un type", products: "produits",
     later: "Phrase courte (ajoutée plus tard)", draft: "Aperçu de traduction (brouillon à relire) : les textes produits sont encore en anglais.", lang: "Langue",
     waTitle: "Discuter sur WhatsApp", waSub: "Choisissez la langue de la conversation.", close: "Fermer",
+    requestQuote: "Demander un devis", quoteTitle: "Demander un devis", quoteSub: "Laissez vos coordonnées. WhatsApp s'ouvre avec votre demande prête à envoyer.",
+    fName: "Nom", fEmail: "Adresse e-mail", fPhone: "Numéro de téléphone", fChat: "Discuter sur WhatsApp en", send: "Envoyer sur WhatsApp",
+    errName: "Veuillez saisir votre nom.", errEmail: "Veuillez saisir une adresse e-mail valide.", errPhone: "Veuillez saisir un numéro valide.",
     termsTitle: "Livraison et paiement", partners: "Nos partenaires de livraison et de paiement",
     terms: [
       ["Livraison aux Émirats", "Gratuite. Comptez au moins 2 jours pour la préparation et la livraison (sauf dimanches et jours fériés). Nous avons besoin de votre adresse et d'un numéro de téléphone valide."],
@@ -523,6 +579,9 @@ const T = {
     photoHere: "مكان صورة المنتج", other: "منتجات أخرى في هذه الفئة", contact: "تواصل معنا", type: "اختر النوع", products: "منتجات",
     later: "وصف قصير (يضاف لاحقًا)", draft: "معاينة ترجمة أولية (تحتاج مراجعة): نصوص المنتجات ما زالت بالإنجليزية.", lang: "اللغة",
     waTitle: "تواصل عبر واتساب", waSub: "اختر اللغة التي تريد التحدث بها.", close: "إغلاق",
+    requestQuote: "طلب عرض سعر", quoteTitle: "طلب عرض سعر", quoteSub: "اترك بياناتك، وسيفتح واتساب ورسالتك جاهزة للإرسال.",
+    fName: "الاسم", fEmail: "البريد الإلكتروني", fPhone: "رقم التواصل", fChat: "تواصل عبر واتساب باللغة", send: "إرسال عبر واتساب",
+    errName: "يرجى إدخال اسمك.", errEmail: "يرجى إدخال بريد إلكتروني صحيح.", errPhone: "يرجى إدخال رقم هاتف صحيح.",
     termsTitle: "الشحن والدفع", partners: "شركاء الشحن والدفع",
     terms: [
       ["التوصيل داخل الإمارات", "مجاني. يحتاج إلى يومين على الأقل للتجهيز والتوصيل (ما عدا أيام الأحد والعطلات). نحتاج عنوانك ورقم هاتف يعمل."],
@@ -683,7 +742,77 @@ document.addEventListener("pointerdown", (e) => {
   setTimeout(() => glow.remove(), 900); // also when the browser skips the animation (background tab)
 }, { passive: true });
 
+// Request Quote (XRF Analyzers, Security, Mining only): ask for name, email and number, then open WhatsApp on the
+// chosen language's line with the inquiry already written, so the customer only presses Send.
+const QUOTE_CATS = ["xrf", "security", "mining"];
+const quoteDialog = document.getElementById("quote-dialog");
+const quoteForm = document.getElementById("quote-form");
+let quoteProduct = null;
+const QUOTE_FIELDS = [["q-name", "fName", "errName"], ["q-email", "fEmail", "errEmail"], ["q-phone", "fPhone", "errPhone"]];
+function openQuote(key) {
+  quoteProduct = findProduct(key).p;
+  document.getElementById("quote-title").textContent = t("quoteTitle");
+  document.getElementById("quote-sub").textContent = t("quoteSub");
+  document.getElementById("quote-product").textContent = quoteProduct.name;
+  quoteDialog.querySelector(".quote-close").setAttribute("aria-label", t("close"));
+  QUOTE_FIELDS.forEach(([id, label]) => { document.getElementById(id + "-label").textContent = t(label); showError(id, ""); });
+  document.getElementById("q-chat-label").textContent = t("fChat");
+  document.getElementById("q-chat-opts").innerHTML = WA_CHOICES.map(([l, name]) =>
+    `<label class="opt" lang="${l}"><input type="radio" name="chat" value="${l}"${l === lang ? " checked" : ""}><span>${name}</span></label>`).join("");
+  document.getElementById("quote-send").innerHTML = ICON.wa + t("send");
+  if (typeof quoteDialog.showModal === "function") quoteDialog.showModal(); else quoteDialog.setAttribute("open", "");
+  setTimeout(() => document.getElementById("q-name").focus(), 50);
+}
+function closeQuote() {
+  if (!quoteDialog.open || quoteDialog.classList.contains("closing")) return;
+  const finish = () => { quoteDialog.classList.remove("closing"); if (typeof quoteDialog.close === "function") quoteDialog.close(); else quoteDialog.removeAttribute("open"); };
+  if (calmMotion.matches) return finish();
+  quoteDialog.classList.add("closing");
+  setTimeout(finish, 210);
+}
+quoteDialog.addEventListener("cancel", (e) => { e.preventDefault(); closeQuote(); });
+quoteDialog.addEventListener("click", (e) => { if (e.target === quoteDialog || e.target.closest(".quote-close")) closeQuote(); });
+function showError(id, message) {
+  const input = document.getElementById(id), err = document.getElementById(id + "-err");
+  err.textContent = message; err.hidden = !message;
+  if (message) input.setAttribute("aria-invalid", "true"); else input.removeAttribute("aria-invalid");
+}
+function checkQuote() {
+  const name = document.getElementById("q-name").value.trim();
+  const email = document.getElementById("q-email").value.trim();
+  const phone = document.getElementById("q-phone").value.trim();
+  const errors = {
+    "q-name": name.length >= 2 ? "" : t("errName"),
+    "q-email": /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email) ? "" : t("errEmail"),
+    "q-phone": /^\+?[\d\s\-()]{7,20}$/.test(phone) && phone.replace(/\D/g, "").length >= 7 ? "" : t("errPhone")
+  };
+  Object.entries(errors).forEach(([id, msg]) => showError(id, msg));
+  const firstBad = Object.keys(errors).find((id) => errors[id]);
+  if (firstBad) { document.getElementById(firstBad).focus(); return null; }
+  return { name, email, phone };
+}
+// Fix a field's message as soon as the visitor corrects it
+QUOTE_FIELDS.forEach(([id]) => document.getElementById(id).addEventListener("input", () => {
+  if (document.getElementById(id).getAttribute("aria-invalid")) showError(id, "");
+}));
+quoteForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+  const data = checkQuote();
+  if (!data || !quoteProduct) return;
+  const chat = (quoteForm.querySelector("input[name=chat]:checked") || {}).value || lang;
+  // Format requested by the user (2026-10-30)
+  const message = `Inquiry: ${msgName(quoteProduct.name)} / ${productUrl(quoteProduct.key)}\nFORM: Name: ${data.name} Email: ${data.email} Contact No: ${data.phone}`
+    + (CAMPAIGN ? `\nRef: ${CAMPAIGN}` : "");
+  const link = waLink(chat, message);
+  try { (window.dataLayer = window.dataLayer || []).push({ event: "quote_request", product: quoteProduct.name, chat_language: chat, campaign: CAMPAIGN }); } catch (err) {}
+  const tab = window.open(link, "_blank");
+  if (tab) tab.opener = null; else location.href = link; // pop-up blocked: open WhatsApp in this tab
+  closeQuote();
+});
+
 document.addEventListener("click", (e) => {
+  const quoteBtn = e.target.closest("a[data-quote-key]");
+  if (quoteBtn) { e.preventDefault(); openQuote(quoteBtn.dataset.quoteKey); return; }
   const foot = e.target.closest("a[data-wa-footer]");
   if (foot) {
     try { (window.dataLayer = window.dataLayer || []).push({ event: "whatsapp_click", product: "footer", chat_language: foot.dataset.waFooter, campaign: CAMPAIGN }); } catch (err) {}
@@ -1011,7 +1140,9 @@ function renderProduct({ cat, p }, tab) {
       </dl>
       ${["mining", "gold", "longrange", "treasure"].includes(cat.id) ? `<p class="note">${t("depthNote")}</p>` : ""}
       ${cat.depth === "neutral" ? `<p class="small">${t("depends")}</p>` : ""}
-      <a class="btn-wa" href="${wa(productMessage(p))}" target="_blank" rel="noopener" data-wa-kind="product" data-wa-key="${p.key}">${ICON.wa}${t("wa")}</a>
+      ${QUOTE_CATS.includes(cat.id)
+        ? `<a class="btn-wa" href="${wa(productMessage(p))}" target="_blank" rel="noopener" data-quote-key="${p.key}">${ICON.wa}${t("requestQuote")}</a>`
+        : `<a class="btn-wa" href="${wa(productMessage(p))}" target="_blank" rel="noopener" data-wa-kind="product" data-wa-key="${p.key}">${ICON.wa}${t("wa")}</a>`}
       </div>
     </section>
     ${others.length ? `<section class="section"><h2 class="display" style="font-size:18px">${t("other")}</h2>
