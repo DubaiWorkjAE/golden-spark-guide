@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}</style>
+<script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
+<script defer src="/_vercel/insights/script.js"></script>
 <script>window.GS_VIDEOS = {"titan-500-smart-device":{"src":"test-videos/titan-500-smart.mp4","poster":"test-videos/titan-500-smart.webp"},"eagle-eye-rjx6550":{"src":"test-videos/rjx6550-luggage.mp4","poster":"test-videos/rjx6550-luggage.webp"}}; window.GS_PHOTOS = {"titan-500-smart-device":"test-videos/titan-500-photo.webp","eagle-eye-rjx6550":"test-videos/rjx6550-photo.webp"};</script>
 <title>Golden Spark Detector Guide</title>
 <meta name="claude:viewport-fit-sides" content="cover">
@@ -431,27 +433,9 @@ if (!T[lang]) lang = "en";
 const t = (k) => T[lang][k];
 const L = (o) => (typeof o === "string" ? o : o[lang] || o.en);
 const wa = (msg) => `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`;
-// Each product's own page on gsdetectors.com (all checked: load directly, no redirect, 2026-10-30).
-// Packages share their product's page. No link yet for Niton XL2 (3 models on the site), DXL 800 and
-// Super Scanner (not on the site): their message is sent without a link, never with the homepage.
-const SITE = "https://gsdetectors.com/product/";
-const PRODUCT_URLS = {
-  "okm-exp-7000-professional-plus": "okm-exp-7000-professional-plus", "okm-rover-c4": "okm-rover-c4", "ger-titan-x13": "ger-titan-x13",
-  "nokta-makro-gold-finder-2000": "nokta-makro-gold-finder-2000", "garrett-goldmaster-24k-metal-detector": "garrett-goldmaster-24k-metal-detector",
-  "xp-deus-ii": "xp-deus-ii", "nokta-magnetar-9000": "nokta-magnetar-9000",
-  "garrett-axiom-full": "garrett-axiom-ultra-pulse-gold-detector", "garrett-axiom-lite": "garrett-axiom-ultra-pulse-gold-detector",
-  "titan-500-smart-device": "titan-500-smart-device", "ger-gold-hunter-smart-detector": "ger-gold-hunter-smart-detector",
-  "okm-fusion-light-standard": "okm-fusion-light", "okm-fusion-light-lite": "okm-fusion-light",
-  "okm-delta-ranger": "okm-delta-ranger", "okm-gepard-gpr-3d": "okm-gepard-gpr-3d",
-  "river-f-smart-detector": "river-f-smart-detector", "fresh-result-2": "fresh-result-2-system-device-ground-water-detector",
-  "okm-geoseeker": "okm-geoseeker", "river-g-device": "river-g-device",
-  "vanta-element": "vanta-element-handheld-xrf-analyzer",
-  "garrett-multi-zone": "garrett-multi-zone-walk-through-metal-detector", "pd-6500i": "pd-6500i-walk-through-metal-detector",
-  "garrett-paragon": "garrett-paragon-walk-through-metal-detector", "super-scanner-v": "super-scanner-v-hand-held-metal-detector",
-  "superwand": "superwand-hand-held-metal-detector", "garrett-guide": "garrett-guide-hand-held-security-metal-detector",
-  "eagle-eye-rjx6550": "rjx6550-x-ray-luggage-scanner"
-};
-const productUrl = (key) => (PRODUCT_URLS[key] ? SITE + PRODUCT_URLS[key] + "/" : null);
+// Product link in WhatsApp enquiries = this guide's own product page (user request 2026-10-30),
+// so visits are counted by this site's analytics. Built from wherever the guide is hosted.
+const productUrl = (key) => location.origin + location.pathname + "#p-" + key;
 
 // Ad campaign tracking: if the visitor arrived from an ad link (utm_source / utm_campaign), remember it for
 // this visit and add a short "Ref:" line to product enquiries so the team knows which ad brought them.
