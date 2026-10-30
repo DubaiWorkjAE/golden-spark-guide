@@ -220,6 +220,48 @@ html[lang="ar"] .step h2 { font-family: var(--arabic); }
 html[lang="ar"] .finder-send { font-family: var(--arabic); }
 @media (min-width: 640px) { .opt-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } .step { padding: 20px; } }
 @media (min-width: 1024px) { .opt-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+/* Find the right detector: 3-step wizard */
+#view { overflow-x: clip; } /* the sideways step slide never widens the page */
+.arrow { display: inline-block; }
+[dir="rtl"] .arrow { transform: scaleX(-1); }
+.wizard { display: grid; gap: 14px; padding-block: 20px 40px; max-width: 980px; }
+.wizard .crumb { justify-self: start; }
+.wiz-eyebrow { margin: 4px 0 0; color: var(--gold-ink); font-size: 12px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
+.wiz-progress { display: flex; align-items: center; gap: 12px; font-size: 13px; font-weight: 600; color: var(--muted); }
+.wiz-bar { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; width: min(240px, 50%); }
+.wiz-bar i { height: 6px; border-radius: 3px; background: var(--line); transition: background-color .3s ease; }
+.wiz-bar i.on { background: var(--navy); }
+.wizard h1 { margin: 0; color: var(--navy); font-size: clamp(26px, 6vw, 38px); line-height: 1.12; font-weight: 800; }
+.wizard .hint { margin: -4px 0 4px; color: var(--muted); font-size: 14px; }
+.pic-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.pic-card { padding: 0; border: 1px solid var(--line); border-radius: 16px; background: var(--paper); color: var(--ink); display: flex; flex-direction: column; text-align: center; cursor: pointer; transition: border-color .2s ease, box-shadow .25s ease, transform .18s cubic-bezier(.2, .7, .2, 1); }
+.pic-art { display: block; aspect-ratio: 16 / 10; overflow: hidden; background: var(--mist); }
+.pic-art svg, .pic-art img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s cubic-bezier(.2, .7, .2, 1); }
+.pic-label { padding: 12px 10px 14px; font-size: 15px; font-weight: 700; color: var(--navy); }
+html[lang="ar"] .pic-label { font-family: var(--arabic); }
+.pic-check { position: absolute; top: 10px; inset-inline-end: 10px; width: 28px; height: 28px; border-radius: 14px; background: var(--gold); display: grid; place-items: center; opacity: 0; transform: scale(.6); transition: opacity .2s ease, transform .25s cubic-bezier(.2, .8, .2, 1.4); box-shadow: 0 2px 8px rgba(0, 0, 0, .2); }
+.pic-card[aria-checked="true"] { border: 2px solid var(--navy); box-shadow: 0 10px 26px -14px rgba(38, 41, 72, .55); }
+.pic-card[aria-checked="true"] .pic-check { opacity: 1; transform: scale(1); }
+.pic-card:active { transform: scale(.98); }
+@media (hover: hover) { .pic-card:hover { border-color: var(--blue); } .pic-card:hover .pic-art svg, .pic-card:hover .pic-art img { transform: scale(1.05); } }
+.wiz-nav { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 6px; }
+.wiz-back { height: 48px; padding-inline: 18px; border-radius: 24px; border: 1px solid #C9CAD9; color: var(--navy); display: inline-flex; align-items: center; font-weight: 600; text-decoration: none; }
+.wiz-next { height: 52px; padding-inline: 32px; border: 0; border-radius: 26px; background: var(--navy); color: #FFFFFF; font: 600 16px var(--body); cursor: pointer; transition: background-color .25s ease, opacity .25s ease; }
+.wiz-next[aria-disabled="true"] { opacity: .45; }
+.wiz-next:not([aria-disabled="true"]):hover { background: var(--blue); }
+html[lang="ar"] .wiz-next, html[lang="ar"] .wiz-back { font-family: var(--arabic); }
+.wizard .finder { padding: 0; max-width: 640px; }
+.wizard .finder-send { width: auto; flex: 1; max-width: 360px; }
+@keyframes wiz-in-fwd { from { opacity: 0; transform: translateX(28px); } }
+@keyframes wiz-in-back { from { opacity: 0; transform: translateX(-28px); } }
+@media (prefers-reduced-motion: no-preference) {
+  .wizard.dir-fwd { animation: wiz-in-fwd .38s cubic-bezier(.2, .8, .2, 1); }
+  .wizard.dir-back { animation: wiz-in-back .38s cubic-bezier(.2, .8, .2, 1); }
+  [dir="rtl"] .wizard.dir-fwd { animation-name: wiz-in-back; }
+  [dir="rtl"] .wizard.dir-back { animation-name: wiz-in-fwd; }
+}
+@media (min-width: 640px) { .pic-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; } .pic-grid-env { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 1024px) { .pic-grid-env { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
 /* Request Quote form (same sheet as the WhatsApp chooser) */
 .lang-notice { display: flex; gap: 10px; align-items: flex-start; padding: 12px 14px; border-radius: 12px; background: var(--note); color: var(--note-ink); }
 .lang-notice svg { flex: none; margin-top: 2px; }
@@ -285,7 +327,7 @@ html[lang="ar"] .quote-send { font-family: var(--arabic); }
 .btn-gold:active, .btn-wa:active { transform: scale(.98); }
 
 /* Premium tap feel: every button presses in softly and a gold glow spreads from the finger or cursor. */
-.chip, .btn-wa, .btn-gold, .ask, .type, .wa-opt, .cat, .tile, .seg button, .thumbs button, .wa-fab, .lang-btn, .back, .wa-close, .menu button, .phones a, .opt-card { position: relative; overflow: hidden; -webkit-tap-highlight-color: transparent; }
+.chip, .btn-wa, .btn-gold, .ask, .type, .wa-opt, .cat, .tile, .seg button, .thumbs button, .wa-fab, .lang-btn, .back, .wa-close, .menu button, .phones a, .opt-card, .pic-card, .wiz-next, .wiz-back { position: relative; overflow: hidden; -webkit-tap-highlight-color: transparent; }
 .vctl, .vsnd { overflow: hidden; -webkit-tap-highlight-color: transparent; }
 .tile, .cat, .wa-opt, .thumbs button, .wa-fab, .lang-btn, .back, .vctl, .vsnd, .wa-close, .menu button {
   transition: transform .18s cubic-bezier(.2, .7, .2, 1), border-color .25s ease, background-color .25s ease, box-shadow .25s ease;
@@ -576,7 +618,7 @@ const T = {
     finderTitle: "Find the right detector", finderSub: "Answer two quick questions. Our team will recommend the best detector for you on WhatsApp.",
     q1: "What do you want to find?", q2: "What is your search environment?", pickMany: "Choose one or more.", step3: "Your details",
     fFullName: "Full name", langOther: "Other", otherLabel: "Your language", errOther: "Please type your language.",
-    errQ1: "Please choose what you want to find.", errQ2: "Please choose your search environment.", getRec: "Get Your Recommendation",
+    errQ1: "Please choose what you want to find.", errQ2: "Please choose your search environment.", getRec: "Get Your Recommendation", stepOf: (n) => `Step ${n} of 3`, next: "Next", back: "Back", pickOne: "Choose one option.", errPick: "Please choose an option to continue.",
     finderNotice: "<b>Important Notice:</b> Our team communicates in different languages. Please select your preferred language so we can assist you better.",
     termsTitle: "Shipping & payment", partners: "Shipping & payment partners",
     terms: [
@@ -614,7 +656,7 @@ const T = {
     finderTitle: "Trouvez le bon détecteur", finderSub: "Répondez à deux questions rapides. Notre équipe vous recommandera le meilleur détecteur sur WhatsApp.",
     q1: "Que voulez-vous trouver ?", q2: "Quel est votre terrain de recherche ?", pickMany: "Choisissez une ou plusieurs réponses.", step3: "Vos coordonnées",
     fFullName: "Nom complet", langOther: "Autre", otherLabel: "Votre langue", errOther: "Veuillez indiquer votre langue.",
-    errQ1: "Veuillez choisir ce que vous voulez trouver.", errQ2: "Veuillez choisir votre terrain de recherche.", getRec: "Obtenir ma recommandation",
+    errQ1: "Veuillez choisir ce que vous voulez trouver.", errQ2: "Veuillez choisir votre terrain de recherche.", getRec: "Obtenir ma recommandation", stepOf: (n) => `Étape ${n} sur 3`, next: "Suivant", back: "Retour", pickOne: "Choisissez une réponse.", errPick: "Veuillez choisir une option pour continuer.",
     finderNotice: "<b>Avis important :</b> notre équipe communique dans plusieurs langues. Veuillez choisir votre langue préférée pour que nous puissions mieux vous aider.",
     termsTitle: "Livraison et paiement", partners: "Nos partenaires de livraison et de paiement",
     terms: [
@@ -652,7 +694,7 @@ const T = {
     finderTitle: "اعثر على جهاز الكشف المناسب", finderSub: "أجب عن سؤالين سريعين، وسيرشح لك فريقنا الجهاز الأنسب عبر واتساب.",
     q1: "ماذا تريد أن تجد؟", q2: "ما هي بيئة البحث لديك؟", pickMany: "اختر إجابة أو أكثر.", step3: "بياناتك",
     fFullName: "الاسم الكامل", langOther: "أخرى", otherLabel: "لغتك", errOther: "يرجى كتابة لغتك.",
-    errQ1: "يرجى اختيار ما تريد أن تجده.", errQ2: "يرجى اختيار بيئة البحث.", getRec: "احصل على التوصية",
+    errQ1: "يرجى اختيار ما تريد أن تجده.", errQ2: "يرجى اختيار بيئة البحث.", getRec: "احصل على التوصية", stepOf: (n) => `الخطوة ${n} من 3`, next: "التالي", back: "رجوع", pickOne: "اختر إجابة واحدة.", errPick: "يرجى اختيار خيار للمتابعة.",
     finderNotice: "<b>تنبيه مهم:</b> يتواصل فريقنا بعدة لغات. يرجى اختيار لغتك المفضلة حتى نتمكن من مساعدتك بشكل أفضل.",
     termsTitle: "الشحن والدفع", partners: "شركاء الشحن والدفع",
     terms: [
@@ -797,7 +839,7 @@ function closeWaChooser() {
 waDialog.addEventListener("cancel", (e) => { e.preventDefault(); closeWaChooser(); }); // Esc key closes with the same animation
 
 // Tap feel: gold glow from the tap point, plus a very short vibration on phones that support it (Android).
-const TAPPABLE = ".chip, .btn-wa, .btn-gold, .ask, .type, .wa-opt, .cat, .tile, .seg button, .thumbs button, .wa-fab, .lang-btn, .back, .vctl, .vsnd, .wa-close, .menu button, .phones a, .opt-card";
+const TAPPABLE = ".chip, .btn-wa, .btn-gold, .ask, .type, .wa-opt, .cat, .tile, .seg button, .thumbs button, .wa-fab, .lang-btn, .back, .vctl, .vsnd, .wa-close, .menu button, .phones a, .opt-card, .pic-card, .wiz-next, .wiz-back";
 document.addEventListener("pointerdown", (e) => {
   const el = e.target.closest(TAPPABLE);
   if (!el || e.button > 0) return;
@@ -1277,8 +1319,86 @@ function renderProduct({ cat, p }, tab) {
   </div>`;
 }
 
-// Find the right detector (user request 2026-10-30): two questions + contact details -> WhatsApp recommendation request.
+// Find the right detector: a 3-step wizard (user request 2026-10-30).
+// Step 1 target, step 2 terrain (one choice each, picture cards), step 3 contact details + language -> WhatsApp.
+// Each step has its own screen (#finder-1, #finder-2, #finder-3), so the phone's back button works too.
 // Answers are sent in English so the team always reads the same words.
+
+// Illustrations drawn for this page (no third-party artwork). Replace any of them with a photo by putting its URL in FINDER_PHOTOS.
+const FINDER_PHOTOS = {};
+const ground = (id, inside) => `<svg viewBox="0 0 320 200" aria-hidden="true" focusable="false" preserveAspectRatio="xMidYMid slice">
+  <defs><linearGradient id="${id}-soil" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#C9A47C"/><stop offset="1" stop-color="#7E5A3A"/></linearGradient>
+  <linearGradient id="${id}-sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#DCE9F7"/><stop offset="1" stop-color="#F3F7FC"/></linearGradient></defs>
+  <rect width="320" height="200" fill="url(#${id}-sky)"/>
+  <path d="M0 48 Q80 38 160 47 T320 44 V200 H0Z" fill="url(#${id}-soil)"/>
+  <path d="M0 48 Q80 38 160 47 T320 44 V58 Q240 64 160 58 T0 60Z" fill="#6EA35A"/>
+  <path d="M0 58 Q80 64 160 58 T320 58 V62 Q240 68 160 62 T0 64Z" fill="#4E7F3F" opacity=".55"/>
+  <g fill="#6B4A2E" opacity=".45"><circle cx="34" cy="96" r="3"/><circle cx="268" cy="118" r="4"/><circle cx="210" cy="178" r="3"/><circle cx="58" cy="170" r="4"/><circle cx="150" cy="104" r="2.5"/><circle cx="296" cy="170" r="2.5"/></g>
+  ${inside}</svg>`;
+const sky = (id, inside, top = "#BFD9F2", bottom = "#EEF5FC") => `<svg viewBox="0 0 320 200" aria-hidden="true" focusable="false" preserveAspectRatio="xMidYMid slice">
+  <defs><linearGradient id="${id}-sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${top}"/><stop offset="1" stop-color="${bottom}"/></linearGradient></defs>
+  <rect width="320" height="200" fill="url(#${id}-sky)"/>${inside}</svg>`;
+const nugget = (x, y, s = 1) => `<g transform="translate(${x} ${y}) scale(${s})"><path d="M0 6 L9 -2 L21 0 L26 9 L19 18 L6 19 L-2 13Z" fill="#E9B935" stroke="#A47414" stroke-width="2" stroke-linejoin="round"/><path d="M6 4 L13 2 L16 7" fill="none" stroke="#FFF2B8" stroke-width="2.5" stroke-linecap="round"/></g>`;
+const sparkle = (x, y) => `<path d="M${x} ${y - 6} L${x + 1.6} ${y - 1.6} L${x + 6} ${y} L${x + 1.6} ${y + 1.6} L${x} ${y + 6} L${x - 1.6} ${y + 1.6} L${x - 6} ${y} L${x - 1.6} ${y - 1.6}Z" fill="#FFF6C9"/>`;
+
+const FINDER_ART = {
+  gold: ground("fg", `${nugget(72, 72)}${nugget(150, 80, .8)}${nugget(226, 70, 1.15)}${nugget(118, 96, .6)}${sparkle(98, 70)}${sparkle(256, 66)}`),
+  relics: ground("fr", `
+    <g transform="translate(70 104)"><rect x="0" y="22" width="88" height="44" rx="4" fill="#7A4A22" stroke="#4E2D12" stroke-width="2.5"/>
+      <path d="M0 24 Q44 -10 88 24Z" fill="#8E5A2C" stroke="#4E2D12" stroke-width="2.5"/>
+      <rect x="0" y="34" width="88" height="6" fill="#C9A23A"/><rect x="38" y="30" width="12" height="16" rx="2" fill="#E9B935" stroke="#7A5512" stroke-width="1.5"/>
+      <g fill="#F1C854" stroke="#A47414" stroke-width="1.2"><ellipse cx="18" cy="20" rx="8" ry="4"/><ellipse cx="34" cy="14" rx="8" ry="4"/><ellipse cx="54" cy="16" rx="8" ry="4"/><ellipse cx="70" cy="20" rx="8" ry="4"/></g></g>
+    <g transform="translate(212 92)"><path d="M14 0 h16 v8 q14 10 14 34 q0 30 -22 34 q-22 -4 -22 -34 q0 -24 14 -34z" fill="#B7793F" stroke="#6E4520" stroke-width="2.5"/>
+      <path d="M2 30 h40" stroke="#6E4520" stroke-width="2"/><path d="M6 48 h32" stroke="#6E4520" stroke-width="2"/></g>
+    ${sparkle(130, 100)}${sparkle(262, 88)}`),
+  cavities: ground("fc", `<path d="M108 200 V132 a52 52 0 0 1 104 0 V200Z" fill="#2B2118"/>
+    <path d="M108 200 V132 a52 52 0 0 1 104 0 V200" fill="none" stroke="#9A8C7A" stroke-width="9" stroke-dasharray="16 4"/>
+    <path d="M130 200 V146 a30 30 0 0 1 60 0 V200Z" fill="#1A140F" opacity=".7"/>
+    <g fill="#F1C854" stroke="#A47414" stroke-width="1"><ellipse cx="250" cy="96" rx="6" ry="3"/><ellipse cx="262" cy="92" rx="6" ry="3"/><ellipse cx="256" cy="88" rx="6" ry="3"/></g>`),
+  veins: ground("fv", `<path d="M0 92 Q80 84 160 94 T320 90 V200 H0Z" fill="#8F8A82"/>
+    <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M10 150 L58 128 L96 142 L140 116 L190 134 L236 108 L310 126" stroke="#B0832A" stroke-width="7"/>
+      <path d="M10 150 L58 128 L96 142 L140 116 L190 134 L236 108 L310 126" stroke="#F1C854" stroke-width="3.5"/>
+      <path d="M40 186 L84 170 L126 182 L170 160 L214 176 L262 154 L312 166" stroke="#B0832A" stroke-width="5"/>
+      <path d="M40 186 L84 170 L126 182 L170 160 L214 176 L262 154 L312 166" stroke="#F1C854" stroke-width="2.5"/>
+      <path d="M140 116 L150 96 M236 108 L244 94" stroke="#E9B935" stroke-width="3"/></g>
+    ${sparkle(140, 116)}${sparkle(236, 108)}`),
+  utilities: ground("fu", `<path d="M0 132 H320" stroke="#5F6B78" stroke-width="16"/><path d="M0 132 H320" stroke="#7D8A98" stroke-width="5" opacity=".6"/>
+    <circle cx="96" cy="112" r="20" fill="#E07B39" stroke="#A34E1C" stroke-width="3"/><circle cx="96" cy="112" r="11" fill="#5B2E12"/>
+    <circle cx="224" cy="164" r="16" fill="#E07B39" stroke="#A34E1C" stroke-width="3"/><circle cx="224" cy="164" r="8" fill="#5B2E12"/>
+    <path d="M0 176 Q40 166 80 176 T160 176 T240 176 T320 176" fill="none" stroke="#F1C854" stroke-width="4"/>
+    <g fill="#8EE07B" opacity=".55"><ellipse cx="96" cy="58" rx="34" ry="8"/><ellipse cx="224" cy="60" rx="30" ry="7"/></g>`),
+  water: ground("fw", `<path d="M0 126 Q60 112 120 126 T240 124 T320 120 V176 Q260 188 200 176 T80 178 T0 176Z" fill="#4F8FD6" opacity=".9"/>
+    <path d="M0 140 Q60 128 120 140 T240 138 T320 134" fill="none" stroke="#BFE0FF" stroke-width="3" opacity=".8"/>
+    <g fill="#9CC9F5"><path d="M64 92 q8 10 0 16 q-8 -6 0 -16z"/><path d="M248 96 q7 9 0 14 q-7 -5 0 -14z"/></g>
+    <g fill="#3B6EA8" opacity=".5"><circle cx="40" cy="150" r="4"/><circle cx="172" cy="156" r="5"/><circle cx="282" cy="148" r="4"/></g>`),
+  unknown: `<svg viewBox="0 0 320 200" aria-hidden="true" focusable="false" preserveAspectRatio="xMidYMid slice"><rect width="320" height="200" fill="#262948"/>
+    <g font-family="Montserrat, Segoe UI, sans-serif" font-weight="800" fill="#3B4073">
+      <text x="24" y="60" font-size="44" transform="rotate(-12 24 60)">?</text><text x="250" y="70" font-size="52" transform="rotate(14 250 70)">?</text>
+      <text x="60" y="176" font-size="48" transform="rotate(10 60 176)">?</text><text x="214" y="182" font-size="40" transform="rotate(-16 214 182)">?</text>
+      <text x="290" y="150" font-size="34">?</text><text x="112" y="56" font-size="30">?</text></g>
+    <text x="160" y="134" text-anchor="middle" font-family="Montserrat, Segoe UI, sans-serif" font-weight="800" font-size="92" fill="#F1C854">?</text></svg>`,
+  flat: sky("tf", `<circle cx="256" cy="52" r="20" fill="#FFE08A"/>
+    <path d="M0 118 H320 V200 H0Z" fill="#D9BE7E"/><path d="M0 118 H320" stroke="#B89A5A" stroke-width="2"/>
+    <path d="M160 200 L150 118 M160 200 L170 118" stroke="#C4A766" stroke-width="2" opacity=".7"/>
+    <g fill="#8BAA5B"><ellipse cx="46" cy="124" rx="12" ry="5"/><ellipse cx="240" cy="126" rx="14" ry="5"/><ellipse cx="290" cy="150" rx="18" ry="7"/><ellipse cx="22" cy="162" rx="16" ry="6"/></g>
+    <path d="M0 136 Q80 130 160 136 T320 134" fill="none" stroke="#C9AD6E" stroke-width="2"/>`),
+  mountain: sky("tm", `<path d="M-10 170 L70 64 L130 140 L190 50 L270 150 L330 96 V200 H-10Z" fill="#8C7A66"/>
+    <path d="M70 64 L88 88 L76 84 L64 96 L58 80Z M190 50 L210 78 L196 74 L182 86 L176 68Z" fill="#B9A894"/>
+    <path d="M-10 186 L60 120 L120 176 L200 110 L280 178 L330 140 V200 H-10Z" fill="#6E5E4D"/>
+    <path d="M150 200 Q170 172 140 160 T170 128 T150 104" fill="none" stroke="#E9DCC5" stroke-width="3" stroke-dasharray="6 6"/>`),
+  mineral: ground("tn", `<path d="M0 72 Q80 66 160 74 T320 70 V200 H0Z" fill="#7A3E2B"/>
+    <path d="M0 132 Q80 124 160 134 T320 128 V200 H0Z" fill="#4A2A22"/>
+    <g fill="#2A1A16"><ellipse cx="62" cy="104" rx="16" ry="10"/><ellipse cx="176" cy="118" rx="20" ry="12"/><ellipse cx="258" cy="96" rx="14" ry="9"/><ellipse cx="110" cy="166" rx="18" ry="11"/><ellipse cx="236" cy="168" rx="16" ry="10"/></g>
+    <g fill="#C8C8C8" opacity=".75"><circle cx="40" cy="150" r="1.6"/><circle cx="92" cy="140" r="1.4"/><circle cx="150" cy="150" r="1.8"/><circle cx="204" cy="144" r="1.4"/><circle cx="280" cy="154" r="1.6"/><circle cx="130" cy="96" r="1.4"/><circle cx="222" cy="92" r="1.6"/></g>`),
+  team: `<svg viewBox="0 0 320 200" aria-hidden="true" focusable="false" preserveAspectRatio="xMidYMid slice"><rect width="320" height="200" fill="#262948"/>
+    <rect x="58" y="42" width="138" height="62" rx="16" fill="#FFFFFF"/><path d="M84 104 L78 122 L102 104Z" fill="#FFFFFF"/>
+    <g fill="#C9CAD9"><rect x="76" y="60" width="92" height="8" rx="4"/><rect x="76" y="76" width="64" height="8" rx="4"/></g>
+    <rect x="132" y="106" width="132" height="56" rx="16" fill="#0B7F3D"/><path d="M236 162 L246 178 L222 162Z" fill="#0B7F3D"/>
+    <g fill="#9FE0B6"><circle cx="170" cy="134" r="6"/><circle cx="198" cy="134" r="6"/><circle cx="226" cy="134" r="6"/></g>
+    <circle cx="268" cy="54" r="22" fill="#F1C854"/><path d="M258 54 a10 10 0 0 1 20 0 v6 h-4 v-6 a6 6 0 0 0 -12 0 v6 h-4z" fill="#262948"/></svg>`
+};
+
 const FINDER_FIND = [
   ["gold", { en: "Gold Nuggets", fr: "Pépites d'or", ar: "كتل الذهب" }],
   ["relics", { en: "Relics / Treasures", fr: "Reliques / Trésors", ar: "آثار / كنوز" }],
@@ -1286,44 +1406,49 @@ const FINDER_FIND = [
   ["veins", { en: "Gold Veins", fr: "Filons d'or", ar: "عروق الذهب" }],
   ["utilities", { en: "Utilities", fr: "Réseaux enterrés", ar: "خطوط المرافق" }],
   ["water", { en: "Water", fr: "Eau", ar: "مياه" }],
-  ["unknown", { en: "I Don't Know", fr: "Je ne sais pas", ar: "لا أعرف" }, true]
+  ["unknown", { en: "I Don't Know", fr: "Je ne sais pas", ar: "لا أعرف" }]
 ];
 const FINDER_ENV = [
   ["flat", { en: "Flat / Wide Terrain", fr: "Terrain plat / étendu", ar: "أرض مستوية / واسعة" }],
   ["mountain", { en: "Mountainous / Difficult Access", fr: "Montagneux / accès difficile", ar: "جبلية / صعبة الوصول" }],
   ["mineral", { en: "Highly Mineralized Ground", fr: "Sol très minéralisé", ar: "أرض عالية التمعدن" }],
-  ["team", { en: "Ask Our Team", fr: "Demander à notre équipe", ar: "اسأل فريقنا" }, true]
+  ["team", { en: "Ask Our Team", fr: "Demander à notre équipe", ar: "اسأل فريقنا" }]
 ];
 // Preferred language: value, label, name in the message. Each one opens its own WhatsApp line (WA_LINES).
 const FINDER_LANGS = [["en", "English", "English"], ["ar", "العربية (Arabic)", "Arabic"], ["fr", "Français (French)", "French"]];
-const finder = { find: [], env: [], name: "", email: "", lang: "", phone: null, saved: null };
-const tickIcon = '<svg aria-hidden="true" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="3.5"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>';
-const optCards = (q, list) => list.map(([v, label]) =>
-  `<button type="button" class="opt-card" data-q="${q}" data-v="${v}" aria-pressed="${finder[q].includes(v)}"><span class="tick">${tickIcon}</span><span>${L(label)}</span></button>`).join("");
+const finder = { find: "", env: "", name: "", email: "", lang: "", phone: null, saved: null, lastStep: 1 };
 const esc = (v) => String(v).replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;");
+const checkMark = '<svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#262948" stroke-width="3.5"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>';
 
-function renderFinder() {
-  return `<div class="wrap">
-    <section class="page-head cat-head">
-      <a class="crumb" href="#home">← ${t("all")}</a>
-      <h1 class="display">${t("finderTitle")}</h1>
-      <p class="intro">${t("finderSub")}</p>
-    </section>
-    <form class="finder quote-form" id="finder-form" novalidate>
-      <div class="step" role="group" aria-labelledby="f-q1">
-        <h2 id="f-q1"><span class="step-num">1</span>${t("q1")}</h2>
-        <p class="hint">${t("pickMany")}</p>
-        <div class="opt-grid">${optCards("find", FINDER_FIND)}</div>
-        <p class="err" id="f-find-err" hidden></p>
-      </div>
-      <div class="step" role="group" aria-labelledby="f-q2">
-        <h2 id="f-q2"><span class="step-num">2</span>${t("q2")}</h2>
-        <p class="hint">${t("pickMany")}</p>
-        <div class="opt-grid">${optCards("env", FINDER_ENV)}</div>
-        <p class="err" id="f-env-err" hidden></p>
-      </div>
-      <div class="step" role="group" aria-labelledby="f-q3">
-        <h2 id="f-q3"><span class="step-num">3</span>${t("step3")}</h2>
+function picCards(q, list) {
+  return list.map(([v, label]) => `<button type="button" class="pic-card" role="radio" aria-checked="${finder[q] === v}" data-q="${q}" data-v="${v}">
+      <span class="pic-art">${FINDER_PHOTOS[v] ? `<img src="${FINDER_PHOTOS[v]}" alt="" loading="lazy">` : FINDER_ART[v]}</span>
+      <span class="pic-label">${L(label)}</span><span class="pic-check">${checkMark}</span></button>`).join("");
+}
+
+function finderProgress(step) {
+  return `<div class="wiz-progress"><span>${t("stepOf")(step)}</span>
+    <span class="wiz-bar" aria-hidden="true">${[1, 2, 3].map((n) => `<i class="${n <= step ? "on" : ""}"></i>`).join("")}</span></div>`;
+}
+
+function renderFinder(step) {
+  const dir = step >= finder.lastStep ? "fwd" : "back";
+  finder.lastStep = step;
+  const head = (h) => `<a class="crumb" href="#home">← ${t("all")}</a><p class="wiz-eyebrow">${t("finderTitle")}</p>${finderProgress(step)}<h1 class="display" id="wiz-q">${h}</h1>`;
+  let body;
+  if (step === 1 || step === 2) {
+    const q = step === 1 ? "find" : "env";
+    body = `${head(t(step === 1 ? "q1" : "q2"))}
+      <p class="hint">${t("pickOne")}</p>
+      <div class="pic-grid pic-grid-${q}" role="radiogroup" aria-labelledby="wiz-q">${picCards(q, step === 1 ? FINDER_FIND : FINDER_ENV)}</div>
+      <p class="err" id="wiz-err" hidden></p>
+      <div class="wiz-nav">
+        <a class="wiz-back" href="${step === 1 ? "#home" : "#finder-1"}"><span class="arrow" aria-hidden="true">←</span> ${t("back")}</a>
+        <button type="button" class="wiz-next" id="wiz-next" aria-disabled="${!finder[q]}">${t("next")} <span class="arrow" aria-hidden="true">→</span></button>
+      </div>`;
+  } else {
+    body = `${head(t("step3"))}
+      <form class="finder quote-form" id="finder-form" novalidate>
         <div class="field"><label for="f-name">${t("fFullName")}</label>
           <input id="f-name" type="text" autocomplete="name" required aria-describedby="f-name-err" value="${esc(finder.name)}"><p class="err" id="f-name-err" hidden></p></div>
         <div class="field"><label for="f-email">${t("fEmail")}</label>
@@ -1339,25 +1464,40 @@ function renderFinder() {
             <option value="">${t("pickLang")}</option>
             ${FINDER_LANGS.map(([v, label]) => `<option value="${v}" lang="${v}"${finder.lang === v ? " selected" : ""}>${label}</option>`).join("")}
           </select><p class="err" id="f-lang-err" hidden></p></div>
-      </div>
-      <button type="submit" class="btn-wa finder-send">${ICON.wa}${t("getRec")}</button>
-    </form>
-  </div>`;
+        <div class="wiz-nav">
+          <a class="wiz-back" href="#finder-2"><span class="arrow" aria-hidden="true">←</span> ${t("back")}</a>
+          <button type="submit" class="btn-wa finder-send">${ICON.wa}${t("getRec")}</button>
+        </div>
+      </form>`;
+  }
+  return `<div class="wrap"><section class="wizard dir-${dir}">${body}</section></div>`;
 }
 
 function setupFinder(root) {
+  const wizard = root.querySelector(".wizard");
+  if (!wizard) return;
+  // Steps 1 and 2: one picture card per answer; Next only moves on once something is picked
+  wizard.querySelectorAll(".pic-card").forEach((card) => (card.onclick = () => {
+    const q = card.dataset.q;
+    finder[q] = card.dataset.v;
+    wizard.querySelectorAll(".pic-card").forEach((c) => c.setAttribute("aria-checked", String(c === card)));
+    const next = document.getElementById("wiz-next");
+    if (next) next.setAttribute("aria-disabled", "false");
+    document.getElementById("wiz-err").hidden = true;
+  }));
+  const next = document.getElementById("wiz-next");
+  if (next) next.onclick = () => {
+    const step = location.hash === "#finder-2" ? 2 : 1;
+    if (!finder[step === 1 ? "find" : "env"]) {
+      const err = document.getElementById("wiz-err");
+      err.textContent = t("errPick"); err.hidden = false;
+      return;
+    }
+    location.hash = step === 1 ? "finder-2" : "finder-3";
+  };
   const form = root.querySelector("#finder-form");
   if (!form) return;
-  // Answer cards: choose one or more; "I Don't Know" / "Ask Our Team" stand alone
-  form.querySelectorAll(".opt-card").forEach((card) => (card.onclick = () => {
-    const q = card.dataset.q, v = card.dataset.v, list = q === "find" ? FINDER_FIND : FINDER_ENV;
-    const alone = list.filter((o) => o[2]).map((o) => o[0]);
-    let picked = finder[q].includes(v) ? finder[q].filter((x) => x !== v) : alone.includes(v) ? [v] : finder[q].filter((x) => !alone.includes(x)).concat(v);
-    finder[q] = picked;
-    form.querySelectorAll(`.opt-card[data-q="${q}"]`).forEach((c) => c.setAttribute("aria-pressed", String(picked.includes(c.dataset.v))));
-    const err = document.getElementById(`f-${q}-err`); if (picked.length) err.hidden = true;
-  }));
-  // Keep typed values if the page is redrawn (e.g. language switch)
+  // Step 3: contact details. Typed values survive a language switch or going back and forth.
   [["f-name", "name"], ["f-email", "email"]].forEach(([id, key]) =>
     document.getElementById(id).addEventListener("input", (e) => { finder[key] = e.target.value; if (e.target.getAttribute("aria-invalid")) showError(id, ""); }));
   const select = document.getElementById("f-lang");
@@ -1373,9 +1513,6 @@ function setupFinder(root) {
     const name = document.getElementById("f-name").value.trim();
     const email = document.getElementById("f-email").value.trim();
     const phone = checkPhoneField(finder.phone, phoneInput);
-    const groupErr = (q, msg) => { const el = document.getElementById(`f-${q}-err`); el.textContent = msg; el.hidden = !msg; };
-    groupErr("find", finder.find.length ? "" : t("errQ1"));
-    groupErr("env", finder.env.length ? "" : t("errQ2"));
     const errors = {
       "f-name": name.length >= 2 ? "" : t("errName"),
       "f-email": /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email) ? "" : t("errEmail"),
@@ -1383,22 +1520,20 @@ function setupFinder(root) {
       "f-lang": finder.lang ? "" : t("errLang")
     };
     Object.entries(errors).forEach(([id, msg]) => showError(id, msg));
-    const firstBad = !finder.find.length ? form.querySelector('.opt-card[data-q="find"]') : !finder.env.length ? form.querySelector('.opt-card[data-q="env"]')
-      : (Object.keys(errors).find((id) => errors[id]) && document.getElementById(Object.keys(errors).find((id) => errors[id])));
-    if (firstBad) { firstBad.focus(); firstBad.scrollIntoView({ block: "center" }); return; }
+    const firstBad = Object.keys(errors).find((id) => errors[id]);
+    if (firstBad) { document.getElementById(firstBad).focus(); return; }
 
-    const en = (list, picked) => picked.map((v) => list.find((o) => o[0] === v)[1].en).join(", ");
+    const en = (list, v) => list.find((o) => o[0] === v)[1].en;
     const langName = FINDER_LANGS.find(([v]) => v === finder.lang)[2];
-    // Format requested by the user (2026-10-30)
+    // Format requested by the user (2026-10-30, wizard version)
     const message = [
       "DETECTOR RECOMMENDATION REQUEST",
-      `What do you want to find? ${en(FINDER_FIND, finder.find)}`,
-      `Search Environment: ${en(FINDER_ENV, finder.env)}`,
-      "CUSTOMER DETAILS:",
-      `Name: ${name} Email: ${email} Contact No: ${phone.number} Preferred Language: ${langName}`
+      `Target: ${en(FINDER_FIND, finder.find)}`,
+      `Terrain: ${en(FINDER_ENV, finder.env)}`,
+      `CUSTOMER DETAILS: Name: ${name} Email: ${email} Contact No: ${phone.number} Preferred Language: ${langName}`
     ].join("\n") + (CAMPAIGN ? `\nRef: ${CAMPAIGN}` : "");
     const link = waLink(finder.lang, message); // English, Arabic or French line
-    try { (window.dataLayer = window.dataLayer || []).push({ event: "recommendation_request", find: finder.find.join(","), environment: finder.env.join(","), chat_language: finder.lang, campaign: CAMPAIGN }); } catch (err) {}
+    try { (window.dataLayer = window.dataLayer || []).push({ event: "recommendation_request", target: finder.find, terrain: finder.env, chat_language: finder.lang, campaign: CAMPAIGN }); } catch (err) {}
     const tab = window.open(link, "_blank");
     if (tab) tab.opener = null; else location.href = link; // pop-up blocked: open WhatsApp in this tab
   });
@@ -1406,7 +1541,13 @@ function setupFinder(root) {
 
 let tab = "video";
 function route() {
-  if (location.hash === "#finder") return { view: "finder" };
+  const fm = /^#finder(?:-([123]))?$/.exec(location.hash);
+  if (fm) {
+    let step = Number(fm[1] || 1);
+    if (step >= 2 && !finder.find) step = 1;
+    if (step === 3 && !finder.env) step = 2;
+    return { view: "finder", step };
+  }
   const h = location.hash.slice(1);
   if (h.startsWith("p-")) {
     const found = findProduct(h.slice(2));
@@ -1424,14 +1565,14 @@ function render(scrollTop = true) {
   renderBar(r);
   const view = document.getElementById("view");
   if (finder.phone) { finder.saved = savePhone(finder.phone); try { finder.phone.destroy(); } catch (e) {} finder.phone = null; }
-  view.innerHTML = r.view === "finder" ? renderFinder() : r.view === "product" ? renderProduct(r, tab) : r.view === "cat" ? renderCat(r.cat) : renderHome();
+  view.innerHTML = r.view === "finder" ? renderFinder(r.step) : r.view === "product" ? renderProduct(r, tab) : r.view === "cat" ? renderCat(r.cat) : renderHome();
   document.getElementById("wa-fab").href = wa(t("msgGeneral"));
   document.getElementById("lang-code").textContent = LANGS.find((l) => l[0] === lang)[2];
   renderTerms();
   renderFooterPhones();
   document.getElementById("sample-note").textContent = (t("draft") ? t("draft") + " " : "") + "Sample for approval. Grey boxes are photo and video placeholders.";
   const cta = document.getElementById("cta");
-  if (cta) cta.onclick = () => { location.hash = "finder"; }; // "Find my detector" opens the questionnaire
+  if (cta) cta.onclick = () => { location.hash = "finder-1"; }; // "Find my detector" opens the 3-step wizard
   setupFinder(view);
   view.querySelectorAll("[data-jump]").forEach((b) => (b.onclick = () => document.getElementById(b.dataset.jump).scrollIntoView()));
   view.querySelectorAll("[data-media]").forEach((b) => (b.onclick = () => { tab = b.dataset.media; render(false); }));
