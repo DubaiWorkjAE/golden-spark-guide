@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}</style>
-<script>window.GS_VIDEOS = {"titan-500-smart-device":{"src":"test-videos/titan-500-smart.mp4","poster":"test-videos/titan-500-smart.webp"},"eagle-eye-rjx6550":{"src":"test-videos/rjx6550-luggage.mp4","poster":"test-videos/rjx6550-luggage.webp"}};</script>
+<script>window.GS_VIDEOS = {"titan-500-smart-device":{"src":"test-videos/titan-500-smart.mp4","poster":"test-videos/titan-500-smart.webp"},"eagle-eye-rjx6550":{"src":"test-videos/rjx6550-luggage.mp4","poster":"test-videos/rjx6550-luggage.webp"}}; window.GS_PHOTOS = {"titan-500-smart-device":"test-videos/titan-500-photo.webp","eagle-eye-rjx6550":"test-videos/rjx6550-photo.webp"};</script>
 <title>Golden Spark Detector Guide</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -170,7 +170,25 @@ footer .wrap { padding-block: 24px 120px; display: grid; gap: 12px; }
 .media-inner { position: absolute; inset: 0; border: 1px dashed var(--ph-line); border-radius: inherit; display: grid; place-content: center; justify-items: center; gap: 8px; padding: 8px; text-align: center; color: var(--muted); font-size: 12px; background: var(--ph); transition: transform 1.2s cubic-bezier(.2, .7, .2, 1); }
 .media video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s cubic-bezier(.2, .7, .2, 1); }
 .media .tagline { font-size: 11px; opacity: .85; }
-.media .fallback { position: absolute; inset: 0; margin: auto; border: 0; background: transparent; }
+.media .fallback { position: absolute; inset: 0; margin: auto; width: 76px; height: 76px; padding: 0; border: 0; border-radius: 38px; background: transparent; z-index: 2; }
+.media .fallback .play { width: 64px; height: 64px; border-radius: 32px; }
+.vctl { position: absolute; inset-inline-end: 10px; bottom: 10px; z-index: 2; width: 44px; height: 44px; padding: 0; border: 0; border-radius: 22px; background: rgba(20, 22, 45, 0.72); display: grid; place-items: center; }
+.vctl .play { width: auto; height: auto; background: none; }
+.vctl:hover { background: var(--navy); }
+.verr { position: absolute; inset: auto 10px 62px; z-index: 2; margin: 0; padding: 8px 10px; border-radius: 8px; background: rgba(20, 22, 45, 0.88); color: #FFFFFF; font-size: 13px; }
+.media.photo { background: #FFFFFF; border: 1px solid var(--line); }
+.media.photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; padding: 6%; transition: transform 1.2s cubic-bezier(.2, .7, .2, 1); }
+.tile:hover .media img, .media.photo:hover img { transform: scale(1.06); }
+.media.inview img { transform: scale(1.04); }
+.thumbs { display: flex; justify-content: center; gap: 10px; }
+.thumbs button { position: relative; width: 64px; height: 64px; padding: 0; border-radius: 10px; border: 2px solid var(--line); background: #FFFFFF; overflow: hidden; transition: border-color .25s ease; }
+.thumbs button[aria-pressed="true"] { border-color: var(--navy); }
+.thumbs button:hover { border-color: var(--blue); }
+.thumbs img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.thumbs .photo-thumb img { object-fit: contain; padding: 4px; }
+.mini-play { position: absolute; inset: 0; display: grid; place-items: center; background: rgba(0, 0, 0, 0.2); }
+.mini-play .play { width: 26px; height: 26px; }
+.mini-play .play svg { width: 11px; height: 11px; }
 .media.v916 { aspect-ratio: 9 / 16; width: min(260px, 72%); margin-inline: auto; border-radius: 18px; }
 .media.wide { aspect-ratio: 16 / 9; }
 .media.sq { aspect-ratio: 1; }
@@ -228,7 +246,8 @@ footer .wrap { padding-block: 24px 120px; display: grid; gap: 12px; }
 @media (prefers-reduced-motion: reduce) {
   .media-inner, .media video, .kw, .tile, .cat, .chip, .type, .ask, .seg button, .btn-gold, .btn-wa { transition: none !important; transform: none !important; }
   .tile:hover .media-inner, .cat:hover .media-inner, .media:hover .media-inner, .media.inview .media-inner,
-  .tile:hover .media video, .cat:hover .media video, .media:hover video, .media.inview video { transform: none; }
+  .tile:hover .media video, .cat:hover .media video, .media:hover video, .media.inview video,
+  .media.photo img, .tile:hover .media img, .media.photo:hover img, .media.inview img { transform: none !important; transition: none !important; }
 }
 </style>
 </head>
@@ -336,6 +355,7 @@ const T = {
     photoHere: "Product photo goes here", other: "Other products in this category", contact: "Contact", type: "Choose a type", products: "products",
     later: "One-line blurb (added later)", draft: "", lang: "Language",
     autoplay: "Autoplay · muted · loop", heroVideo: "Hero video", zoom: "Zooms slowly on hover",
+    playVideo: "Play video", pauseVideo: "Pause video", videoError: "This video could not load. Check your connection and refresh.",
     msgProduct: (n) => `Hello Golden Spark, I'm interested in the ${n}. Please send me the price and details.`,
     msgCat: (n) => `Hello Golden Spark, I'm not sure which ${n.toLowerCase()} is right for me. Can you help?`,
     msgGeneral: "Hello Golden Spark, I need help choosing the right detector." },
@@ -350,6 +370,7 @@ const T = {
     photoHere: "Emplacement photo du produit", other: "Autres produits de cette catégorie", contact: "Contact", type: "Choisissez un type", products: "produits",
     later: "Phrase courte (ajoutée plus tard)", draft: "Aperçu de traduction (brouillon à relire) : les textes produits sont encore en anglais.", lang: "Langue",
     autoplay: "Lecture auto · sans son · en boucle", heroVideo: "Vidéo principale", zoom: "Zoom lent au survol",
+    playVideo: "Lire la vidéo", pauseVideo: "Mettre la vidéo en pause", videoError: "La vidéo n'a pas pu se charger. Vérifiez votre connexion et actualisez.",
     msgProduct: (n) => `Bonjour Golden Spark, je suis intéressé(e) par le ${n}. Merci de m'envoyer le prix et les détails.`,
     msgCat: (n) => `Bonjour Golden Spark, je ne sais pas quel produit choisir (${n}). Pouvez-vous m'aider ?`,
     msgGeneral: "Bonjour Golden Spark, j'ai besoin d'aide pour choisir le bon détecteur." },
@@ -364,6 +385,7 @@ const T = {
     photoHere: "مكان صورة المنتج", other: "منتجات أخرى في هذه الفئة", contact: "تواصل معنا", type: "اختر النوع", products: "منتجات",
     later: "وصف قصير (يضاف لاحقًا)", draft: "معاينة ترجمة أولية (تحتاج مراجعة): نصوص المنتجات ما زالت بالإنجليزية.", lang: "اللغة",
     autoplay: "تشغيل تلقائي · بدون صوت · متكرر", heroVideo: "الفيديو الرئيسي", zoom: "تكبير بطيء عند المرور",
+    playVideo: "تشغيل الفيديو", pauseVideo: "إيقاف الفيديو مؤقتًا", videoError: "تعذّر تحميل الفيديو. تحقق من الاتصال ثم حدّث الصفحة.",
     msgProduct: (n) => `مرحبًا Golden Spark، أنا مهتم بجهاز ${n}. أرجو إرسال السعر والتفاصيل.`,
     msgCat: (n) => `مرحبًا Golden Spark، لست متأكدًا أي جهاز (${n}) يناسبني. هل يمكنكم مساعدتي؟`,
     msgGeneral: "مرحبًا Golden Spark، أحتاج مساعدة في اختيار جهاز الكشف المناسب." }
@@ -374,6 +396,7 @@ const WA = { en: "971522448875", fr: "971522448875", ar: "971554268455" };
 const ICON = {
   chev: '<svg class="chev" aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 5 7 7-7 7"/></svg>',
   back: '<svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#282C55" stroke-width="2"><path d="m15 5-7 7 7 7"/></svg>',
+  pause: '<svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="#FFFFFF"><rect x="6.5" y="5" width="4" height="14" rx="1"/><rect x="13.5" y="5" width="4" height="14" rx="1"/></svg>',
   play: '<span class="play"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="#FFFFFF"><path d="M8 5.5v13l10.5-6.5z"/></svg></span>',
   wa: '<svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8"><path d="M4 20l1.3-3.9A8 8 0 1 1 8 19z"/></svg>',
   gate: '<svg aria-hidden="true" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 21V4h14v17M9 21V8h6v13"/></svg>',
@@ -413,28 +436,42 @@ function depthFact(mode, value) {
     : `<div><dt>${t("maxDepth")}</dt><dd>${value}</dd></div>`;
 }
 
-// Video links go here as they arrive: { "water": { src: "...mp4", poster: "...jpg" }, "river-f-smart-detector": {...} }
-// The Vercel test page sets window.GS_VIDEOS; the Claude sample has none and shows placeholders.
+// Media links go here as they arrive: { "river-f-smart-detector": { src: "...mp4", poster: "...jpg" } } and { "river-f-smart-detector": "...webp" }.
+// The Vercel test page sets window.GS_VIDEOS / GS_PHOTOS; the Claude sample has none and shows placeholders.
 const VIDEOS = window.GS_VIDEOS || {};
+const PHOTOS = window.GS_PHOTOS || {};
 const rich = (s) => s.replace(/\*\*(.+?)\*\*/g, '<strong class="kw">$1</strong>');
 
-// Video-first media box. With a video: autoplay, muted, loop, inline; tap-to-play shows if autoplay is blocked.
-// Without one: a placeholder that says what will play there.
-function media(key, shape, label) {
-  const v = VIDEOS[key];
-  if (v) {
-    return `<div class="media ${shape}"><video src="${v.src}"${v.poster ? ` poster="${v.poster}"` : ""} muted autoplay loop playsinline preload="metadata" aria-label="${label}"></video>
-      <button type="button" class="fallback" hidden aria-label="${t("video")}">${ICON.play}</button></div>`;
-  }
+function placeholder(shape, label) {
   const small = shape.includes("sm");
   return `<div class="media ${shape}"><div class="media-inner">${ICON.play}${small ? "" : `<span>${label}</span><span class="tagline">${t("autoplay")}</span>`}</div></div>`;
 }
 
+// A real video: muted, looping, inline. setupMedia() starts it when on screen, with a play/pause button,
+// a big play button if the browser blocks autoplay, and a message if the file fails to load.
+function media(key, shape, label) {
+  const v = VIDEOS[key];
+  if (!v) return placeholder(shape, label);
+  return `<div class="media ${shape}">
+    <video src="${v.src}"${v.poster ? ` poster="${v.poster}"` : ""} muted autoplay loop playsinline preload="auto" aria-label="${label}"></video>
+    <button type="button" class="fallback" hidden aria-label="${t("playVideo")}">${ICON.play}</button>
+    <button type="button" class="vctl" aria-label="${t("pauseVideo")}">${ICON.pause}</button>
+    <p class="verr" hidden>${t("videoError")}</p>
+  </div>`;
+}
+
+function photo(key, shape, alt) {
+  return PHOTOS[key]
+    ? `<div class="media ${shape} photo"><img src="${PHOTOS[key]}" alt="${alt}" loading="lazy" decoding="async"></div>`
+    : null;
+}
+
+// Cards never play video: they show the product photo, or a placeholder until one arrives.
 function tile(p, cat) {
   const blurb = p.blurb ? `<span class="tile-blurb">${p.blurb}</span>` : `<span class="tile-later">${t("later")}</span>`;
   const depth = cat.depth && p.depth ? `<span class="tile-meta">${cat.depth === "neutral" ? t("states") + " " + p.depth : t("depth") + ": " + p.depth}</span>` : "";
   return `<a class="tile" href="#p-${p.key}">
-    ${media(p.key, "sq sm", t("video"))}
+    ${photo(p.key, "sq sm", p.name) || placeholder("sq sm", t("photo"))}
     ${p.brand ? `<span class="tile-brand">${p.brand}</span>` : ""}
     <span class="tile-name">${p.name}</span>
     ${p.pkg ? `<span class="pkg">${p.pkg}</span>` : ""}
@@ -534,7 +571,13 @@ function renderProduct({ cat, p }, tab) {
           <button type="button" role="tab" data-media="video" aria-selected="${tab === "video"}">${t("video")}</button>
           <button type="button" role="tab" data-media="photo" aria-selected="${tab === "photo"}">${t("photo")}</button>
         </div>
-        ${tab === "video" ? media(p.key, "v916", t("videoHere")) : `<div class="media sq"><div class="media-inner"><span>${t("photoHere")}</span><span class="tagline">${t("zoom")}</span></div></div>`}
+        ${tab === "video"
+          ? media(p.key, "v916", `${p.name} · ${t("video")}`)
+          : photo(p.key, "sq", p.name) || `<div class="media sq"><div class="media-inner"><span>${t("photoHere")}</span><span class="tagline">${t("zoom")}</span></div></div>`}
+        ${VIDEOS[p.key] && PHOTOS[p.key] ? `<div class="thumbs">
+          <button type="button" data-media="video" aria-pressed="${tab === "video"}" aria-label="${t("video")}"><img src="${VIDEOS[p.key].poster}" alt=""><span class="mini-play">${ICON.play}</span></button>
+          <button type="button" data-media="photo" aria-pressed="${tab === "photo"}" aria-label="${t("photo")}" class="photo-thumb"><img src="${PHOTOS[p.key]}" alt=""></button>
+        </div>` : ""}
       </div>
       <div class="a-info">
       ${p.brand ? `<span class="tile-brand" style="font-size:12px">${p.brand}</span>` : ""}
@@ -590,31 +633,48 @@ function render(scrollTop = true) {
   if (scrollTop) window.scrollTo(0, 0);
 }
 
-// Videos: start muted; show tap-to-play if the browser blocks autoplay; pause off screen.
+// Videos: start muted when on screen, pause when off screen. Only a real autoplay block (NotAllowedError) shows the
+// big play button; an AbortError just means a pause() or re-render interrupted play() and is not a failure.
 // Touch screens: previews zoom gently once they are in the middle of the screen; tapping a keyword highlights it.
 const touch = window.matchMedia("(hover: none)").matches;
 let watcher;
+function tryPlay(box, video) {
+  const p = video.play();
+  if (p) p.catch((err) => { if (err.name === "NotAllowedError") box.querySelector(".fallback").hidden = false; });
+}
 function setupMedia(root) {
   if (watcher) watcher.disconnect();
   watcher = "IntersectionObserver" in window ? new IntersectionObserver((entries) => {
     for (const e of entries) {
       const box = e.target, video = box.querySelector("video");
-      const visible = e.intersectionRatio >= 0.6;
-      if (touch) box.classList.toggle("inview", visible);
-      if (video) {
-        if (visible) video.play().catch(() => { box.querySelector(".fallback").hidden = false; });
-        else video.pause();
-      }
+      if (touch) box.classList.toggle("inview", e.intersectionRatio >= 0.6);
+      if (!video) continue;
+      if (e.intersectionRatio >= 0.35 && !video.dataset.userPaused) tryPlay(box, video);
+      else if (!e.isIntersecting) video.pause();
     }
-  }, { threshold: [0, 0.6] }) : null;
+  }, { threshold: [0, 0.35, 0.6] }) : null;
   root.querySelectorAll(".media").forEach((box) => {
     if (watcher) watcher.observe(box);
-    const video = box.querySelector("video"), btn = box.querySelector(".fallback");
-    if (video) {
-      video.muted = true; // iOS only autoplays when the property is set, not just the attribute
-      if (!watcher) video.play().catch(() => { if (btn) btn.hidden = false; });
-    }
-    if (video && btn) btn.onclick = (e) => { e.preventDefault(); video.play().then(() => (btn.hidden = true)).catch(() => {}); };
+    const video = box.querySelector("video");
+    if (!video) return;
+    const big = box.querySelector(".fallback"), ctl = box.querySelector(".vctl"), err = box.querySelector(".verr");
+    video.muted = true; // iOS only autoplays when the property is set, not just the attribute
+    video.defaultMuted = true;
+    const showState = () => {
+      const playing = !video.paused;
+      ctl.innerHTML = playing ? ICON.pause : ICON.play;
+      ctl.setAttribute("aria-label", playing ? t("pauseVideo") : t("playVideo"));
+    };
+    video.addEventListener("playing", () => { big.hidden = true; err.hidden = true; showState(); });
+    video.addEventListener("pause", showState);
+    video.addEventListener("error", () => { err.hidden = false; big.hidden = true; });
+    big.onclick = (e) => { e.preventDefault(); e.stopPropagation(); delete video.dataset.userPaused; video.play().catch(() => {}); };
+    ctl.onclick = (e) => {
+      e.preventDefault(); e.stopPropagation();
+      if (video.paused) { delete video.dataset.userPaused; video.play().catch(() => { big.hidden = false; }); }
+      else { video.dataset.userPaused = "1"; video.pause(); }
+    };
+    if (!watcher) tryPlay(box, video);
   });
   root.querySelectorAll(".kw").forEach((k) => (k.onclick = () => k.classList.toggle("on")));
 }
