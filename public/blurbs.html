@@ -1,0 +1,1210 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Product Blurbs Review</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@700;800&display=swap">
+<style>
+/* Review list: one column on phones, 2 on tablets, 3 on desktop. Sticky search + category chips. */
+:root { --navy: #282C55; --blue: #2E3A8C; --gold: #F1C854; --gold-ink: #85601F; --paper: #FFFFFF; --mist: #F5F5F7; --ink: #1D1D1F; --muted: #62626A; --line: #E3E3E8; --green: #0B7F3D; color-scheme: light; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--mist); color: var(--ink); font: 15px/1.5 "Inter", "Segoe UI", system-ui, sans-serif; }
+.wrap { max-width: 1180px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+header.hero { background: var(--navy); color: #FFFFFF; }
+header.hero .wrap { padding-block: 32px 26px; display: grid; gap: 10px; }
+.eyebrow { margin: 0; color: var(--gold); font-size: 12px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
+h1 { margin: 0; font: 800 clamp(26px, 6vw, 40px)/1.1 "Montserrat", "Segoe UI", sans-serif; text-wrap: balance; }
+.lead { margin: 0; color: #DADBE8; max-width: 65ch; }
+.stats { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 6px; }
+.stats span { padding: 6px 12px; border-radius: 999px; background: rgba(255,255,255,.1); font-size: 13px; }
+.stats b { color: var(--gold); }
+.bar { position: sticky; top: 0; z-index: 5; background: var(--paper); border-bottom: 1px solid var(--line); }
+.bar .wrap { padding-block: 10px; display: grid; gap: 8px; }
+#q { width: 100%; height: 44px; padding: 0 14px; border-radius: 22px; border: 1px solid var(--line); font: inherit; background: var(--mist); }
+#q:focus { outline: 3px solid var(--gold); outline-offset: 1px; }
+.chips { display: flex; gap: 8px; overflow-x: auto; scrollbar-width: none; }
+.chips a { flex: none; height: 34px; padding: 0 12px; border-radius: 17px; background: var(--mist); color: var(--ink); text-decoration: none; display: flex; align-items: center; font-size: 13px; white-space: nowrap; transition: background-color .2s, color .2s; }
+.chips a:hover { background: var(--navy); color: #FFFFFF; }
+main .wrap { padding-block: 18px 60px; display: grid; gap: 28px; }
+.cat { display: grid; gap: 12px; scroll-margin-top: 110px; }
+.cat h2 { margin: 0; font: 800 22px/1.2 "Montserrat", "Segoe UI", sans-serif; color: var(--navy); display: flex; align-items: center; gap: 10px; }
+.count { font: 600 12px "Inter", sans-serif; color: var(--muted); background: var(--paper); border: 1px solid var(--line); padding: 2px 8px; border-radius: 10px; }
+.depth { margin: 0; padding: 10px 12px; border-radius: 10px; background: #FFF6DA; color: #5E4510; font-size: 13px; }
+.grid { display: grid; gap: 12px; }
+.item { background: var(--paper); border: 1px solid var(--line); border-radius: 14px; padding: 14px; display: grid; gap: 6px; align-content: start; min-width: 0; }
+.top { display: flex; align-items: start; gap: 10px; justify-content: space-between; }
+.item h3 { margin: 0; font-size: 15px; font-weight: 700; color: var(--navy); }
+.tag { flex: none; font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 10px; }
+.tag.new { background: #E8F4EC; color: var(--green); }
+.tag.kept { background: #E9EAF5; color: var(--blue); }
+.tag.missing { background: #FDECEC; color: #A3261F; }
+.headline { margin: 0; font-weight: 700; color: var(--gold-ink); }
+.blurb { margin: 0; }
+.links { margin: 4px 0 0; display: flex; flex-wrap: wrap; gap: 6px; }
+.links a { font-size: 12px; color: var(--blue); text-decoration: none; border: 1px solid var(--line); border-radius: 8px; padding: 2px 8px; }
+.links a:hover { border-color: var(--blue); }
+.empty { color: var(--muted); }
+@media (min-width: 640px) { .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 1024px) { .grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+</style>
+</head>
+<body>
+<header class="hero"><div class="wrap">
+  <p class="eyebrow">Golden Spark Detectors · Draft for review</p>
+  <h1>Product blurbs for every product</h1>
+  <p class="lead">One headline and a short description for each product on gsdetectors.com and detectorshub.com. Written only from each product's own page: no new specs, no depth numbers, and "manufacturer states" for long-range and water claims. Products listed on both sites appear once.</p>
+  <div class="stats"><span><b>178</b> products</span><span><b>160</b> new blurbs</span><span><b>17</b> of your blurbs kept</span><span><b>1</b> not on the websites</span></div>
+</div></header>
+<div class="bar"><div class="wrap">
+  <input id="q" type="search" placeholder="Search products, e.g. Equinox or water" aria-label="Search products">
+  <nav class="chips" aria-label="Categories"><a href="#gold">Gold &amp; gold nugget detectors</a><a href="#treasure">Treasure hunting &amp; metal detectors</a><a href="#longrange">Long-range detectors</a><a href="#scanner">3D ground scanners &amp; ground radar</a><a href="#water">Water detectors</a><a href="#gems">Diamond &amp; gemstone detectors</a><a href="#security">Security detectors</a><a href="#xrf">Mineral analyzers &amp; XRF</a><a href="#mining">Mining equipment</a><a href="#accessories">Coils, pinpointers &amp; accessories</a></nav>
+</div></div>
+<main><div class="wrap">
+<section class="cat" id="gold" data-cat="gold">
+  <h2>Gold &amp; gold nugget detectors <span class="count">23</span></h2>
+  <p class="depth"><b>Depth note shown on these product pages:</b> Bigger targets can be detected deeper, while smaller targets like gold nuggets are typically found closer to the surface.</p>
+  <div class="grid">
+  <article class="item" data-search="gold finder 2000 switch on and start finding gold for beginners who want to start gold prospecting.">
+    <div class="top"><h3>Gold Finder 2000</h3><span class="tag kept">Your blurb, kept</span></div>
+    <p class="headline">Switch on and start finding gold</p>
+    <p class="blurb">For beginners who want to start gold prospecting.</p>
+    <p class="links"><a href="https://gsdetectors.com/product/nokta-makro-gold-finder-2000/" target="_blank" rel="noopener">gsdetectors.com</a><a href="https://detectorshub.com/products/nokta-gold-finder-2000-africa" target="_blank" rel="noopener">detectorshub.com</a></p>
+  </article>
+  <article class="item" data-search="goldmaster 24k steady gold hunting in tough ground for people who want to start finding gold nuggets.">
+    <div class="top"><h3>Goldmaster 24K</h3><span class="tag kept">Your blurb, kept</span></div>
+    <p class="headline">Steady gold hunting in tough ground</p>
+    <p class="blurb">For people who want to start finding gold nuggets.</p>
+    <p class="links"><a href="https://gsdetectors.com/product/garrett-goldmaster-24k-metal-detector/" target="_blank" rel="noopener">gsdetectors.com</a><a href="https://detectorshub.com/products/garrett-goldmaster-24k-metal-detector-1" target="_blank" rel="noopener">detectorshub.com</a></p>
+  </article>
+  <article class="item" data-search="xp deus ii fast, wireless and ready for gold for prospectors who want to search for gold nuggets, or who want to start prospecting.">
+    <div class="top"><h3>XP Deus II</h3><span class="tag kept">Your blurb, kept</span></div>
+    <p class="headline">Fast, wireless and ready for gold</p>
+    <p class="blurb">For prospectors who want to search for gold nuggets, or who want to start prospecting.</p>
+    <p class="links"><a href="https://gsdetectors.com/product/xp-deus-ii/" target="_blank" rel="noopener">gsdetectors.com</a></p>
+  </article>
+  <article class="item" data-search="xp deus ii hf2 gold the deus ii tuned for small gold the deus ii with a high-frequency elliptical coil made for small gold nuggets. a great pick for prospectors who already like the deus.">
+    <div class="top"><h3>XP Deus II HF2 Gold</h3><span class="tag new">New</span></div>
+    <p class="headline">The Deus II tuned for small gold</p>
+    <p class="blurb">The Deus II with a high-frequency elliptical coil made for small gold nuggets. A great pick for prospectors who already like the Deus.</p>
+    <p class="links"><a href="https://gsdetectors.com/product/xp-deus-ii-hf2-gold/" target="_blank" rel="noopener">gsdetectors.com</a><a href="https://detectorshub.com/products/xp-deus-2-hf2-gold" target="_blank" rel="noopener">detectorshub.com</a></p>
+  </article>
+  <article class="item" data-search="nokta magnetar 9000 made for gold and micro-nuggets for beginners and experienced prospectors who want to find gold nuggets.">
+    <div class="top"><h3>Nokta Magnetar 9000</h3><span class="tag kept">Your blurb, kept</span></div>
+    <p class="headline">Made for gold and micro-nuggets</p>
+    <p class="blurb">For beginners and experienced prospectors who want to find gold nuggets.</p>
+    <p class="links"><a href="https://gsdetectors.com/product/nokta-magnetar-9000/" target="_blank" rel="noopener">gsdetectors.com</a><a href="https://detectorshub.com/products/nokta-magnetar-9000-gold-detector" target="_blank" rel="noopener">detectorshub.com</a></p>
+  </article>
+  <article class="item" data-search="garrett axiom ultra-pulse (full / lite package) pulse power for hard, mineralized ground full: for advanced prospectors who want the complete package for gold nuggets. lite: for advanced prospectors who want the lite package for gold nuggets.">
+    <div class="top"><h3>Garrett Axiom Ultra-Pulse (Full / Lite package)</h3><span class="tag kept">Your blurb, kept</span></div>
+    <p class="headline">Pulse power for hard, mineralized ground</p>
+    <p class="blurb">Full: for advanced prospectors who want the complete package for gold nuggets. Lite: for advanced prospectors who want the lite package for gold nuggets.</p>
+    <p class="links"><a href="https://gsdetectors.com/product/garrett-axiom-ultra-pulse-gold-detector/" target="_blank" rel="noopener">gsdetectors.com</a><a href="https://detectorshub.com/products/garrett-axiom-ultra-pulse-gold-detector-coming-soon" target="_blank" rel="noopener">detectorshub.com</a></p>
+  </article>
+  <article class="item" data-search="minelab gold monster 1000 fully automatic gold finding fully automatic settings turn beginners into gold hunters. just switch on and start searching the goldfields.">
+    <div class="top"><h3>Minelab Gold Monster 1000</h3><span class="tag new">New</span></div>
+    <p class="headline">Fully automatic gold finding</p>
+    <p class="blurb">Fully automatic settings turn beginners into gold hunters. Just switch on and start searching the goldfields.</p>
+    <p class="links"><a href="https://gsdetectors.com/product/gold-monster-1000/" target="_blank" rel="noopener">gsdetectors.com</a><a href="https://detectorshub.com/products/gold-monster-1000" target="_blank" rel="noopener">detectorshub.com</a></p>
+  </article>
+  <article class="item" data-search="minelab gold monster 2000 made for ultra-fine gold uses minelab's multi-au technology to find very small gold in difficult, mineralized ground. for prospectors who want precision.">
+    <div class="top"><h3>Minelab Gold Monster 2000</h3><span class="tag new">New</span></div>
+    <p class="headline">Made for ultra-fine gold</p>
+    <p class="blurb">Uses Minelab's Multi-Au technology to find very small gold in difficult, mineralized ground. For prospectors who want precision.</p>
+    <p class="links"><a href="https://gsdetectors.com/product/minelab-monster-2000/" target="_blank" rel="noopener">gsdetectors.com</a><a href="https://detectorshub.com/products/minelab-gold-monster-2000" target="_blank" rel="noopener">detectorshub.com</a></p>
+  </article>
+  <article class="item" data-search="minelab gpx 4500 reliable pulse detector for all gold sizes performs well on gold of all sizes and handles mineralized ground better than basic pulse detectors.">
+    <div class="top"><h3>Minelab GPX 4500</h3><span class="tag new">New</span></div>
+    <p class="headline">Reliable pulse detector for all gold sizes</p>
+    <p class="blurb">Performs well on gold of all sizes and handles mineralized ground better than basic pulse detectors.</p>
+    <p class="links"><a href="https://gsdetectors.com/product/gpx-4500/" target="_blank" rel="noopener">gsdetectors.com</a></p>
+  </article>
+  <article class="item" data-search="minelab gpx 5000 a favourite of serious prospectors strong pulse technology with many coil options, so you can match the detector to your ground.">
+    <div class="top"><h3>Minelab GPX 5000</h3><span class="tag new">New</span></div>
+    <p class="headline">A favourite of serious prospectors</p>
+    <p class="blurb">Strong pulse technology with many coil options, so you can match the detector to your ground.</p>
+    <p class="links"><a href="https://gsdetectors.com/product/gpx-5000/" target="_blank" rel="noopener">gsdetectors.com</a><a href="https://detectorshub.com/products/minelab-gpx-5000-metal-detector" target="_blank" rel="noopener">detectorshub.com</a></p>
+  </article>
+  <article class="item" data-search="minelab gpx 6000 light, fast and easy for all gold geosense-pi technology finds all forms of gold in one light, easy machine, for new and experienced prospectors.">
+    <div class="top"><h3>Minelab GPX 6000</h3><span class="tag new">New</span></div>
+    <p class="headline">Light, fast and easy for all gold</p>
+    <p class="blurb">GeoSense-PI technology finds all forms of gold in one light, easy machine, for new and experienced prospectors.</p>
+    <p class="links"><a href="https://gsdetectors.com/product/gpx-6000-gold-detector/" target="_blank" rel="noopener">gsdetectors.com</a><a href="https://detectorshub.com/products/minelab-gpx-6000-gold-detector" target="_blank" rel="noopener">detectorshub.com</a></p>
+  </article>
+  <article class="item" data-search="minelab gpz 7000 high-performance gold detection built for top sensitivity on all gold. for professional prospectors who want the best results in the goldfields.">
+    <div class="top"><h3>Minelab GPZ 7000</h3><span class="tag new">New</span></div>
+    <p class="headline">High-performance gold detection</p>
+    <p class="blurb">Built for top sensitivity on all gold. For professional prospectors who want the best results in the goldfields.</p>
+    <p class="links"><a href="https://gsdetectors.com/product/gpz-7000/" target="_blank" rel="noopener">gsdetectors.com</a><a href="https://detectorshub.com/products/minelab-gpz-7000" target="_blank" rel="noopener">detectorshub.com</a></p>
+  </article>
+  <article class="item" data-search="minelab gpz 8000 minelab's flagship gold detector made for serious prospectors who want maximum performance in the harshest soils.">
+    <div class="top"><h3>Minelab GPZ 8000</h3><span class="tag new">New</span></div>
+    <p class="headline">Minelab's flagship gold detector</p>
+    <p class="blurb">Made for serious prospectors who want maximum performance in the harshest soils.</p>
+    <p class="links"><a href="https://gsdetectors.com/product/minelab-gpz-8000/" target="_blank" rel="noopener">gsdetectors.com</a><a href="https://detectorshub.com/products/minelab-gpz8000" target="_blank" rel="noopener">detectorshub.com</a></p>
+  </article>
+  <article class="item" data-search="minelab sdc 2300 compact, waterproof gold detector needs no assembly, folds small and is waterproof. easy controls help you find gold nuggets and patches quickly.">
+    <div class="top"><h3>Minelab SDC 2300</h3><span class="tag new">New</span></div>
+    <p class="headline">Compact, waterproof gold detector</p>
+    <p class="blurb">Needs no assembly, folds small and is waterproof. Easy controls help you find gold nuggets and patches quickly.</p>
+    <p class="links"><a href="https://gsdetectors.com/product/sdc-2300/" target="_blank" rel="noopener">gsdetectors.com</a><a href="https://detectorshub.com/products/minelab-sdc-2300" target="_blank" rel="noopener">detectorshub.com</a></p>
+  </article>
+  <article class="item" data-search="fisher gold bug gold machine that also hunts coins easy to adjust and made for gold. outside the goldfields, switch modes for coins, rings, relics and jewels.">
+    <div class="top"><h3>Fisher Gold Bug</h3><span class="tag new">New</span></div>
+    <p class="headline">Gold machine that also hunts coins</p>
+    <p class="blurb">Easy to adjust and made for gold. Outside the goldfields, switch modes for coins, rings, relics and jewels.</p>
+    <p class="links"><a href="https://gsdetectors.com/product/fisher-gold-bug/" target="_blank" rel="noopener">gsdetectors.com</a><a href="https://detectorshub.com/products/fisher-gold-bug®-metal-detector" target="_blank" rel="noopener">detectorshub.com</a></p>
+  </article>
+  <article class="item" data-search="fisher gold bug 2 very sensitive to small gold known for its sensitivity to small nuggets and easy use. a focused machine for gold hunting.">
+    <div class="top"><h3>Fisher Gold Bug 2</h3><span class="tag new">New</span></div>
+    <p class="headline">Very sensitive to small gold</p>
+    <p class="blurb">Known for its sensitivity to small nuggets and easy use. A focused machine for gold hunting.</p>
+    <p class="links"><a href="https://gsdetectors.com/product/fisher-gold-bug-2/" target="_blank" rel="noopener">gsdetectors.com</a><a href="https://detectorshub.com/products/fisher-gold-bug-2-metal-detector" target="_blank" rel="noopener">detectorshub.com</a></p>
+  </article>
+  <article class="item" data-search="fisher gold bug pro small nuggets in mineralized soil finds the smallest gold nuggets even in highly mineralized soil, with clear target information.">
+    <div class="top"><h3>Fisher Gold Bug Pro</h3><span class="tag new">New</span></div>
+    <p class="headline">Small nuggets in mineralized soil</p>
+    <p class="blurb">Finds the smallest gold nuggets even in highly mineralized soil, with clear target information.</p>
+    <p class="links"><a href="https://gsdetectors.com/product/fisher-gold-bug-pro/" target="_blank" rel="noopener">gsdetectors.com</a><a href="https://detectorshub.com/products/fisher-gold-bug®-pro-metal-detector" target="_blank" rel="noopener">detectorshub.com</a></p>
+  </article>
+  <article class="item" data-search="nokta gold kruzer high-frequency, waterproof gold detector works at 61 khz for high sensitivity to the tiniest nuggets. durable and waterproof for tough goldfield trips.">
+    <div class="top"><h3>Nokta Gold Kruzer</h3><span class="tag new">New</span></div>
+    <p class="headline">High-frequency, waterproof gold detector</p>
+    <p class="blurb">Works at 61 kHz for high sensitivity to the tiniest nuggets. Durable and waterproof for tough goldfield trips.</p>
+    <p class="links"><a href="https://gsdetectors.com/product/gold-kruzer-metal-detector/" target="_blank" rel="noopener">gsdetectors.com</a></p>
+  </article>
+  <article class="item" data-search="garrett at gold tiny nuggets, even in shallow water high-frequency detector with a true all-metal mode, made for tiny gold nuggets in tough conditions, including shallow freshwater.">
+    <div class="top"><h3>Garrett AT Gold</h3><span class="tag new">New</span></div>
+    <p class="headline">Tiny nuggets, even in shallow water</p>
+    <p class="blurb">High-frequency detector with a true all-metal mode, made for tiny gold nuggets in tough conditions, including shallow freshwater.</p>
+    <p class="links"><a href="https://gsdetectors.com/product/at-gold-metal-detector/" target="_blank" rel="noopener">gsdetectors.com</a></p>
+  </article>
+  <article class="item" data-search="garrett atx pulse detector for tiny nuggets very sensitive pulse detector that finds tiny gold nuggets other pulse detectors can miss, with fast pinpointing.">
+    <div class="top"><h3>Garrett ATX</h3><span class="tag new">New</span></div>
+    <p class="headline">Pulse detector for tiny nuggets</p>
+    <p class="blurb">Very sensitive pulse detector that finds tiny gold nuggets other pulse detectors can miss, with fast pinpointing.</p>
+    <p class="links"><a href="https://gsdetectors.com/product/garrett-atx-metal-detector/" target="_blank" rel="noopener">gsdetectors.com</a></p>
+  </article>
+  <article class="item" data-search="ger gold seeker tells precious from non-precious metal uses pulse induction and two systems to find gold and coins underground and separate precious from non-precious metals.">
+    <div class="top"><h3>GER Gold Seeker</h3><span class="tag new">New</span></div>
+    <p class="headline">Tells precious from non-precious metal</p>
+    <p class="blurb">Uses pulse induction and two systems to find gold and coins underground and separate precious from non-precious metals.</p>
+    <p class="links"><a href="https://gsdetectors.com/product/ger-gold-seeker-device/" target="_blank" rel="noopener">gsdetectors.com</a><a href="https://detectorshub.com/products/ger-detect-gold-seeker-device" target="_blank" rel="noopener">detectorshub.com</a></p>
+  </article>
+  <article class="item" data-search="ger golden way automatic vlf gold finder an automatic vlf system for finding underground gold and precious metals.">
+    <div class="top"><h3>GER Golden Way</h3><span class="tag new">New</span></div>
+    <p class="headline">Automatic VLF gold finder</p>
+    <p class="blurb">An automatic VLF system for finding underground gold and precious metals.</p>
+    <p class="links"><a href="https://gsdetectors.com/product/ger-detect-golden-way-device-vlf-metal-detector/" target="_blank" rel="noopener">gsdetectors.com</a><a href="https://detectorshub.com/products/ger-detect-golden-way-device-vlf-metal-detector" target="_blank" rel="noopener">detectorshub.com</a></p>
+  </article>
+  <article class="item" data-search="uig gold digger german vlf detector with seven modes made in germany with seven search modes and vlf technology for finding gold and precious metals.">
+    <div class="top"><h3>UIG Gold Digger</h3><span class="tag new">New</span></div>
+    <p class="headline">German VLF detector with seven modes</p>
+    <p class="blurb">Made in Germany with seven search modes and VLF technology for finding gold and precious metals.</p>
+    <p class="links"><a href="https://gsdetectors.com/product/uig-gold-digger/" target="_blank" rel="noopener">gsdetectors.com</a><a href="https://detectorshub.com/products/uig-gold-digger-device" target="_blank" rel="noopener">detectorshub.com</a></p>
+  </article>
+  </div>
+</section>
+<section class="cat" id="treasure" data-cat="treasure">
+  <h2>Treasure hunting &amp; metal detectors <span class="count">51</span></h2>
+  <p class="depth"><b>Depth note shown on these product pages:</b> Bigger targets can be detected deeper, while smaller targets like gold nuggets are typically found closer to the surface.</p>
+  <div class="grid">
+  <article class="item" data-search="garrett ace 150 a simple first detector for all ages one of garrett's most affordable detectors, with sound and visual target id. easy for children and adults.">
+    <div class="top"><h3>Garrett ACE 150</h3><span class="tag new">New</span></div>
+    <p class="headline">A simple first detector for all ages</p>
+    <p class="blurb">One of Garrett's most affordable detectors, with sound and visual target ID. Easy for children and adults.</p>
+    <p class="links"><a href="https://detectorshub.com/products/garrett-ace-150-metal-detector" target="_blank" rel="noopener">detectorshub.com</a></p>
+  </article>
+  <article class="item" data-search="garrett ace 200i light, easy entry-level detector strong, light and easy to learn, with one-touch use. great for coins, dry beaches and freshwater.">
+    <div class="top"><h3>Garrett ACE 200i</h3><span class="tag new">New</span></div>
+    <p class="headline">Light, easy entry-level detector</p>
+    <p class="blurb">Strong, light and easy to learn, with one-touch use. Great for coins, dry beaches and freshwater.</p>
+    <p class="links"><a href="https://gsdetectors.com/product/ace-200i-metal-detector/" target="_blank" rel="noopener">gsdetectors.com</a><a href="https://detectorshub.com/products/garrett-ace™-200i-metal-detector" target="_blank" rel="noopener">detectorshub.com</a></p>
+  </article>
+  <article class="item" data-search="garrett ace 250 the classic for beginners and experts a light treasure hunting detector with a waterproof search coil included.">
+    <div class="top"><h3>Garrett ACE 250</h3><span class="tag new">New</span></div>
+    <p class="headline">The classic for beginners and experts</p>
+    <p class="blurb">A light treasure hunting detector with a waterproof search coil included.</p>
+    <p class="links"><a href="https://gsdetectors.com/product/garrett-ace-250-metal-detector/" target="_blank" rel="noopener">gsdetectors.com</a><a href="https://detectorshub.com/products/garrett-ace-250-metal-detector" target="_blank" rel="noopener">detectorshub.com</a></p>
+  </article>
+  <article class="item" data-search="garrett ace 300i digital target id for coins and relics adds digital target id and better detection to the ace line. recommended for coins, jewelry, relics and beaches.">
+    <div class="top"><h3>Garrett ACE 300i</h3><span class="tag new">New</span></div>
+    <p class="headline">Digital target ID for coins and relics</p>
+    <p class="blurb">Adds Digital Target ID and better detection to the ACE line. Recommended for coins, jewelry, relics and beaches.</p>
+    <p class="links"><a href="https://gsdetectors.com/product/ace-300i-metal-detector/" target="_blank" rel="noopener">gsdetectors.com</a></p>
+  </article>
+  <article class="item" data-search="garrett ace 400i the king of the ace series iron audio, digital target id and frequency change help you dig more treasure and less trash.">
+    <div class="top"><h3>Garrett ACE 400i</h3><span class="tag new">New</span></div>
+    <p class="headline">The king of the ACE series</p>
+    <p class="blurb">Iron Audio, Digital Target ID and Frequency Change help you dig more treasure and less trash.</p>
+    <p class="links"><a href="https://gsdetectors.com/product/ace-400i-metal-detector/" target="_blank" rel="noopener">gsdetectors.com</a><a href="https://detectorshub.com/products/garrett-ace™-400i-metal-detector" target="_blank" rel="noopener">detectorshub.com</a></p>
+  </article>
+  <article class="item" data-search="garrett ace apex multi-frequency flexibility choose multi-frequency, single frequency or saltwater mode, so one detector handles parks, fields and beaches.">
+    <div class="top"><h3>Garrett ACE Apex</h3><span class="tag new">New</span></div>
+    <p class="headline">Multi-frequency flexibility</p>
+    <p class="blurb">Choose multi-frequency, single frequency or saltwater mode, so one detector handles parks, fields and beaches.</p>
+    <p class="links"><a href="https://gsdetectors.com/product/garrett-ace-apex-metal-detector/" target="_blank" rel="noopener">gsdetectors.com</a><a href="https://detectorshub.com/products/garrett-ace-apex-metal-detector" target="_blank" rel="noopener">detectorshub.com</a><a href="https://detectorshub.com/products/garrett-ace-apex-metal-detector-with-z-lynk-wireless-headphone" target="_blank" rel="noopener">detectorshub.com</a></p>
+  </article>
+  <article class="item" data-search="garrett ace apex + 13-inch blackdog coil ace apex with a bigger coil the ace apex paired with a 13-inch blackdog coil to cover more ground with each sweep.">
+    <div class="top"><h3>Garrett ACE Apex + 13-inch Blackdog coil</h3><span class="tag new">New</span></div>
+    <p class="headline">ACE Apex with a bigger coil</p>
+    <p class="blurb">The ACE Apex paired with a 13-inch Blackdog coil to cover more ground with each sweep.</p>
+    <p class="links"><a href="https://detectorshub.com/products/garrett-ace-apex-with-13x13-detech-coil-metal-detector-with-z-lynk-wireless-headphone" target="_blank" rel="noopener">detectorshub.com</a><a href="https://detectorshub.com/products/garrett-ace-apex-with-13x13-blackdog-coil-metal-detector-with-z-lynk-wireless-headphone" target="_blank" rel="noopener">detectorshub.com</a></p>
+  </article>
+  <article class="item" data-search="garrett at pro all-terrain detector for every target for coins, relics, caches, jewelry and even gold nuggets, with normal and pro search modes.">
+    <div class="top"><h3>Garrett AT Pro</h3><span class="tag new">New</span></div>
+    <p class="headline">All-terrain detector for every target</p>
+    <p class="blurb">For coins, relics, caches, jewelry and even gold nuggets, with Normal and Pro search modes.</p>
+    <p class="links"><a href="https://gsdetectors.com/product/at-pro-metal-detector/" target="_blank" rel="noopener">gsdetectors.com</a><a href="https://detectorshub.com/products/garrett-at-pro-metal-detector" target="_blank" rel="noopener">detectorshub.com</a></p>
+  </article>
+  <article class="item" data-search="garrett at max garrett's most powerful all-terrain vlf wireless audio and all-terrain performance, built for the professional treasure hunter.">
+    <div class="top"><h3>Garrett AT MAX</h3><span class="tag new">New</span></div>
+    <p class="headline">Garrett's most powerful all-terrain VLF</p>
+    <p class="blurb">Wireless audio and all-terrain performance, built for the professional treasure hunter.</p>
+    <p class="links"><a href="https://gsdetectors.com/product/at-max-metal-detector/" target="_blank" rel="noopener">gsdetectors.com</a><a href="https://detectorshub.com/products/garrett-at-max-metal-detector" target="_blank" rel="noopener">detectorshub.com</a></p>
+  </article>
+  <article class="item" data-search="garrett gti 2500 see the target before you dig graphic target imaging shows the size of a target first. great for coins, jewelry, relics and caches.">
+    <div class="top"><h3>Garrett GTI 2500</h3><span class="tag new">New</span></div>
+    <p class="headline">See the target before you dig</p>
+    <p class="blurb">Graphic Target Imaging shows the size of a target first. Great for coins, jewelry, relics and caches.</p>
+    <p class="links"><a href="https://gsdetectors.com/product/gti-2500-metal-detector/" target="_blank" rel="noopener">gsdetectors.com</a><a href="https://detectorshub.com/products/garrett-gti™-2500-metal-detector" target="_blank" rel="noopener">detectorshub.com</a></p>
+  </article>
+  <article class="item" data-search="garrett sea hunter mark ii made for surf and diving for surf hunting and treasure diving, and also coins, jewelry and relics on dry beaches and in freshwater.">
+    <div class="top"><h3>Garrett Sea Hunter Mark II</h3><span class="tag new">New</span></div>
+    <p class="headline">Made for surf and diving</p>
+    <p class="blurb">For surf hunting and treasure diving, and also coins, jewelry and relics on dry beaches and in freshwater.</p>
+    <p class="links"><a href="https://gsdetectors.com/product/sea-hunter-mark-ii-metal-detector/" target="_blank" rel="noopener">gsdetectors.com</a><a href="https://detectorshub.com/products/garrett-sea-hunter-mark-ii-underwater-metal-detector" target="_blank" rel="noopener">detectorshub.com</a></p>
+  </article>
+  <article class="item" data-search="minelab equinox 600 multi-frequency all-rounder adapts to all targets and ground types. pick your mode and go.">
+    <div class="top"><h3>Minelab Equinox 600</h3><span class="tag new">New</span></div>
+    <p class="headline">Multi-frequency all-rounder</p>
+    <p class="blurb">Adapts to all targets and ground types. Pick your mode and go.</p>
+    <p class="links"><a href="https://gsdetectors.com/product/equinox-600/" target="_blank" rel="noopener">gsdetectors.com</a><a href="https://detectorshub.com/products/minelab-equinox-600-metal-detector" target="_blank" rel="noopener">detectorshub.com</a></p>
+  </article>
+  <article class="item" data-search="minelab equinox 700 all-rounder, now fully waterproof high-resolution target id and great target separation, waterproof for beach and shallow water.">
+    <div class="top"><h3>Minelab Equinox 700</h3><span class="tag new">New</span></div>
+    <p class="headline">All-rounder, now fully waterproof</p>
+    <p class="blurb">High-resolution target ID and great target separation, waterproof for beach and shallow water.</p>
+    <p class="links"><a href="https://gsdetectors.com/product/equinox-700/" target="_blank" rel="noopener">gsdetectors.com</a><a href="https://detectorshub.com/products/minelab-equinox-700-metal-detector" target="_blank" rel="noopener">detectorshub.com</a></p>
+  </article>
+  <article class="item" data-search="minelab equinox 800 multi-frequency for serious hobbyists advanced multi-frequency detector that adapts to all targets and ground conditions.">
+    <div class="top"><h3>Minelab Equinox 800</h3><span class="tag new">New</span></div>
+    <p class="headline">Multi-frequency for serious hobbyists</p>
+    <p class="blurb">Advanced multi-frequency detector that adapts to all targets and ground conditions.</p>
+    <p class="links"><a href="https://gsdetectors.com/product/equinox-800/" target="_blank" rel="noopener">gsdetectors.com</a><a href="https://detectorshub.com/products/minelab-equinox-800-metal-detector" target="_blank" rel="noopener">detectorshub.com</a></p>
+  </article>
+  <article class="item" data-search="minelab equinox 900 all-in-one gold and treasure detector high-resolution target id, great target separation and a waterproof build, for both gold and treasure.">
+    <div class="top"><h3>Minelab Equinox 900</h3><span class="tag new">New</span></div>
+    <p class="headline">All-in-one gold and treasure detector</p>
+    <p class="blurb">High-resolution target ID, great target separation and a waterproof build, for both gold and treasure.</p>
+    <p class="links"><a href="https://gsdetectors.com/product/equinox-900/" target="_blank" rel="noopener">gsdetectors.com</a><a href="https://detectorshub.com/products/minelab-equinox-900-metal-detector" target="_blank" rel="noopener">detectorshub.com</a></p>
+  </article>
+  <article class="item" data-search="minelab excalibur ii built for underwater hunting minelab's bbs multi-frequency technology in a tough, waterproof body, made for diving and beach hunting.">
+    <div class="top"><h3>Minelab Excalibur II</h3><span class="tag new">New</span></div>
+    <p class="headline">Built for underwater hunting</p>
+    <p class="blurb">Minelab's BBS multi-frequency technology in a tough, waterproof body, made for diving and beach hunting.</p>
+    <p class="links"><a href="https://gsdetectors.com/product/excalibur-ii/" target="_blank" rel="noopener">gsdetectors.com</a><a href="https://detectorshub.com/products/minelab-excalibur-ii-metal-detector" target="_blank" rel="noopener">detectorshub.com</a></p>
+  </article>
+  <article class="item" data-search="minelab manticore minelab's most powerful multi-frequency fast and precise multi-iq+ technology for experienced hunters who want top performance.">
+    <div class="top"><h3>Minelab Manticore</h3><span class="tag new">New</span></div>
+    <p class="headline">Minelab's most powerful multi-frequency</p>
+    <p class="blurb">Fast and precise Multi-IQ+ technology for experienced hunters who want top performance.</p>
+    <p class="links"><a href="https://gsdetectors.com/product/manticore/" target="_blank" rel="noopener">gsdetectors.com</a><a href="https://detectorshub.com/products/minelab-manticore-metal-detector" target="_blank" rel="noopener">detectorshub.com</a></p>
+  </article>
+  <article class="item" data-search="minelab ctx 3030 waterproof high-performance treasure detector all-terrain and waterproof, with precise target detection for historical treasures, coins and relics.">
+    <div class="top"><h3>Minelab CTX 3030</h3><span class="tag new">New</span></div>
+    <p class="headline">Waterproof high-performance treasure detector</p>
+    <p class="blurb">All-terrain and waterproof, with precise target detection for historical treasures, coins and relics.</p>
+    <p class="links"><a href="https://gsdetectors.com/product/minelab-ctx-3030/" target="_blank" rel="noopener">gsdetectors.com</a><a href="https://detectorshub.com/products/minelab-ctx-3030-metal-detector" target="_blank" rel="noopener">detectorshub.com</a></p>
+  </article>
+  <article class="item" data-search="minelab vanquish 340 perfect for your first hunt multi-iq technology and a waterproof coil in a simple package for anyone starting out.">
+    <div class="top"><h3>Minelab Vanquish 340</h3><span class="tag new">New</span></div>
+    <p class="headline">Perfect for your first hunt</p>
+    <p class="blurb">Multi-IQ technology and a waterproof coil in a simple package for anyone starting out.</p>
+    <p class="links"><a href="https://gsdetectors.com/product/vanquish-340-metal-detector/" target="_blank" rel="noopener">gsdetectors.com</a><a href="https://detectorshub.com/products/minelab-vanquish-340-metal-detector" target="_blank" rel="noopener">detectorshub.com</a></p>
+  </article>
+  <article class="item" data-search="minelab vanquish 440 step up your detecting adds pinpoint mode and audio control for detectorists who want more.">
+    <div class="top"><h3>Minelab Vanquish 440</h3><span class="tag new">New</span></div>
+    <p class="headline">Step up your detecting</p>
+    <p class="blurb">Adds pinpoint mode and audio control for detectorists who want more.</p>
+    <p class="links"><a href="https://gsdetectors.com/product/vanquish-440-metal-detector/" target="_blank" rel="noopener">gsdetectors.com</a></p>
+  </article>
+  <article class="item" data-search="minelab vanquish 540 top of the vanquish range adds iron bias, a backlight and rechargeable batteries for detectorists who want the best results.">
+    <div class="top"><h3>Minelab Vanquish 540</h3><span class="tag new">New</span></div>
+    <p class="headline">Top of the Vanquish range</p>
+    <p class="blurb">Adds iron bias, a backlight and rechargeable batteries for detectorists who want the best results.</p>
+    <p class="links"><a href="https://gsdetectors.com/product/vanquish-540-metal-detector/" target="_blank" rel="noopener">gsdetectors.com</a><a href="https://detectorshub.com/products/minelab-vanquish-540-metal-detector" target="_blank" rel="noopener">detectorshub.com</a></p>
+  </article>
+  <article class="item" data-search="minelab vanquish 540 pro-pack the full vanquish kit the vanquish 540 with bluetooth headphones plus 12-inch and 8-inch coils, ready for every site.">
+    <div class="top"><h3>Minelab Vanquish 540 Pro-Pack</h3><span class="tag new">New</span></div>
+    <p class="headline">The full Vanquish kit</p>
+    <p class="blurb">The Vanquish 540 with Bluetooth headphones plus 12-inch and 8-inch coils, ready for every site.</p>
+    <p class="links"><a href="https://gsdetectors.com/product/vanquish-540-pro-pack-metal-detector/" target="_blank" rel="noopener">gsdetectors.com</a><a href="https://detectorshub.com/products/minelab-vanquish-540-pro-pack-with-12-and-8-coils-waterproof-metal-detector" target="_blank" rel="noopener">detectorshub.com</a></p>
+  </article>
+  <article class="item" data-search="minelab x-terra pro pick park, field or beach and go simple search modes for each place make it a great step-up detector for treasure hunters.">
+    <div class="top"><h3>Minelab X-TERRA PRO</h3><span class="tag new">New</span></div>
+    <p class="headline">Pick Park, Field or Beach and go</p>
+    <p class="blurb">Simple search modes for each place make it a great step-up detector for treasure hunters.</p>
+    <p class="links"><a href="https://gsdetectors.com/product/x-terra-pro/" target="_blank" rel="noopener">gsdetectors.com</a><a href="https://detectorshub.com/products/x-terra-pro" target="_blank" rel="noopener">detectorshub.com</a></p>
+  </article>
+  <article class="item" data-search="fisher f75 top relic and all-purpose detector known for relic hunting and general use, with good target separation and audio for trashy sites.">
+    <div class="top"><h3>Fisher F75</h3><span class="tag new">New</span></div>
+    <p class="headline">Top relic and all-purpose detector</p>
+    <p class="blurb">Known for relic hunting and general use, with good target separation and audio for trashy sites.</p>
+    <p class="links"><a href="https://gsdetectors.com/product/fisher-f75/" target="_blank" rel="noopener">gsdetectors.com</a></p>
+  </article>
+  <article class="item" data-search="nokta simplex+ (and whp) simple for beginners, strong for experts easy to use and affordable, with features experts like. also sold with wireless headphones (whp).">
+    <div class="top"><h3>Nokta Simplex+ (and WHP)</h3><span class="tag new">New</span></div>
+    <p class="headline">Simple for beginners, strong for experts</p>
+    <p class="blurb">Easy to use and affordable, with features experts like. Also sold with wireless headphones (WHP).</p>
+    <p class="links"><a href="https://gsdetectors.com/product/nokta-makro-simplex-metal-detector/" target="_blank" rel="noopener">gsdetectors.com</a><a href="https://detectorshub.com/products/nokta-makro-simplex-metal-detector" target="_blank" rel="noopener">detectorshub.com</a><a href="https://detectorshub.com/products/nokta-makro-simplex-whp-metal-detector" target="_blank" rel="noopener">detectorshub.com</a></p>
+  </article>
+  <article class="item" data-search="nokta the legend (whp / pro pack) nokta's first multi-frequency detector a versatile multi-frequency detector for all kinds of hunting, also sold as whp and pro pack sets.">
+    <div class="top"><h3>Nokta The Legend (WHP / Pro Pack)</h3><span class="tag new">New</span></div>
+    <p class="headline">Nokta's first multi-frequency detector</p>
+    <p class="blurb">A versatile multi-frequency detector for all kinds of hunting, also sold as WHP and Pro Pack sets.</p>
+    <p class="links"><a href="https://gsdetectors.com/product/the-legend/" target="_blank" rel="noopener">gsdetectors.com</a><a href="https://detectorshub.com/products/nokta-makro-the-legend" target="_blank" rel="noopener">detectorshub.com</a><a href="https://detectorshub.com/products/nokta-makro-the-legend-std-metal-detector" target="_blank" rel="noopener">detectorshub.com</a></p>
+  </article>
+  <article class="item" data-search="nokta impact many detectors in one multi-frequency treasure detector that combines several detectors in one, for new and experienced hunters.">
+    <div class="top"><h3>Nokta Impact</h3><span class="tag new">New</span></div>
+    <p class="headline">Many detectors in one</p>
+    <p class="blurb">Multi-frequency treasure detector that combines several detectors in one, for new and experienced hunters.</p>
+    <p class="links"><a href="https://gsdetectors.com/product/impact-metal-detector/" target="_blank" rel="noopener">gsdetectors.com</a></p>
+  </article>
+  <article class="item" data-search="nokta impact pro the pro version of the impact nokta's multi-frequency impact in its pro version, for serious treasure hunters.">
+    <div class="top"><h3>Nokta Impact Pro</h3><span class="tag new">New</span></div>
+    <p class="headline">The Pro version of the Impact</p>
+    <p class="blurb">Nokta's multi-frequency Impact in its Pro version, for serious treasure hunters.</p>
+    <p class="links"><a href="https://detectorshub.com/products/nokta-makro-impact-pro-metal-detector" target="_blank" rel="noopener">detectorshub.com</a></p>
+  </article>
+  <article class="item" data-search="nokta invenio more than beeps and numbers goes beyond basic beeps and target ids to help you understand what is in the ground.">
+    <div class="top"><h3>Nokta Invenio</h3><span class="tag new">New</span></div>
+    <p class="headline">More than beeps and numbers</p>
+    <p class="blurb">Goes beyond basic beeps and target IDs to help you understand what is in the ground.</p>
+    <p class="links"><a href="https://gsdetectors.com/product/invenio/" target="_blank" rel="noopener">gsdetectors.com</a></p>
+  </article>
+  <article class="item" data-search="nokta invenio pro the professional invenio the pro package of the invenio for experienced treasure hunters.">
+    <div class="top"><h3>Nokta Invenio Pro</h3><span class="tag new">New</span></div>
+    <p class="headline">The professional Invenio</p>
+    <p class="blurb">The Pro package of the Invenio for experienced treasure hunters.</p>
+    <p class="links"><a href="https://detectorshub.com/products/nokta-makro-invenio-metal-detector" target="_blank" rel="noopener">detectorshub.com</a></p>
+  </article>
+  <article class="item" data-search="nokta multi kruzer tough multi-frequency all-rounder robust and strong, made to bring well-hunted sites back to life.">
+    <div class="top"><h3>Nokta Multi Kruzer</h3><span class="tag new">New</span></div>
+    <p class="headline">Tough multi-frequency all-rounder</p>
+    <p class="blurb">Robust and strong, made to bring well-hunted sites back to life.</p>
+    <p class="links"><a href="https://detectorshub.com/products/nokta-makro-multi-kruzer-metal-detector" target="_blank" rel="noopener">detectorshub.com</a></p>
+  </article>
+  <article class="item" data-search="nokta pulsedive two-in-one for diving and land a scuba detector and pinpointer set for divers, holidaymakers and detectorists who search on land and in water.">
+    <div class="top"><h3>Nokta PulseDive</h3><span class="tag new">New</span></div>
+    <p class="headline">Two-in-one for diving and land</p>
+    <p class="blurb">A scuba detector and pinpointer set for divers, holidaymakers and detectorists who search on land and in water.</p>
+    <p class="links"><a href="https://gsdetectors.com/product/pulsedive/" target="_blank" rel="noopener">gsdetectors.com</a><a href="https://detectorshub.com/products/nokta-makro-pulse-dive-underwater-metal-detector-black" target="_blank" rel="noopener">detectorshub.com</a><a href="https://detectorshub.com/products/nokta-makro-pulse-dive" target="_blank" rel="noopener">detectorshub.com</a></p>
+  </article>
+  <article class="item" data-search="quest q30 budget-friendly and waterproof park, field, beach and gold modes in a waterproof detector at a friendly price.">
+    <div class="top"><h3>Quest Q30</h3><span class="tag new">New</span></div>
+    <p class="headline">Budget-friendly and waterproof</p>
+    <p class="blurb">Park, Field, Beach and Gold modes in a waterproof detector at a friendly price.</p>
+    <p class="links"><a href="https://detectorshub.com/products/quest-q30-metal-detector" target="_blank" rel="noopener">detectorshub.com</a></p>
+  </article>
+  <article class="item" data-search="quest q60 waterproof, with wireless headphones fully waterproof and comes with wireless headphones for comfortable hunting on land and in water.">
+    <div class="top"><h3>Quest Q60</h3><span class="tag new">New</span></div>
+    <p class="headline">Waterproof, with wireless headphones</p>
+    <p class="blurb">Fully waterproof and comes with wireless headphones for comfortable hunting on land and in water.</p>
+    <p class="links"><a href="https://detectorshub.com/products/quest-q60-metal-detector" target="_blank" rel="noopener">detectorshub.com</a></p>
+  </article>
+  <article class="item" data-search="quest v60 multi-frequency with a folding shaft hyperq multi-frequency, fast noise cancelling and a flat-folding shaft that travels easily.">
+    <div class="top"><h3>Quest V60</h3><span class="tag new">New</span></div>
+    <p class="headline">Multi-frequency with a folding shaft</p>
+    <p class="blurb">HYPERQ multi-frequency, fast noise cancelling and a flat-folding shaft that travels easily.</p>
+    <p class="links"><a href="https://gsdetectors.com/product/quest-v60/" target="_blank" rel="noopener">gsdetectors.com</a><a href="https://detectorshub.com/products/quest-v60-1" target="_blank" rel="noopener">detectorshub.com</a></p>
+  </article>
+  <article class="item" data-search="quest v80 (and bundle) quest's top multi-frequency detector hyperq multi-frequency, vibration alerts and a folding shaft. also sold as a bundle.">
+    <div class="top"><h3>Quest V80 (and bundle)</h3><span class="tag new">New</span></div>
+    <p class="headline">Quest's top multi-frequency detector</p>
+    <p class="blurb">HYPERQ multi-frequency, vibration alerts and a folding shaft. Also sold as a bundle.</p>
+    <p class="links"><a href="https://gsdetectors.com/product/quest-v80/" target="_blank" rel="noopener">gsdetectors.com</a><a href="https://detectorshub.com/products/quest-v80" target="_blank" rel="noopener">detectorshub.com</a></p>
+  </article>
+  <article class="item" data-search="quest x5 a detector the whole family can share easy for kids and adults, with a dd coil that handles mineralized soil and beaches.">
+    <div class="top"><h3>Quest X5</h3><span class="tag new">New</span></div>
+    <p class="headline">A detector the whole family can share</p>
+    <p class="blurb">Easy for kids and adults, with a DD coil that handles mineralized soil and beaches.</p>
+    <p class="links"><a href="https://gsdetectors.com/product/quest-x5/" target="_blank" rel="noopener">gsdetectors.com</a><a href="https://detectorshub.com/products/quest-x5-metal-detectors" target="_blank" rel="noopener">detectorshub.com</a></p>
+  </article>
+  <article class="item" data-search="quest x10 the easiest way to start the hobby no learning curve, with a dd coil for mineralized soil and beach hunting.">
+    <div class="top"><h3>Quest X10</h3><span class="tag new">New</span></div>
+    <p class="headline">The easiest way to start the hobby</p>
+    <p class="blurb">No learning curve, with a DD coil for mineralized soil and beach hunting.</p>
+    <p class="links"><a href="https://gsdetectors.com/product/quest-x10/" target="_blank" rel="noopener">gsdetectors.com</a><a href="https://detectorshub.com/products/quest-x10-metal-detector" target="_blank" rel="noopener">detectorshub.com</a></p>
+  </article>
+  <article class="item" data-search="quest scuba tector pro handheld detector for diving a waterproof handheld detector to take on diving holidays and underwater searches.">
+    <div class="top"><h3>Quest Scuba Tector Pro</h3><span class="tag new">New</span></div>
+    <p class="headline">Handheld detector for diving</p>
+    <p class="blurb">A waterproof handheld detector to take on diving holidays and underwater searches.</p>
+    <p class="links"><a href="https://gsdetectors.com/product/scuba-tector-pro/" target="_blank" rel="noopener">gsdetectors.com</a><a href="https://detectorshub.com/products/quest-scuba-tector-pro-underwater-metal-detector" target="_blank" rel="noopener">detectorshub.com</a></p>
+  </article>
+  <article class="item" data-search="xp icon / icon-x easy detector, high-end technology xp's fmf wireless technology in a simple, easy-to-use detector.">
+    <div class="top"><h3>XP ICON / ICON-X</h3><span class="tag new">New</span></div>
+    <p class="headline">Easy detector, high-end technology</p>
+    <p class="blurb">XP's FMF wireless technology in a simple, easy-to-use detector.</p>
+    <p class="links"><a href="https://gsdetectors.com/product/xp-icon-icon-x/" target="_blank" rel="noopener">gsdetectors.com</a></p>
+  </article>
+  <article class="item" data-search="xp xtrem hunter add-on for big buried targets an add-on for the xp deus ii made for finding large buried targets.">
+    <div class="top"><h3>XP Xtrem Hunter</h3><span class="tag new">New</span></div>
+    <p class="headline">Add-on for big buried targets</p>
+    <p class="blurb">An add-on for the XP Deus II made for finding large buried targets.</p>
+    <p class="links"><a href="https://gsdetectors.com/product/xp-xtrem-hunter/" target="_blank" rel="noopener">gsdetectors.com</a><a href="https://detectorshub.com/products/xtrem-hunter" target="_blank" rel="noopener">detectorshub.com</a></p>
+  </article>
+  <article class="item" data-search="deeptech vista mini max simple detector for new users easy to use in the field with no confusing settings, ideal for people new to the hobby.">
+    <div class="top"><h3>Deeptech Vista Mini Max</h3><span class="tag new">New</span></div>
+    <p class="headline">Simple detector for new users</p>
+    <p class="blurb">Easy to use in the field with no confusing settings, ideal for people new to the hobby.</p>
+    <p class="links"><a href="https://detectorshub.com/products/deeptech-vista-mini-max-metal-detector" target="_blank" rel="noopener">detectorshub.com</a></p>
+  </article>
+  <article class="item" data-search="detech relic striker vlf detector for relic hunting a 4.8 khz vlf detector built for relic hunting.">
+    <div class="top"><h3>Detech Relic Striker</h3><span class="tag new">New</span></div>
+    <p class="headline">VLF detector for relic hunting</p>
+    <p class="blurb">A 4.8 kHz VLF detector built for relic hunting.</p>
+    <p class="links"><a href="https://detectorshub.com/products/detech-relic-striker-4-8-khz-vlf-metal-detector-with-18x15-sef-and-13-ultimate-coil" target="_blank" rel="noopener">detectorshub.com</a></p>
+  </article>
+  <article class="item" data-search="blackdog gladiator easy to use, with a big screen simple to use with one of the largest backlit screens, so you can search at any time of day.">
+    <div class="top"><h3>Blackdog Gladiator</h3><span class="tag new">New</span></div>
+    <p class="headline">Easy to use, with a big screen</p>
+    <p class="blurb">Simple to use with one of the largest backlit screens, so you can search at any time of day.</p>
+    <p class="links"><a href="https://gsdetectors.com/product/blackdog-gladiator-metal-detector/" target="_blank" rel="noopener">gsdetectors.com</a></p>
+  </article>
+  <article class="item" data-search="blackdog x-treme pulse detector for large coils a pulse induction detector that works with many coil sizes, up to large frame coils, for searching big areas.">
+    <div class="top"><h3>Blackdog X-Treme</h3><span class="tag new">New</span></div>
+    <p class="headline">Pulse detector for large coils</p>
+    <p class="blurb">A pulse induction detector that works with many coil sizes, up to large frame coils, for searching big areas.</p>
+    <p class="links"><a href="https://gsdetectors.com/product/blackdog-x-treme-metal-detector/" target="_blank" rel="noopener">gsdetectors.com</a><a href="https://detectorshub.com/products/blackdog-x-treme-metal-detector" target="_blank" rel="noopener">detectorshub.com</a></p>
+  </article>
+  <article class="item" data-search="blackdog hybridscan pulse and vlf in one combines pulse induction and vlf and works with several coil types, for professional metal searches.">
+    <div class="top"><h3>Blackdog HybridScan</h3><span class="tag new">New</span></div>
+    <p class="headline">Pulse and VLF in one</p>
+    <p class="blurb">Combines pulse induction and VLF and works with several coil types, for professional metal searches.</p>
+    <p class="links"><a href="https://gsdetectors.com/product/blackdog-hybridscan-metal-detector/" target="_blank" rel="noopener">gsdetectors.com</a><a href="https://detectorshub.com/products/blackdog-hybridscan-metal-detector" target="_blank" rel="noopener">detectorshub.com</a></p>
+  </article>
+  <article class="item" data-search="lorenz deepmax z2 german pulse detector, built tough compact, rugged and made in germany, using strong power pulses to search for buried metal.">
+    <div class="top"><h3>Lorenz Deepmax Z2</h3><span class="tag new">New</span></div>
+    <p class="headline">German pulse detector, built tough</p>
+    <p class="blurb">Compact, rugged and made in Germany, using strong power pulses to search for buried metal.</p>
+    <p class="links"><a href="https://detectorshub.com/products/lorenz-deepmax-z2" target="_blank" rel="noopener">detectorshub.com</a></p>
+  </article>
+  <article class="item" data-search="klayzer max 2d 2d detector for gold, coins and relics a multi-purpose detector using 2d technology to locate gold treasures, ancient coins and relics.">
+    <div class="top"><h3>Klayzer Max 2D</h3><span class="tag new">New</span></div>
+    <p class="headline">2D detector for gold, coins and relics</p>
+    <p class="blurb">A multi-purpose detector using 2D technology to locate gold treasures, ancient coins and relics.</p>
+    <p class="links"><a href="https://detectorshub.com/products/klayzer-max-2d" target="_blank" rel="noopener">detectorshub.com</a></p>
+  </article>
+  <article class="item" data-search="uig treasure way pulse detector for bigger treasures uses pulse induction and ignores small targets and ground noise, so you can focus on larger buried treasures.">
+    <div class="top"><h3>UIG Treasure Way</h3><span class="tag new">New</span></div>
+    <p class="headline">Pulse detector for bigger treasures</p>
+    <p class="blurb">Uses pulse induction and ignores small targets and ground noise, so you can focus on larger buried treasures.</p>
+    <p class="links"><a href="https://gsdetectors.com/product/uig-treasure-way-detector/" target="_blank" rel="noopener">gsdetectors.com</a></p>
+  </article>
+  <article class="item" data-search="okm pulse nova an easy pulse detector to start with pulse induction detector with exchangeable coils and easy handling, a great start to treasure hunting.">
+    <div class="top"><h3>OKM Pulse Nova</h3><span class="tag new">New</span></div>
+    <p class="headline">An easy pulse detector to start with</p>
+    <p class="blurb">Pulse induction detector with exchangeable coils and easy handling, a great start to treasure hunting.</p>
+    <p class="links"><a href="https://gsdetectors.com/product/okm-pulse-nova/" target="_blank" rel="noopener">gsdetectors.com</a><a href="https://detectorshub.com/products/okm-pulse-nova-1" target="_blank" rel="noopener">detectorshub.com</a></p>
+  </article>
+  <article class="item" data-search="mega infinity max pro many detection tools in one combines many detection tools in one device for different kinds of metal searches.">
+    <div class="top"><h3>MEGA Infinity Max Pro</h3><span class="tag new">New</span></div>
+    <p class="headline">Many detection tools in one</p>
+    <p class="blurb">Combines many detection tools in one device for different kinds of metal searches.</p>
+    <p class="links"><a href="https://detectorshub.com/products/mega-infinity-max-pro" target="_blank" rel="noopener">detectorshub.com</a></p>
+  </article>
+  </div>
+</section>
+<section class="cat" id="longrange" data-cat="longrange">
+  <h2>Long-range detectors <span class="count">17</span></h2>
+  <p class="depth"><b>Depth note shown on these product pages:</b> Bigger targets can be detected deeper, while smaller targets like gold nuggets are typically found closer to the surface.</p>
+  <div class="grid">
+  <article class="item" data-search="ger titan 500 smart long-range search for gold and gems for people who want to search for diamonds, gemstones and gold.">
+    <div class="top"><h3>GER Titan 500 Smart</h3><span class="tag kept">Your blurb, kept</span></div>
+    <p class="headline">Long-range search for gold and gems</p>
+    <p class="blurb">For people who want to search for diamonds, gemstones and gold.</p>
+    <p class="links"><a href="https://gsdetectors.com/product/titan-500-smart-device/" target="_blank" rel="noopener">gsdetectors.com</a><a href="https://detectorshub.com/products/ger-detect-titan-500-smart-detector" target="_blank" rel="noopener">detectorshub.com</a></p>
+  </article>
+  <article class="item" data-search="ger gold hunter smart four systems for gold and gems for people who want to find gold, diamonds, metals and underground cavities.">
+    <div class="top"><h3>GER Gold Hunter Smart</h3><span class="tag kept">Your blurb, kept</span></div>
+    <p class="headline">Four systems for gold and gems</p>
+    <p class="blurb">For people who want to find gold, diamonds, metals and underground cavities.</p>
+    <p class="links"><a href="https://gsdetectors.com/product/ger-gold-hunter-smart-detector/" target="_blank" rel="noopener">gsdetectors.com</a><a href="https://detectorshub.com/products/ger-detect-gold-hunter-metal-detector" target="_blank" rel="noopener">detectorshub.com</a></p>
+  </article>
+  <article class="item" data-search="ger titan x13 11 search systems in one device for big mining teams and treasure hunters who want to find gold nuggets and deposits.">
+    <div class="top"><h3>GER Titan X13</h3><span class="tag kept">Your blurb, kept</span></div>
+    <p class="headline">11 search systems in one device</p>
+    <p class="blurb">For big mining teams and treasure hunters who want to find gold nuggets and deposits.</p>
+    <p class="links"><a href="https://gsdetectors.com/product/ger-titan-x13/" target="_blank" rel="noopener">gsdetectors.com</a><a href="https://detectorshub.com/products/ger-titan-x13" target="_blank" rel="noopener">detectorshub.com</a></p>
+  </article>
+  <article class="item" data-search="ger titan 400 smart three systems for gold and treasure manufacturer states it searches for underground gold, precious metals, treasures and cavities using three systems.">
+    <div class="top"><h3>GER Titan 400 Smart</h3><span class="tag new">New</span></div>
+    <p class="headline">Three systems for gold and treasure</p>
+    <p class="blurb">Manufacturer states it searches for underground gold, precious metals, treasures and cavities using three systems.</p>
+    <p class="links"><a href="https://gsdetectors.com/product/ger-detect-titan-400-smart-detector/" target="_blank" rel="noopener">gsdetectors.com</a><a href="https://detectorshub.com/products/ger-detect-titan-400-smart-detector" target="_blank" rel="noopener">detectorshub.com</a></p>
+  </article>
+  <article class="item" data-search="ger deep seeker five search systems in one manufacturer states five search systems for precious metals, caves and ancient monuments.">
+    <div class="top"><h3>GER Deep Seeker</h3><span class="tag new">New</span></div>
+    <p class="headline">Five search systems in one</p>
+    <p class="blurb">Manufacturer states five search systems for precious metals, caves and ancient monuments.</p>
+    <p class="links"><a href="https://gsdetectors.com/product/deep-seeker-detector/" target="_blank" rel="noopener">gsdetectors.com</a><a href="https://detectorshub.com/products/ger-detect-deep-seeker" target="_blank" rel="noopener">detectorshub.com</a></p>
+  </article>
+  <article class="item" data-search="ger titan ger 1000 a complete search station manufacturer states five search systems in one unit for finding underground gold and treasures.">
+    <div class="top"><h3>GER Titan GER 1000</h3><span class="tag new">New</span></div>
+    <p class="headline">A complete search station</p>
+    <p class="blurb">Manufacturer states five search systems in one unit for finding underground gold and treasures.</p>
+    <p class="links"><a href="https://gsdetectors.com/product/titan-ger-1000/" target="_blank" rel="noopener">gsdetectors.com</a><a href="https://detectorshub.com/products/ger-detect-titan-ger-1000-device" target="_blank" rel="noopener">detectorshub.com</a></p>
+  </article>
+  <article class="item" data-search="ger easy way smart helps prospectors save time an improved ger detect device made to help prospectors cut search time and distance.">
+    <div class="top"><h3>GER Easy Way Smart</h3><span class="tag new">New</span></div>
+    <p class="headline">Helps prospectors save time</p>
+    <p class="blurb">An improved GER Detect device made to help prospectors cut search time and distance.</p>
+    <p class="links"><a href="https://gsdetectors.com/product/easy-way-smart-detector/" target="_blank" rel="noopener">gsdetectors.com</a><a href="https://detectorshub.com/products/easy-way-smart-detector" target="_blank" rel="noopener">detectorshub.com</a></p>
+  </article>
+  <article class="item" data-search="uig pointer precious or not? find out first manufacturer states it can tell underground precious metals from non-precious ones.">
+    <div class="top"><h3>UIG Pointer</h3><span class="tag new">New</span></div>
+    <p class="headline">Precious or not? Find out first</p>
+    <p class="blurb">Manufacturer states it can tell underground precious metals from non-precious ones.</p>
+    <p class="links"><a href="https://gsdetectors.com/product/ger-detect-uig-pointer-device/" target="_blank" rel="noopener">gsdetectors.com</a><a href="https://detectorshub.com/products/ger-detect-uig-pointer-device" target="_blank" rel="noopener">detectorshub.com</a></p>
+  </article>
+  <article class="item" data-search="uig watch detector a detector you wear an ultra-light device that the manufacturer states combines three detection and 3d imaging systems.">
+    <div class="top"><h3>UIG Watch Detector</h3><span class="tag new">New</span></div>
+    <p class="headline">A detector you wear</p>
+    <p class="blurb">An ultra-light device that the manufacturer states combines three detection and 3D imaging systems.</p>
+    <p class="links"><a href="https://gsdetectors.com/product/uig-watch-detector/" target="_blank" rel="noopener">gsdetectors.com</a></p>
+  </article>
+  <article class="item" data-search="okm bionic x4 long range with your smartphone locates buried objects at long distance and shows their position on a cross-section, using an android smartphone.">
+    <div class="top"><h3>OKM Bionic X4</h3><span class="tag new">New</span></div>
+    <p class="headline">Long range with your smartphone</p>
+    <p class="blurb">Locates buried objects at long distance and shows their position on a cross-section, using an Android smartphone.</p>
+    <p class="links"><a href="https://gsdetectors.com/product/bionic-x4/" target="_blank" rel="noopener">gsdetectors.com</a><a href="https://detectorshub.com/products/okm-bionic-x4-metal-detector" target="_blank" rel="noopener">detectorshub.com</a></p>
+  </article>
+  <article class="item" data-search="okm delta ranger smartphone treasure detector for serious treasure hunters and archaeologists.">
+    <div class="top"><h3>OKM Delta Ranger</h3><span class="tag kept">Your blurb, kept</span></div>
+    <p class="headline">Smartphone treasure detector</p>
+    <p class="blurb">For serious treasure hunters and archaeologists.</p>
+    <p class="links"><a href="https://gsdetectors.com/product/okm-delta-ranger/" target="_blank" rel="noopener">gsdetectors.com</a></p>
+  </article>
+  <article class="item" data-search="okm delta ranger light the lighter delta ranger the lighter delta ranger package: a smartphone-enabled treasure detector with interchangeable probes.">
+    <div class="top"><h3>OKM Delta Ranger Light</h3><span class="tag new">New</span></div>
+    <p class="headline">The lighter Delta Ranger</p>
+    <p class="blurb">The lighter Delta Ranger package: a smartphone-enabled treasure detector with interchangeable probes.</p>
+    <p class="links"><a href="https://detectorshub.com/products/okm-delta-ranger-1" target="_blank" rel="noopener">detectorshub.com</a></p>
+  </article>
+  <article class="item" data-search="okm delta ranger professional the complete delta ranger kit the professional delta ranger package with long-range detection and ground scan, run from a smartphone.">
+    <div class="top"><h3>OKM Delta Ranger Professional</h3><span class="tag new">New</span></div>
+    <p class="headline">The complete Delta Ranger kit</p>
+    <p class="blurb">The professional Delta Ranger package with long-range detection and ground scan, run from a smartphone.</p>
+    <p class="links"><a href="https://gsdetectors.com/product/okm-delta-ranger-professional/" target="_blank" rel="noopener">gsdetectors.com</a><a href="https://detectorshub.com/products/okm-delta-ranger-professional" target="_blank" rel="noopener">detectorshub.com</a></p>
+  </article>
+  <article class="item" data-search="aks lr-tr v2 long-range treasure hunting manufacturer states long-range scanning to find buried treasures.">
+    <div class="top"><h3>AKS LR-TR V2</h3><span class="tag new">New</span></div>
+    <p class="headline">Long-range treasure hunting</p>
+    <p class="blurb">Manufacturer states long-range scanning to find buried treasures.</p>
+    <p class="links"><a href="https://detectorshub.com/products/aks-lr-tr-v2-long-range-detector" target="_blank" rel="noopener">detectorshub.com</a></p>
+  </article>
+  <article class="item" data-search="aks multi gold, silver and cavities manufacturer states long-range detection of gold, silver and cavity targets.">
+    <div class="top"><h3>AKS Multi</h3><span class="tag new">New</span></div>
+    <p class="headline">Gold, silver and cavities</p>
+    <p class="blurb">Manufacturer states long-range detection of gold, silver and cavity targets.</p>
+    <p class="links"><a href="https://detectorshub.com/products/aks-multi" target="_blank" rel="noopener">detectorshub.com</a></p>
+  </article>
+  <article class="item" data-search="aks pro made for gold treasure hunting a long-range device that the manufacturer states is designed for gold treasure hunting.">
+    <div class="top"><h3>AKS Pro</h3><span class="tag new">New</span></div>
+    <p class="headline">Made for gold treasure hunting</p>
+    <p class="blurb">A long-range device that the manufacturer states is designed for gold treasure hunting.</p>
+    <p class="links"><a href="https://detectorshub.com/products/aks-pro" target="_blank" rel="noopener">detectorshub.com</a></p>
+  </article>
+  <article class="item" data-search="klayzer gr pro five systems for gold and treasure manufacturer states five systems for finding gold, raw gold, metals and treasures.">
+    <div class="top"><h3>Klayzer GR Pro</h3><span class="tag new">New</span></div>
+    <p class="headline">Five systems for gold and treasure</p>
+    <p class="blurb">Manufacturer states five systems for finding gold, raw gold, metals and treasures.</p>
+    <p class="links"><a href="https://detectorshub.com/products/klayzer-gr-pro" target="_blank" rel="noopener">detectorshub.com</a></p>
+  </article>
+  </div>
+</section>
+<section class="cat" id="scanner" data-cat="scanner">
+  <h2>3D ground scanners &amp; ground radar <span class="count">24</span></h2>
+  <p class="depth"><b>Depth note shown on these product pages:</b> Bigger targets can be detected deeper, while smaller targets like gold nuggets are typically found closer to the surface.</p>
+  <div class="grid">
+  <article class="item" data-search="okm exp 7000 professional plus okm's top 3d ground scanner for big mining operations who want to find gold veins and small nuggets.">
+    <div class="top"><h3>OKM eXp 7000 Professional Plus</h3><span class="tag kept">Your blurb, kept</span></div>
+    <p class="headline">OKM's top 3D ground scanner</p>
+    <p class="blurb">For big mining operations who want to find gold veins and small nuggets.</p>
+    <p class="links"><a href="https://gsdetectors.com/product/okm-exp-7000-professional-plus/" target="_blank" rel="noopener">gsdetectors.com</a><a href="https://detectorshub.com/products/okm-exp-7000-professional-plus" target="_blank" rel="noopener">detectorshub.com</a></p>
+  </article>
+  <article class="item" data-search="okm exp 6000 professional wireless 3d detector and scanner a wireless 3d metal detector and ground scanner for treasure hunters, detectorists and archaeologists.">
+    <div class="top"><h3>OKM eXp 6000 Professional</h3><span class="tag new">New</span></div>
+    <p class="headline">Wireless 3D detector and scanner</p>
+    <p class="blurb">A wireless 3D metal detector and ground scanner for treasure hunters, detectorists and archaeologists.</p>
+    <p class="links"><a href="https://gsdetectors.com/product/okm-exp-6000-professional/" target="_blank" rel="noopener">gsdetectors.com</a></p>
+  </article>
+  <article class="item" data-search="okm exp 6000 professional plus with touchscreen and video glasses the exp 6000 with a touchscreen and video eyeglasses for hands-on 3d scanning.">
+    <div class="top"><h3>OKM eXp 6000 Professional Plus</h3><span class="tag new">New</span></div>
+    <p class="headline">With touchscreen and video glasses</p>
+    <p class="blurb">The eXp 6000 with a touchscreen and video eyeglasses for hands-on 3D scanning.</p>
+    <p class="links"><a href="https://gsdetectors.com/product/okm-exp-6000-professional-plus/" target="_blank" rel="noopener">gsdetectors.com</a><a href="https://detectorshub.com/products/okm-exp-6000-professional-metal-detector" target="_blank" rel="noopener">detectorshub.com</a></p>
+  </article>
+  <article class="item" data-search="okm exp 5500 professional five sensors working together vlf detection plus 3d ground scanning, with five sensors that work at the same time.">
+    <div class="top"><h3>OKM eXp 5500 Professional</h3><span class="tag new">New</span></div>
+    <p class="headline">Five sensors working together</p>
+    <p class="blurb">VLF detection plus 3D ground scanning, with five sensors that work at the same time.</p>
+    <p class="links"><a href="https://gsdetectors.com/product/okm-exp-5500-professional-metal-detector/" target="_blank" rel="noopener">gsdetectors.com</a><a href="https://detectorshub.com/products/okm-exp-5500-professional" target="_blank" rel="noopener">detectorshub.com</a></p>
+  </article>
+  <article class="item" data-search="okm exp 4500 light the essentials of 3d scanning okm's 3d detector with the key modes: ground scan, pinpointer and mineral scan.">
+    <div class="top"><h3>OKM eXp 4500 Light</h3><span class="tag new">New</span></div>
+    <p class="headline">The essentials of 3D scanning</p>
+    <p class="blurb">OKM's 3D detector with the key modes: ground scan, pinpointer and mineral scan.</p>
+    <p class="links"><a href="https://gsdetectors.com/product/okm-exp-4500-light/" target="_blank" rel="noopener">gsdetectors.com</a><a href="https://detectorshub.com/products/okm-exp-4500-light" target="_blank" rel="noopener">detectorshub.com</a></p>
+  </article>
+  <article class="item" data-search="okm exp 4500 professional the all-round 3d detector okm's all-rounder for natural gold, cavities and treasure hunting.">
+    <div class="top"><h3>OKM eXp 4500 Professional</h3><span class="tag new">New</span></div>
+    <p class="headline">The all-round 3D detector</p>
+    <p class="blurb">OKM's all-rounder for natural gold, cavities and treasure hunting.</p>
+    <p class="links"><a href="https://gsdetectors.com/product/okm-exp-4500-professional/" target="_blank" rel="noopener">gsdetectors.com</a><a href="https://detectorshub.com/products/okm-exp-4500-professional-metal-detector" target="_blank" rel="noopener">detectorshub.com</a></p>
+  </article>
+  <article class="item" data-search="okm exp 4500 professional plus the full exp 4500 complete with all features and special antennas that also work in highly mineralized areas.">
+    <div class="top"><h3>OKM eXp 4500 Professional Plus</h3><span class="tag new">New</span></div>
+    <p class="headline">The full eXp 4500</p>
+    <p class="blurb">Complete with all features and special antennas that also work in highly mineralized areas.</p>
+    <p class="links"><a href="https://gsdetectors.com/product/okm-exp-4500-professional-plus/" target="_blank" rel="noopener">gsdetectors.com</a><a href="https://detectorshub.com/products/okm-exp-4500-professional-plus" target="_blank" rel="noopener">detectorshub.com</a></p>
+  </article>
+  <article class="item" data-search="okm fusion light (standard / lite) the easiest start in 3d scanning standard: for people who want to start treasure hunting with the complete package. lite: for people who want the lightest, easiest start in treasure hunting.">
+    <div class="top"><h3>OKM Fusion Light (Standard / Lite)</h3><span class="tag kept">Your blurb, kept</span></div>
+    <p class="headline">The easiest start in 3D scanning</p>
+    <p class="blurb">Standard: for people who want to start treasure hunting with the complete package. Lite: for people who want the lightest, easiest start in treasure hunting.</p>
+    <p class="links"><a href="https://gsdetectors.com/product/okm-fusion-light/" target="_blank" rel="noopener">gsdetectors.com</a><a href="https://detectorshub.com/products/okm-fusion-light" target="_blank" rel="noopener">detectorshub.com</a></p>
+  </article>
+  <article class="item" data-search="okm fusion professional treasure detector with 3d software compact treasure detector with visualizer 3d software and a windows tablet, for cavities and treasure hunting.">
+    <div class="top"><h3>OKM Fusion Professional</h3><span class="tag new">New</span></div>
+    <p class="headline">Treasure detector with 3D software</p>
+    <p class="blurb">Compact treasure detector with Visualizer 3D software and a Windows tablet, for cavities and treasure hunting.</p>
+    <p class="links"><a href="https://gsdetectors.com/product/okm-fusion-professional/" target="_blank" rel="noopener">gsdetectors.com</a><a href="https://detectorshub.com/products/okm-fusion-professional" target="_blank" rel="noopener">detectorshub.com</a></p>
+  </article>
+  <article class="item" data-search="okm fusion professional plus scans upright and flat scans in vertical and horizontal positions with 3d graphics, a sound magnetometer and live images.">
+    <div class="top"><h3>OKM Fusion Professional Plus</h3><span class="tag new">New</span></div>
+    <p class="headline">Scans upright and flat</p>
+    <p class="blurb">Scans in vertical and horizontal positions with 3D graphics, a sound magnetometer and live images.</p>
+    <p class="links"><a href="https://gsdetectors.com/product/okm-fusion-professional-plus/" target="_blank" rel="noopener">gsdetectors.com</a><a href="https://detectorshub.com/products/okm-fusion-professional-plus" target="_blank" rel="noopener">detectorshub.com</a></p>
+  </article>
+  <article class="item" data-search="okm evolution ntx a 3d scanner at a friendly price a 3d ground scanner and detector in one, a great upgrade from a normal metal detector.">
+    <div class="top"><h3>OKM Evolution NTX</h3><span class="tag new">New</span></div>
+    <p class="headline">A 3D scanner at a friendly price</p>
+    <p class="blurb">A 3D ground scanner and detector in one, a great upgrade from a normal metal detector.</p>
+    <p class="links"><a href="https://gsdetectors.com/product/okm-evolution-ntx/" target="_blank" rel="noopener">gsdetectors.com</a><a href="https://detectorshub.com/products/okm-evolution-ntx" target="_blank" rel="noopener">detectorshub.com</a></p>
+  </article>
+  <article class="item" data-search="okm rover c4 metal detector and 3d scanner for miners and treasure hunters who want to scan for big deposits like gold veins.">
+    <div class="top"><h3>OKM Rover C4</h3><span class="tag kept">Your blurb, kept</span></div>
+    <p class="headline">Metal detector and 3D scanner</p>
+    <p class="blurb">For miners and treasure hunters who want to scan for big deposits like gold veins.</p>
+    <p class="links"><a href="https://gsdetectors.com/product/okm-rover-c4/" target="_blank" rel="noopener">gsdetectors.com</a><a href="https://detectorshub.com/products/okm-rover-c4-3d-ground-scanner" target="_blank" rel="noopener">detectorshub.com</a></p>
+  </article>
+  <article class="item" data-search="okm rover uc looks like a walking stick a detector built like a walking stick for unnoticed treasure hunting, with 3d results.">
+    <div class="top"><h3>OKM Rover UC</h3><span class="tag new">New</span></div>
+    <p class="headline">Looks like a walking stick</p>
+    <p class="blurb">A detector built like a walking stick for unnoticed treasure hunting, with 3D results.</p>
+    <p class="links"><a href="https://gsdetectors.com/product/okm-rover-uc/" target="_blank" rel="noopener">gsdetectors.com</a><a href="https://detectorshub.com/products/okm-rover-uc" target="_blank" rel="noopener">detectorshub.com</a></p>
+  </article>
+  <article class="item" data-search="okm gepard gpr 3d ground radar for professionals for companies and professionals who need to map what is underground, like for construction.">
+    <div class="top"><h3>OKM Gepard GPR 3D</h3><span class="tag kept">Your blurb, kept</span></div>
+    <p class="headline">Ground radar for professionals</p>
+    <p class="blurb">For companies and professionals who need to map what is underground, like for construction.</p>
+    <p class="links"><a href="https://gsdetectors.com/product/okm-gepard-gpr-3d/" target="_blank" rel="noopener">gsdetectors.com</a><a href="https://detectorshub.com/products/okm-gepard-gpr-3d" target="_blank" rel="noopener">detectorshub.com</a></p>
+  </article>
+  <article class="item" data-search="ks analysis ks-800 professional ground radar ground radar for archaeology, building work and treasure hunting, with software for continuous scans.">
+    <div class="top"><h3>KS Analysis KS-800</h3><span class="tag new">New</span></div>
+    <p class="headline">Professional ground radar</p>
+    <p class="blurb">Ground radar for archaeology, building work and treasure hunting, with software for continuous scans.</p>
+    <p class="links"><a href="https://gsdetectors.com/product/ks-800-professional-grounding-radar/" target="_blank" rel="noopener">gsdetectors.com</a><a href="https://detectorshub.com/products/ks-800-professional-grounding-radar" target="_blank" rel="noopener">detectorshub.com</a></p>
+  </article>
+  <article class="item" data-search="ks analysis ks-700 portable ground radar portable, battery-powered radar with on-site 2d and 3d analysis, simple to use.">
+    <div class="top"><h3>KS Analysis KS-700</h3><span class="tag new">New</span></div>
+    <p class="headline">Portable ground radar</p>
+    <p class="blurb">Portable, battery-powered radar with on-site 2D and 3D analysis, simple to use.</p>
+    <p class="links"><a href="https://detectorshub.com/products/ks-700" target="_blank" rel="noopener">detectorshub.com</a></p>
+  </article>
+  <article class="item" data-search="nokta deephunter 3d treasures, cavities and coins in one finds buried treasures, cavities and single coins in one device, with 3d imaging.">
+    <div class="top"><h3>Nokta Deephunter 3D</h3><span class="tag new">New</span></div>
+    <p class="headline">Treasures, cavities and coins in one</p>
+    <p class="blurb">Finds buried treasures, cavities and single coins in one device, with 3D imaging.</p>
+    <p class="links"><a href="https://gsdetectors.com/product/deephunter-3d/" target="_blank" rel="noopener">gsdetectors.com</a></p>
+  </article>
+  <article class="item" data-search="nokta deephunter 3d pro the pro deephunter the pro package of the deephunter 3d for treasures, cavities and coins in one device.">
+    <div class="top"><h3>Nokta Deephunter 3D Pro</h3><span class="tag new">New</span></div>
+    <p class="headline">The Pro Deephunter</p>
+    <p class="blurb">The Pro package of the Deephunter 3D for treasures, cavities and coins in one device.</p>
+    <p class="links"><a href="https://detectorshub.com/products/nokta-makro-deephunter-3d-metal-detector" target="_blank" rel="noopener">detectorshub.com</a></p>
+  </article>
+  <article class="item" data-search="nokta jeohunter 3d dual system metal and cavity detection nokta's dual system for finding both metal and cavities, with 3d imaging.">
+    <div class="top"><h3>Nokta Jeohunter 3D Dual System</h3><span class="tag new">New</span></div>
+    <p class="headline">Metal and cavity detection</p>
+    <p class="blurb">Nokta's dual system for finding both metal and cavities, with 3D imaging.</p>
+    <p class="links"><a href="https://gsdetectors.com/product/nokta-makro-jeohunter-3d-dual-system/" target="_blank" rel="noopener">gsdetectors.com</a><a href="https://detectorshub.com/products/nokta-makro-jeohunter-3d-dual-system" target="_blank" rel="noopener">detectorshub.com</a></p>
+  </article>
+  <article class="item" data-search="uig ground scanner 3d live 3d images of the ground gives live scans and 3d ground images to show what may be buried.">
+    <div class="top"><h3>UIG Ground Scanner 3D</h3><span class="tag new">New</span></div>
+    <p class="headline">Live 3D images of the ground</p>
+    <p class="blurb">Gives live scans and 3D ground images to show what may be buried.</p>
+    <p class="links"><a href="https://gsdetectors.com/product/uig-ground-scanner-3d-metal-detector/" target="_blank" rel="noopener">gsdetectors.com</a><a href="https://detectorshub.com/products/uig-ground-scanner-3d-metal-detector" target="_blank" rel="noopener">detectorshub.com</a></p>
+  </article>
+  <article class="item" data-search="tero vido 3d system 3d system with digital pinpointer 3d scanning with a digital pinpointer to find the exact spot of buried objects and artifacts.">
+    <div class="top"><h3>Tero Vido 3D System</h3><span class="tag new">New</span></div>
+    <p class="headline">3D system with digital pinpointer</p>
+    <p class="blurb">3D scanning with a digital pinpointer to find the exact spot of buried objects and artifacts.</p>
+    <p class="links"><a href="https://gsdetectors.com/product/tero-vido-3d-system/" target="_blank" rel="noopener">gsdetectors.com</a><a href="https://detectorshub.com/products/tero-vido-3d-system-3d-scanning-metal-detector" target="_blank" rel="noopener">detectorshub.com</a></p>
+  </article>
+  <article class="item" data-search="tero vido expander extendable probe for the field the tero vido with an extendable probe (50 to 90 cm), more practical for field use.">
+    <div class="top"><h3>Tero Vido Expander</h3><span class="tag new">New</span></div>
+    <p class="headline">Extendable probe for the field</p>
+    <p class="blurb">The Tero Vido with an extendable probe (50 to 90 cm), more practical for field use.</p>
+    <p class="links"><a href="https://gsdetectors.com/product/tero-vido-expander/" target="_blank" rel="noopener">gsdetectors.com</a><a href="https://detectorshub.com/products/tero-vido-expander" target="_blank" rel="noopener">detectorshub.com</a></p>
+  </article>
+  <article class="item" data-search="conrad gr-3 plus 3d scanner for buried treasure a 3d ground scanner that helps you find buried treasures such as gold coins and jewelry.">
+    <div class="top"><h3>Conrad GR-3 Plus</h3><span class="tag new">New</span></div>
+    <p class="headline">3D scanner for buried treasure</p>
+    <p class="blurb">A 3D ground scanner that helps you find buried treasures such as gold coins and jewelry.</p>
+    <p class="links"><a href="https://gsdetectors.com/product/conrad-gr-3-plus/" target="_blank" rel="noopener">gsdetectors.com</a></p>
+  </article>
+  <article class="item" data-search="mega gold star 3d scanner professional 3d scanning part of mega detecting's professional line, with 3d scanning tools for treasure hunters.">
+    <div class="top"><h3>Mega Gold Star 3D Scanner</h3><span class="tag new">New</span></div>
+    <p class="headline">Professional 3D scanning</p>
+    <p class="blurb">Part of Mega Detecting's professional line, with 3D scanning tools for treasure hunters.</p>
+    <p class="links"><a href="https://detectorshub.com/products/gold-star-3d-scanner" target="_blank" rel="noopener">detectorshub.com</a></p>
+  </article>
+  </div>
+</section>
+<section class="cat" id="water" data-cat="water">
+  <h2>Water detectors <span class="count">7</span></h2>
+  
+  <div class="grid">
+  <article class="item" data-search="ger river-f smart start your borewell search for small groups who want to start looking for borewell locations.">
+    <div class="top"><h3>GER River-F Smart</h3><span class="tag kept">Your blurb, kept</span></div>
+    <p class="headline">Start your borewell search</p>
+    <p class="blurb">For small groups who want to start looking for borewell locations.</p>
+    <p class="links"><a href="https://gsdetectors.com/product/river-f-smart-detector/" target="_blank" rel="noopener">gsdetectors.com</a><a href="https://detectorshub.com/products/river-f-smart-detector" target="_blank" rel="noopener">detectorshub.com</a></p>
+  </article>
+  <article class="item" data-search="ger river-f plus long-range water finder manufacturer states long-range detection for finding wells and underground water.">
+    <div class="top"><h3>GER River-F Plus</h3><span class="tag new">New</span></div>
+    <p class="headline">Long-range water finder</p>
+    <p class="blurb">Manufacturer states long-range detection for finding wells and underground water.</p>
+    <p class="links"><a href="https://detectorshub.com/products/ger-detect-river-f-plus-device-water-detector" target="_blank" rel="noopener">detectorshub.com</a></p>
+  </article>
+  <article class="item" data-search="ger fresh result 2 two systems for groundwater for small and big groups who want to find underground water for borewells.">
+    <div class="top"><h3>GER Fresh Result 2</h3><span class="tag kept">Your blurb, kept</span></div>
+    <p class="headline">Two systems for groundwater</p>
+    <p class="blurb">For small and big groups who want to find underground water for borewells.</p>
+    <p class="links"><a href="https://gsdetectors.com/product/fresh-result-2-system-device-ground-water-detector/" target="_blank" rel="noopener">gsdetectors.com</a><a href="https://detectorshub.com/products/fresh-result-2-systems-plus-device-ground-water-detector" target="_blank" rel="noopener">detectorshub.com</a></p>
+  </article>
+  <article class="item" data-search="ger fresh result 1 long-range water search manufacturer states a long-range system to find underground water, with selectable search range.">
+    <div class="top"><h3>GER Fresh Result 1</h3><span class="tag new">New</span></div>
+    <p class="headline">Long-range water search</p>
+    <p class="blurb">Manufacturer states a long-range system to find underground water, with selectable search range.</p>
+    <p class="links"><a href="https://detectorshub.com/products/fresh-result-1-system-device-ground-water-detector" target="_blank" rel="noopener">detectorshub.com</a></p>
+  </article>
+  <article class="item" data-search="ger river g three systems for big water projects for big mining companies who need to find water.">
+    <div class="top"><h3>GER River G</h3><span class="tag kept">Your blurb, kept</span></div>
+    <p class="headline">Three systems for big water projects</p>
+    <p class="blurb">For big mining companies who need to find water.</p>
+    <p class="links"><a href="https://gsdetectors.com/product/river-g-device/" target="_blank" rel="noopener">gsdetectors.com</a><a href="https://detectorshub.com/products/river-g-device-water-detector" target="_blank" rel="noopener">detectorshub.com</a></p>
+  </article>
+  <article class="item" data-search="okm geoseeker measures the ground to find water for big mining companies who need to find water.">
+    <div class="top"><h3>OKM GeoSeeker</h3><span class="tag kept">Your blurb, kept</span></div>
+    <p class="headline">Measures the ground to find water</p>
+    <p class="blurb">For big mining companies who need to find water.</p>
+    <p class="links"><a href="https://gsdetectors.com/product/okm-geoseeker/" target="_blank" rel="noopener">gsdetectors.com</a><a href="https://detectorshub.com/products/okm-geoseeker-water-detector" target="_blank" rel="noopener">detectorshub.com</a></p>
+  </article>
+  <article class="item" data-search="okm geoseeker mini compact water and cavity detector a smaller geoseeker that measures ground resistance to look for water and cavities.">
+    <div class="top"><h3>OKM GeoSeeker Mini</h3><span class="tag new">New</span></div>
+    <p class="headline">Compact water and cavity detector</p>
+    <p class="blurb">A smaller GeoSeeker that measures ground resistance to look for water and cavities.</p>
+    <p class="links"><a href="https://gsdetectors.com/product/okm-geoseeker-mini/" target="_blank" rel="noopener">gsdetectors.com</a><a href="https://detectorshub.com/products/okm-geoseeker-mini" target="_blank" rel="noopener">detectorshub.com</a></p>
+  </article>
+  </div>
+</section>
+<section class="cat" id="gems" data-cat="gems">
+  <h2>Diamond &amp; gemstone detectors <span class="count">5</span></h2>
+  
+  <div class="grid">
+  <article class="item" data-search="ger diamond hunter smart long-range diamond and gem search manufacturer states three systems for diamond detection, gemstone selection and target analysis.">
+    <div class="top"><h3>GER Diamond Hunter Smart</h3><span class="tag new">New</span></div>
+    <p class="headline">Long-range diamond and gem search</p>
+    <p class="blurb">Manufacturer states three systems for diamond detection, gemstone selection and target analysis.</p>
+    <p class="links"><a href="https://gsdetectors.com/product/diamond-hunter-smart-detector/" target="_blank" rel="noopener">gsdetectors.com</a><a href="https://detectorshub.com/products/diamond-hunter-smart-detector" target="_blank" rel="noopener">detectorshub.com</a><a href="https://detectorshub.com/products/ger-detect-diamond-hunter-device" target="_blank" rel="noopener">detectorshub.com</a></p>
+  </article>
+  <article class="item" data-search="ger titan ger 500 (diamond) long-range diamond locator manufacturer states a long-range system for locating diamonds and gemstones underground.">
+    <div class="top"><h3>GER Titan GER 500 (Diamond)</h3><span class="tag new">New</span></div>
+    <p class="headline">Long-range diamond locator</p>
+    <p class="blurb">Manufacturer states a long-range system for locating diamonds and gemstones underground.</p>
+    <p class="links"><a href="https://detectorshub.com/products/ger-detect-titan-ger-500-diamond-detector" target="_blank" rel="noopener">detectorshub.com</a></p>
+  </article>
+  <article class="item" data-search="presidium multi tester iii diamond or moissanite? know instantly pocket-size tester that uses thermal and electrical properties to tell diamonds from moissanite.">
+    <div class="top"><h3>Presidium Multi Tester III</h3><span class="tag new">New</span></div>
+    <p class="headline">Diamond or moissanite? Know instantly</p>
+    <p class="blurb">Pocket-size tester that uses thermal and electrical properties to tell diamonds from moissanite.</p>
+    <p class="links"><a href="https://gsdetectors.com/product/presidium-multi-tester-iii/" target="_blank" rel="noopener">gsdetectors.com</a><a href="https://detectorshub.com/products/presidium-multi-tester-iii" target="_blank" rel="noopener">detectorshub.com</a></p>
+  </article>
+  <article class="item" data-search="presidium diamond mate a/c a quick diamond check checks if a diamond is real using its thermal properties. runs on batteries or a rechargeable pack.">
+    <div class="top"><h3>Presidium Diamond Mate A/C</h3><span class="tag new">New</span></div>
+    <p class="headline">A quick diamond check</p>
+    <p class="blurb">Checks if a diamond is real using its thermal properties. Runs on batteries or a rechargeable pack.</p>
+    <p class="links"><a href="https://gsdetectors.com/product/presidium-diamond-mate-a-c/" target="_blank" rel="noopener">gsdetectors.com</a><a href="https://detectorshub.com/products/presidium-diamond-mate-a-c" target="_blank" rel="noopener">detectorshub.com</a></p>
+  </article>
+  <article class="item" data-search="presidium gem tester ii diamonds plus 16 gemstones identifies diamonds, moissanite and 16 colored gemstones using thermal conductivity.">
+    <div class="top"><h3>Presidium Gem Tester II</h3><span class="tag new">New</span></div>
+    <p class="headline">Diamonds plus 16 gemstones</p>
+    <p class="blurb">Identifies diamonds, moissanite and 16 colored gemstones using thermal conductivity.</p>
+    <p class="links"><a href="https://detectorshub.com/products/presidium-gem-tester-ii" target="_blank" rel="noopener">detectorshub.com</a></p>
+  </article>
+  </div>
+</section>
+<section class="cat" id="security" data-cat="security">
+  <h2>Security detectors <span class="count">10</span></h2>
+  
+  <div class="grid">
+  <article class="item" data-search="garrett pd 6500i trusted walk-through for high security walk-through detector with precise pinpointing for airports, government buildings and high-security sites.">
+    <div class="top"><h3>Garrett PD 6500i</h3><span class="tag new">New</span></div>
+    <p class="headline">Trusted walk-through for high security</p>
+    <p class="blurb">Walk-through detector with precise pinpointing for airports, government buildings and high-security sites.</p>
+    <p class="links"><a href="https://gsdetectors.com/product/pd-6500i-walk-through-metal-detector/" target="_blank" rel="noopener">gsdetectors.com</a><a href="https://detectorshub.com/products/garrett-pd6500i-walk-through-metal-detector" target="_blank" rel="noopener">detectorshub.com</a></p>
+  </article>
+  <article class="item" data-search="garrett multi zone 20 zones show where the metal is walk-through detector whose 20 zones show exactly where one or more objects are, for busy entrances.">
+    <div class="top"><h3>Garrett Multi Zone</h3><span class="tag new">New</span></div>
+    <p class="headline">20 zones show where the metal is</p>
+    <p class="blurb">Walk-through detector whose 20 zones show exactly where one or more objects are, for busy entrances.</p>
+    <p class="links"><a href="https://gsdetectors.com/product/garrett-multi-zone-walk-through-metal-detector/" target="_blank" rel="noopener">gsdetectors.com</a><a href="https://detectorshub.com/products/garrett-multi-zone-walk-through-metal-detector" target="_blank" rel="noopener">detectorshub.com</a></p>
+  </article>
+  <article class="item" data-search="garrett paragon fast screening for big crowds dual-sided walk-through detector built to screen many people quickly and accurately.">
+    <div class="top"><h3>Garrett Paragon</h3><span class="tag new">New</span></div>
+    <p class="headline">Fast screening for big crowds</p>
+    <p class="blurb">Dual-sided walk-through detector built to screen many people quickly and accurately.</p>
+    <p class="links"><a href="https://gsdetectors.com/product/garrett-paragon-walk-through-metal-detector/" target="_blank" rel="noopener">gsdetectors.com</a><a href="https://detectorshub.com/products/garrett-paragon-walk-through-detector" target="_blank" rel="noopener">detectorshub.com</a></p>
+  </article>
+  <article class="item" data-search="garrett super scanner v the classic hand-held scanner hand-held scanner with sound or silent vibration alerts and long battery life, for security staff.">
+    <div class="top"><h3>Garrett Super Scanner V</h3><span class="tag new">New</span></div>
+    <p class="headline">The classic hand-held scanner</p>
+    <p class="blurb">Hand-held scanner with sound or silent vibration alerts and long battery life, for security staff.</p>
+    <p class="links"><a href="https://gsdetectors.com/product/super-scanner-v-hand-held-metal-detector/" target="_blank" rel="noopener">gsdetectors.com</a><a href="https://detectorshub.com/products/garrett-super-scanner-v-handheld-metal-detector" target="_blank" rel="noopener">detectorshub.com</a></p>
+  </article>
+  <article class="item" data-search="garrett superwand 360-degree hand-held scanning hand-held scanner with a 360-degree detection field for fast, accurate screening.">
+    <div class="top"><h3>Garrett SuperWand</h3><span class="tag new">New</span></div>
+    <p class="headline">360-degree hand-held scanning</p>
+    <p class="blurb">Hand-held scanner with a 360-degree detection field for fast, accurate screening.</p>
+    <p class="links"><a href="https://gsdetectors.com/product/superwand-hand-held-metal-detector/" target="_blank" rel="noopener">gsdetectors.com</a><a href="https://detectorshub.com/products/garrett-superwand-handheld-metal-detector" target="_blank" rel="noopener">detectorshub.com</a></p>
+  </article>
+  <article class="item" data-search="garrett guide simple, smart hand-held screening next-generation hand-held scanner with one-button use for professional security checks.">
+    <div class="top"><h3>Garrett Guide</h3><span class="tag new">New</span></div>
+    <p class="headline">Simple, smart hand-held screening</p>
+    <p class="blurb">Next-generation hand-held scanner with one-button use for professional security checks.</p>
+    <p class="links"><a href="https://gsdetectors.com/product/garrett-guide-hand-held-security-metal-detector/" target="_blank" rel="noopener">gsdetectors.com</a><a href="https://detectorshub.com/products/garrett-guide" target="_blank" rel="noopener">detectorshub.com</a></p>
+  </article>
+  <article class="item" data-search="nokta ultra scanner (and pro) hand-held scanner for public places nokta's hand-held scanner for security checks in everyday public places.">
+    <div class="top"><h3>Nokta Ultra Scanner (and Pro)</h3><span class="tag new">New</span></div>
+    <p class="headline">Hand-held scanner for public places</p>
+    <p class="blurb">Nokta's hand-held scanner for security checks in everyday public places.</p>
+    <p class="links"><a href="https://gsdetectors.com/product/ultra-scanner-hand-held-metal-detector/" target="_blank" rel="noopener">gsdetectors.com</a><a href="https://detectorshub.com/products/nokta-ultra-scanner-hand-held-metal-detector" target="_blank" rel="noopener">detectorshub.com</a></p>
+  </article>
+  <article class="item" data-search="eagle eye rjx6550 x-ray luggage scanner see inside bags without opening them x-ray scanner that checks bags and parcels quickly without unpacking them.">
+    <div class="top"><h3>Eagle Eye RJX6550 X-Ray Luggage Scanner</h3><span class="tag new">New</span></div>
+    <p class="headline">See inside bags without opening them</p>
+    <p class="blurb">X-ray scanner that checks bags and parcels quickly without unpacking them.</p>
+    <p class="links"><a href="https://gsdetectors.com/product/rjx6550-x-ray-luggage-scanner/" target="_blank" rel="noopener">gsdetectors.com</a><a href="https://detectorshub.com/products/rjx6550-x-ray-luggage-scanner" target="_blank" rel="noopener">detectorshub.com</a></p>
+  </article>
+  <article class="item" data-search="under vehicle inspection mirror look under vehicles safely lets you check under cars, buses and machinery while standing upright.">
+    <div class="top"><h3>Under Vehicle Inspection Mirror</h3><span class="tag new">New</span></div>
+    <p class="headline">Look under vehicles safely</p>
+    <p class="blurb">Lets you check under cars, buses and machinery while standing upright.</p>
+    <p class="links"><a href="https://gsdetectors.com/product/under-vehicle-inspection-mirror/" target="_blank" rel="noopener">gsdetectors.com</a><a href="https://detectorshub.com/products/under-vehicle-inspection-mirror" target="_blank" rel="noopener">detectorshub.com</a></p>
+  </article>
+  <article class="item" data-search="garrett super scanner not on either website yet waiting for its product page or details before writing a blurb.">
+    <div class="top"><h3>Garrett Super Scanner</h3><span class="tag missing">Not on the websites</span></div>
+    <p class="headline">Not on either website yet</p>
+    <p class="blurb">Waiting for its product page or details before writing a blurb.</p>
+    <p class="links"></p>
+  </article>
+  </div>
+</section>
+<section class="cat" id="xrf" data-cat="xrf">
+  <h2>Mineral analyzers &amp; XRF <span class="count">7</span></h2>
+  
+  <div class="grid">
+  <article class="item" data-search="niton xl2 simple point-and-shoot xrf thermo's value-choice niton analyzer with point-and-shoot simplicity for checking metals and gold.">
+    <div class="top"><h3>Niton XL2</h3><span class="tag new">New</span></div>
+    <p class="headline">Simple point-and-shoot XRF</p>
+    <p class="blurb">Thermo's value-choice Niton analyzer with point-and-shoot simplicity for checking metals and gold.</p>
+    <p class="links"><a href="https://gsdetectors.com/product/niton-xl2-xrf-analyzer-2/" target="_blank" rel="noopener">gsdetectors.com</a><a href="https://detectorshub.com/products/niton-xl2-xrf-analyzer" target="_blank" rel="noopener">detectorshub.com</a></p>
+  </article>
+  <article class="item" data-search="niton xl2 980 goldd xl2 with goldd technology xl2 series analyzer, sealed for tough conditions, for precious metal testing.">
+    <div class="top"><h3>Niton XL2 980 GOLDD</h3><span class="tag new">New</span></div>
+    <p class="headline">XL2 with GOLDD technology</p>
+    <p class="blurb">XL2 series analyzer, sealed for tough conditions, for precious metal testing.</p>
+    <p class="links"><a href="https://gsdetectors.com/product/niton-xl2-980-goldd-xrf-analyzer/" target="_blank" rel="noopener">gsdetectors.com</a></p>
+  </article>
+  <article class="item" data-search="niton xl2 plus versatile handheld xrf handheld xrf for metals, mining, precious metals and material checks.">
+    <div class="top"><h3>Niton XL2 Plus</h3><span class="tag new">New</span></div>
+    <p class="headline">Versatile handheld XRF</p>
+    <p class="blurb">Handheld XRF for metals, mining, precious metals and material checks.</p>
+    <p class="links"><a href="https://gsdetectors.com/product/niton-xl2-plus-xrf-analyzer/" target="_blank" rel="noopener">gsdetectors.com</a></p>
+  </article>
+  <article class="item" data-search="niton xl3t goldd+ for the most demanding analysis x-ray tube xrf analyzer with goldd+ technology, built for demanding jobs.">
+    <div class="top"><h3>Niton XL3t GOLDD+</h3><span class="tag new">New</span></div>
+    <p class="headline">For the most demanding analysis</p>
+    <p class="blurb">X-ray tube XRF analyzer with GOLDD+ technology, built for demanding jobs.</p>
+    <p class="links"><a href="https://gsdetectors.com/product/niton-xl3t-goldd-xrf-analyzer/" target="_blank" rel="noopener">gsdetectors.com</a></p>
+  </article>
+  <article class="item" data-search="niton xl5 plus small, light and powerful light, compact handheld xrf with strong performance, even for light elements.">
+    <div class="top"><h3>Niton XL5 Plus</h3><span class="tag new">New</span></div>
+    <p class="headline">Small, light and powerful</p>
+    <p class="blurb">Light, compact handheld XRF with strong performance, even for light elements.</p>
+    <p class="links"><a href="https://gsdetectors.com/product/niton-xl5-plus-handheld-xrf-analyzer/" target="_blank" rel="noopener">gsdetectors.com</a></p>
+  </article>
+  <article class="item" data-search="niton dxl precious metal analyzer gold testing at the shop counter accurate, fast precious metal analyzer designed for shops.">
+    <div class="top"><h3>Niton DXL Precious Metal Analyzer</h3><span class="tag new">New</span></div>
+    <p class="headline">Gold testing at the shop counter</p>
+    <p class="blurb">Accurate, fast precious metal analyzer designed for shops.</p>
+    <p class="links"><a href="https://gsdetectors.com/product/niton-dxl-precious-metal-analyzer/" target="_blank" rel="noopener">gsdetectors.com</a><a href="https://detectorshub.com/products/niton-dxl-precious-metal-analyzer" target="_blank" rel="noopener">detectorshub.com</a></p>
+  </article>
+  <article class="item" data-search="vanta element fast, rugged alloy checks rugged handheld xrf that gives fast, precise alloy identification.">
+    <div class="top"><h3>Vanta Element</h3><span class="tag new">New</span></div>
+    <p class="headline">Fast, rugged alloy checks</p>
+    <p class="blurb">Rugged handheld XRF that gives fast, precise alloy identification.</p>
+    <p class="links"><a href="https://gsdetectors.com/product/vanta-element-handheld-xrf-analyzer/" target="_blank" rel="noopener">gsdetectors.com</a><a href="https://detectorshub.com/products/vanta-element-handheld-xrf-analyzer" target="_blank" rel="noopener">detectorshub.com</a></p>
+  </article>
+  </div>
+</section>
+<section class="cat" id="mining" data-cat="mining">
+  <h2>Mining equipment <span class="count">2</span></h2>
+  
+  <div class="grid">
+  <article class="item" data-search="drywasher large-capacity dry washer recovers gold from dry ground. built for capacity and durability.">
+    <div class="top"><h3>Drywasher</h3><span class="tag new">New</span></div>
+    <p class="headline">Large-capacity dry washer</p>
+    <p class="blurb">Recovers gold from dry ground. Built for capacity and durability.</p>
+    <p class="links"><a href="https://gsdetectors.com/product/drywasher/" target="_blank" rel="noopener">gsdetectors.com</a></p>
+  </article>
+  <article class="item" data-search="highbanker 54-inch sluice for creeks ultra-wide sluice box with everything you need for gold recovery in creeks and streams.">
+    <div class="top"><h3>Highbanker</h3><span class="tag new">New</span></div>
+    <p class="headline">54-inch sluice for creeks</p>
+    <p class="blurb">Ultra-wide sluice box with everything you need for gold recovery in creeks and streams.</p>
+    <p class="links"><a href="https://gsdetectors.com/product/highbanker/" target="_blank" rel="noopener">gsdetectors.com</a></p>
+  </article>
+  </div>
+</section>
+<section class="cat" id="accessories" data-cat="accessories">
+  <h2>Coils, pinpointers &amp; accessories <span class="count">32</span></h2>
+  
+  <div class="grid">
+  <article class="item" data-search="minelab 11-inch double-d commander coil a balanced all-round coil stable on all ground types, with a good balance of sensitivity. for minelab gpx, gp and sd detectors.">
+    <div class="top"><h3>Minelab 11-inch Double-D Commander Coil</h3><span class="tag new">New</span></div>
+    <p class="headline">A balanced all-round coil</p>
+    <p class="blurb">Stable on all ground types, with a good balance of sensitivity. For Minelab GPX, GP and SD detectors.</p>
+    <p class="links"><a href="https://gsdetectors.com/product/11-inch-double-d-commander-coil/" target="_blank" rel="noopener">gsdetectors.com</a><a href="https://detectorshub.com/products/11-inch-double-d-commander-coil" target="_blank" rel="noopener">detectorshub.com</a></p>
+  </article>
+  <article class="item" data-search="minelab 11-inch monoloop commander coil sensitive to small nuggets very sensitive to small gold nuggets and covers more ground than the 8-inch. for gpx, gp and sd detectors.">
+    <div class="top"><h3>Minelab 11-inch Monoloop Commander Coil</h3><span class="tag new">New</span></div>
+    <p class="headline">Sensitive to small nuggets</p>
+    <p class="blurb">Very sensitive to small gold nuggets and covers more ground than the 8-inch. For GPX, GP and SD detectors.</p>
+    <p class="links"><a href="https://gsdetectors.com/product/11-inch-monoloop-commander-coil/" target="_blank" rel="noopener">gsdetectors.com</a><a href="https://detectorshub.com/products/11-inch-monoloop-commander-coil" target="_blank" rel="noopener">detectorshub.com</a></p>
+  </article>
+  <article class="item" data-search="minelab 15 x 12-inch double-d commander coil covers more ground covers more ground than the 11-inch dd and suits larger gold. for minelab gpx detectors.">
+    <div class="top"><h3>Minelab 15 x 12-inch Double-D Commander Coil</h3><span class="tag new">New</span></div>
+    <p class="headline">Covers more ground</p>
+    <p class="blurb">Covers more ground than the 11-inch DD and suits larger gold. For Minelab GPX detectors.</p>
+    <p class="links"><a href="https://gsdetectors.com/product/15-x-12-inch-double-d-commander-coil/" target="_blank" rel="noopener">gsdetectors.com</a></p>
+  </article>
+  <article class="item" data-search="minelab 15 x 12-inch monoloop commander coil big coil, still sensitive covers more ground while staying sensitive to small nuggets. for minelab gpx detectors.">
+    <div class="top"><h3>Minelab 15 x 12-inch Monoloop Commander Coil</h3><span class="tag new">New</span></div>
+    <p class="headline">Big coil, still sensitive</p>
+    <p class="blurb">Covers more ground while staying sensitive to small nuggets. For Minelab GPX detectors.</p>
+    <p class="links"><a href="https://gsdetectors.com/product/15-x-12-inch-monoloop-commander-coil/" target="_blank" rel="noopener">gsdetectors.com</a></p>
+  </article>
+  <article class="item" data-search="minelab gpz 14-inch search coil replacement coil for gpz 7000 14-inch replacement coil for the gpz 7000, with coil cover included.">
+    <div class="top"><h3>Minelab GPZ 14-inch Search Coil</h3><span class="tag new">New</span></div>
+    <p class="headline">Replacement coil for GPZ 7000</p>
+    <p class="blurb">14-inch replacement coil for the GPZ 7000, with coil cover included.</p>
+    <p class="links"><a href="https://gsdetectors.com/product/minelab-14-search-coil-for-gpz-7000/" target="_blank" rel="noopener">gsdetectors.com</a></p>
+  </article>
+  <article class="item" data-search="minelab gpz 19 x 18 super-d coil 53% more coverage for gpz 7000 a larger coil that covers 53% more area than the gpz 14, so you search more ground.">
+    <div class="top"><h3>Minelab GPZ 19 x 18 Super-D Coil</h3><span class="tag new">New</span></div>
+    <p class="headline">53% more coverage for GPZ 7000</p>
+    <p class="blurb">A larger coil that covers 53% more area than the GPZ 14, so you search more ground.</p>
+    <p class="links"><a href="https://gsdetectors.com/product/minelab-gpz-7000-19-x-18-super-d-search-coil/" target="_blank" rel="noopener">gsdetectors.com</a><a href="https://detectorshub.com/products/minelab-19-x-18-super-d-search-coil-for-gpz-7000" target="_blank" rel="noopener">detectorshub.com</a></p>
+  </article>
+  <article class="item" data-search="minelab gold monster gm10 coil for open ground elliptical double-d coil for the gold monster 1000 that covers more ground in open areas.">
+    <div class="top"><h3>Minelab Gold Monster GM10 Coil</h3><span class="tag new">New</span></div>
+    <p class="headline">For open ground</p>
+    <p class="blurb">Elliptical Double-D coil for the Gold Monster 1000 that covers more ground in open areas.</p>
+    <p class="links"><a href="https://gsdetectors.com/product/gold-monster-10-double-d-gm-10-coil/" target="_blank" rel="noopener">gsdetectors.com</a><a href="https://detectorshub.com/products/minelab-gold-monster-10-6-inch-double-d-gm-10-coil" target="_blank" rel="noopener">detectorshub.com</a></p>
+  </article>
+  <article class="item" data-search="minelab gold monster gm05 coil for tight spots small double-d coil for the gold monster 1000, made for tight spaces.">
+    <div class="top"><h3>Minelab Gold Monster GM05 Coil</h3><span class="tag new">New</span></div>
+    <p class="headline">For tight spots</p>
+    <p class="blurb">Small Double-D coil for the Gold Monster 1000, made for tight spaces.</p>
+    <p class="links"><a href="https://gsdetectors.com/product/gold-monster-5-inch-double-d-gm-05-coil/" target="_blank" rel="noopener">gsdetectors.com</a><a href="https://detectorshub.com/products/minelab-gold-monster-5-inch-double-d-gm-05-coil" target="_blank" rel="noopener">detectorshub.com</a></p>
+  </article>
+  <article class="item" data-search="coiltek 22 goldstalker dd large coil for wide coverage a favourite of serious prospectors and cache hunters for wide coverage.">
+    <div class="top"><h3>Coiltek 22 Goldstalker DD</h3><span class="tag new">New</span></div>
+    <p class="headline">Large coil for wide coverage</p>
+    <p class="blurb">A favourite of serious prospectors and cache hunters for wide coverage.</p>
+    <p class="links"><a href="https://gsdetectors.com/product/coiltek-22-goldstalker-dd/" target="_blank" rel="noopener">gsdetectors.com</a></p>
+  </article>
+  <article class="item" data-search="blackdog max deep coils bigger coils for major brands blackdog coils that fit major detector brands and increase the search area.">
+    <div class="top"><h3>Blackdog Max Deep Coils</h3><span class="tag new">New</span></div>
+    <p class="headline">Bigger coils for major brands</p>
+    <p class="blurb">Blackdog coils that fit major detector brands and increase the search area.</p>
+    <p class="links"><a href="https://gsdetectors.com/product/blackdog-max-deep-coils/" target="_blank" rel="noopener">gsdetectors.com</a></p>
+  </article>
+  <article class="item" data-search="blackdog 13-inch max coil for ace apex upgrade coil for the ace apex a 33 x 33 cm dd blackdog coil made for the garrett ace apex.">
+    <div class="top"><h3>Blackdog 13-inch Max Coil for ACE Apex</h3><span class="tag new">New</span></div>
+    <p class="headline">Upgrade coil for the ACE Apex</p>
+    <p class="blurb">A 33 x 33 cm DD Blackdog coil made for the Garrett ACE Apex.</p>
+    <p class="links"><a href="https://gsdetectors.com/product/garrett-ace-apex-blackdog-max-coil-33-x-33cm-dd/" target="_blank" rel="noopener">gsdetectors.com</a><a href="https://detectorshub.com/products/blackdog-max-coil-33-x-33cm-dd" target="_blank" rel="noopener">detectorshub.com</a></p>
+  </article>
+  <article class="item" data-search="detech 13-inch ultimate coil for ace apex sharper targeting for the ace apex 13-inch dd coil with better sensitivity, targeting and ground balance for the ace apex.">
+    <div class="top"><h3>Detech 13-inch Ultimate Coil for ACE Apex</h3><span class="tag new">New</span></div>
+    <p class="headline">Sharper targeting for the ACE Apex</p>
+    <p class="blurb">13-inch DD coil with better sensitivity, targeting and ground balance for the ACE Apex.</p>
+    <p class="links"><a href="https://gsdetectors.com/product/detech-ultimate-13%e2%80%b3-search-coil-for-garrett-ace-apex/" target="_blank" rel="noopener">gsdetectors.com</a><a href="https://detectorshub.com/products/detech-ultimate-13-search-coil-for-garrett-ace-apex" target="_blank" rel="noopener">detectorshub.com</a></p>
+  </article>
+  <article class="item" data-search="nokta im45 waterproof dd coil large waterproof coil for impact waterproof 39 x 45 cm dd coil for the nokta impact.">
+    <div class="top"><h3>Nokta IM45 Waterproof DD Coil</h3><span class="tag new">New</span></div>
+    <p class="headline">Large waterproof coil for Impact</p>
+    <p class="blurb">Waterproof 39 x 45 cm DD coil for the Nokta Impact.</p>
+    <p class="links"><a href="https://detectorshub.com/products/nokta-im45-waterproof-dd-search-coil-39-45-cm-15-x17-5" target="_blank" rel="noopener">detectorshub.com</a></p>
+  </article>
+  <article class="item" data-search="nokta pulsedive 8-inch coil replacement pulsedive coil 8-inch replacement coil for the nokta pulsedive scuba detector.">
+    <div class="top"><h3>Nokta PulseDive 8-inch Coil</h3><span class="tag new">New</span></div>
+    <p class="headline">Replacement PulseDive coil</p>
+    <p class="blurb">8-inch replacement coil for the Nokta PulseDive scuba detector.</p>
+    <p class="links"><a href="https://detectorshub.com/products/copy-of-nokta-makro-pusledive-scuba-detector-8-coil-black" target="_blank" rel="noopener">detectorshub.com</a><a href="https://detectorshub.com/products/nokta-makro-pusledive-scuba-detector-8-coil-yellow" target="_blank" rel="noopener">detectorshub.com</a></p>
+  </article>
+  <article class="item" data-search="garrett pro-pointer at waterproof pinpointer submersible pinpointer with three sensitivity levels for small targets like gold nuggets.">
+    <div class="top"><h3>Garrett Pro-Pointer AT</h3><span class="tag new">New</span></div>
+    <p class="headline">Waterproof pinpointer</p>
+    <p class="blurb">Submersible pinpointer with three sensitivity levels for small targets like gold nuggets.</p>
+    <p class="links"><a href="https://gsdetectors.com/product/pro-pointer-at-pinpointing-metal-detector/" target="_blank" rel="noopener">gsdetectors.com</a><a href="https://detectorshub.com/products/garrett-pro-pointer®-at-pinpointing-metal-detector" target="_blank" rel="noopener">detectorshub.com</a></p>
+  </article>
+  <article class="item" data-search="quest xpointer tough, water-safe pinpointer finds your target fast after you dig, on land or in water.">
+    <div class="top"><h3>Quest XPointer</h3><span class="tag new">New</span></div>
+    <p class="headline">Tough, water-safe pinpointer</p>
+    <p class="blurb">Finds your target fast after you dig, on land or in water.</p>
+    <p class="links"><a href="https://gsdetectors.com/product/quest-xpointer/" target="_blank" rel="noopener">gsdetectors.com</a></p>
+  </article>
+  <article class="item" data-search="quest xpointer pro pinpointer for diving submersible pinpointer for saltwater diving, with a light rechargeable battery.">
+    <div class="top"><h3>Quest XPointer Pro</h3><span class="tag new">New</span></div>
+    <p class="headline">Pinpointer for diving</p>
+    <p class="blurb">Submersible pinpointer for saltwater diving, with a light rechargeable battery.</p>
+    <p class="links"><a href="https://gsdetectors.com/product/quest-xpointer-pro/" target="_blank" rel="noopener">gsdetectors.com</a></p>
+  </article>
+  <article class="item" data-search="quest xpointer max pinpointer for shore and surf for searching beaches and light diving in the surf.">
+    <div class="top"><h3>Quest XPointer MAX</h3><span class="tag new">New</span></div>
+    <p class="headline">Pinpointer for shore and surf</p>
+    <p class="blurb">For searching beaches and light diving in the surf.</p>
+    <p class="links"><a href="https://detectorshub.com/products/quest-x-pointer-max" target="_blank" rel="noopener">detectorshub.com</a></p>
+  </article>
+  <article class="item" data-search="garrett rechargeable battery kit (110v) recharge your hand-held rechargeable battery kit for garrett hand-held detectors.">
+    <div class="top"><h3>Garrett Rechargeable Battery Kit (110V)</h3><span class="tag new">New</span></div>
+    <p class="headline">Recharge your hand-held</p>
+    <p class="blurb">Rechargeable battery kit for Garrett hand-held detectors.</p>
+    <p class="links"><a href="https://gsdetectors.com/product/garrett-rechargeable-battery-kit-110v/" target="_blank" rel="noopener">gsdetectors.com</a></p>
+  </article>
+  <article class="item" data-search="super scanner v rechargeable battery kit charge without removing the battery ni-mh battery kit for the super scanner v that charges with the battery inside.">
+    <div class="top"><h3>Super Scanner V Rechargeable Battery Kit</h3><span class="tag new">New</span></div>
+    <p class="headline">Charge without removing the battery</p>
+    <p class="blurb">Ni-MH battery kit for the Super Scanner V that charges with the battery inside.</p>
+    <p class="links"><a href="https://detectorshub.com/products/rechargeable-battery-kit-super-scanner®v-accessories" target="_blank" rel="noopener">detectorshub.com</a></p>
+  </article>
+  <article class="item" data-search="superwand &amp; thd battery kits battery kits for superwand rechargeable ni-mh battery kits for superwand and thd scanners, 110v or 220v.">
+    <div class="top"><h3>SuperWand &amp; THD Battery Kits</h3><span class="tag new">New</span></div>
+    <p class="headline">Battery kits for SuperWand</p>
+    <p class="blurb">Rechargeable Ni-MH battery kits for SuperWand and THD scanners, 110V or 220V.</p>
+    <p class="links"><a href="https://detectorshub.com/products/superwand®-and-thd™-accessories" target="_blank" rel="noopener">detectorshub.com</a></p>
+  </article>
+  <article class="item" data-search="gold monster 1000 charger charge from any wall socket charges the gold monster battery from any normal wall socket.">
+    <div class="top"><h3>Gold Monster 1000 Charger</h3><span class="tag new">New</span></div>
+    <p class="headline">Charge from any wall socket</p>
+    <p class="blurb">Charges the Gold Monster battery from any normal wall socket.</p>
+    <p class="links"><a href="https://gsdetectors.com/product/gold-monster-1000-charger/" target="_blank" rel="noopener">gsdetectors.com</a></p>
+  </article>
+  <article class="item" data-search="gold monster 1000 wired headphones plug-in headphones wired headphones for any standard 3.5 mm jack.">
+    <div class="top"><h3>Gold Monster 1000 Wired Headphones</h3><span class="tag new">New</span></div>
+    <p class="headline">Plug-in headphones</p>
+    <p class="blurb">Wired headphones for any standard 3.5 mm jack.</p>
+    <p class="links"><a href="https://gsdetectors.com/product/gold-monster-1000-wired-headphones/" target="_blank" rel="noopener">gsdetectors.com</a></p>
+  </article>
+  <article class="item" data-search="gold monster 1000 lithium-ion battery spare power for gold monster rechargeable lithium-ion battery for the gold monster 1000.">
+    <div class="top"><h3>Gold Monster 1000 Lithium-Ion Battery</h3><span class="tag new">New</span></div>
+    <p class="headline">Spare power for Gold Monster</p>
+    <p class="blurb">Rechargeable lithium-ion battery for the Gold Monster 1000.</p>
+    <p class="links"><a href="https://gsdetectors.com/product/lithium-ion-battery-gold-monster-1000/" target="_blank" rel="noopener">gsdetectors.com</a></p>
+  </article>
+  <article class="item" data-search="minelab gpz 7000 7.2v battery never stop early spare rechargeable battery for the gpz 7000.">
+    <div class="top"><h3>Minelab GPZ 7000 7.2V Battery</h3><span class="tag new">New</span></div>
+    <p class="headline">Never stop early</p>
+    <p class="blurb">Spare rechargeable battery for the GPZ 7000.</p>
+    <p class="links"><a href="https://gsdetectors.com/product/minelab-7-2v-lithium-ion-rechargeable-battery-for-gpz-7000/" target="_blank" rel="noopener">gsdetectors.com</a></p>
+  </article>
+  <article class="item" data-search="minelab bc 10 base charger fast charger for gpz and ctx fast base charger for gpz 7000 and ctx 3030 batteries.">
+    <div class="top"><h3>Minelab BC 10 Base Charger</h3><span class="tag new">New</span></div>
+    <p class="headline">Fast charger for GPZ and CTX</p>
+    <p class="blurb">Fast base charger for GPZ 7000 and CTX 3030 batteries.</p>
+    <p class="links"><a href="https://detectorshub.com/products/minelab-bc-10-base-battery-charger-gpz-7000-ctx-3030" target="_blank" rel="noopener">detectorshub.com</a></p>
+  </article>
+  <article class="item" data-search="minelab gpx lithium-ion battery light battery for gpx light lithium-ion battery for gpx 4500, 4800 and 5000.">
+    <div class="top"><h3>Minelab GPX Lithium-Ion Battery</h3><span class="tag new">New</span></div>
+    <p class="headline">Light battery for GPX</p>
+    <p class="blurb">Light lithium-ion battery for GPX 4500, 4800 and 5000.</p>
+    <p class="links"><a href="https://gsdetectors.com/product/minelab-lithium-ion-battery-gpx-series/" target="_blank" rel="noopener">gsdetectors.com</a></p>
+  </article>
+  <article class="item" data-search="sdc 2300 rechargeable battery spare sdc 2300 battery rechargeable battery for the sdc 2300.">
+    <div class="top"><h3>SDC 2300 Rechargeable Battery</h3><span class="tag new">New</span></div>
+    <p class="headline">Spare SDC 2300 battery</p>
+    <p class="blurb">Rechargeable battery for the SDC 2300.</p>
+    <p class="links"><a href="https://gsdetectors.com/product/sdc-2300-rechargeable-battery/" target="_blank" rel="noopener">gsdetectors.com</a></p>
+  </article>
+  <article class="item" data-search="sdc 2300 battery charger portable smart charger light, portable smart charger for sdc 2300 batteries.">
+    <div class="top"><h3>SDC 2300 Battery Charger</h3><span class="tag new">New</span></div>
+    <p class="headline">Portable smart charger</p>
+    <p class="blurb">Light, portable smart charger for SDC 2300 batteries.</p>
+    <p class="links"><a href="https://gsdetectors.com/product/sdc-2300-replacement-battery-charger/" target="_blank" rel="noopener">gsdetectors.com</a><a href="https://detectorshub.com/products/minelab-sdc-2300-replacement-battery-charger" target="_blank" rel="noopener">detectorshub.com</a></p>
+  </article>
+  <article class="item" data-search="sdc 2300 carry bag carry and store your sdc carry bag for easy transport and storage of the sdc 2300.">
+    <div class="top"><h3>SDC 2300 Carry Bag</h3><span class="tag new">New</span></div>
+    <p class="headline">Carry and store your SDC</p>
+    <p class="blurb">Carry bag for easy transport and storage of the SDC 2300.</p>
+    <p class="links"><a href="https://gsdetectors.com/product/sdc-carry-bag-black/" target="_blank" rel="noopener">gsdetectors.com</a></p>
+  </article>
+  <article class="item" data-search="sdc 2300 koss waterproof headphones waterproof headphones waterproof koss headphones for the sdc 2300.">
+    <div class="top"><h3>SDC 2300 Koss Waterproof Headphones</h3><span class="tag new">New</span></div>
+    <p class="headline">Waterproof headphones</p>
+    <p class="blurb">Waterproof Koss headphones for the SDC 2300.</p>
+    <p class="links"><a href="https://gsdetectors.com/product/waterproof-sdc-2300-koss-headphones/" target="_blank" rel="noopener">gsdetectors.com</a></p>
+  </article>
+  <article class="item" data-search="minelab wm 12 wireless audio module wireless sound for ctx and gpz wireless audio module for the ctx 3030 and gpz 7000.">
+    <div class="top"><h3>Minelab WM 12 Wireless Audio Module</h3><span class="tag new">New</span></div>
+    <p class="headline">Wireless sound for CTX and GPZ</p>
+    <p class="blurb">Wireless audio module for the CTX 3030 and GPZ 7000.</p>
+    <p class="links"><a href="https://gsdetectors.com/product/wm-12-wireless-audio-module/" target="_blank" rel="noopener">gsdetectors.com</a><a href="https://detectorshub.com/products/minelab-wm-12-wireless-module" target="_blank" rel="noopener">detectorshub.com</a></p>
+  </article>
+  </div>
+</section>
+<p class="empty" id="empty" hidden>No product matches your search.</p>
+</div></main>
+<script>
+const q = document.getElementById("q");
+q.addEventListener("input", () => {
+  const term = q.value.trim().toLowerCase();
+  let shown = 0;
+  document.querySelectorAll(".cat").forEach((sec) => {
+    let n = 0;
+    sec.querySelectorAll(".item").forEach((it) => { const ok = !term || it.dataset.search.includes(term); it.hidden = !ok; if (ok) n++; });
+    sec.hidden = n === 0; shown += n;
+  });
+  document.getElementById("empty").hidden = shown > 0;
+});
+</script>
+</body>
+</html>

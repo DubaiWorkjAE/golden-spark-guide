@@ -1,0 +1,2224 @@
+{
+ "note": "Draft blurbs for review, 2026-10-30",
+ "categories": [
+  {
+   "id": "gold",
+   "title": "Gold & gold nugget detectors"
+  },
+  {
+   "id": "treasure",
+   "title": "Treasure hunting & metal detectors"
+  },
+  {
+   "id": "longrange",
+   "title": "Long-range detectors"
+  },
+  {
+   "id": "scanner",
+   "title": "3D ground scanners & ground radar"
+  },
+  {
+   "id": "water",
+   "title": "Water detectors"
+  },
+  {
+   "id": "gems",
+   "title": "Diamond & gemstone detectors"
+  },
+  {
+   "id": "security",
+   "title": "Security detectors"
+  },
+  {
+   "id": "xrf",
+   "title": "Mineral analyzers & XRF"
+  },
+  {
+   "id": "mining",
+   "title": "Mining equipment"
+  },
+  {
+   "id": "accessories",
+   "title": "Coils, pinpointers & accessories"
+  }
+ ],
+ "products": [
+  {
+   "cat": "gold",
+   "name": "Gold Finder 2000",
+   "headline": "Switch on and start finding gold",
+   "blurb": "For beginners who want to start gold prospecting.",
+   "note": "kept",
+   "gs": [
+    "https://gsdetectors.com/product/nokta-makro-gold-finder-2000/"
+   ],
+   "dh": [
+    "https://detectorshub.com/products/nokta-gold-finder-2000-africa"
+   ]
+  },
+  {
+   "cat": "gold",
+   "name": "Goldmaster 24K",
+   "headline": "Steady gold hunting in tough ground",
+   "blurb": "For people who want to start finding gold nuggets.",
+   "note": "kept",
+   "gs": [
+    "https://gsdetectors.com/product/garrett-goldmaster-24k-metal-detector/"
+   ],
+   "dh": [
+    "https://detectorshub.com/products/garrett-goldmaster-24k-metal-detector-1"
+   ]
+  },
+  {
+   "cat": "gold",
+   "name": "XP Deus II",
+   "headline": "Fast, wireless and ready for gold",
+   "blurb": "For prospectors who want to search for gold nuggets, or who want to start prospecting.",
+   "note": "kept",
+   "gs": [
+    "https://gsdetectors.com/product/xp-deus-ii/"
+   ],
+   "dh": []
+  },
+  {
+   "cat": "gold",
+   "name": "XP Deus II HF2 Gold",
+   "headline": "The Deus II tuned for small gold",
+   "blurb": "The Deus II with a high-frequency elliptical coil made for small gold nuggets. A great pick for prospectors who already like the Deus.",
+   "note": "new",
+   "gs": [
+    "https://gsdetectors.com/product/xp-deus-ii-hf2-gold/"
+   ],
+   "dh": [
+    "https://detectorshub.com/products/xp-deus-2-hf2-gold"
+   ]
+  },
+  {
+   "cat": "gold",
+   "name": "Nokta Magnetar 9000",
+   "headline": "Made for gold and micro-nuggets",
+   "blurb": "For beginners and experienced prospectors who want to find gold nuggets.",
+   "note": "kept",
+   "gs": [
+    "https://gsdetectors.com/product/nokta-magnetar-9000/"
+   ],
+   "dh": [
+    "https://detectorshub.com/products/nokta-magnetar-9000-gold-detector"
+   ]
+  },
+  {
+   "cat": "gold",
+   "name": "Garrett Axiom Ultra-Pulse (Full / Lite package)",
+   "headline": "Pulse power for hard, mineralized ground",
+   "blurb": "Full: for advanced prospectors who want the complete package for gold nuggets. Lite: for advanced prospectors who want the lite package for gold nuggets.",
+   "note": "kept",
+   "gs": [
+    "https://gsdetectors.com/product/garrett-axiom-ultra-pulse-gold-detector/"
+   ],
+   "dh": [
+    "https://detectorshub.com/products/garrett-axiom-ultra-pulse-gold-detector-coming-soon"
+   ]
+  },
+  {
+   "cat": "gold",
+   "name": "Minelab Gold Monster 1000",
+   "headline": "Fully automatic gold finding",
+   "blurb": "Fully automatic settings turn beginners into gold hunters. Just switch on and start searching the goldfields.",
+   "note": "new",
+   "gs": [
+    "https://gsdetectors.com/product/gold-monster-1000/"
+   ],
+   "dh": [
+    "https://detectorshub.com/products/gold-monster-1000"
+   ]
+  },
+  {
+   "cat": "gold",
+   "name": "Minelab Gold Monster 2000",
+   "headline": "Made for ultra-fine gold",
+   "blurb": "Uses Minelab's Multi-Au technology to find very small gold in difficult, mineralized ground. For prospectors who want precision.",
+   "note": "new",
+   "gs": [
+    "https://gsdetectors.com/product/minelab-monster-2000/"
+   ],
+   "dh": [
+    "https://detectorshub.com/products/minelab-gold-monster-2000"
+   ]
+  },
+  {
+   "cat": "gold",
+   "name": "Minelab GPX 4500",
+   "headline": "Reliable pulse detector for all gold sizes",
+   "blurb": "Performs well on gold of all sizes and handles mineralized ground better than basic pulse detectors.",
+   "note": "new",
+   "gs": [
+    "https://gsdetectors.com/product/gpx-4500/"
+   ],
+   "dh": []
+  },
+  {
+   "cat": "gold",
+   "name": "Minelab GPX 5000",
+   "headline": "A favourite of serious prospectors",
+   "blurb": "Strong pulse technology with many coil options, so you can match the detector to your ground.",
+   "note": "new",
+   "gs": [
+    "https://gsdetectors.com/product/gpx-5000/"
+   ],
+   "dh": [
+    "https://detectorshub.com/products/minelab-gpx-5000-metal-detector"
+   ]
+  },
+  {
+   "cat": "gold",
+   "name": "Minelab GPX 6000",
+   "headline": "Light, fast and easy for all gold",
+   "blurb": "GeoSense-PI technology finds all forms of gold in one light, easy machine, for new and experienced prospectors.",
+   "note": "new",
+   "gs": [
+    "https://gsdetectors.com/product/gpx-6000-gold-detector/"
+   ],
+   "dh": [
+    "https://detectorshub.com/products/minelab-gpx-6000-gold-detector"
+   ]
+  },
+  {
+   "cat": "gold",
+   "name": "Minelab GPZ 7000",
+   "headline": "High-performance gold detection",
+   "blurb": "Built for top sensitivity on all gold. For professional prospectors who want the best results in the goldfields.",
+   "note": "new",
+   "gs": [
+    "https://gsdetectors.com/product/gpz-7000/"
+   ],
+   "dh": [
+    "https://detectorshub.com/products/minelab-gpz-7000"
+   ]
+  },
+  {
+   "cat": "gold",
+   "name": "Minelab GPZ 8000",
+   "headline": "Minelab's flagship gold detector",
+   "blurb": "Made for serious prospectors who want maximum performance in the harshest soils.",
+   "note": "new",
+   "gs": [
+    "https://gsdetectors.com/product/minelab-gpz-8000/"
+   ],
+   "dh": [
+    "https://detectorshub.com/products/minelab-gpz8000"
+   ]
+  },
+  {
+   "cat": "gold",
+   "name": "Minelab SDC 2300",
+   "headline": "Compact, waterproof gold detector",
+   "blurb": "Needs no assembly, folds small and is waterproof. Easy controls help you find gold nuggets and patches quickly.",
+   "note": "new",
+   "gs": [
+    "https://gsdetectors.com/product/sdc-2300/"
+   ],
+   "dh": [
+    "https://detectorshub.com/products/minelab-sdc-2300"
+   ]
+  },
+  {
+   "cat": "gold",
+   "name": "Fisher Gold Bug",
+   "headline": "Gold machine that also hunts coins",
+   "blurb": "Easy to adjust and made for gold. Outside the goldfields, switch modes for coins, rings, relics and jewels.",
+   "note": "new",
+   "gs": [
+    "https://gsdetectors.com/product/fisher-gold-bug/"
+   ],
+   "dh": [
+    "https://detectorshub.com/products/fisher-gold-bug®-metal-detector"
+   ]
+  },
+  {
+   "cat": "gold",
+   "name": "Fisher Gold Bug 2",
+   "headline": "Very sensitive to small gold",
+   "blurb": "Known for its sensitivity to small nuggets and easy use. A focused machine for gold hunting.",
+   "note": "new",
+   "gs": [
+    "https://gsdetectors.com/product/fisher-gold-bug-2/"
+   ],
+   "dh": [
+    "https://detectorshub.com/products/fisher-gold-bug-2-metal-detector"
+   ]
+  },
+  {
+   "cat": "gold",
+   "name": "Fisher Gold Bug Pro",
+   "headline": "Small nuggets in mineralized soil",
+   "blurb": "Finds the smallest gold nuggets even in highly mineralized soil, with clear target information.",
+   "note": "new",
+   "gs": [
+    "https://gsdetectors.com/product/fisher-gold-bug-pro/"
+   ],
+   "dh": [
+    "https://detectorshub.com/products/fisher-gold-bug®-pro-metal-detector"
+   ]
+  },
+  {
+   "cat": "gold",
+   "name": "Nokta Gold Kruzer",
+   "headline": "High-frequency, waterproof gold detector",
+   "blurb": "Works at 61 kHz for high sensitivity to the tiniest nuggets. Durable and waterproof for tough goldfield trips.",
+   "note": "new",
+   "gs": [
+    "https://gsdetectors.com/product/gold-kruzer-metal-detector/"
+   ],
+   "dh": []
+  },
+  {
+   "cat": "gold",
+   "name": "Garrett AT Gold",
+   "headline": "Tiny nuggets, even in shallow water",
+   "blurb": "High-frequency detector with a true all-metal mode, made for tiny gold nuggets in tough conditions, including shallow freshwater.",
+   "note": "new",
+   "gs": [
+    "https://gsdetectors.com/product/at-gold-metal-detector/"
+   ],
+   "dh": []
+  },
+  {
+   "cat": "gold",
+   "name": "Garrett ATX",
+   "headline": "Pulse detector for tiny nuggets",
+   "blurb": "Very sensitive pulse detector that finds tiny gold nuggets other pulse detectors can miss, with fast pinpointing.",
+   "note": "new",
+   "gs": [
+    "https://gsdetectors.com/product/garrett-atx-metal-detector/"
+   ],
+   "dh": []
+  },
+  {
+   "cat": "gold",
+   "name": "GER Gold Seeker",
+   "headline": "Tells precious from non-precious metal",
+   "blurb": "Uses pulse induction and two systems to find gold and coins underground and separate precious from non-precious metals.",
+   "note": "new",
+   "gs": [
+    "https://gsdetectors.com/product/ger-gold-seeker-device/"
+   ],
+   "dh": [
+    "https://detectorshub.com/products/ger-detect-gold-seeker-device"
+   ]
+  },
+  {
+   "cat": "gold",
+   "name": "GER Golden Way",
+   "headline": "Automatic VLF gold finder",
+   "blurb": "An automatic VLF system for finding underground gold and precious metals.",
+   "note": "new",
+   "gs": [
+    "https://gsdetectors.com/product/ger-detect-golden-way-device-vlf-metal-detector/"
+   ],
+   "dh": [
+    "https://detectorshub.com/products/ger-detect-golden-way-device-vlf-metal-detector"
+   ]
+  },
+  {
+   "cat": "gold",
+   "name": "UIG Gold Digger",
+   "headline": "German VLF detector with seven modes",
+   "blurb": "Made in Germany with seven search modes and VLF technology for finding gold and precious metals.",
+   "note": "new",
+   "gs": [
+    "https://gsdetectors.com/product/uig-gold-digger/"
+   ],
+   "dh": [
+    "https://detectorshub.com/products/uig-gold-digger-device"
+   ]
+  },
+  {
+   "cat": "treasure",
+   "name": "Garrett ACE 150",
+   "headline": "A simple first detector for all ages",
+   "blurb": "One of Garrett's most affordable detectors, with sound and visual target ID. Easy for children and adults.",
+   "note": "new",
+   "gs": [],
+   "dh": [
+    "https://detectorshub.com/products/garrett-ace-150-metal-detector"
+   ]
+  },
+  {
+   "cat": "treasure",
+   "name": "Garrett ACE 200i",
+   "headline": "Light, easy entry-level detector",
+   "blurb": "Strong, light and easy to learn, with one-touch use. Great for coins, dry beaches and freshwater.",
+   "note": "new",
+   "gs": [
+    "https://gsdetectors.com/product/ace-200i-metal-detector/"
+   ],
+   "dh": [
+    "https://detectorshub.com/products/garrett-ace™-200i-metal-detector"
+   ]
+  },
+  {
+   "cat": "treasure",
+   "name": "Garrett ACE 250",
+   "headline": "The classic for beginners and experts",
+   "blurb": "A light treasure hunting detector with a waterproof search coil included.",
+   "note": "new",
+   "gs": [
+    "https://gsdetectors.com/product/garrett-ace-250-metal-detector/"
+   ],
+   "dh": [
+    "https://detectorshub.com/products/garrett-ace-250-metal-detector"
+   ]
+  },
+  {
+   "cat": "treasure",
+   "name": "Garrett ACE 300i",
+   "headline": "Digital target ID for coins and relics",
+   "blurb": "Adds Digital Target ID and better detection to the ACE line. Recommended for coins, jewelry, relics and beaches.",
+   "note": "new",
+   "gs": [
+    "https://gsdetectors.com/product/ace-300i-metal-detector/"
+   ],
+   "dh": []
+  },
+  {
+   "cat": "treasure",
+   "name": "Garrett ACE 400i",
+   "headline": "The king of the ACE series",
+   "blurb": "Iron Audio, Digital Target ID and Frequency Change help you dig more treasure and less trash.",
+   "note": "new",
+   "gs": [
+    "https://gsdetectors.com/product/ace-400i-metal-detector/"
+   ],
+   "dh": [
+    "https://detectorshub.com/products/garrett-ace™-400i-metal-detector"
+   ]
+  },
+  {
+   "cat": "treasure",
+   "name": "Garrett ACE Apex",
+   "headline": "Multi-frequency flexibility",
+   "blurb": "Choose multi-frequency, single frequency or saltwater mode, so one detector handles parks, fields and beaches.",
+   "note": "new",
+   "gs": [
+    "https://gsdetectors.com/product/garrett-ace-apex-metal-detector/"
+   ],
+   "dh": [
+    "https://detectorshub.com/products/garrett-ace-apex-metal-detector",
+    "https://detectorshub.com/products/garrett-ace-apex-metal-detector-with-z-lynk-wireless-headphone"
+   ]
+  },
+  {
+   "cat": "treasure",
+   "name": "Garrett ACE Apex + 13-inch Blackdog coil",
+   "headline": "ACE Apex with a bigger coil",
+   "blurb": "The ACE Apex paired with a 13-inch Blackdog coil to cover more ground with each sweep.",
+   "note": "new",
+   "gs": [],
+   "dh": [
+    "https://detectorshub.com/products/garrett-ace-apex-with-13x13-detech-coil-metal-detector-with-z-lynk-wireless-headphone",
+    "https://detectorshub.com/products/garrett-ace-apex-with-13x13-blackdog-coil-metal-detector-with-z-lynk-wireless-headphone"
+   ]
+  },
+  {
+   "cat": "treasure",
+   "name": "Garrett AT Pro",
+   "headline": "All-terrain detector for every target",
+   "blurb": "For coins, relics, caches, jewelry and even gold nuggets, with Normal and Pro search modes.",
+   "note": "new",
+   "gs": [
+    "https://gsdetectors.com/product/at-pro-metal-detector/"
+   ],
+   "dh": [
+    "https://detectorshub.com/products/garrett-at-pro-metal-detector"
+   ]
+  },
+  {
+   "cat": "treasure",
+   "name": "Garrett AT MAX",
+   "headline": "Garrett's most powerful all-terrain VLF",
+   "blurb": "Wireless audio and all-terrain performance, built for the professional treasure hunter.",
+   "note": "new",
+   "gs": [
+    "https://gsdetectors.com/product/at-max-metal-detector/"
+   ],
+   "dh": [
+    "https://detectorshub.com/products/garrett-at-max-metal-detector"
+   ]
+  },
+  {
+   "cat": "treasure",
+   "name": "Garrett GTI 2500",
+   "headline": "See the target before you dig",
+   "blurb": "Graphic Target Imaging shows the size of a target first. Great for coins, jewelry, relics and caches.",
+   "note": "new",
+   "gs": [
+    "https://gsdetectors.com/product/gti-2500-metal-detector/"
+   ],
+   "dh": [
+    "https://detectorshub.com/products/garrett-gti™-2500-metal-detector"
+   ]
+  },
+  {
+   "cat": "treasure",
+   "name": "Garrett Sea Hunter Mark II",
+   "headline": "Made for surf and diving",
+   "blurb": "For surf hunting and treasure diving, and also coins, jewelry and relics on dry beaches and in freshwater.",
+   "note": "new",
+   "gs": [
+    "https://gsdetectors.com/product/sea-hunter-mark-ii-metal-detector/"
+   ],
+   "dh": [
+    "https://detectorshub.com/products/garrett-sea-hunter-mark-ii-underwater-metal-detector"
+   ]
+  },
+  {
+   "cat": "treasure",
+   "name": "Minelab Equinox 600",
+   "headline": "Multi-frequency all-rounder",
+   "blurb": "Adapts to all targets and ground types. Pick your mode and go.",
+   "note": "new",
+   "gs": [
+    "https://gsdetectors.com/product/equinox-600/"
+   ],
+   "dh": [
+    "https://detectorshub.com/products/minelab-equinox-600-metal-detector"
+   ]
+  },
+  {
+   "cat": "treasure",
+   "name": "Minelab Equinox 700",
+   "headline": "All-rounder, now fully waterproof",
+   "blurb": "High-resolution target ID and great target separation, waterproof for beach and shallow water.",
+   "note": "new",
+   "gs": [
+    "https://gsdetectors.com/product/equinox-700/"
+   ],
+   "dh": [
+    "https://detectorshub.com/products/minelab-equinox-700-metal-detector"
+   ]
+  },
+  {
+   "cat": "treasure",
+   "name": "Minelab Equinox 800",
+   "headline": "Multi-frequency for serious hobbyists",
+   "blurb": "Advanced multi-frequency detector that adapts to all targets and ground conditions.",
+   "note": "new",
+   "gs": [
+    "https://gsdetectors.com/product/equinox-800/"
+   ],
+   "dh": [
+    "https://detectorshub.com/products/minelab-equinox-800-metal-detector"
+   ]
+  },
+  {
+   "cat": "treasure",
+   "name": "Minelab Equinox 900",
+   "headline": "All-in-one gold and treasure detector",
+   "blurb": "High-resolution target ID, great target separation and a waterproof build, for both gold and treasure.",
+   "note": "new",
+   "gs": [
+    "https://gsdetectors.com/product/equinox-900/"
+   ],
+   "dh": [
+    "https://detectorshub.com/products/minelab-equinox-900-metal-detector"
+   ]
+  },
+  {
+   "cat": "treasure",
+   "name": "Minelab Excalibur II",
+   "headline": "Built for underwater hunting",
+   "blurb": "Minelab's BBS multi-frequency technology in a tough, waterproof body, made for diving and beach hunting.",
+   "note": "new",
+   "gs": [
+    "https://gsdetectors.com/product/excalibur-ii/"
+   ],
+   "dh": [
+    "https://detectorshub.com/products/minelab-excalibur-ii-metal-detector"
+   ]
+  },
+  {
+   "cat": "treasure",
+   "name": "Minelab Manticore",
+   "headline": "Minelab's most powerful multi-frequency",
+   "blurb": "Fast and precise Multi-IQ+ technology for experienced hunters who want top performance.",
+   "note": "new",
+   "gs": [
+    "https://gsdetectors.com/product/manticore/"
+   ],
+   "dh": [
+    "https://detectorshub.com/products/minelab-manticore-metal-detector"
+   ]
+  },
+  {
+   "cat": "treasure",
+   "name": "Minelab CTX 3030",
+   "headline": "Waterproof high-performance treasure detector",
+   "blurb": "All-terrain and waterproof, with precise target detection for historical treasures, coins and relics.",
+   "note": "new",
+   "gs": [
+    "https://gsdetectors.com/product/minelab-ctx-3030/"
+   ],
+   "dh": [
+    "https://detectorshub.com/products/minelab-ctx-3030-metal-detector"
+   ]
+  },
+  {
+   "cat": "treasure",
+   "name": "Minelab Vanquish 340",
+   "headline": "Perfect for your first hunt",
+   "blurb": "Multi-IQ technology and a waterproof coil in a simple package for anyone starting out.",
+   "note": "new",
+   "gs": [
+    "https://gsdetectors.com/product/vanquish-340-metal-detector/"
+   ],
+   "dh": [
+    "https://detectorshub.com/products/minelab-vanquish-340-metal-detector"
+   ]
+  },
+  {
+   "cat": "treasure",
+   "name": "Minelab Vanquish 440",
+   "headline": "Step up your detecting",
+   "blurb": "Adds pinpoint mode and audio control for detectorists who want more.",
+   "note": "new",
+   "gs": [
+    "https://gsdetectors.com/product/vanquish-440-metal-detector/"
+   ],
+   "dh": []
+  },
+  {
+   "cat": "treasure",
+   "name": "Minelab Vanquish 540",
+   "headline": "Top of the Vanquish range",
+   "blurb": "Adds iron bias, a backlight and rechargeable batteries for detectorists who want the best results.",
+   "note": "new",
+   "gs": [
+    "https://gsdetectors.com/product/vanquish-540-metal-detector/"
+   ],
+   "dh": [
+    "https://detectorshub.com/products/minelab-vanquish-540-metal-detector"
+   ]
+  },
+  {
+   "cat": "treasure",
+   "name": "Minelab Vanquish 540 Pro-Pack",
+   "headline": "The full Vanquish kit",
+   "blurb": "The Vanquish 540 with Bluetooth headphones plus 12-inch and 8-inch coils, ready for every site.",
+   "note": "new",
+   "gs": [
+    "https://gsdetectors.com/product/vanquish-540-pro-pack-metal-detector/"
+   ],
+   "dh": [
+    "https://detectorshub.com/products/minelab-vanquish-540-pro-pack-with-12-and-8-coils-waterproof-metal-detector"
+   ]
+  },
+  {
+   "cat": "treasure",
+   "name": "Minelab X-TERRA PRO",
+   "headline": "Pick Park, Field or Beach and go",
+   "blurb": "Simple search modes for each place make it a great step-up detector for treasure hunters.",
+   "note": "new",
+   "gs": [
+    "https://gsdetectors.com/product/x-terra-pro/"
+   ],
+   "dh": [
+    "https://detectorshub.com/products/x-terra-pro"
+   ]
+  },
+  {
+   "cat": "treasure",
+   "name": "Fisher F75",
+   "headline": "Top relic and all-purpose detector",
+   "blurb": "Known for relic hunting and general use, with good target separation and audio for trashy sites.",
+   "note": "new",
+   "gs": [
+    "https://gsdetectors.com/product/fisher-f75/"
+   ],
+   "dh": []
+  },
+  {
+   "cat": "treasure",
+   "name": "Nokta Simplex+ (and WHP)",
+   "headline": "Simple for beginners, strong for experts",
+   "blurb": "Easy to use and affordable, with features experts like. Also sold with wireless headphones (WHP).",
+   "note": "new",
+   "gs": [
+    "https://gsdetectors.com/product/nokta-makro-simplex-metal-detector/"
+   ],
+   "dh": [
+    "https://detectorshub.com/products/nokta-makro-simplex-metal-detector",
+    "https://detectorshub.com/products/nokta-makro-simplex-whp-metal-detector"
+   ]
+  },
+  {
+   "cat": "treasure",
+   "name": "Nokta The Legend (WHP / Pro Pack)",
+   "headline": "Nokta's first multi-frequency detector",
+   "blurb": "A versatile multi-frequency detector for all kinds of hunting, also sold as WHP and Pro Pack sets.",
+   "note": "new",
+   "gs": [
+    "https://gsdetectors.com/product/the-legend/"
+   ],
+   "dh": [
+    "https://detectorshub.com/products/nokta-makro-the-legend",
+    "https://detectorshub.com/products/nokta-makro-the-legend-std-metal-detector"
+   ]
+  },
+  {
+   "cat": "treasure",
+   "name": "Nokta Impact",
+   "headline": "Many detectors in one",
+   "blurb": "Multi-frequency treasure detector that combines several detectors in one, for new and experienced hunters.",
+   "note": "new",
+   "gs": [
+    "https://gsdetectors.com/product/impact-metal-detector/"
+   ],
+   "dh": []
+  },
+  {
+   "cat": "treasure",
+   "name": "Nokta Impact Pro",
+   "headline": "The Pro version of the Impact",
+   "blurb": "Nokta's multi-frequency Impact in its Pro version, for serious treasure hunters.",
+   "note": "new",
+   "gs": [],
+   "dh": [
+    "https://detectorshub.com/products/nokta-makro-impact-pro-metal-detector"
+   ]
+  },
+  {
+   "cat": "treasure",
+   "name": "Nokta Invenio",
+   "headline": "More than beeps and numbers",
+   "blurb": "Goes beyond basic beeps and target IDs to help you understand what is in the ground.",
+   "note": "new",
+   "gs": [
+    "https://gsdetectors.com/product/invenio/"
+   ],
+   "dh": []
+  },
+  {
+   "cat": "treasure",
+   "name": "Nokta Invenio Pro",
+   "headline": "The professional Invenio",
+   "blurb": "The Pro package of the Invenio for experienced treasure hunters.",
+   "note": "new",
+   "gs": [],
+   "dh": [
+    "https://detectorshub.com/products/nokta-makro-invenio-metal-detector"
+   ]
+  },
+  {
+   "cat": "treasure",
+   "name": "Nokta Multi Kruzer",
+   "headline": "Tough multi-frequency all-rounder",
+   "blurb": "Robust and strong, made to bring well-hunted sites back to life.",
+   "note": "new",
+   "gs": [],
+   "dh": [
+    "https://detectorshub.com/products/nokta-makro-multi-kruzer-metal-detector"
+   ]
+  },
+  {
+   "cat": "treasure",
+   "name": "Nokta PulseDive",
+   "headline": "Two-in-one for diving and land",
+   "blurb": "A scuba detector and pinpointer set for divers, holidaymakers and detectorists who search on land and in water.",
+   "note": "new",
+   "gs": [
+    "https://gsdetectors.com/product/pulsedive/"
+   ],
+   "dh": [
+    "https://detectorshub.com/products/nokta-makro-pulse-dive-underwater-metal-detector-black",
+    "https://detectorshub.com/products/nokta-makro-pulse-dive"
+   ]
+  },
+  {
+   "cat": "treasure",
+   "name": "Quest Q30",
+   "headline": "Budget-friendly and waterproof",
+   "blurb": "Park, Field, Beach and Gold modes in a waterproof detector at a friendly price.",
+   "note": "new",
+   "gs": [],
+   "dh": [
+    "https://detectorshub.com/products/quest-q30-metal-detector"
+   ]
+  },
+  {
+   "cat": "treasure",
+   "name": "Quest Q60",
+   "headline": "Waterproof, with wireless headphones",
+   "blurb": "Fully waterproof and comes with wireless headphones for comfortable hunting on land and in water.",
+   "note": "new",
+   "gs": [],
+   "dh": [
+    "https://detectorshub.com/products/quest-q60-metal-detector"
+   ]
+  },
+  {
+   "cat": "treasure",
+   "name": "Quest V60",
+   "headline": "Multi-frequency with a folding shaft",
+   "blurb": "HYPERQ multi-frequency, fast noise cancelling and a flat-folding shaft that travels easily.",
+   "note": "new",
+   "gs": [
+    "https://gsdetectors.com/product/quest-v60/"
+   ],
+   "dh": [
+    "https://detectorshub.com/products/quest-v60-1"
+   ]
+  },
+  {
+   "cat": "treasure",
+   "name": "Quest V80 (and bundle)",
+   "headline": "Quest's top multi-frequency detector",
+   "blurb": "HYPERQ multi-frequency, vibration alerts and a folding shaft. Also sold as a bundle.",
+   "note": "new",
+   "gs": [
+    "https://gsdetectors.com/product/quest-v80/"
+   ],
+   "dh": [
+    "https://detectorshub.com/products/quest-v80"
+   ]
+  },
+  {
+   "cat": "treasure",
+   "name": "Quest X5",
+   "headline": "A detector the whole family can share",
+   "blurb": "Easy for kids and adults, with a DD coil that handles mineralized soil and beaches.",
+   "note": "new",
+   "gs": [
+    "https://gsdetectors.com/product/quest-x5/"
+   ],
+   "dh": [
+    "https://detectorshub.com/products/quest-x5-metal-detectors"
+   ]
+  },
+  {
+   "cat": "treasure",
+   "name": "Quest X10",
+   "headline": "The easiest way to start the hobby",
+   "blurb": "No learning curve, with a DD coil for mineralized soil and beach hunting.",
+   "note": "new",
+   "gs": [
+    "https://gsdetectors.com/product/quest-x10/"
+   ],
+   "dh": [
+    "https://detectorshub.com/products/quest-x10-metal-detector"
+   ]
+  },
+  {
+   "cat": "treasure",
+   "name": "Quest Scuba Tector Pro",
+   "headline": "Handheld detector for diving",
+   "blurb": "A waterproof handheld detector to take on diving holidays and underwater searches.",
+   "note": "new",
+   "gs": [
+    "https://gsdetectors.com/product/scuba-tector-pro/"
+   ],
+   "dh": [
+    "https://detectorshub.com/products/quest-scuba-tector-pro-underwater-metal-detector"
+   ]
+  },
+  {
+   "cat": "treasure",
+   "name": "XP ICON / ICON-X",
+   "headline": "Easy detector, high-end technology",
+   "blurb": "XP's FMF wireless technology in a simple, easy-to-use detector.",
+   "note": "new",
+   "gs": [
+    "https://gsdetectors.com/product/xp-icon-icon-x/"
+   ],
+   "dh": []
+  },
+  {
+   "cat": "treasure",
+   "name": "XP Xtrem Hunter",
+   "headline": "Add-on for big buried targets",
+   "blurb": "An add-on for the XP Deus II made for finding large buried targets.",
+   "note": "new",
+   "gs": [
+    "https://gsdetectors.com/product/xp-xtrem-hunter/"
+   ],
+   "dh": [
+    "https://detectorshub.com/products/xtrem-hunter"
+   ]
+  },
+  {
+   "cat": "treasure",
+   "name": "Deeptech Vista Mini Max",
+   "headline": "Simple detector for new users",
+   "blurb": "Easy to use in the field with no confusing settings, ideal for people new to the hobby.",
+   "note": "new",
+   "gs": [],
+   "dh": [
+    "https://detectorshub.com/products/deeptech-vista-mini-max-metal-detector"
+   ]
+  },
+  {
+   "cat": "treasure",
+   "name": "Detech Relic Striker",
+   "headline": "VLF detector for relic hunting",
+   "blurb": "A 4.8 kHz VLF detector built for relic hunting.",
+   "note": "new",
+   "gs": [],
+   "dh": [
+    "https://detectorshub.com/products/detech-relic-striker-4-8-khz-vlf-metal-detector-with-18x15-sef-and-13-ultimate-coil"
+   ]
+  },
+  {
+   "cat": "treasure",
+   "name": "Blackdog Gladiator",
+   "headline": "Easy to use, with a big screen",
+   "blurb": "Simple to use with one of the largest backlit screens, so you can search at any time of day.",
+   "note": "new",
+   "gs": [
+    "https://gsdetectors.com/product/blackdog-gladiator-metal-detector/"
+   ],
+   "dh": []
+  },
+  {
+   "cat": "treasure",
+   "name": "Blackdog X-Treme",
+   "headline": "Pulse detector for large coils",
+   "blurb": "A pulse induction detector that works with many coil sizes, up to large frame coils, for searching big areas.",
+   "note": "new",
+   "gs": [
+    "https://gsdetectors.com/product/blackdog-x-treme-metal-detector/"
+   ],
+   "dh": [
+    "https://detectorshub.com/products/blackdog-x-treme-metal-detector"
+   ]
+  },
+  {
+   "cat": "treasure",
+   "name": "Blackdog HybridScan",
+   "headline": "Pulse and VLF in one",
+   "blurb": "Combines pulse induction and VLF and works with several coil types, for professional metal searches.",
+   "note": "new",
+   "gs": [
+    "https://gsdetectors.com/product/blackdog-hybridscan-metal-detector/"
+   ],
+   "dh": [
+    "https://detectorshub.com/products/blackdog-hybridscan-metal-detector"
+   ]
+  },
+  {
+   "cat": "treasure",
+   "name": "Lorenz Deepmax Z2",
+   "headline": "German pulse detector, built tough",
+   "blurb": "Compact, rugged and made in Germany, using strong power pulses to search for buried metal.",
+   "note": "new",
+   "gs": [],
+   "dh": [
+    "https://detectorshub.com/products/lorenz-deepmax-z2"
+   ]
+  },
+  {
+   "cat": "treasure",
+   "name": "Klayzer Max 2D",
+   "headline": "2D detector for gold, coins and relics",
+   "blurb": "A multi-purpose detector using 2D technology to locate gold treasures, ancient coins and relics.",
+   "note": "new",
+   "gs": [],
+   "dh": [
+    "https://detectorshub.com/products/klayzer-max-2d"
+   ]
+  },
+  {
+   "cat": "treasure",
+   "name": "UIG Treasure Way",
+   "headline": "Pulse detector for bigger treasures",
+   "blurb": "Uses pulse induction and ignores small targets and ground noise, so you can focus on larger buried treasures.",
+   "note": "new",
+   "gs": [
+    "https://gsdetectors.com/product/uig-treasure-way-detector/"
+   ],
+   "dh": []
+  },
+  {
+   "cat": "treasure",
+   "name": "OKM Pulse Nova",
+   "headline": "An easy pulse detector to start with",
+   "blurb": "Pulse induction detector with exchangeable coils and easy handling, a great start to treasure hunting.",
+   "note": "new",
+   "gs": [
+    "https://gsdetectors.com/product/okm-pulse-nova/"
+   ],
+   "dh": [
+    "https://detectorshub.com/products/okm-pulse-nova-1"
+   ]
+  },
+  {
+   "cat": "treasure",
+   "name": "MEGA Infinity Max Pro",
+   "headline": "Many detection tools in one",
+   "blurb": "Combines many detection tools in one device for different kinds of metal searches.",
+   "note": "new",
+   "gs": [],
+   "dh": [
+    "https://detectorshub.com/products/mega-infinity-max-pro"
+   ]
+  },
+  {
+   "cat": "longrange",
+   "name": "GER Titan 500 Smart",
+   "headline": "Long-range search for gold and gems",
+   "blurb": "For people who want to search for diamonds, gemstones and gold.",
+   "note": "kept",
+   "gs": [
+    "https://gsdetectors.com/product/titan-500-smart-device/"
+   ],
+   "dh": [
+    "https://detectorshub.com/products/ger-detect-titan-500-smart-detector"
+   ]
+  },
+  {
+   "cat": "longrange",
+   "name": "GER Gold Hunter Smart",
+   "headline": "Four systems for gold and gems",
+   "blurb": "For people who want to find gold, diamonds, metals and underground cavities.",
+   "note": "kept",
+   "gs": [
+    "https://gsdetectors.com/product/ger-gold-hunter-smart-detector/"
+   ],
+   "dh": [
+    "https://detectorshub.com/products/ger-detect-gold-hunter-metal-detector"
+   ]
+  },
+  {
+   "cat": "longrange",
+   "name": "GER Titan X13",
+   "headline": "11 search systems in one device",
+   "blurb": "For big mining teams and treasure hunters who want to find gold nuggets and deposits.",
+   "note": "kept",
+   "gs": [
+    "https://gsdetectors.com/product/ger-titan-x13/"
+   ],
+   "dh": [
+    "https://detectorshub.com/products/ger-titan-x13"
+   ]
+  },
+  {
+   "cat": "longrange",
+   "name": "GER Titan 400 Smart",
+   "headline": "Three systems for gold and treasure",
+   "blurb": "Manufacturer states it searches for underground gold, precious metals, treasures and cavities using three systems.",
+   "note": "new",
+   "gs": [
+    "https://gsdetectors.com/product/ger-detect-titan-400-smart-detector/"
+   ],
+   "dh": [
+    "https://detectorshub.com/products/ger-detect-titan-400-smart-detector"
+   ]
+  },
+  {
+   "cat": "longrange",
+   "name": "GER Deep Seeker",
+   "headline": "Five search systems in one",
+   "blurb": "Manufacturer states five search systems for precious metals, caves and ancient monuments.",
+   "note": "new",
+   "gs": [
+    "https://gsdetectors.com/product/deep-seeker-detector/"
+   ],
+   "dh": [
+    "https://detectorshub.com/products/ger-detect-deep-seeker"
+   ]
+  },
+  {
+   "cat": "longrange",
+   "name": "GER Titan GER 1000",
+   "headline": "A complete search station",
+   "blurb": "Manufacturer states five search systems in one unit for finding underground gold and treasures.",
+   "note": "new",
+   "gs": [
+    "https://gsdetectors.com/product/titan-ger-1000/"
+   ],
+   "dh": [
+    "https://detectorshub.com/products/ger-detect-titan-ger-1000-device"
+   ]
+  },
+  {
+   "cat": "longrange",
+   "name": "GER Easy Way Smart",
+   "headline": "Helps prospectors save time",
+   "blurb": "An improved GER Detect device made to help prospectors cut search time and distance.",
+   "note": "new",
+   "gs": [
+    "https://gsdetectors.com/product/easy-way-smart-detector/"
+   ],
+   "dh": [
+    "https://detectorshub.com/products/easy-way-smart-detector"
+   ]
+  },
+  {
+   "cat": "longrange",
+   "name": "UIG Pointer",
+   "headline": "Precious or not? Find out first",
+   "blurb": "Manufacturer states it can tell underground precious metals from non-precious ones.",
+   "note": "new",
+   "gs": [
+    "https://gsdetectors.com/product/ger-detect-uig-pointer-device/"
+   ],
+   "dh": [
+    "https://detectorshub.com/products/ger-detect-uig-pointer-device"
+   ]
+  },
+  {
+   "cat": "longrange",
+   "name": "UIG Watch Detector",
+   "headline": "A detector you wear",
+   "blurb": "An ultra-light device that the manufacturer states combines three detection and 3D imaging systems.",
+   "note": "new",
+   "gs": [
+    "https://gsdetectors.com/product/uig-watch-detector/"
+   ],
+   "dh": []
+  },
+  {
+   "cat": "longrange",
+   "name": "OKM Bionic X4",
+   "headline": "Long range with your smartphone",
+   "blurb": "Locates buried objects at long distance and shows their position on a cross-section, using an Android smartphone.",
+   "note": "new",
+   "gs": [
+    "https://gsdetectors.com/product/bionic-x4/"
+   ],
+   "dh": [
+    "https://detectorshub.com/products/okm-bionic-x4-metal-detector"
+   ]
+  },
+  {
+   "cat": "longrange",
+   "name": "OKM Delta Ranger",
+   "headline": "Smartphone treasure detector",
+   "blurb": "For serious treasure hunters and archaeologists.",
+   "note": "kept",
+   "gs": [
+    "https://gsdetectors.com/product/okm-delta-ranger/"
+   ],
+   "dh": []
+  },
+  {
+   "cat": "longrange",
+   "name": "OKM Delta Ranger Light",
+   "headline": "The lighter Delta Ranger",
+   "blurb": "The lighter Delta Ranger package: a smartphone-enabled treasure detector with interchangeable probes.",
+   "note": "new",
+   "gs": [],
+   "dh": [
+    "https://detectorshub.com/products/okm-delta-ranger-1"
+   ]
+  },
+  {
+   "cat": "longrange",
+   "name": "OKM Delta Ranger Professional",
+   "headline": "The complete Delta Ranger kit",
+   "blurb": "The professional Delta Ranger package with long-range detection and ground scan, run from a smartphone.",
+   "note": "new",
+   "gs": [
+    "https://gsdetectors.com/product/okm-delta-ranger-professional/"
+   ],
+   "dh": [
+    "https://detectorshub.com/products/okm-delta-ranger-professional"
+   ]
+  },
+  {
+   "cat": "longrange",
+   "name": "AKS LR-TR V2",
+   "headline": "Long-range treasure hunting",
+   "blurb": "Manufacturer states long-range scanning to find buried treasures.",
+   "note": "new",
+   "gs": [],
+   "dh": [
+    "https://detectorshub.com/products/aks-lr-tr-v2-long-range-detector"
+   ]
+  },
+  {
+   "cat": "longrange",
+   "name": "AKS Multi",
+   "headline": "Gold, silver and cavities",
+   "blurb": "Manufacturer states long-range detection of gold, silver and cavity targets.",
+   "note": "new",
+   "gs": [],
+   "dh": [
+    "https://detectorshub.com/products/aks-multi"
+   ]
+  },
+  {
+   "cat": "longrange",
+   "name": "AKS Pro",
+   "headline": "Made for gold treasure hunting",
+   "blurb": "A long-range device that the manufacturer states is designed for gold treasure hunting.",
+   "note": "new",
+   "gs": [],
+   "dh": [
+    "https://detectorshub.com/products/aks-pro"
+   ]
+  },
+  {
+   "cat": "longrange",
+   "name": "Klayzer GR Pro",
+   "headline": "Five systems for gold and treasure",
+   "blurb": "Manufacturer states five systems for finding gold, raw gold, metals and treasures.",
+   "note": "new",
+   "gs": [],
+   "dh": [
+    "https://detectorshub.com/products/klayzer-gr-pro"
+   ]
+  },
+  {
+   "cat": "scanner",
+   "name": "OKM eXp 7000 Professional Plus",
+   "headline": "OKM's top 3D ground scanner",
+   "blurb": "For big mining operations who want to find gold veins and small nuggets.",
+   "note": "kept",
+   "gs": [
+    "https://gsdetectors.com/product/okm-exp-7000-professional-plus/"
+   ],
+   "dh": [
+    "https://detectorshub.com/products/okm-exp-7000-professional-plus"
+   ]
+  },
+  {
+   "cat": "scanner",
+   "name": "OKM eXp 6000 Professional",
+   "headline": "Wireless 3D detector and scanner",
+   "blurb": "A wireless 3D metal detector and ground scanner for treasure hunters, detectorists and archaeologists.",
+   "note": "new",
+   "gs": [
+    "https://gsdetectors.com/product/okm-exp-6000-professional/"
+   ],
+   "dh": []
+  },
+  {
+   "cat": "scanner",
+   "name": "OKM eXp 6000 Professional Plus",
+   "headline": "With touchscreen and video glasses",
+   "blurb": "The eXp 6000 with a touchscreen and video eyeglasses for hands-on 3D scanning.",
+   "note": "new",
+   "gs": [
+    "https://gsdetectors.com/product/okm-exp-6000-professional-plus/"
+   ],
+   "dh": [
+    "https://detectorshub.com/products/okm-exp-6000-professional-metal-detector"
+   ]
+  },
+  {
+   "cat": "scanner",
+   "name": "OKM eXp 5500 Professional",
+   "headline": "Five sensors working together",
+   "blurb": "VLF detection plus 3D ground scanning, with five sensors that work at the same time.",
+   "note": "new",
+   "gs": [
+    "https://gsdetectors.com/product/okm-exp-5500-professional-metal-detector/"
+   ],
+   "dh": [
+    "https://detectorshub.com/products/okm-exp-5500-professional"
+   ]
+  },
+  {
+   "cat": "scanner",
+   "name": "OKM eXp 4500 Light",
+   "headline": "The essentials of 3D scanning",
+   "blurb": "OKM's 3D detector with the key modes: ground scan, pinpointer and mineral scan.",
+   "note": "new",
+   "gs": [
+    "https://gsdetectors.com/product/okm-exp-4500-light/"
+   ],
+   "dh": [
+    "https://detectorshub.com/products/okm-exp-4500-light"
+   ]
+  },
+  {
+   "cat": "scanner",
+   "name": "OKM eXp 4500 Professional",
+   "headline": "The all-round 3D detector",
+   "blurb": "OKM's all-rounder for natural gold, cavities and treasure hunting.",
+   "note": "new",
+   "gs": [
+    "https://gsdetectors.com/product/okm-exp-4500-professional/"
+   ],
+   "dh": [
+    "https://detectorshub.com/products/okm-exp-4500-professional-metal-detector"
+   ]
+  },
+  {
+   "cat": "scanner",
+   "name": "OKM eXp 4500 Professional Plus",
+   "headline": "The full eXp 4500",
+   "blurb": "Complete with all features and special antennas that also work in highly mineralized areas.",
+   "note": "new",
+   "gs": [
+    "https://gsdetectors.com/product/okm-exp-4500-professional-plus/"
+   ],
+   "dh": [
+    "https://detectorshub.com/products/okm-exp-4500-professional-plus"
+   ]
+  },
+  {
+   "cat": "scanner",
+   "name": "OKM Fusion Light (Standard / Lite)",
+   "headline": "The easiest start in 3D scanning",
+   "blurb": "Standard: for people who want to start treasure hunting with the complete package. Lite: for people who want the lightest, easiest start in treasure hunting.",
+   "note": "kept",
+   "gs": [
+    "https://gsdetectors.com/product/okm-fusion-light/"
+   ],
+   "dh": [
+    "https://detectorshub.com/products/okm-fusion-light"
+   ]
+  },
+  {
+   "cat": "scanner",
+   "name": "OKM Fusion Professional",
+   "headline": "Treasure detector with 3D software",
+   "blurb": "Compact treasure detector with Visualizer 3D software and a Windows tablet, for cavities and treasure hunting.",
+   "note": "new",
+   "gs": [
+    "https://gsdetectors.com/product/okm-fusion-professional/"
+   ],
+   "dh": [
+    "https://detectorshub.com/products/okm-fusion-professional"
+   ]
+  },
+  {
+   "cat": "scanner",
+   "name": "OKM Fusion Professional Plus",
+   "headline": "Scans upright and flat",
+   "blurb": "Scans in vertical and horizontal positions with 3D graphics, a sound magnetometer and live images.",
+   "note": "new",
+   "gs": [
+    "https://gsdetectors.com/product/okm-fusion-professional-plus/"
+   ],
+   "dh": [
+    "https://detectorshub.com/products/okm-fusion-professional-plus"
+   ]
+  },
+  {
+   "cat": "scanner",
+   "name": "OKM Evolution NTX",
+   "headline": "A 3D scanner at a friendly price",
+   "blurb": "A 3D ground scanner and detector in one, a great upgrade from a normal metal detector.",
+   "note": "new",
+   "gs": [
+    "https://gsdetectors.com/product/okm-evolution-ntx/"
+   ],
+   "dh": [
+    "https://detectorshub.com/products/okm-evolution-ntx"
+   ]
+  },
+  {
+   "cat": "scanner",
+   "name": "OKM Rover C4",
+   "headline": "Metal detector and 3D scanner",
+   "blurb": "For miners and treasure hunters who want to scan for big deposits like gold veins.",
+   "note": "kept",
+   "gs": [
+    "https://gsdetectors.com/product/okm-rover-c4/"
+   ],
+   "dh": [
+    "https://detectorshub.com/products/okm-rover-c4-3d-ground-scanner"
+   ]
+  },
+  {
+   "cat": "scanner",
+   "name": "OKM Rover UC",
+   "headline": "Looks like a walking stick",
+   "blurb": "A detector built like a walking stick for unnoticed treasure hunting, with 3D results.",
+   "note": "new",
+   "gs": [
+    "https://gsdetectors.com/product/okm-rover-uc/"
+   ],
+   "dh": [
+    "https://detectorshub.com/products/okm-rover-uc"
+   ]
+  },
+  {
+   "cat": "scanner",
+   "name": "OKM Gepard GPR 3D",
+   "headline": "Ground radar for professionals",
+   "blurb": "For companies and professionals who need to map what is underground, like for construction.",
+   "note": "kept",
+   "gs": [
+    "https://gsdetectors.com/product/okm-gepard-gpr-3d/"
+   ],
+   "dh": [
+    "https://detectorshub.com/products/okm-gepard-gpr-3d"
+   ]
+  },
+  {
+   "cat": "scanner",
+   "name": "KS Analysis KS-800",
+   "headline": "Professional ground radar",
+   "blurb": "Ground radar for archaeology, building work and treasure hunting, with software for continuous scans.",
+   "note": "new",
+   "gs": [
+    "https://gsdetectors.com/product/ks-800-professional-grounding-radar/"
+   ],
+   "dh": [
+    "https://detectorshub.com/products/ks-800-professional-grounding-radar"
+   ]
+  },
+  {
+   "cat": "scanner",
+   "name": "KS Analysis KS-700",
+   "headline": "Portable ground radar",
+   "blurb": "Portable, battery-powered radar with on-site 2D and 3D analysis, simple to use.",
+   "note": "new",
+   "gs": [],
+   "dh": [
+    "https://detectorshub.com/products/ks-700"
+   ]
+  },
+  {
+   "cat": "scanner",
+   "name": "Nokta Deephunter 3D",
+   "headline": "Treasures, cavities and coins in one",
+   "blurb": "Finds buried treasures, cavities and single coins in one device, with 3D imaging.",
+   "note": "new",
+   "gs": [
+    "https://gsdetectors.com/product/deephunter-3d/"
+   ],
+   "dh": []
+  },
+  {
+   "cat": "scanner",
+   "name": "Nokta Deephunter 3D Pro",
+   "headline": "The Pro Deephunter",
+   "blurb": "The Pro package of the Deephunter 3D for treasures, cavities and coins in one device.",
+   "note": "new",
+   "gs": [],
+   "dh": [
+    "https://detectorshub.com/products/nokta-makro-deephunter-3d-metal-detector"
+   ]
+  },
+  {
+   "cat": "scanner",
+   "name": "Nokta Jeohunter 3D Dual System",
+   "headline": "Metal and cavity detection",
+   "blurb": "Nokta's dual system for finding both metal and cavities, with 3D imaging.",
+   "note": "new",
+   "gs": [
+    "https://gsdetectors.com/product/nokta-makro-jeohunter-3d-dual-system/"
+   ],
+   "dh": [
+    "https://detectorshub.com/products/nokta-makro-jeohunter-3d-dual-system"
+   ]
+  },
+  {
+   "cat": "scanner",
+   "name": "UIG Ground Scanner 3D",
+   "headline": "Live 3D images of the ground",
+   "blurb": "Gives live scans and 3D ground images to show what may be buried.",
+   "note": "new",
+   "gs": [
+    "https://gsdetectors.com/product/uig-ground-scanner-3d-metal-detector/"
+   ],
+   "dh": [
+    "https://detectorshub.com/products/uig-ground-scanner-3d-metal-detector"
+   ]
+  },
+  {
+   "cat": "scanner",
+   "name": "Tero Vido 3D System",
+   "headline": "3D system with digital pinpointer",
+   "blurb": "3D scanning with a digital pinpointer to find the exact spot of buried objects and artifacts.",
+   "note": "new",
+   "gs": [
+    "https://gsdetectors.com/product/tero-vido-3d-system/"
+   ],
+   "dh": [
+    "https://detectorshub.com/products/tero-vido-3d-system-3d-scanning-metal-detector"
+   ]
+  },
+  {
+   "cat": "scanner",
+   "name": "Tero Vido Expander",
+   "headline": "Extendable probe for the field",
+   "blurb": "The Tero Vido with an extendable probe (50 to 90 cm), more practical for field use.",
+   "note": "new",
+   "gs": [
+    "https://gsdetectors.com/product/tero-vido-expander/"
+   ],
+   "dh": [
+    "https://detectorshub.com/products/tero-vido-expander"
+   ]
+  },
+  {
+   "cat": "scanner",
+   "name": "Conrad GR-3 Plus",
+   "headline": "3D scanner for buried treasure",
+   "blurb": "A 3D ground scanner that helps you find buried treasures such as gold coins and jewelry.",
+   "note": "new",
+   "gs": [
+    "https://gsdetectors.com/product/conrad-gr-3-plus/"
+   ],
+   "dh": []
+  },
+  {
+   "cat": "scanner",
+   "name": "Mega Gold Star 3D Scanner",
+   "headline": "Professional 3D scanning",
+   "blurb": "Part of Mega Detecting's professional line, with 3D scanning tools for treasure hunters.",
+   "note": "new",
+   "gs": [],
+   "dh": [
+    "https://detectorshub.com/products/gold-star-3d-scanner"
+   ]
+  },
+  {
+   "cat": "water",
+   "name": "GER River-F Smart",
+   "headline": "Start your borewell search",
+   "blurb": "For small groups who want to start looking for borewell locations.",
+   "note": "kept",
+   "gs": [
+    "https://gsdetectors.com/product/river-f-smart-detector/"
+   ],
+   "dh": [
+    "https://detectorshub.com/products/river-f-smart-detector"
+   ]
+  },
+  {
+   "cat": "water",
+   "name": "GER River-F Plus",
+   "headline": "Long-range water finder",
+   "blurb": "Manufacturer states long-range detection for finding wells and underground water.",
+   "note": "new",
+   "gs": [],
+   "dh": [
+    "https://detectorshub.com/products/ger-detect-river-f-plus-device-water-detector"
+   ]
+  },
+  {
+   "cat": "water",
+   "name": "GER Fresh Result 2",
+   "headline": "Two systems for groundwater",
+   "blurb": "For small and big groups who want to find underground water for borewells.",
+   "note": "kept",
+   "gs": [
+    "https://gsdetectors.com/product/fresh-result-2-system-device-ground-water-detector/"
+   ],
+   "dh": [
+    "https://detectorshub.com/products/fresh-result-2-systems-plus-device-ground-water-detector"
+   ]
+  },
+  {
+   "cat": "water",
+   "name": "GER Fresh Result 1",
+   "headline": "Long-range water search",
+   "blurb": "Manufacturer states a long-range system to find underground water, with selectable search range.",
+   "note": "new",
+   "gs": [],
+   "dh": [
+    "https://detectorshub.com/products/fresh-result-1-system-device-ground-water-detector"
+   ]
+  },
+  {
+   "cat": "water",
+   "name": "GER River G",
+   "headline": "Three systems for big water projects",
+   "blurb": "For big mining companies who need to find water.",
+   "note": "kept",
+   "gs": [
+    "https://gsdetectors.com/product/river-g-device/"
+   ],
+   "dh": [
+    "https://detectorshub.com/products/river-g-device-water-detector"
+   ]
+  },
+  {
+   "cat": "water",
+   "name": "OKM GeoSeeker",
+   "headline": "Measures the ground to find water",
+   "blurb": "For big mining companies who need to find water.",
+   "note": "kept",
+   "gs": [
+    "https://gsdetectors.com/product/okm-geoseeker/"
+   ],
+   "dh": [
+    "https://detectorshub.com/products/okm-geoseeker-water-detector"
+   ]
+  },
+  {
+   "cat": "water",
+   "name": "OKM GeoSeeker Mini",
+   "headline": "Compact water and cavity detector",
+   "blurb": "A smaller GeoSeeker that measures ground resistance to look for water and cavities.",
+   "note": "new",
+   "gs": [
+    "https://gsdetectors.com/product/okm-geoseeker-mini/"
+   ],
+   "dh": [
+    "https://detectorshub.com/products/okm-geoseeker-mini"
+   ]
+  },
+  {
+   "cat": "gems",
+   "name": "GER Diamond Hunter Smart",
+   "headline": "Long-range diamond and gem search",
+   "blurb": "Manufacturer states three systems for diamond detection, gemstone selection and target analysis.",
+   "note": "new",
+   "gs": [
+    "https://gsdetectors.com/product/diamond-hunter-smart-detector/"
+   ],
+   "dh": [
+    "https://detectorshub.com/products/diamond-hunter-smart-detector",
+    "https://detectorshub.com/products/ger-detect-diamond-hunter-device"
+   ]
+  },
+  {
+   "cat": "gems",
+   "name": "GER Titan GER 500 (Diamond)",
+   "headline": "Long-range diamond locator",
+   "blurb": "Manufacturer states a long-range system for locating diamonds and gemstones underground.",
+   "note": "new",
+   "gs": [],
+   "dh": [
+    "https://detectorshub.com/products/ger-detect-titan-ger-500-diamond-detector"
+   ]
+  },
+  {
+   "cat": "gems",
+   "name": "Presidium Multi Tester III",
+   "headline": "Diamond or moissanite? Know instantly",
+   "blurb": "Pocket-size tester that uses thermal and electrical properties to tell diamonds from moissanite.",
+   "note": "new",
+   "gs": [
+    "https://gsdetectors.com/product/presidium-multi-tester-iii/"
+   ],
+   "dh": [
+    "https://detectorshub.com/products/presidium-multi-tester-iii"
+   ]
+  },
+  {
+   "cat": "gems",
+   "name": "Presidium Diamond Mate A/C",
+   "headline": "A quick diamond check",
+   "blurb": "Checks if a diamond is real using its thermal properties. Runs on batteries or a rechargeable pack.",
+   "note": "new",
+   "gs": [
+    "https://gsdetectors.com/product/presidium-diamond-mate-a-c/"
+   ],
+   "dh": [
+    "https://detectorshub.com/products/presidium-diamond-mate-a-c"
+   ]
+  },
+  {
+   "cat": "gems",
+   "name": "Presidium Gem Tester II",
+   "headline": "Diamonds plus 16 gemstones",
+   "blurb": "Identifies diamonds, moissanite and 16 colored gemstones using thermal conductivity.",
+   "note": "new",
+   "gs": [],
+   "dh": [
+    "https://detectorshub.com/products/presidium-gem-tester-ii"
+   ]
+  },
+  {
+   "cat": "security",
+   "name": "Garrett PD 6500i",
+   "headline": "Trusted walk-through for high security",
+   "blurb": "Walk-through detector with precise pinpointing for airports, government buildings and high-security sites.",
+   "note": "new",
+   "gs": [
+    "https://gsdetectors.com/product/pd-6500i-walk-through-metal-detector/"
+   ],
+   "dh": [
+    "https://detectorshub.com/products/garrett-pd6500i-walk-through-metal-detector"
+   ]
+  },
+  {
+   "cat": "security",
+   "name": "Garrett Multi Zone",
+   "headline": "20 zones show where the metal is",
+   "blurb": "Walk-through detector whose 20 zones show exactly where one or more objects are, for busy entrances.",
+   "note": "new",
+   "gs": [
+    "https://gsdetectors.com/product/garrett-multi-zone-walk-through-metal-detector/"
+   ],
+   "dh": [
+    "https://detectorshub.com/products/garrett-multi-zone-walk-through-metal-detector"
+   ]
+  },
+  {
+   "cat": "security",
+   "name": "Garrett Paragon",
+   "headline": "Fast screening for big crowds",
+   "blurb": "Dual-sided walk-through detector built to screen many people quickly and accurately.",
+   "note": "new",
+   "gs": [
+    "https://gsdetectors.com/product/garrett-paragon-walk-through-metal-detector/"
+   ],
+   "dh": [
+    "https://detectorshub.com/products/garrett-paragon-walk-through-detector"
+   ]
+  },
+  {
+   "cat": "security",
+   "name": "Garrett Super Scanner V",
+   "headline": "The classic hand-held scanner",
+   "blurb": "Hand-held scanner with sound or silent vibration alerts and long battery life, for security staff.",
+   "note": "new",
+   "gs": [
+    "https://gsdetectors.com/product/super-scanner-v-hand-held-metal-detector/"
+   ],
+   "dh": [
+    "https://detectorshub.com/products/garrett-super-scanner-v-handheld-metal-detector"
+   ]
+  },
+  {
+   "cat": "security",
+   "name": "Garrett SuperWand",
+   "headline": "360-degree hand-held scanning",
+   "blurb": "Hand-held scanner with a 360-degree detection field for fast, accurate screening.",
+   "note": "new",
+   "gs": [
+    "https://gsdetectors.com/product/superwand-hand-held-metal-detector/"
+   ],
+   "dh": [
+    "https://detectorshub.com/products/garrett-superwand-handheld-metal-detector"
+   ]
+  },
+  {
+   "cat": "security",
+   "name": "Garrett Guide",
+   "headline": "Simple, smart hand-held screening",
+   "blurb": "Next-generation hand-held scanner with one-button use for professional security checks.",
+   "note": "new",
+   "gs": [
+    "https://gsdetectors.com/product/garrett-guide-hand-held-security-metal-detector/"
+   ],
+   "dh": [
+    "https://detectorshub.com/products/garrett-guide"
+   ]
+  },
+  {
+   "cat": "security",
+   "name": "Nokta Ultra Scanner (and Pro)",
+   "headline": "Hand-held scanner for public places",
+   "blurb": "Nokta's hand-held scanner for security checks in everyday public places.",
+   "note": "new",
+   "gs": [
+    "https://gsdetectors.com/product/ultra-scanner-hand-held-metal-detector/"
+   ],
+   "dh": [
+    "https://detectorshub.com/products/nokta-ultra-scanner-hand-held-metal-detector"
+   ]
+  },
+  {
+   "cat": "security",
+   "name": "Eagle Eye RJX6550 X-Ray Luggage Scanner",
+   "headline": "See inside bags without opening them",
+   "blurb": "X-ray scanner that checks bags and parcels quickly without unpacking them.",
+   "note": "new",
+   "gs": [
+    "https://gsdetectors.com/product/rjx6550-x-ray-luggage-scanner/"
+   ],
+   "dh": [
+    "https://detectorshub.com/products/rjx6550-x-ray-luggage-scanner"
+   ]
+  },
+  {
+   "cat": "security",
+   "name": "Under Vehicle Inspection Mirror",
+   "headline": "Look under vehicles safely",
+   "blurb": "Lets you check under cars, buses and machinery while standing upright.",
+   "note": "new",
+   "gs": [
+    "https://gsdetectors.com/product/under-vehicle-inspection-mirror/"
+   ],
+   "dh": [
+    "https://detectorshub.com/products/under-vehicle-inspection-mirror"
+   ]
+  },
+  {
+   "cat": "security",
+   "name": "Garrett Super Scanner",
+   "headline": "Not on either website yet",
+   "blurb": "Waiting for its product page or details before writing a blurb.",
+   "note": "missing",
+   "gs": [],
+   "dh": []
+  },
+  {
+   "cat": "xrf",
+   "name": "Niton XL2",
+   "headline": "Simple point-and-shoot XRF",
+   "blurb": "Thermo's value-choice Niton analyzer with point-and-shoot simplicity for checking metals and gold.",
+   "note": "new",
+   "gs": [
+    "https://gsdetectors.com/product/niton-xl2-xrf-analyzer-2/"
+   ],
+   "dh": [
+    "https://detectorshub.com/products/niton-xl2-xrf-analyzer"
+   ]
+  },
+  {
+   "cat": "xrf",
+   "name": "Niton XL2 980 GOLDD",
+   "headline": "XL2 with GOLDD technology",
+   "blurb": "XL2 series analyzer, sealed for tough conditions, for precious metal testing.",
+   "note": "new",
+   "gs": [
+    "https://gsdetectors.com/product/niton-xl2-980-goldd-xrf-analyzer/"
+   ],
+   "dh": []
+  },
+  {
+   "cat": "xrf",
+   "name": "Niton XL2 Plus",
+   "headline": "Versatile handheld XRF",
+   "blurb": "Handheld XRF for metals, mining, precious metals and material checks.",
+   "note": "new",
+   "gs": [
+    "https://gsdetectors.com/product/niton-xl2-plus-xrf-analyzer/"
+   ],
+   "dh": []
+  },
+  {
+   "cat": "xrf",
+   "name": "Niton XL3t GOLDD+",
+   "headline": "For the most demanding analysis",
+   "blurb": "X-ray tube XRF analyzer with GOLDD+ technology, built for demanding jobs.",
+   "note": "new",
+   "gs": [
+    "https://gsdetectors.com/product/niton-xl3t-goldd-xrf-analyzer/"
+   ],
+   "dh": []
+  },
+  {
+   "cat": "xrf",
+   "name": "Niton XL5 Plus",
+   "headline": "Small, light and powerful",
+   "blurb": "Light, compact handheld XRF with strong performance, even for light elements.",
+   "note": "new",
+   "gs": [
+    "https://gsdetectors.com/product/niton-xl5-plus-handheld-xrf-analyzer/"
+   ],
+   "dh": []
+  },
+  {
+   "cat": "xrf",
+   "name": "Niton DXL Precious Metal Analyzer",
+   "headline": "Gold testing at the shop counter",
+   "blurb": "Accurate, fast precious metal analyzer designed for shops.",
+   "note": "new",
+   "gs": [
+    "https://gsdetectors.com/product/niton-dxl-precious-metal-analyzer/"
+   ],
+   "dh": [
+    "https://detectorshub.com/products/niton-dxl-precious-metal-analyzer"
+   ]
+  },
+  {
+   "cat": "xrf",
+   "name": "Vanta Element",
+   "headline": "Fast, rugged alloy checks",
+   "blurb": "Rugged handheld XRF that gives fast, precise alloy identification.",
+   "note": "new",
+   "gs": [
+    "https://gsdetectors.com/product/vanta-element-handheld-xrf-analyzer/"
+   ],
+   "dh": [
+    "https://detectorshub.com/products/vanta-element-handheld-xrf-analyzer"
+   ]
+  },
+  {
+   "cat": "mining",
+   "name": "Drywasher",
+   "headline": "Large-capacity dry washer",
+   "blurb": "Recovers gold from dry ground. Built for capacity and durability.",
+   "note": "new",
+   "gs": [
+    "https://gsdetectors.com/product/drywasher/"
+   ],
+   "dh": []
+  },
+  {
+   "cat": "mining",
+   "name": "Highbanker",
+   "headline": "54-inch sluice for creeks",
+   "blurb": "Ultra-wide sluice box with everything you need for gold recovery in creeks and streams.",
+   "note": "new",
+   "gs": [
+    "https://gsdetectors.com/product/highbanker/"
+   ],
+   "dh": []
+  },
+  {
+   "cat": "accessories",
+   "name": "Minelab 11-inch Double-D Commander Coil",
+   "headline": "A balanced all-round coil",
+   "blurb": "Stable on all ground types, with a good balance of sensitivity. For Minelab GPX, GP and SD detectors.",
+   "note": "new",
+   "gs": [
+    "https://gsdetectors.com/product/11-inch-double-d-commander-coil/"
+   ],
+   "dh": [
+    "https://detectorshub.com/products/11-inch-double-d-commander-coil"
+   ]
+  },
+  {
+   "cat": "accessories",
+   "name": "Minelab 11-inch Monoloop Commander Coil",
+   "headline": "Sensitive to small nuggets",
+   "blurb": "Very sensitive to small gold nuggets and covers more ground than the 8-inch. For GPX, GP and SD detectors.",
+   "note": "new",
+   "gs": [
+    "https://gsdetectors.com/product/11-inch-monoloop-commander-coil/"
+   ],
+   "dh": [
+    "https://detectorshub.com/products/11-inch-monoloop-commander-coil"
+   ]
+  },
+  {
+   "cat": "accessories",
+   "name": "Minelab 15 x 12-inch Double-D Commander Coil",
+   "headline": "Covers more ground",
+   "blurb": "Covers more ground than the 11-inch DD and suits larger gold. For Minelab GPX detectors.",
+   "note": "new",
+   "gs": [
+    "https://gsdetectors.com/product/15-x-12-inch-double-d-commander-coil/"
+   ],
+   "dh": []
+  },
+  {
+   "cat": "accessories",
+   "name": "Minelab 15 x 12-inch Monoloop Commander Coil",
+   "headline": "Big coil, still sensitive",
+   "blurb": "Covers more ground while staying sensitive to small nuggets. For Minelab GPX detectors.",
+   "note": "new",
+   "gs": [
+    "https://gsdetectors.com/product/15-x-12-inch-monoloop-commander-coil/"
+   ],
+   "dh": []
+  },
+  {
+   "cat": "accessories",
+   "name": "Minelab GPZ 14-inch Search Coil",
+   "headline": "Replacement coil for GPZ 7000",
+   "blurb": "14-inch replacement coil for the GPZ 7000, with coil cover included.",
+   "note": "new",
+   "gs": [
+    "https://gsdetectors.com/product/minelab-14-search-coil-for-gpz-7000/"
+   ],
+   "dh": []
+  },
+  {
+   "cat": "accessories",
+   "name": "Minelab GPZ 19 x 18 Super-D Coil",
+   "headline": "53% more coverage for GPZ 7000",
+   "blurb": "A larger coil that covers 53% more area than the GPZ 14, so you search more ground.",
+   "note": "new",
+   "gs": [
+    "https://gsdetectors.com/product/minelab-gpz-7000-19-x-18-super-d-search-coil/"
+   ],
+   "dh": [
+    "https://detectorshub.com/products/minelab-19-x-18-super-d-search-coil-for-gpz-7000"
+   ]
+  },
+  {
+   "cat": "accessories",
+   "name": "Minelab Gold Monster GM10 Coil",
+   "headline": "For open ground",
+   "blurb": "Elliptical Double-D coil for the Gold Monster 1000 that covers more ground in open areas.",
+   "note": "new",
+   "gs": [
+    "https://gsdetectors.com/product/gold-monster-10-double-d-gm-10-coil/"
+   ],
+   "dh": [
+    "https://detectorshub.com/products/minelab-gold-monster-10-6-inch-double-d-gm-10-coil"
+   ]
+  },
+  {
+   "cat": "accessories",
+   "name": "Minelab Gold Monster GM05 Coil",
+   "headline": "For tight spots",
+   "blurb": "Small Double-D coil for the Gold Monster 1000, made for tight spaces.",
+   "note": "new",
+   "gs": [
+    "https://gsdetectors.com/product/gold-monster-5-inch-double-d-gm-05-coil/"
+   ],
+   "dh": [
+    "https://detectorshub.com/products/minelab-gold-monster-5-inch-double-d-gm-05-coil"
+   ]
+  },
+  {
+   "cat": "accessories",
+   "name": "Coiltek 22 Goldstalker DD",
+   "headline": "Large coil for wide coverage",
+   "blurb": "A favourite of serious prospectors and cache hunters for wide coverage.",
+   "note": "new",
+   "gs": [
+    "https://gsdetectors.com/product/coiltek-22-goldstalker-dd/"
+   ],
+   "dh": []
+  },
+  {
+   "cat": "accessories",
+   "name": "Blackdog Max Deep Coils",
+   "headline": "Bigger coils for major brands",
+   "blurb": "Blackdog coils that fit major detector brands and increase the search area.",
+   "note": "new",
+   "gs": [
+    "https://gsdetectors.com/product/blackdog-max-deep-coils/"
+   ],
+   "dh": []
+  },
+  {
+   "cat": "accessories",
+   "name": "Blackdog 13-inch Max Coil for ACE Apex",
+   "headline": "Upgrade coil for the ACE Apex",
+   "blurb": "A 33 x 33 cm DD Blackdog coil made for the Garrett ACE Apex.",
+   "note": "new",
+   "gs": [
+    "https://gsdetectors.com/product/garrett-ace-apex-blackdog-max-coil-33-x-33cm-dd/"
+   ],
+   "dh": [
+    "https://detectorshub.com/products/blackdog-max-coil-33-x-33cm-dd"
+   ]
+  },
+  {
+   "cat": "accessories",
+   "name": "Detech 13-inch Ultimate Coil for ACE Apex",
+   "headline": "Sharper targeting for the ACE Apex",
+   "blurb": "13-inch DD coil with better sensitivity, targeting and ground balance for the ACE Apex.",
+   "note": "new",
+   "gs": [
+    "https://gsdetectors.com/product/detech-ultimate-13%e2%80%b3-search-coil-for-garrett-ace-apex/"
+   ],
+   "dh": [
+    "https://detectorshub.com/products/detech-ultimate-13-search-coil-for-garrett-ace-apex"
+   ]
+  },
+  {
+   "cat": "accessories",
+   "name": "Nokta IM45 Waterproof DD Coil",
+   "headline": "Large waterproof coil for Impact",
+   "blurb": "Waterproof 39 x 45 cm DD coil for the Nokta Impact.",
+   "note": "new",
+   "gs": [],
+   "dh": [
+    "https://detectorshub.com/products/nokta-im45-waterproof-dd-search-coil-39-45-cm-15-x17-5"
+   ]
+  },
+  {
+   "cat": "accessories",
+   "name": "Nokta PulseDive 8-inch Coil",
+   "headline": "Replacement PulseDive coil",
+   "blurb": "8-inch replacement coil for the Nokta PulseDive scuba detector.",
+   "note": "new",
+   "gs": [],
+   "dh": [
+    "https://detectorshub.com/products/copy-of-nokta-makro-pusledive-scuba-detector-8-coil-black",
+    "https://detectorshub.com/products/nokta-makro-pusledive-scuba-detector-8-coil-yellow"
+   ]
+  },
+  {
+   "cat": "accessories",
+   "name": "Garrett Pro-Pointer AT",
+   "headline": "Waterproof pinpointer",
+   "blurb": "Submersible pinpointer with three sensitivity levels for small targets like gold nuggets.",
+   "note": "new",
+   "gs": [
+    "https://gsdetectors.com/product/pro-pointer-at-pinpointing-metal-detector/"
+   ],
+   "dh": [
+    "https://detectorshub.com/products/garrett-pro-pointer®-at-pinpointing-metal-detector"
+   ]
+  },
+  {
+   "cat": "accessories",
+   "name": "Quest XPointer",
+   "headline": "Tough, water-safe pinpointer",
+   "blurb": "Finds your target fast after you dig, on land or in water.",
+   "note": "new",
+   "gs": [
+    "https://gsdetectors.com/product/quest-xpointer/"
+   ],
+   "dh": []
+  },
+  {
+   "cat": "accessories",
+   "name": "Quest XPointer Pro",
+   "headline": "Pinpointer for diving",
+   "blurb": "Submersible pinpointer for saltwater diving, with a light rechargeable battery.",
+   "note": "new",
+   "gs": [
+    "https://gsdetectors.com/product/quest-xpointer-pro/"
+   ],
+   "dh": []
+  },
+  {
+   "cat": "accessories",
+   "name": "Quest XPointer MAX",
+   "headline": "Pinpointer for shore and surf",
+   "blurb": "For searching beaches and light diving in the surf.",
+   "note": "new",
+   "gs": [],
+   "dh": [
+    "https://detectorshub.com/products/quest-x-pointer-max"
+   ]
+  },
+  {
+   "cat": "accessories",
+   "name": "Garrett Rechargeable Battery Kit (110V)",
+   "headline": "Recharge your hand-held",
+   "blurb": "Rechargeable battery kit for Garrett hand-held detectors.",
+   "note": "new",
+   "gs": [
+    "https://gsdetectors.com/product/garrett-rechargeable-battery-kit-110v/"
+   ],
+   "dh": []
+  },
+  {
+   "cat": "accessories",
+   "name": "Super Scanner V Rechargeable Battery Kit",
+   "headline": "Charge without removing the battery",
+   "blurb": "Ni-MH battery kit for the Super Scanner V that charges with the battery inside.",
+   "note": "new",
+   "gs": [],
+   "dh": [
+    "https://detectorshub.com/products/rechargeable-battery-kit-super-scanner®v-accessories"
+   ]
+  },
+  {
+   "cat": "accessories",
+   "name": "SuperWand & THD Battery Kits",
+   "headline": "Battery kits for SuperWand",
+   "blurb": "Rechargeable Ni-MH battery kits for SuperWand and THD scanners, 110V or 220V.",
+   "note": "new",
+   "gs": [],
+   "dh": [
+    "https://detectorshub.com/products/superwand®-and-thd™-accessories"
+   ]
+  },
+  {
+   "cat": "accessories",
+   "name": "Gold Monster 1000 Charger",
+   "headline": "Charge from any wall socket",
+   "blurb": "Charges the Gold Monster battery from any normal wall socket.",
+   "note": "new",
+   "gs": [
+    "https://gsdetectors.com/product/gold-monster-1000-charger/"
+   ],
+   "dh": []
+  },
+  {
+   "cat": "accessories",
+   "name": "Gold Monster 1000 Wired Headphones",
+   "headline": "Plug-in headphones",
+   "blurb": "Wired headphones for any standard 3.5 mm jack.",
+   "note": "new",
+   "gs": [
+    "https://gsdetectors.com/product/gold-monster-1000-wired-headphones/"
+   ],
+   "dh": []
+  },
+  {
+   "cat": "accessories",
+   "name": "Gold Monster 1000 Lithium-Ion Battery",
+   "headline": "Spare power for Gold Monster",
+   "blurb": "Rechargeable lithium-ion battery for the Gold Monster 1000.",
+   "note": "new",
+   "gs": [
+    "https://gsdetectors.com/product/lithium-ion-battery-gold-monster-1000/"
+   ],
+   "dh": []
+  },
+  {
+   "cat": "accessories",
+   "name": "Minelab GPZ 7000 7.2V Battery",
+   "headline": "Never stop early",
+   "blurb": "Spare rechargeable battery for the GPZ 7000.",
+   "note": "new",
+   "gs": [
+    "https://gsdetectors.com/product/minelab-7-2v-lithium-ion-rechargeable-battery-for-gpz-7000/"
+   ],
+   "dh": []
+  },
+  {
+   "cat": "accessories",
+   "name": "Minelab BC 10 Base Charger",
+   "headline": "Fast charger for GPZ and CTX",
+   "blurb": "Fast base charger for GPZ 7000 and CTX 3030 batteries.",
+   "note": "new",
+   "gs": [],
+   "dh": [
+    "https://detectorshub.com/products/minelab-bc-10-base-battery-charger-gpz-7000-ctx-3030"
+   ]
+  },
+  {
+   "cat": "accessories",
+   "name": "Minelab GPX Lithium-Ion Battery",
+   "headline": "Light battery for GPX",
+   "blurb": "Light lithium-ion battery for GPX 4500, 4800 and 5000.",
+   "note": "new",
+   "gs": [
+    "https://gsdetectors.com/product/minelab-lithium-ion-battery-gpx-series/"
+   ],
+   "dh": []
+  },
+  {
+   "cat": "accessories",
+   "name": "SDC 2300 Rechargeable Battery",
+   "headline": "Spare SDC 2300 battery",
+   "blurb": "Rechargeable battery for the SDC 2300.",
+   "note": "new",
+   "gs": [
+    "https://gsdetectors.com/product/sdc-2300-rechargeable-battery/"
+   ],
+   "dh": []
+  },
+  {
+   "cat": "accessories",
+   "name": "SDC 2300 Battery Charger",
+   "headline": "Portable smart charger",
+   "blurb": "Light, portable smart charger for SDC 2300 batteries.",
+   "note": "new",
+   "gs": [
+    "https://gsdetectors.com/product/sdc-2300-replacement-battery-charger/"
+   ],
+   "dh": [
+    "https://detectorshub.com/products/minelab-sdc-2300-replacement-battery-charger"
+   ]
+  },
+  {
+   "cat": "accessories",
+   "name": "SDC 2300 Carry Bag",
+   "headline": "Carry and store your SDC",
+   "blurb": "Carry bag for easy transport and storage of the SDC 2300.",
+   "note": "new",
+   "gs": [
+    "https://gsdetectors.com/product/sdc-carry-bag-black/"
+   ],
+   "dh": []
+  },
+  {
+   "cat": "accessories",
+   "name": "SDC 2300 Koss Waterproof Headphones",
+   "headline": "Waterproof headphones",
+   "blurb": "Waterproof Koss headphones for the SDC 2300.",
+   "note": "new",
+   "gs": [
+    "https://gsdetectors.com/product/waterproof-sdc-2300-koss-headphones/"
+   ],
+   "dh": []
+  },
+  {
+   "cat": "accessories",
+   "name": "Minelab WM 12 Wireless Audio Module",
+   "headline": "Wireless sound for CTX and GPZ",
+   "blurb": "Wireless audio module for the CTX 3030 and GPZ 7000.",
+   "note": "new",
+   "gs": [
+    "https://gsdetectors.com/product/wm-12-wireless-audio-module/"
+   ],
+   "dh": [
+    "https://detectorshub.com/products/minelab-wm-12-wireless-module"
+   ]
+  }
+ ]
+}
