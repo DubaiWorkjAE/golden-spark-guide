@@ -7,7 +7,7 @@
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}</style>
 <script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
 <script defer src="/_vercel/insights/script.js"></script>
-<script>window.GS_VIDEOS = {"titan-500-smart-device":{"src":"test-videos/titan-500-smart.mp4","poster":"test-videos/titan-500-smart.webp"},"eagle-eye-rjx6550":{"src":"test-videos/rjx6550-luggage.mp4","poster":"test-videos/rjx6550-luggage.webp"}}; window.GS_PHOTOS = {"titan-500-smart-device":"test-videos/titan-500-photo.webp","eagle-eye-rjx6550":"test-videos/rjx6550-photo.webp"};</script>
+<script>window.GS_VIDEOS = {"titan-500-smart-device":{"src":"test-videos/titan-500-smart.mp4","poster":"test-videos/titan-500-smart.webp"},"eagle-eye-rjx6550":{"src":"test-videos/rjx6550-luggage.mp4","poster":"test-videos/rjx6550-luggage.webp"}}; window.GS_PHOTOS = {};</script>
 <title>Golden Spark Detector Guide</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@29.5.4/dist/js/intlTelInputWithUtils.min.js"></script>
@@ -220,6 +220,39 @@ html[lang="ar"] .step h2 { font-family: var(--arabic); }
 html[lang="ar"] .finder-send { font-family: var(--arabic); }
 @media (min-width: 640px) { .opt-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } .step { padding: 20px; } }
 @media (min-width: 1024px) { .opt-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+/* Image placeholders: fixed shape per area, empty until an image is added (IMAGES list) */
+.slot { position: relative; display: block; width: 100%; max-width: 100%; aspect-ratio: var(--ar); overflow: hidden; border-radius: 12px; background: var(--ph); }
+.slot img { position: absolute; inset: 0; width: 100%; height: 100%; display: block; transition: transform 1.2s cubic-bezier(.2, .7, .2, 1); }
+.slot-product { background: #FFFFFF; }
+.slot-empty { position: absolute; inset: 0; border: 1px dashed var(--ph-line); border-radius: inherit; display: grid; place-content: center; justify-items: center; gap: 2px; padding: 6px; text-align: center; color: var(--muted); font-size: 12px; font-weight: 600; line-height: 1.3; }
+.slot-empty small { font-size: 11px; font-weight: 500; }
+.tile:hover .slot img, .cat:hover .slot img, .pic-card:hover .slot img, .slot-main:hover img { transform: scale(1.05); }
+.only-wide { display: none !important; }
+@media (min-width: 768px) { .only-wide { display: block !important; } .only-narrow { display: none !important; } }
+/* Hero: banner behind the text (1920 x 700 on desktop, 900 x 1200 on phones) */
+.hero { position: relative; overflow: hidden; display: grid; align-items: end; min-height: calc(100vw * 1200 / 900); }
+.hero-banner { position: absolute; inset: 0; }
+.hero-banner .slot, .hero-pic, .hero-pic img { position: absolute; inset: 0; width: 100%; height: 100%; aspect-ratio: auto; border-radius: 0; }
+.hero-banner .slot { background: #3A3E66; }
+.hero-banner .slot-empty { border-color: #6C70A0; color: #D5D7E8; place-content: start end; justify-items: end; padding: 14px; }
+.hero-banner.has-img::after { content: ""; position: absolute; inset: 0; background: linear-gradient(0deg, rgba(38, 41, 72, .9) 0%, rgba(38, 41, 72, .55) 50%, rgba(38, 41, 72, .1) 100%); }
+.hero .wrap { width: 100%; z-index: 1; }
+@media (min-width: 768px) {
+  .hero { min-height: min(calc(100vw * 700 / 1920), 700px); align-items: center; }
+  .hero-banner.has-img::after { background: linear-gradient(90deg, rgba(38, 41, 72, .9) 0%, rgba(38, 41, 72, .55) 50%, rgba(38, 41, 72, .1) 100%); }
+}
+/* Category thumbnails (4:3), promo banner, subcategory images */
+.cat > .slot { flex: 0 0 104px; width: 104px; border-radius: 10px; }
+.cat > .slot .slot-name, .type .slot .slot-name { display: none; }
+.promo .slot { border-radius: 16px; }
+.type .slot { border-radius: 8px; }
+.type > span:last-child { line-height: 1.25; }
+.pic-card .slot { border-radius: 0; }
+.pic-card .slot .slot-empty { border: 0; border-bottom: 1px dashed var(--ph-line); border-radius: 0; }
+@media (min-width: 1024px) {
+  .cat > .slot { width: 100%; flex: none; border-radius: 0; }
+  .cat > .slot .slot-name { display: block; }
+}
 /* Find the right detector: 3-step wizard */
 #view { overflow-x: clip; } /* the sideways step slide never widens the page */
 .arrow { display: inline-block; }
@@ -432,7 +465,6 @@ html[lang="ar"] .quote-send { font-family: var(--arabic); }
   .cat > .media { flex: none; width: 100%; height: auto; aspect-ratio: 16 / 9; border-radius: 0; }
   .cat .cat-text { padding: 12px 14px 14px; }
   .cat .chev { display: none; }
-  .hero { display: block; }
   .hero .wrap { grid-template-columns: 1fr 1fr; align-items: center; column-gap: 56px; padding-block: 64px; }
   .hero .hero-copy { display: grid; gap: 16px; }
   .hero-media { position: relative; inset: auto; aspect-ratio: 16 / 9; border-radius: 18px; grid-column: 2; grid-row: 1; }
@@ -618,7 +650,7 @@ const T = {
     finderTitle: "Find the right detector", finderSub: "Answer two quick questions. Our team will recommend the best detector for you on WhatsApp.",
     q1: "What do you want to find?", q2: "What is your search environment?", pickMany: "Choose one or more.", step3: "Your details",
     fFullName: "Full name", langOther: "Other", otherLabel: "Your language", errOther: "Please type your language.",
-    errQ1: "Please choose what you want to find.", errQ2: "Please choose your search environment.", getRec: "Get Your Recommendation", stepOf: (n) => `Step ${n} of 3`, next: "Next", back: "Back", pickOne: "Choose one option.", errPick: "Please choose an option to continue.",
+    errQ1: "Please choose what you want to find.", errQ2: "Please choose your search environment.", getRec: "Get Your Recommendation", stepOf: (n) => `Step ${n} of 3`, next: "Next", back: "Back", pickOne: "Tap an option to continue.", opening: "Opening WhatsApp…", errPick: "Please choose an option to continue.",
     finderNotice: "<b>Important Notice:</b> Our team communicates in different languages. Please select your preferred language so we can assist you better.",
     termsTitle: "Shipping & payment", partners: "Shipping & payment partners",
     terms: [
@@ -656,7 +688,7 @@ const T = {
     finderTitle: "Trouvez le bon détecteur", finderSub: "Répondez à deux questions rapides. Notre équipe vous recommandera le meilleur détecteur sur WhatsApp.",
     q1: "Que voulez-vous trouver ?", q2: "Quel est votre terrain de recherche ?", pickMany: "Choisissez une ou plusieurs réponses.", step3: "Vos coordonnées",
     fFullName: "Nom complet", langOther: "Autre", otherLabel: "Votre langue", errOther: "Veuillez indiquer votre langue.",
-    errQ1: "Veuillez choisir ce que vous voulez trouver.", errQ2: "Veuillez choisir votre terrain de recherche.", getRec: "Obtenir ma recommandation", stepOf: (n) => `Étape ${n} sur 3`, next: "Suivant", back: "Retour", pickOne: "Choisissez une réponse.", errPick: "Veuillez choisir une option pour continuer.",
+    errQ1: "Veuillez choisir ce que vous voulez trouver.", errQ2: "Veuillez choisir votre terrain de recherche.", getRec: "Obtenir ma recommandation", stepOf: (n) => `Étape ${n} sur 3`, next: "Suivant", back: "Retour", pickOne: "Touchez une réponse pour continuer.", opening: "Ouverture de WhatsApp…", errPick: "Veuillez choisir une option pour continuer.",
     finderNotice: "<b>Avis important :</b> notre équipe communique dans plusieurs langues. Veuillez choisir votre langue préférée pour que nous puissions mieux vous aider.",
     termsTitle: "Livraison et paiement", partners: "Nos partenaires de livraison et de paiement",
     terms: [
@@ -694,7 +726,7 @@ const T = {
     finderTitle: "اعثر على جهاز الكشف المناسب", finderSub: "أجب عن سؤالين سريعين، وسيرشح لك فريقنا الجهاز الأنسب عبر واتساب.",
     q1: "ماذا تريد أن تجد؟", q2: "ما هي بيئة البحث لديك؟", pickMany: "اختر إجابة أو أكثر.", step3: "بياناتك",
     fFullName: "الاسم الكامل", langOther: "أخرى", otherLabel: "لغتك", errOther: "يرجى كتابة لغتك.",
-    errQ1: "يرجى اختيار ما تريد أن تجده.", errQ2: "يرجى اختيار بيئة البحث.", getRec: "احصل على التوصية", stepOf: (n) => `الخطوة ${n} من 3`, next: "التالي", back: "رجوع", pickOne: "اختر إجابة واحدة.", errPick: "يرجى اختيار خيار للمتابعة.",
+    errQ1: "يرجى اختيار ما تريد أن تجده.", errQ2: "يرجى اختيار بيئة البحث.", getRec: "احصل على التوصية", stepOf: (n) => `الخطوة ${n} من 3`, next: "التالي", back: "رجوع", pickOne: "اضغط على خيار للمتابعة.", opening: "جارٍ فتح واتساب…", errPick: "يرجى اختيار خيار للمتابعة.",
     finderNotice: "<b>تنبيه مهم:</b> يتواصل فريقنا بعدة لغات. يرجى اختيار لغتك المفضلة حتى نتمكن من مساعدتك بشكل أفضل.",
     termsTitle: "الشحن والدفع", partners: "شركاء الشحن والدفع",
     terms: [
@@ -1161,10 +1193,41 @@ function depthFact(mode, value, show = SHOW_DEPTH) {
     : `<div><dt>${t("maxDepth")}</dt><dd>${value}</dd></div>`;
 }
 
-// Media links go here as they arrive: { "river-f-smart-detector": { src: "...mp4", poster: "...jpg" } } and { "river-f-smart-detector": "...webp" }.
-// The Vercel test page sets window.GS_VIDEOS / GS_PHOTOS; the Claude sample has none and shows placeholders.
+// ===== YOUR IMAGES (user request 2026-10-30: all image areas stay empty until you upload your own) =====
+// To add an image, paste its link between the quotes, e.g. hero.desktop: "/images/hero.jpg".
+// Recommended sizes: hero 1920 x 700 (phone version 900 x 1200), promotional banner 1600 x 600,
+// category / subcategory / finder cards 800 x 600, products 1200 x 1200 (shown whole, never cropped).
+const IMAGES = {
+  hero: { desktop: "", mobile: "" },
+  promo: { home: "" },
+  categories: { mining: "", gold: "", longrange: "", treasure: "", water: "", xrf: "", security: "" },
+  subcategories: { gates: "", handheld: "", luggage: "" },
+  products: {}, // product key -> image, e.g. "titan-500-smart-device": "/images/titan-500.jpg"
+  finder: { gold: "", relics: "", cavities: "", veins: "", utilities: "", water: "", unknown: "", flat: "", mountain: "", mineral: "", team: "" }
+};
+// Videos: { "titan-500-smart-device": { src: "...mp4", poster: "...jpg" } }. The Vercel test page sets window.GS_VIDEOS.
 const VIDEOS = window.GS_VIDEOS || {};
-const PHOTOS = window.GS_PHOTOS || {};
+// Placeholder sizes: [width, height, fit, label]. "cover" fills photographic areas; "contain" shows the whole product.
+const SLOTS = {
+  hero: [1920, 700, "cover", "Hero banner"], heroMobile: [900, 1200, "cover", "Hero banner (phone)"],
+  promo: [1600, 600, "cover", "Promotional banner"], category: [800, 600, "cover", "Category image"],
+  subcategory: [800, 600, "cover", "Subcategory image"], product: [1200, 1200, "contain", "Product image"],
+  finder: [800, 600, "cover", "Selection image"]
+};
+// An image area with a fixed shape: shows the uploaded image, or an empty box with its size until there is one.
+function slot(kind, src, alt = "", extra = "") {
+  const [w, h, fit, label] = SLOTS[kind];
+  return `<span class="slot slot-${kind}${extra}" style="--ar: ${w} / ${h}">${src
+    ? `<img src="${src}" alt="${alt}" width="${w}" height="${h}" loading="lazy" decoding="async" style="object-fit: ${fit}">`
+    : `<span class="slot-empty"><span class="slot-name">${label}</span><small>${w} × ${h} px</small></span>`}</span>`;
+}
+function heroBanner() {
+  const { desktop, mobile } = IMAGES.hero;
+  if (desktop || mobile) {
+    return `<picture class="hero-pic">${mobile ? `<source media="(max-width: 767px)" srcset="${mobile}">` : ""}<img src="${desktop || mobile}" alt="" style="object-fit: cover"></picture>`;
+  }
+  return slot("hero", "", "", " only-wide") + slot("heroMobile", "", "", " only-narrow");
+}
 const rich = (s) => s.replace(/\*\*(.+?)\*\*/g, '<strong class="kw">$1</strong>');
 
 function placeholder(shape, label, isPhoto = false) {
@@ -1186,18 +1249,13 @@ function media(key, shape, label) {
   </div>`;
 }
 
-function photo(key, shape, alt) {
-  return PHOTOS[key]
-    ? `<div class="media ${shape} photo"><img src="${PHOTOS[key]}" alt="${alt}" loading="lazy" decoding="async"></div>`
-    : null;
-}
 
 // Cards never play video: they show the product photo, or a placeholder until one arrives.
 function tile(p, cat) {
   const blurb = p.blurb ? `<span class="tile-blurb">${p.blurb}</span>` : `<span class="tile-later">${t("later")}</span>`;
   const depth = SHOW_DEPTH && cat.depth && p.depth ? `<span class="tile-meta">${cat.depth === "neutral" ? t("states") + " " + p.depth : t("depth") + ": " + p.depth}</span>` : "";
   return `<a class="tile" href="#p-${p.key}">
-    ${photo(p.key, "sq sm", p.name) || placeholder("sq sm", t("photo"), true)}
+    ${slot("product", IMAGES.products[p.key], p.name)}
     ${p.brand ? `<span class="tile-brand">${p.brand}</span>` : ""}
     <span class="tile-name">${p.name}</span>
     ${usesOf(p.key) ? `<span class="tile-uses">${usesOf(p.key)}</span>` : ""}
@@ -1219,12 +1277,12 @@ function renderBar(route) {
 
 function renderHome() {
   const row = (c) => `<a class="cat" href="#${c.id}">
-      ${media("cat-" + c.id, "sm", t("video"))}
+      ${slot("category", IMAGES.categories[c.id], "")}
       <span class="cat-text"><span class="cat-title">${L(c.title)}</span><span class="cat-line">${L(c.line)}</span>
       <span class="pill">${c.level} · ${itemsOf(c).length} ${t("products")}</span></span>${ICON.chev}</a>`;
   return `<section class="hero">
+      <div class="hero-banner${IMAGES.hero.desktop || IMAGES.hero.mobile ? " has-img" : ""}">${heroBanner()}</div>
       <div class="wrap">
-        <div class="media hero-media"><div class="media-inner"><span>${t("heroVideo")}</span><span class="tagline">${t("autoplay")}</span></div></div>
         <div class="hero-copy">
           <p class="eyebrow">Golden Spark Detectors · Dubai</p>
           <h1 class="display">${t("title")}</h1>
@@ -1243,6 +1301,7 @@ function renderHome() {
         <p class="group-label">${t("test")}</p>
         <div class="cats">${CATS.filter((c) => c.group === "test").map(row).join("")}</div>
       </section>
+      <section class="section promo">${slot("promo", IMAGES.promo.home, "")}</section>
       <section class="section">
         <h2 class="display" style="font-size:20px">${t("how")}</h2>
         <ol class="steps"><li><b>1</b>${t("s1")}</li><li><b>2</b>${t("s2")}</li><li><b>3</b>${t("s3")}</li></ol>
@@ -1255,7 +1314,7 @@ function renderHome() {
 function renderCat(cat) {
   const items = itemsOf(cat);
   const groups = cat.groups
-    ? `<div class="types">${cat.groups.map((g) => `<button type="button" class="type" data-jump="${g.id}">${ICON[g.icon]}${L(g.title)}</button>`).join("")}</div>`
+    ? `<div class="types">${cat.groups.map((g) => `<button type="button" class="type" data-jump="${g.id}">${slot("subcategory", IMAGES.subcategories[g.id], "")}<span>${L(g.title)}</span></button>`).join("")}</div>`
     : "";
   const list = cat.groups
     ? cat.groups.map((g) => `<section class="cat-products subgroup" id="${g.id}"><h2 class="display">${L(g.title)}</h2>
@@ -1287,10 +1346,10 @@ function renderProduct({ cat, p }, tab) {
         </div>
         ${tab === "video"
           ? media(p.key, "v916", `${p.name} · ${t("video")}`)
-          : photo(p.key, "sq", p.name) || `<div class="media sq ph-photo"><div class="media-inner"><span>${t("photoHere")}</span><span class="tagline">${t("zoom")}</span></div></div>`}
-        ${VIDEOS[p.key] && PHOTOS[p.key] ? `<div class="thumbs">
+          : slot("product", IMAGES.products[p.key], p.name, " slot-main")}
+        ${VIDEOS[p.key] && IMAGES.products[p.key] ? `<div class="thumbs">
           <button type="button" data-media="video" aria-pressed="${tab === "video"}" aria-label="${t("video")}"><img src="${VIDEOS[p.key].poster}" alt=""><span class="mini-play">${ICON.play}</span></button>
-          <button type="button" data-media="photo" aria-pressed="${tab === "photo"}" aria-label="${t("photo")}" class="photo-thumb"><img src="${PHOTOS[p.key]}" alt=""></button>
+          <button type="button" data-media="photo" aria-pressed="${tab === "photo"}" aria-label="${t("photo")}" class="photo-thumb"><img src="${IMAGES.products[p.key]}" alt=""></button>
         </div>` : ""}
       </div>
       <div class="a-info">
@@ -1324,81 +1383,6 @@ function renderProduct({ cat, p }, tab) {
 // Each step has its own screen (#finder-1, #finder-2, #finder-3), so the phone's back button works too.
 // Answers are sent in English so the team always reads the same words.
 
-// Illustrations drawn for this page (no third-party artwork). Replace any of them with a photo by putting its URL in FINDER_PHOTOS.
-const FINDER_PHOTOS = {};
-const ground = (id, inside) => `<svg viewBox="0 0 320 200" aria-hidden="true" focusable="false" preserveAspectRatio="xMidYMid slice">
-  <defs><linearGradient id="${id}-soil" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#C9A47C"/><stop offset="1" stop-color="#7E5A3A"/></linearGradient>
-  <linearGradient id="${id}-sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#DCE9F7"/><stop offset="1" stop-color="#F3F7FC"/></linearGradient></defs>
-  <rect width="320" height="200" fill="url(#${id}-sky)"/>
-  <path d="M0 48 Q80 38 160 47 T320 44 V200 H0Z" fill="url(#${id}-soil)"/>
-  <path d="M0 48 Q80 38 160 47 T320 44 V58 Q240 64 160 58 T0 60Z" fill="#6EA35A"/>
-  <path d="M0 58 Q80 64 160 58 T320 58 V62 Q240 68 160 62 T0 64Z" fill="#4E7F3F" opacity=".55"/>
-  <g fill="#6B4A2E" opacity=".45"><circle cx="34" cy="96" r="3"/><circle cx="268" cy="118" r="4"/><circle cx="210" cy="178" r="3"/><circle cx="58" cy="170" r="4"/><circle cx="150" cy="104" r="2.5"/><circle cx="296" cy="170" r="2.5"/></g>
-  ${inside}</svg>`;
-const sky = (id, inside, top = "#BFD9F2", bottom = "#EEF5FC") => `<svg viewBox="0 0 320 200" aria-hidden="true" focusable="false" preserveAspectRatio="xMidYMid slice">
-  <defs><linearGradient id="${id}-sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${top}"/><stop offset="1" stop-color="${bottom}"/></linearGradient></defs>
-  <rect width="320" height="200" fill="url(#${id}-sky)"/>${inside}</svg>`;
-const nugget = (x, y, s = 1) => `<g transform="translate(${x} ${y}) scale(${s})"><path d="M0 6 L9 -2 L21 0 L26 9 L19 18 L6 19 L-2 13Z" fill="#E9B935" stroke="#A47414" stroke-width="2" stroke-linejoin="round"/><path d="M6 4 L13 2 L16 7" fill="none" stroke="#FFF2B8" stroke-width="2.5" stroke-linecap="round"/></g>`;
-const sparkle = (x, y) => `<path d="M${x} ${y - 6} L${x + 1.6} ${y - 1.6} L${x + 6} ${y} L${x + 1.6} ${y + 1.6} L${x} ${y + 6} L${x - 1.6} ${y + 1.6} L${x - 6} ${y} L${x - 1.6} ${y - 1.6}Z" fill="#FFF6C9"/>`;
-
-const FINDER_ART = {
-  gold: ground("fg", `${nugget(72, 72)}${nugget(150, 80, .8)}${nugget(226, 70, 1.15)}${nugget(118, 96, .6)}${sparkle(98, 70)}${sparkle(256, 66)}`),
-  relics: ground("fr", `
-    <g transform="translate(70 104)"><rect x="0" y="22" width="88" height="44" rx="4" fill="#7A4A22" stroke="#4E2D12" stroke-width="2.5"/>
-      <path d="M0 24 Q44 -10 88 24Z" fill="#8E5A2C" stroke="#4E2D12" stroke-width="2.5"/>
-      <rect x="0" y="34" width="88" height="6" fill="#C9A23A"/><rect x="38" y="30" width="12" height="16" rx="2" fill="#E9B935" stroke="#7A5512" stroke-width="1.5"/>
-      <g fill="#F1C854" stroke="#A47414" stroke-width="1.2"><ellipse cx="18" cy="20" rx="8" ry="4"/><ellipse cx="34" cy="14" rx="8" ry="4"/><ellipse cx="54" cy="16" rx="8" ry="4"/><ellipse cx="70" cy="20" rx="8" ry="4"/></g></g>
-    <g transform="translate(212 92)"><path d="M14 0 h16 v8 q14 10 14 34 q0 30 -22 34 q-22 -4 -22 -34 q0 -24 14 -34z" fill="#B7793F" stroke="#6E4520" stroke-width="2.5"/>
-      <path d="M2 30 h40" stroke="#6E4520" stroke-width="2"/><path d="M6 48 h32" stroke="#6E4520" stroke-width="2"/></g>
-    ${sparkle(130, 100)}${sparkle(262, 88)}`),
-  cavities: ground("fc", `<path d="M108 200 V132 a52 52 0 0 1 104 0 V200Z" fill="#2B2118"/>
-    <path d="M108 200 V132 a52 52 0 0 1 104 0 V200" fill="none" stroke="#9A8C7A" stroke-width="9" stroke-dasharray="16 4"/>
-    <path d="M130 200 V146 a30 30 0 0 1 60 0 V200Z" fill="#1A140F" opacity=".7"/>
-    <g fill="#F1C854" stroke="#A47414" stroke-width="1"><ellipse cx="250" cy="96" rx="6" ry="3"/><ellipse cx="262" cy="92" rx="6" ry="3"/><ellipse cx="256" cy="88" rx="6" ry="3"/></g>`),
-  veins: ground("fv", `<path d="M0 92 Q80 84 160 94 T320 90 V200 H0Z" fill="#8F8A82"/>
-    <g fill="none" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M10 150 L58 128 L96 142 L140 116 L190 134 L236 108 L310 126" stroke="#B0832A" stroke-width="7"/>
-      <path d="M10 150 L58 128 L96 142 L140 116 L190 134 L236 108 L310 126" stroke="#F1C854" stroke-width="3.5"/>
-      <path d="M40 186 L84 170 L126 182 L170 160 L214 176 L262 154 L312 166" stroke="#B0832A" stroke-width="5"/>
-      <path d="M40 186 L84 170 L126 182 L170 160 L214 176 L262 154 L312 166" stroke="#F1C854" stroke-width="2.5"/>
-      <path d="M140 116 L150 96 M236 108 L244 94" stroke="#E9B935" stroke-width="3"/></g>
-    ${sparkle(140, 116)}${sparkle(236, 108)}`),
-  utilities: ground("fu", `<path d="M0 132 H320" stroke="#5F6B78" stroke-width="16"/><path d="M0 132 H320" stroke="#7D8A98" stroke-width="5" opacity=".6"/>
-    <circle cx="96" cy="112" r="20" fill="#E07B39" stroke="#A34E1C" stroke-width="3"/><circle cx="96" cy="112" r="11" fill="#5B2E12"/>
-    <circle cx="224" cy="164" r="16" fill="#E07B39" stroke="#A34E1C" stroke-width="3"/><circle cx="224" cy="164" r="8" fill="#5B2E12"/>
-    <path d="M0 176 Q40 166 80 176 T160 176 T240 176 T320 176" fill="none" stroke="#F1C854" stroke-width="4"/>
-    <g fill="#8EE07B" opacity=".55"><ellipse cx="96" cy="58" rx="34" ry="8"/><ellipse cx="224" cy="60" rx="30" ry="7"/></g>`),
-  water: ground("fw", `<path d="M0 126 Q60 112 120 126 T240 124 T320 120 V176 Q260 188 200 176 T80 178 T0 176Z" fill="#4F8FD6" opacity=".9"/>
-    <path d="M0 140 Q60 128 120 140 T240 138 T320 134" fill="none" stroke="#BFE0FF" stroke-width="3" opacity=".8"/>
-    <g fill="#9CC9F5"><path d="M64 92 q8 10 0 16 q-8 -6 0 -16z"/><path d="M248 96 q7 9 0 14 q-7 -5 0 -14z"/></g>
-    <g fill="#3B6EA8" opacity=".5"><circle cx="40" cy="150" r="4"/><circle cx="172" cy="156" r="5"/><circle cx="282" cy="148" r="4"/></g>`),
-  unknown: `<svg viewBox="0 0 320 200" aria-hidden="true" focusable="false" preserveAspectRatio="xMidYMid slice"><rect width="320" height="200" fill="#262948"/>
-    <g font-family="Montserrat, Segoe UI, sans-serif" font-weight="800" fill="#3B4073">
-      <text x="24" y="60" font-size="44" transform="rotate(-12 24 60)">?</text><text x="250" y="70" font-size="52" transform="rotate(14 250 70)">?</text>
-      <text x="60" y="176" font-size="48" transform="rotate(10 60 176)">?</text><text x="214" y="182" font-size="40" transform="rotate(-16 214 182)">?</text>
-      <text x="290" y="150" font-size="34">?</text><text x="112" y="56" font-size="30">?</text></g>
-    <text x="160" y="134" text-anchor="middle" font-family="Montserrat, Segoe UI, sans-serif" font-weight="800" font-size="92" fill="#F1C854">?</text></svg>`,
-  flat: sky("tf", `<circle cx="256" cy="52" r="20" fill="#FFE08A"/>
-    <path d="M0 118 H320 V200 H0Z" fill="#D9BE7E"/><path d="M0 118 H320" stroke="#B89A5A" stroke-width="2"/>
-    <path d="M160 200 L150 118 M160 200 L170 118" stroke="#C4A766" stroke-width="2" opacity=".7"/>
-    <g fill="#8BAA5B"><ellipse cx="46" cy="124" rx="12" ry="5"/><ellipse cx="240" cy="126" rx="14" ry="5"/><ellipse cx="290" cy="150" rx="18" ry="7"/><ellipse cx="22" cy="162" rx="16" ry="6"/></g>
-    <path d="M0 136 Q80 130 160 136 T320 134" fill="none" stroke="#C9AD6E" stroke-width="2"/>`),
-  mountain: sky("tm", `<path d="M-10 170 L70 64 L130 140 L190 50 L270 150 L330 96 V200 H-10Z" fill="#8C7A66"/>
-    <path d="M70 64 L88 88 L76 84 L64 96 L58 80Z M190 50 L210 78 L196 74 L182 86 L176 68Z" fill="#B9A894"/>
-    <path d="M-10 186 L60 120 L120 176 L200 110 L280 178 L330 140 V200 H-10Z" fill="#6E5E4D"/>
-    <path d="M150 200 Q170 172 140 160 T170 128 T150 104" fill="none" stroke="#E9DCC5" stroke-width="3" stroke-dasharray="6 6"/>`),
-  mineral: ground("tn", `<path d="M0 72 Q80 66 160 74 T320 70 V200 H0Z" fill="#7A3E2B"/>
-    <path d="M0 132 Q80 124 160 134 T320 128 V200 H0Z" fill="#4A2A22"/>
-    <g fill="#2A1A16"><ellipse cx="62" cy="104" rx="16" ry="10"/><ellipse cx="176" cy="118" rx="20" ry="12"/><ellipse cx="258" cy="96" rx="14" ry="9"/><ellipse cx="110" cy="166" rx="18" ry="11"/><ellipse cx="236" cy="168" rx="16" ry="10"/></g>
-    <g fill="#C8C8C8" opacity=".75"><circle cx="40" cy="150" r="1.6"/><circle cx="92" cy="140" r="1.4"/><circle cx="150" cy="150" r="1.8"/><circle cx="204" cy="144" r="1.4"/><circle cx="280" cy="154" r="1.6"/><circle cx="130" cy="96" r="1.4"/><circle cx="222" cy="92" r="1.6"/></g>`),
-  team: `<svg viewBox="0 0 320 200" aria-hidden="true" focusable="false" preserveAspectRatio="xMidYMid slice"><rect width="320" height="200" fill="#262948"/>
-    <rect x="58" y="42" width="138" height="62" rx="16" fill="#FFFFFF"/><path d="M84 104 L78 122 L102 104Z" fill="#FFFFFF"/>
-    <g fill="#C9CAD9"><rect x="76" y="60" width="92" height="8" rx="4"/><rect x="76" y="76" width="64" height="8" rx="4"/></g>
-    <rect x="132" y="106" width="132" height="56" rx="16" fill="#0B7F3D"/><path d="M236 162 L246 178 L222 162Z" fill="#0B7F3D"/>
-    <g fill="#9FE0B6"><circle cx="170" cy="134" r="6"/><circle cx="198" cy="134" r="6"/><circle cx="226" cy="134" r="6"/></g>
-    <circle cx="268" cy="54" r="22" fill="#F1C854"/><path d="M258 54 a10 10 0 0 1 20 0 v6 h-4 v-6 a6 6 0 0 0 -12 0 v6 h-4z" fill="#262948"/></svg>`
-};
-
 const FINDER_FIND = [
   ["gold", { en: "Gold Nuggets", fr: "Pépites d'or", ar: "كتل الذهب" }],
   ["relics", { en: "Relics / Treasures", fr: "Reliques / Trésors", ar: "آثار / كنوز" }],
@@ -1416,13 +1400,13 @@ const FINDER_ENV = [
 ];
 // Preferred language: value, label, name in the message. Each one opens its own WhatsApp line (WA_LINES).
 const FINDER_LANGS = [["en", "English", "English"], ["ar", "العربية (Arabic)", "Arabic"], ["fr", "Français (French)", "French"]];
-const finder = { find: "", env: "", name: "", email: "", lang: "", phone: null, saved: null, lastStep: 1 };
+const finder = { find: "", env: "", name: "", email: "", lang: "", phone: null, saved: null, lastStep: 1, advancing: false, sending: false };
 const esc = (v) => String(v).replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;");
 const checkMark = '<svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#262948" stroke-width="3.5"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>';
 
 function picCards(q, list) {
   return list.map(([v, label]) => `<button type="button" class="pic-card" role="radio" aria-checked="${finder[q] === v}" data-q="${q}" data-v="${v}">
-      <span class="pic-art">${FINDER_PHOTOS[v] ? `<img src="${FINDER_PHOTOS[v]}" alt="" loading="lazy">` : FINDER_ART[v]}</span>
+      ${slot("finder", IMAGES.finder[v], "")}
       <span class="pic-label">${L(label)}</span><span class="pic-check">${checkMark}</span></button>`).join("");
 }
 
@@ -1441,10 +1425,8 @@ function renderFinder(step) {
     body = `${head(t(step === 1 ? "q1" : "q2"))}
       <p class="hint">${t("pickOne")}</p>
       <div class="pic-grid pic-grid-${q}" role="radiogroup" aria-labelledby="wiz-q">${picCards(q, step === 1 ? FINDER_FIND : FINDER_ENV)}</div>
-      <p class="err" id="wiz-err" hidden></p>
       <div class="wiz-nav">
         <a class="wiz-back" href="${step === 1 ? "#home" : "#finder-1"}"><span class="arrow" aria-hidden="true">←</span> ${t("back")}</a>
-        <button type="button" class="wiz-next" id="wiz-next" aria-disabled="${!finder[q]}">${t("next")} <span class="arrow" aria-hidden="true">→</span></button>
       </div>`;
   } else {
     body = `${head(t("step3"))}
@@ -1476,25 +1458,16 @@ function renderFinder(step) {
 function setupFinder(root) {
   const wizard = root.querySelector(".wizard");
   if (!wizard) return;
-  // Steps 1 and 2: one picture card per answer; Next only moves on once something is picked
+  // Steps 1 and 2: tapping a card saves the answer, shows the tick briefly, then opens the next step.
+  // A second tap during that moment is ignored, so one tap never skips two steps.
   wizard.querySelectorAll(".pic-card").forEach((card) => (card.onclick = () => {
+    if (finder.advancing) return;
     const q = card.dataset.q;
     finder[q] = card.dataset.v;
     wizard.querySelectorAll(".pic-card").forEach((c) => c.setAttribute("aria-checked", String(c === card)));
-    const next = document.getElementById("wiz-next");
-    if (next) next.setAttribute("aria-disabled", "false");
-    document.getElementById("wiz-err").hidden = true;
+    finder.advancing = true;
+    setTimeout(() => { finder.advancing = false; location.hash = q === "find" ? "finder-2" : "finder-3"; }, calmMotion.matches ? 0 : 280);
   }));
-  const next = document.getElementById("wiz-next");
-  if (next) next.onclick = () => {
-    const step = location.hash === "#finder-2" ? 2 : 1;
-    if (!finder[step === 1 ? "find" : "env"]) {
-      const err = document.getElementById("wiz-err");
-      err.textContent = t("errPick"); err.hidden = false;
-      return;
-    }
-    location.hash = step === 1 ? "finder-2" : "finder-3";
-  };
   const form = root.querySelector("#finder-form");
   if (!form) return;
   // Step 3: contact details. Typed values survive a language switch or going back and forth.
@@ -1532,6 +1505,15 @@ function setupFinder(root) {
       `Terrain: ${en(FINDER_ENV, finder.env)}`,
       `CUSTOMER DETAILS: Name: ${name} Email: ${email} Contact No: ${phone.number} Preferred Language: ${langName}`
     ].join("\n") + (CAMPAIGN ? `\nRef: ${CAMPAIGN}` : "");
+    // One tap = one WhatsApp window: the button pauses for a few seconds after sending
+    if (finder.sending) return;
+    finder.sending = true;
+    const sendBtn = form.querySelector(".finder-send");
+    sendBtn.disabled = true; sendBtn.setAttribute("aria-busy", "true"); sendBtn.innerHTML = ICON.wa + t("opening");
+    setTimeout(() => {
+      finder.sending = false;
+      if (document.body.contains(sendBtn)) { sendBtn.disabled = false; sendBtn.removeAttribute("aria-busy"); sendBtn.innerHTML = ICON.wa + t("getRec"); }
+    }, 4000);
     const link = waLink(finder.lang, message); // English, Arabic or French line
     try { (window.dataLayer = window.dataLayer || []).push({ event: "recommendation_request", target: finder.find, terrain: finder.env, chat_language: finder.lang, campaign: CAMPAIGN }); } catch (err) {}
     const tab = window.open(link, "_blank");
