@@ -222,7 +222,7 @@ html[lang="ar"] .finder-send { font-family: var(--arabic); }
 @media (min-width: 1024px) { .opt-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
 /* Image placeholders: fixed shape per area, empty until an image is added (IMAGES list) */
 .slot { position: relative; display: block; width: 100%; max-width: 100%; aspect-ratio: var(--ar); overflow: hidden; border-radius: 12px; background: var(--ph); }
-.slot img { position: absolute; inset: 0; width: 100%; height: 100%; display: block; transition: transform 1.2s cubic-bezier(.2, .7, .2, 1); }
+.slot img { position: absolute; inset: 0; width: 100%; height: 100%; display: block; transition: transform 1.2s cubic-bezier(.2, .7, .2, 1), opacity .4s ease; }
 .slot-product { background: #FFFFFF; }
 .slot-empty { position: absolute; inset: 0; border: 1px dashed var(--ph-line); border-radius: inherit; display: grid; place-content: center; justify-items: center; gap: 2px; padding: 6px; text-align: center; color: var(--muted); font-size: 12px; font-weight: 600; line-height: 1.3; }
 .slot-empty small { font-size: 11px; font-weight: 500; }
@@ -393,7 +393,7 @@ html[lang="ar"] .quote-send { font-family: var(--arabic); }
   .wa-dialog[open] .wa-opt:nth-child(2) { animation-delay: .14s; }
   .wa-dialog[open] .wa-opt:nth-child(3) { animation-delay: .2s; }
   .menu:not([hidden]) { animation: pop-in .22s cubic-bezier(.2, .8, .2, 1); transform-origin: bottom right; }
-  #view.enter { animation: rise-in .38s cubic-bezier(.2, .8, .2, 1); }
+  #view.enter { animation: rise-in .3s cubic-bezier(.2, .8, .2, 1); }
   @media (min-width: 640px) {
     .wa-dialog[open] { animation: pop-in .3s cubic-bezier(.2, .8, .2, 1); }
     .wa-dialog.closing { animation: pop-out .18s ease-in forwards; }
@@ -480,7 +480,59 @@ html[lang="ar"] .quote-send { font-family: var(--arabic); }
   .steps { max-width: 720px; }
   footer .wrap { grid-template-columns: 1fr 1fr; align-items: start; }
 }
-@media (hover: hover) { .tile, .cat { transition: border-color .25s ease, box-shadow .25s ease; } .tile:hover, .cat:hover { box-shadow: 0 10px 28px -16px rgba(38, 41, 72, .45); } }
+@media (hover: hover) {
+  .tile, .cat { transition: transform .25s cubic-bezier(.2, .8, .2, 1), border-color .25s ease, box-shadow .25s ease; }
+  .tile:hover, .cat:hover { transform: translateY(-3px); box-shadow: 0 14px 30px -18px rgba(38, 41, 72, .5); }
+  .tile:active, .cat:active { transform: translateY(-1px) scale(.985); }
+  .cat:hover .chev { translate: 4px 0; }
+  [dir="rtl"] .cat:hover .chev { translate: -4px 0; }
+}
+/* ===== Motion (2026-10-31): every effect has a job; transform/opacity only; touch phones get no mouse effects ===== */
+/* Apple-style press: buttons press in fast (120ms) and spring back smoothly (200ms, set on each button) */
+.chip:active, .btn-wa:active, .btn-gold:active, .ask:active, .type:active, .wa-opt:active, .cat:active, .tile:active, .seg button:active,
+.thumbs button:active, .wa-fab:active, .lang-btn:active, .back:active, .vctl:active, .vsnd:active, .wa-close:active, .menu button:active,
+.phones a:active, .opt-card:active, .pic-card:active, .wiz-next:active, .quote-send:active { transition-duration: .12s; }
+.chev { transition: translate .25s cubic-bezier(.2, .8, .2, 1); }
+/* Header: a soft shadow appears once the page scrolls under it */
+.top { transition: box-shadow .25s ease, border-color .25s ease; }
+.top.scrolled { box-shadow: 0 8px 24px -16px rgba(38, 41, 72, .45); border-bottom-color: transparent; }
+/* Form fields: the gold focus ring tightens in instead of snapping on */
+.quote-form :where(input[type="text"], input[type="email"], input[type="tel"], select) { /* :where keeps this below the :focus rules */
+  outline: 3px solid transparent; outline-offset: 5px; transition: border-color .2s ease, outline-color .2s ease, outline-offset .2s ease;
+}
+/* Photos: a light sweep while they load (skeleton), then they fade in */
+.slot.loading img { opacity: 0; }
+.slot.loading::after { content: ""; position: absolute; inset: 0; background: linear-gradient(100deg, transparent 30%, rgba(255, 255, 255, .6) 50%, transparent 70%); transform: translateX(-100%); pointer-events: none; }
+@keyframes shimmer { to { transform: translateX(100%); } }
+@keyframes reveal { from { opacity: 0; transform: translateY(18px); } }
+@keyframes hero-rise { from { opacity: 0; transform: translateY(16px); } }
+@keyframes hero-settle { from { scale: 1.08; } }
+@keyframes drop-in { from { opacity: 0; transform: translateY(-6px); } }
+@keyframes ambient { to { transform: translate3d(22%, 18%, 0) scale(1.15); } }
+@media (prefers-reduced-motion: no-preference) {
+  .slot.loading::after { animation: shimmer 1.3s ease-in-out infinite; }
+  /* Sections fade up as they scroll into view, once, 70ms apart (setupMotion adds .rv / .in) */
+  .rv:not(.in) { opacity: 0; transform: translateY(18px); }
+  .rv.in { animation: reveal .6s cubic-bezier(.2, .8, .2, 1) var(--d, 0ms) backwards; }
+  /* Hero: the photo settles in, the words follow one by one */
+  .hero-pic img { animation: hero-settle 1.6s cubic-bezier(.2, .7, .2, 1) both; }
+  .hero-copy > * { animation: hero-rise .6s cubic-bezier(.2, .8, .2, 1) backwards; }
+  .hero-copy > :nth-child(2) { animation-delay: .07s; }
+  .hero-copy > :nth-child(3) { animation-delay: .14s; }
+  .hero-copy > :nth-child(4) { animation-delay: .21s; }
+  .hero-copy > :nth-child(5) { animation-delay: .28s; }
+  /* Country list in the phone field opens smoothly */
+  .iti__country-selector:not(.iti__hide) { animation: drop-in .18s cubic-bezier(.2, .8, .2, 1); }
+}
+/* Desktop mouse only: the hero photo drifts a few pixels against the cursor (depth), and a faint gold light moves behind the headline */
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .hero-pic { scale: 1.03; translate: var(--hx, 0px) var(--hy, 0px); transition: translate .8s cubic-bezier(.2, .7, .2, 1); }
+}
+@media (hover: hover) and (pointer: fine) and (min-width: 1024px) and (prefers-reduced-motion: no-preference) {
+  .hero::before { content: ""; position: absolute; z-index: 1; left: -14%; top: -40%; width: 64%; aspect-ratio: 1; border-radius: 50%; background: radial-gradient(closest-side, rgba(241, 200, 84, .14), transparent); pointer-events: none; animation: ambient 18s ease-in-out infinite alternate; }
+  [dir="rtl"] .hero::before { left: auto; right: -14%; }
+  .hero.idle::before { animation-play-state: paused; }
+}
 @media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
 @media (prefers-reduced-motion: reduce) {
   .ripple { display: none; }
@@ -1572,6 +1624,7 @@ function render(scrollTop = true) {
   view.querySelectorAll("[data-jump]").forEach((b) => (b.onclick = () => document.getElementById(b.dataset.jump).scrollIntoView()));
   view.querySelectorAll("[data-media]").forEach((b) => (b.onclick = () => { tab = b.dataset.media; render(false); }));
   setupMedia(view);
+  setupMotion(view);
   const chip = document.querySelector('.chip[aria-current="page"]');
   if (chip) chip.parentElement.scrollLeft = chip.offsetLeft - chip.parentElement.clientWidth / 2 + chip.clientWidth / 2;
   if (scrollTop) {
@@ -1635,6 +1688,62 @@ function setupMedia(root) {
     if (!watcher) tryPlay(box, video);
   });
   root.querySelectorAll(".kw").forEach((k) => (k.onclick = () => k.classList.toggle("on")));
+}
+
+// Motion. Scroll reveals and the header shadow use IntersectionObserver (no scroll listeners); the hero parallax
+// only listens while a desktop mouse moves over it, one frame at a time. Reduced motion skips all of it.
+const REVEAL = ".section > h2, .cat, .tile, .steps li, .promo .media, .types .type, footer .phones a";
+const finePointer = window.matchMedia("(hover: hover) and (pointer: fine)");
+let revealer, heroWatch;
+function setupMotion(view) {
+  // Photos: skeleton sweep until loaded, then fade in
+  view.querySelectorAll(".slot img").forEach((img) => {
+    if (img.complete && img.naturalWidth) return;
+    const box = img.parentElement;
+    box.classList.add("loading");
+    const done = () => box.classList.remove("loading");
+    img.addEventListener("load", done, { once: true });
+    img.addEventListener("error", done, { once: true });
+  });
+  if (revealer) revealer.disconnect();
+  if (heroWatch) heroWatch.disconnect();
+  if (calmMotion.matches || !("IntersectionObserver" in window)) return;
+  revealer = new IntersectionObserver((entries) => {
+    let i = 0;
+    for (const e of entries) {
+      if (!e.isIntersecting) continue;
+      e.target.style.setProperty("--d", Math.min(i++, 6) * 70 + "ms");
+      e.target.classList.add("in");
+      revealer.unobserve(e.target);
+    }
+  }, { rootMargin: "0px 0px -6% 0px" });
+  document.querySelectorAll(REVEAL).forEach((el) => { el.classList.add("rv"); revealer.observe(el); });
+  const hero = view.querySelector(".hero"), pic = hero && hero.querySelector(".hero-pic");
+  if (!pic || !finePointer.matches) return;
+  heroWatch = new IntersectionObserver(([e]) => hero.classList.toggle("idle", !e.isIntersecting)); // pause the gold light off screen
+  heroWatch.observe(hero);
+  let frame = 0, x = 0, y = 0;
+  hero.addEventListener("pointermove", (e) => {
+    if (e.pointerType !== "mouse") return;
+    const b = hero.getBoundingClientRect();
+    x = (e.clientX - b.left) / b.width - 0.5;
+    y = (e.clientY - b.top) / b.height - 0.5;
+    if (!frame) frame = requestAnimationFrame(() => {
+      frame = 0;
+      pic.style.setProperty("--hx", (-x * 14).toFixed(1) + "px");
+      pic.style.setProperty("--hy", (-y * 8).toFixed(1) + "px");
+    });
+  });
+  hero.addEventListener("pointerleave", () => { pic.style.setProperty("--hx", "0px"); pic.style.setProperty("--hy", "0px"); });
+}
+// Header shadow once the page scrolls (a 1px marker at the very top leaves the screen)
+if ("IntersectionObserver" in window) {
+  const marker = document.createElement("div");
+  marker.setAttribute("aria-hidden", "true");
+  marker.style.cssText = "position:absolute;top:0;left:0;width:1px;height:1px;pointer-events:none";
+  document.body.prepend(marker);
+  const top = document.querySelector(".top");
+  new IntersectionObserver(([e]) => top.classList.toggle("scrolled", !e.isIntersecting)).observe(marker);
 }
 
 // Language menu
