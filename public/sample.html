@@ -521,17 +521,21 @@ html[lang="ar"] .quote-send { font-family: var(--arabic); }
 .showroom-head { display: grid; gap: 6px; }
 .showroom-pic { position: relative; margin: 0; border-radius: 20px; overflow: hidden; isolation: isolate; background: var(--navy-deep);
   box-shadow: 0 24px 48px -30px rgba(38, 41, 72, .7); }
-.showroom-pic::after { content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none;
-  box-shadow: inset 0 0 0 1px rgba(241, 200, 84, .45); background: linear-gradient(0deg, rgba(20, 22, 45, .55), transparent 38%); }
+.showroom-pic::after { content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; box-shadow: inset 0 0 0 1px rgba(241, 200, 84, .45); }
 .slot.slot-showroom { aspect-ratio: 16 / 10; border-radius: 0; }
+.slot-showroom img { object-position: 46% 50%; } /* phones: the Golden Spark counter stays in the middle */
 .slot-showroom .slot-empty { border: 0; }
-.showroom-pic figcaption { position: absolute; z-index: 1; inset-inline-start: 14px; bottom: 14px; max-width: calc(100% - 28px);
-  padding: 8px 14px 8px 10px; border-radius: 999px; display: flex; align-items: center; gap: 8px; color: #FFFFFF; font-size: 13px; font-weight: 600;
-  background: rgba(38, 41, 72, .62); border: 1px solid rgba(241, 200, 84, .5); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); }
+.showroom-pic figcaption { padding: 12px 16px; display: flex; align-items: center; gap: 8px; color: #FFFFFF; font-size: 13px; font-weight: 600; background: var(--navy-deep); }
 .showroom-pic figcaption svg { flex: none; color: var(--gold); }
 @media (hover: hover) and (prefers-reduced-motion: no-preference) { .showroom-pic:hover .slot img { transform: scale(1.03); } }
-@media (min-width: 768px) { .slot.slot-showroom { aspect-ratio: 2 / 1; } .showroom-pic figcaption { inset-inline-start: 20px; bottom: 20px; font-size: 14px; } }
-@media (min-width: 1024px) { .slot.slot-showroom { aspect-ratio: 12 / 5; } .showroom-pic { border-radius: 24px; } }
+/* Tablet and desktop: the whole panorama in its own shape, the address floats on it in a glass label */
+@media (min-width: 768px) {
+  .slot.slot-showroom { aspect-ratio: var(--ar); }
+  .showroom-pic figcaption { position: absolute; z-index: 1; inset-inline-start: 20px; bottom: 20px; max-width: calc(100% - 40px); padding: 8px 16px 8px 12px;
+    border-radius: 999px; font-size: 14px; background: rgba(38, 41, 72, .62); border: 1px solid rgba(241, 200, 84, .5);
+    -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); }
+}
+@media (min-width: 1024px) { .showroom-pic { border-radius: 24px; } }
 
 /* Find my detector (2026-10-31): gold-tinted glass. Light blur on phones, stronger on desktop; hover effects only with a mouse */
 .cta-glass {
@@ -1342,7 +1346,7 @@ function depthFact(mode, value, show = SHOW_DEPTH) {
 const IMAGES = {
   hero: { desktop: "img/hero-desktop.webp", mobile: "img/hero-mobile.webp" },
   promo: { home: "" },
-  showroom: "", // panoramic showroom photo, e.g. img/showroom-2400w.webp (+ showroom-1200w.webp)
+  showroom: "img/showroom-2000w.webp", // the user's showroom panorama (2026-10-31), with showroom-1000w.webp for phones
   categories: { mining: "img/cat-mining-800w.webp", gold: "img/cat-gold-800w.webp", longrange: "img/cat-longrange-800w.webp", treasure: "img/cat-treasure-800w.webp",
     water: "img/cat-water-800w.webp", xrf: "img/cat-xrf-800w.webp", security: "img/cat-security-800w.webp" },
   subcategories: { gates: "", handheld: "", luggage: "" },
@@ -1381,7 +1385,7 @@ const SLOTS = {
   hero: [1920, 700, "cover", "Hero banner"], heroMobile: [900, 1200, "cover", "Hero banner (phone)"],
   promo: [1600, 600, "cover", "Promotional banner"], category: [800, 600, "cover", "Category image"],
   subcategory: [800, 600, "cover", "Subcategory image"], product: [1200, 1200, "contain", "Product image"],
-  finder: [800, 600, "cover", "Selection image"], showroom: [2400, 1000, "cover", "Showroom photo (panoramic)"]
+  finder: [800, 600, "cover", "Selection image"], showroom: [2000, 949, "cover", "Showroom photo (panoramic)"]
 };
 // Images named name-800w.webp come with a half-size name-400w.webp, so phones download the small copy.
 const SIZES = { category: "(min-width: 1024px) 300px, 104px", product: "(min-width: 1024px) 300px, 50vw", productMain: "(min-width: 1024px) 460px, 92vw", showroom: "(min-width: 1152px) 1088px, calc(100vw - 32px)" };
