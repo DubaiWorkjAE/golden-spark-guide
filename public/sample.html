@@ -7,7 +7,7 @@
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}</style>
 <script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
 <script defer src="/_vercel/insights/script.js"></script>
-<script>window.GS_VIDEOS = {"titan-500-smart-device":{"src":"test-videos/titan-500-smart.mp4","poster":"test-videos/titan-500-smart.webp"},"eagle-eye-rjx6550":{"src":"test-videos/rjx6550-luggage.mp4","poster":"test-videos/rjx6550-luggage.webp"}}; window.GS_PHOTOS = {};</script>
+<script>window.GS_VIDEOS = {"titan-500-smart-device":{"src":"test-videos/titan-500-smart.mp4","poster":"test-videos/titan-500-smart.webp"},"eagle-eye-rjx6550":{"src":"test-videos/rjx6550-luggage.mp4","poster":"test-videos/rjx6550-luggage.webp"},"home-promo":{"src":"test-videos/home-promo.mp4","poster":"test-videos/home-promo.webp"}}; window.GS_PHOTOS = {};</script>
 <title>Golden Spark Detector Guide</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@29.5.4/dist/js/intlTelInputWithUtils.min.js"></script>
@@ -53,7 +53,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
 /* Header + chips */
 .top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: var(--paper); border-bottom: 1px solid var(--line); }
 .bar { height: 56px; display: flex; align-items: center; gap: 10px; }
-.mark { width: 32px; height: 32px; border-radius: 8px; background: var(--navy-deep); color: var(--gold); display: grid; place-items: center; font: 800 13px var(--display); flex: none; }
+.mark { width: 32px; height: 32px; flex: none; display: block; }
 .brand { font: 700 16px var(--display); color: var(--navy); text-decoration: none; display: flex; align-items: center; gap: 10px; }
 .back { width: 40px; height: 40px; border-radius: 20px; border: 0; background: var(--mist); display: grid; place-items: center; flex: none; }
 .bar .spacer { flex: 1; }
@@ -234,17 +234,20 @@ html[lang="ar"] .finder-send { font-family: var(--arabic); }
 .hero-banner { position: absolute; inset: 0; }
 .hero-banner .slot, .hero-pic, .hero-pic img { position: absolute; inset: 0; width: 100%; height: 100%; aspect-ratio: auto; border-radius: 0; }
 .hero-banner .slot { background: #3A3E66; }
+.hero-pic img { object-position: 80% 50%; } /* the person stands on the right; keep them in view when narrow screens crop the sides */
+[dir="rtl"] .hero-pic img { transform: scaleX(-1); } /* Arabic text sits on the right, so the person moves to the left */
 .hero-banner .slot-empty { border-color: #6C70A0; color: #D5D7E8; place-content: start end; justify-items: end; padding: 14px; }
 .hero-banner.has-img::after { content: ""; position: absolute; inset: 0; background: linear-gradient(0deg, rgba(38, 41, 72, .9) 0%, rgba(38, 41, 72, .55) 50%, rgba(38, 41, 72, .1) 100%); }
 .hero .wrap { width: 100%; z-index: 1; }
 @media (min-width: 768px) {
   .hero { min-height: min(calc(100vw * 700 / 1920), 700px); align-items: center; }
   .hero-banner.has-img::after { background: linear-gradient(90deg, rgba(38, 41, 72, .9) 0%, rgba(38, 41, 72, .55) 50%, rgba(38, 41, 72, .1) 100%); }
+  [dir="rtl"] .hero-banner.has-img::after { background: linear-gradient(270deg, rgba(38, 41, 72, .9) 0%, rgba(38, 41, 72, .55) 50%, rgba(38, 41, 72, .1) 100%); }
 }
 /* Category thumbnails (4:3), promo banner, subcategory images */
 .cat > .slot { flex: 0 0 104px; width: 104px; border-radius: 10px; }
 .cat > .slot .slot-name, .type .slot .slot-name { display: none; }
-.promo .slot { border-radius: 16px; }
+.promo .slot, .promo .media { border-radius: 16px; }
 .type .slot { border-radius: 8px; }
 .type > span:last-child { line-height: 1.25; }
 .pic-card .slot { border-radius: 0; }
@@ -1193,16 +1196,17 @@ function depthFact(mode, value, show = SHOW_DEPTH) {
     : `<div><dt>${t("maxDepth")}</dt><dd>${value}</dd></div>`;
 }
 
-// ===== YOUR IMAGES (user request 2026-10-30: all image areas stay empty until you upload your own) =====
+// ===== YOUR IMAGES (the user's own photos, added 2026-10-31; empty areas still show their size) =====
 // To add an image, paste its link between the quotes, e.g. hero.desktop: "/images/hero.jpg".
 // Recommended sizes: hero 1920 x 700 (phone version 900 x 1200), promotional banner 1600 x 600,
 // category / subcategory / finder cards 800 x 600, products 1200 x 1200 (shown whole, never cropped).
 const IMAGES = {
-  hero: { desktop: "", mobile: "" },
+  hero: { desktop: "img/hero-desktop.webp", mobile: "img/hero-mobile.webp" },
   promo: { home: "" },
-  categories: { mining: "", gold: "", longrange: "", treasure: "", water: "", xrf: "", security: "" },
+  categories: { mining: "img/cat-mining-800w.webp", gold: "img/cat-gold-800w.webp", longrange: "", treasure: "img/cat-treasure-800w.webp",
+    water: "img/cat-water-800w.webp", xrf: "img/cat-xrf-800w.webp", security: "img/cat-security-800w.webp" },
   subcategories: { gates: "", handheld: "", luggage: "" },
-  products: {}, // product key -> image, e.g. "titan-500-smart-device": "/images/titan-500.jpg"
+  products: { "niton-xl2": "img/prod-niton-xl2-1200w.webp", "niton-dxl-800": "img/prod-niton-dxl-800-960w.webp" }, // product key -> image
   finder: { gold: "", relics: "", cavities: "", veins: "", utilities: "", water: "", unknown: "", flat: "", mountain: "", mineral: "", team: "" }
 };
 // Videos: { "titan-500-smart-device": { src: "...mp4", poster: "...jpg" } }. The Vercel test page sets window.GS_VIDEOS.
@@ -1214,17 +1218,25 @@ const SLOTS = {
   subcategory: [800, 600, "cover", "Subcategory image"], product: [1200, 1200, "contain", "Product image"],
   finder: [800, 600, "cover", "Selection image"]
 };
+// Images named name-800w.webp come with a half-size name-400w.webp, so phones download the small copy.
+const SIZES = { category: "(min-width: 1024px) 300px, 104px", product: "(min-width: 1024px) 300px, 50vw", productMain: "(min-width: 1024px) 460px, 92vw" };
+function srcset(src, sizes) {
+  const m = /-(\d+)w\.webp$/.exec(src);
+  if (!m || !sizes) return "";
+  const half = m[1] / 2;
+  return ` srcset="${src.slice(0, m.index)}-${half}w.webp ${half}w, ${src} ${m[1]}w" sizes="${sizes}"`;
+}
 // An image area with a fixed shape: shows the uploaded image, or an empty box with its size until there is one.
 function slot(kind, src, alt = "", extra = "") {
   const [w, h, fit, label] = SLOTS[kind];
   return `<span class="slot slot-${kind}${extra}" style="--ar: ${w} / ${h}">${src
-    ? `<img src="${src}" alt="${alt}" width="${w}" height="${h}" loading="lazy" decoding="async" style="object-fit: ${fit}">`
+    ? `<img src="${src}"${srcset(src, extra.includes("slot-main") ? SIZES.productMain : SIZES[kind])} alt="${alt}" width="${w}" height="${h}" loading="lazy" decoding="async" style="object-fit: ${fit}">`
     : `<span class="slot-empty"><span class="slot-name">${label}</span><small>${w} × ${h} px</small></span>`}</span>`;
 }
 function heroBanner() {
   const { desktop, mobile } = IMAGES.hero;
   if (desktop || mobile) {
-    return `<picture class="hero-pic">${mobile ? `<source media="(max-width: 767px)" srcset="${mobile}">` : ""}<img src="${desktop || mobile}" alt="" style="object-fit: cover"></picture>`;
+    return `<picture class="hero-pic">${mobile ? `<source media="(max-width: 767px)" srcset="${mobile}">` : ""}<img src="${desktop || mobile}" alt="" fetchpriority="high" decoding="async" style="object-fit: cover"></picture>`;
   }
   return slot("hero", "", "", " only-wide") + slot("heroMobile", "", "", " only-narrow");
 }
@@ -1237,11 +1249,11 @@ function placeholder(shape, label, isPhoto = false) {
 
 // A real video: muted, looping, inline. setupMedia() starts it when on screen, with a play/pause button,
 // a big play button if the browser blocks autoplay, and a message if the file fails to load.
-function media(key, shape, label) {
+function media(key, shape, label, preload = "auto") {
   const v = VIDEOS[key];
   if (!v) return placeholder(shape, label);
   return `<div class="media ${shape}">
-    <video src="${v.src}"${v.poster ? ` poster="${v.poster}"` : ""} muted autoplay loop playsinline preload="auto" aria-label="${label}"></video>
+    <video src="${v.src}"${v.poster ? ` poster="${v.poster}"` : ""} muted autoplay loop playsinline preload="${preload}" aria-label="${label}"></video>
     <button type="button" class="fallback" hidden aria-label="${t("playVideo")}">${ICON.play}</button>
     <button type="button" class="vctl" aria-label="${t("pauseVideo")}">${ICON.pause}</button>
     <button type="button" class="vsnd" aria-pressed="false" aria-label="${t("soundOn")}">${ICON.muted}<span>${t("tapSound")}</span></button>
@@ -1268,7 +1280,7 @@ function renderBar(route) {
   const bar = document.getElementById("bar");
   const backTo = route.view === "product" ? `#${route.cat.id}` : route.view === "cat" || route.view === "finder" ? "#home" : null;
   bar.innerHTML = `${backTo ? `<a class="back" href="${backTo}" aria-label="${t("all")}">${ICON.back}</a>` : ""}
-    <a class="brand" href="#home"><span class="mark" aria-hidden="true">GS</span>Golden Spark</a>
+    <a class="brand" href="#home"><img class="mark" src="img/logo-shield.webp" width="32" height="32" alt="">Golden Spark</a>
     <span class="spacer"></span><a class="contact" href="#contact">${t("contact")}</a>`;
   const current = route.cat && route.cat.id;
   document.getElementById("chips").innerHTML = CATS.map((c) =>
@@ -1301,7 +1313,7 @@ function renderHome() {
         <p class="group-label">${t("test")}</p>
         <div class="cats">${CATS.filter((c) => c.group === "test").map(row).join("")}</div>
       </section>
-      <section class="section promo">${slot("promo", IMAGES.promo.home, "")}</section>
+      <section class="section promo">${VIDEOS["home-promo"] ? media("home-promo", "wide", "Golden Spark Detectors", "metadata") : slot("promo", IMAGES.promo.home, "")}</section>
       <section class="section">
         <h2 class="display" style="font-size:20px">${t("how")}</h2>
         <ol class="steps"><li><b>1</b>${t("s1")}</li><li><b>2</b>${t("s2")}</li><li><b>3</b>${t("s3")}</li></ol>
@@ -1333,6 +1345,7 @@ function renderCat(cat) {
 }
 
 function renderProduct({ cat, p }, tab) {
+  if (tab === "auto") tab = VIDEOS[p.key] || !IMAGES.products[p.key] ? "video" : "photo"; // video first; the photo when there is no video yet
   const neutral = cat.depth === "neutral" || Boolean(p.range);
   const others = itemsOf(cat).filter((x) => x.key !== p.key);
   const showDepth = SHOW_DEPTH_PRODUCT && cat.depth && p.depth;
@@ -1521,7 +1534,7 @@ function setupFinder(root) {
   });
 }
 
-let tab = "video";
+let tab = "auto"; // product media tab: "auto" opens the video, or the photo when there is no video yet
 function route() {
   const fm = /^#finder(?:-([123]))?$/.exec(location.hash);
   if (fm) {
@@ -1646,7 +1659,7 @@ langBtn.onclick = () => toggleMenu(menu.hidden);
 document.addEventListener("click", (e) => { if (!menu.hidden && !e.target.closest(".float")) toggleMenu(false); });
 document.addEventListener("keydown", (e) => { if (e.key === "Escape" && !menu.hidden) { toggleMenu(false); langBtn.focus(); } });
 
-window.addEventListener("hashchange", () => { tab = "video"; render(); });
+window.addEventListener("hashchange", () => { tab = "auto"; render(); });
 render();
 </script>
 
