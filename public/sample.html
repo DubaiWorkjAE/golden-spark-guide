@@ -77,7 +77,9 @@ button { font: inherit; color: inherit; cursor: pointer; }
 .hero p.sub { margin: 0; font-size: 17px; color: #E4E5F0; }
 .btn-gold { height: 52px; border: 0; border-radius: 10px; background: var(--gold); color: var(--ink); font-weight: 700; font-size: 16px; }
 .logos { padding: 12px; border-radius: 12px; background: rgba(20, 22, 45, 0.7); border: 1px solid rgba(255, 255, 255, 0.18); display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 8px; }
-.logos span { height: 36px; border: 1px dashed #8C90B4; border-radius: 5px; color: #D5D7E8; font-size: 10px; display: grid; place-items: center; text-align: center; }
+.logos .logo { min-width: 0; height: 44px; padding: 7px 8px; border-radius: 8px; background: #FFFFFF; display: flex; align-items: center; justify-content: center; }
+.logos .logo.dark { background: #111111; } /* Garrett's yellow artwork is made for a dark background */
+.logos .logo img { display: block; width: 100%; height: 100%; object-fit: contain; } /* whole logo, never stretched */
 
 /* Sections */
 .section { padding-block: 28px; display: grid; gap: 12px; }
@@ -487,6 +489,40 @@ html[lang="ar"] .quote-send { font-family: var(--arabic); }
   .cat:hover .chev { translate: 4px 0; }
   [dir="rtl"] .cat:hover .chev { translate: -4px 0; }
 }
+/* Find my detector (2026-10-31): gold-tinted glass. Light blur on phones, stronger on desktop; hover effects only with a mouse */
+.cta-glass {
+  position: relative; overflow: hidden; isolation: isolate; width: 100%; min-height: 58px; padding-block: 7px; padding-inline: 8px 18px;
+  border: 1px solid rgba(241, 200, 84, .72); border-radius: 30px; color: #FFFFFF; display: flex; align-items: center; gap: 12px;
+  font: 700 17px/1.2 var(--body); letter-spacing: .01em; text-align: start; -webkit-tap-highlight-color: transparent;
+  background: linear-gradient(135deg, rgba(241, 200, 84, .42), rgba(241, 200, 84, .14) 55%, rgba(255, 255, 255, .1));
+  box-shadow: 0 14px 34px -14px rgba(0, 0, 0, .65), 0 0 26px -8px rgba(241, 200, 84, .5), inset 0 1px 0 rgba(255, 255, 255, .42), inset 0 -1px 0 rgba(0, 0, 0, .18);
+  -webkit-backdrop-filter: blur(8px) saturate(140%); backdrop-filter: blur(8px) saturate(140%);
+  transition: transform .2s cubic-bezier(.2, .8, .2, 1), box-shadow .25s ease, border-color .25s ease, background-color .25s ease;
+}
+html[lang="ar"] .cta-glass { font-family: var(--arabic); }
+.cta-icon { flex: none; width: 42px; height: 42px; border-radius: 50%; display: grid; place-items: center; color: var(--navy-deep);
+  background: linear-gradient(145deg, #F8DE8A, var(--gold) 60%, #D9AE3A); box-shadow: 0 4px 14px -4px rgba(241, 200, 84, .75), inset 0 1px 0 rgba(255, 255, 255, .65); }
+.cta-label { flex: 1; min-width: 0; text-shadow: 0 1px 2px rgba(0, 0, 0, .35); }
+.cta-arrow { flex: none; color: #F8DE8A; transition: translate .25s cubic-bezier(.2, .8, .2, 1); }
+.cta-glass::before { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none; transform: translateX(-130%);
+  background: linear-gradient(105deg, transparent 32%, rgba(255, 255, 255, .3) 48%, transparent 64%); }
+.cta-glass:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }
+@keyframes cta-sheen { 0%, 70% { transform: translateX(-130%); } 100% { transform: translateX(130%); } }
+@media (prefers-reduced-motion: no-preference) { .cta-glass::before { animation: cta-sheen 6s cubic-bezier(.4, 0, .2, 1) 1.4s infinite; } }
+@media (hover: hover) {
+  .cta-glass:hover { border-color: rgba(248, 222, 138, .95); background-color: rgba(241, 200, 84, .14);
+    box-shadow: 0 18px 40px -14px rgba(0, 0, 0, .65), 0 0 34px -6px rgba(241, 200, 84, .55), 0 0 0 4px rgba(241, 200, 84, .16), inset 0 1px 0 rgba(255, 255, 255, .5); }
+}
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .cta-glass:hover { transform: translateY(-2px); }
+  .cta-glass:hover .cta-arrow { translate: 4px 0; }
+  [dir="rtl"] .cta-glass:hover .cta-arrow { translate: -4px 0; }
+}
+.cta-glass:active { transform: scale(.97); transition-duration: .12s; }
+@media (min-width: 640px) { .cta-glass { width: auto; min-width: 320px; justify-self: start; } }
+@media (min-width: 1024px) { .cta-glass { -webkit-backdrop-filter: blur(14px) saturate(150%); backdrop-filter: blur(14px) saturate(150%); } }
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) { .cta-glass { background-color: rgba(38, 41, 72, .72); } }
+
 /* ===== Motion (2026-10-31): every effect has a job; transform/opacity only; touch phones get no mouse effects ===== */
 /* Apple-style press: buttons press in fast (120ms) and spring back smoothly (200ms, set on each button) */
 .chip:active, .btn-wa:active, .btn-gold:active, .ask:active, .type:active, .wa-opt:active, .cat:active, .tile:active, .seg button:active,
@@ -834,6 +870,8 @@ const WA_LINES = {
   ar: ["971522448875"]                  // +971 52 244 8875
 };
 const ICON = {
+  detector: '<svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="7.5" cy="18" rx="5" ry="2.5"/><path d="M10 16 16.5 5"/><path d="M14.5 3.8 19 6.4"/><path d="M12.9 10.2l2.6 1.5"/></svg>',
+  arrow: '<svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>',
   chev: '<svg class="chev" aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 5 7 7-7 7"/></svg>',
   back: '<svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#282C55" stroke-width="2"><path d="m15 5-7 7 7 7"/></svg>',
   muted: '<svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.9"><path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z"/><path d="m16 9.5 5 5m0-5-5 5"/></svg>',
@@ -926,7 +964,7 @@ function closeWaChooser() {
 waDialog.addEventListener("cancel", (e) => { e.preventDefault(); closeWaChooser(); }); // Esc key closes with the same animation
 
 // Tap feel: gold glow from the tap point, plus a very short vibration on phones that support it (Android).
-const TAPPABLE = ".chip, .btn-wa, .btn-gold, .ask, .type, .wa-opt, .cat, .tile, .seg button, .thumbs button, .wa-fab, .lang-btn, .back, .vctl, .vsnd, .wa-close, .menu button, .phones a, .opt-card, .pic-card, .wiz-next, .wiz-back";
+const TAPPABLE = ".chip, .btn-wa, .btn-gold, .cta-glass, .ask, .type, .wa-opt, .cat, .tile, .seg button, .thumbs button, .wa-fab, .lang-btn, .back, .vctl, .vsnd, .wa-close, .menu button, .phones a, .opt-card, .pic-card, .wiz-next, .wiz-back";
 document.addEventListener("pointerdown", (e) => {
   const el = e.target.closest(TAPPABLE);
   if (!el || e.button > 0) return;
@@ -1255,7 +1293,7 @@ function depthFact(mode, value, show = SHOW_DEPTH) {
 const IMAGES = {
   hero: { desktop: "img/hero-desktop.webp", mobile: "img/hero-mobile.webp" },
   promo: { home: "" },
-  categories: { mining: "img/cat-mining-800w.webp", gold: "img/cat-gold-800w.webp", longrange: "", treasure: "img/cat-treasure-800w.webp",
+  categories: { mining: "img/cat-mining-800w.webp", gold: "img/cat-gold-800w.webp", longrange: "img/cat-longrange-800w.webp", treasure: "img/cat-treasure-800w.webp",
     water: "img/cat-water-800w.webp", xrf: "img/cat-xrf-800w.webp", security: "img/cat-security-800w.webp" },
   subcategories: { gates: "", handheld: "", luggage: "" },
   products: { "niton-xl2": "img/prod-niton-xl2-1200w.webp", "niton-dxl-800": "img/prod-niton-dxl-800-960w.webp" }, // product key -> image
@@ -1339,6 +1377,9 @@ function renderBar(route) {
     `<a class="chip" href="#${c.id}"${c.id === current ? ' aria-current="page"' : ""}>${L(c.title)}</a>`).join("");
 }
 
+// Brand logos in the hero (the user's files, 2026-10-31): [name, file, width at 96 px tall, dark tile]
+const BRAND_LOGOS = [["OKM", "img/logo-okm.webp", 91], ["GER Detect", "img/logo-ger.webp", 96], ["Garrett", "img/logo-garrett.webp", 312, true],
+  ["Nokta", "img/logo-nokta.webp", 329], ["XP", "img/logo-xp.webp", 142]];
 function renderHome() {
   const row = (c) => `<a class="cat" href="#${c.id}">
       ${slot("category", IMAGES.categories[c.id], "")}
@@ -1351,8 +1392,9 @@ function renderHome() {
           <p class="eyebrow">Golden Spark Detectors · Dubai</p>
           <h1 class="display">${t("title")}</h1>
           <p class="sub">${t("sub")}</p>
-          <button type="button" class="btn-gold" id="cta">${t("cta")}</button>
-          <div class="logos" aria-label="Brand logos (placeholders)"><span>OKM logo</span><span>GER logo</span><span>Garrett logo</span><span>Nokta logo</span><span>XP logo</span></div>
+          <button type="button" class="cta-glass" id="cta"><span class="cta-icon" aria-hidden="true">${ICON.detector}</span><span class="cta-label">${t("cta")}</span><span class="cta-arrow arrow" aria-hidden="true">${ICON.arrow}</span></button>
+          <div class="logos" role="list" aria-label="Brands">${BRAND_LOGOS.map(([name, src, w, dark]) =>
+            `<span class="logo${dark ? " dark" : ""}" role="listitem"><img src="${src}" alt="${name}" width="${w}" height="96" decoding="async"></span>`).join("")}</div>
         </div>
       </div>
     </section>
