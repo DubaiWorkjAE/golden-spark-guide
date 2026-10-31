@@ -76,10 +76,6 @@ button { font: inherit; color: inherit; cursor: pointer; }
 .hero h1 { margin: 0; font-size: clamp(34px, 9vw, 52px); line-height: 1.08; font-weight: 800; }
 .hero p.sub { margin: 0; font-size: 17px; color: #E4E5F0; }
 .btn-gold { height: 52px; border: 0; border-radius: 10px; background: var(--gold); color: var(--ink); font-weight: 700; font-size: 16px; }
-.logos { padding: 12px; border-radius: 12px; background: rgba(20, 22, 45, 0.7); border: 1px solid rgba(255, 255, 255, 0.18); display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 8px; }
-.logos .logo { min-width: 0; height: 44px; padding: 7px 8px; border-radius: 8px; background: #FFFFFF; display: flex; align-items: center; justify-content: center; }
-.logos .logo.dark { background: #111111; } /* Garrett's yellow artwork is made for a dark background */
-.logos .logo img { display: block; width: 100%; height: 100%; object-fit: contain; } /* whole logo, never stretched */
 
 /* Sections */
 .section { padding-block: 28px; display: grid; gap: 12px; }
@@ -489,6 +485,54 @@ html[lang="ar"] .quote-send { font-family: var(--arabic); }
   .cat:hover .chev { translate: 4px 0; }
   [dir="rtl"] .cat:hover .chev { translate: -4px 0; }
 }
+/* Brand strip before the footer (2026-10-31): the logos slide in one seamless loop. The track holds two identical
+   groups and moves by exactly one group, so the loop has no gap or jump. Fixed tile sizes keep the speed even. */
+.brands { --logo-w: 132px; --logo-h: 60px; --logo-gap: 14px; --marquee-time: 40s;
+  background: var(--navy-deep); border-top: 1px solid rgba(241, 200, 84, .4); padding-block: 26px 30px; display: grid; gap: 18px; margin-top: 32px; }
+.brands .eyebrow { text-align: center; padding-inline: 16px; }
+.brands + footer { margin-top: 0; }
+.marquee { overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 9%, #000 91%, transparent); mask-image: linear-gradient(90deg, transparent, #000 9%, #000 91%, transparent); }
+.marquee-track { display: flex; width: max-content; }
+.marquee-group { display: flex; gap: var(--logo-gap); margin: 0; padding: 0 var(--logo-gap) 0 0; list-style: none; }
+.brand-logo { flex: none; width: var(--logo-w); height: var(--logo-h); padding: 11px 16px; border-radius: 12px; background: #FFFFFF;
+  display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 24px -16px rgba(0, 0, 0, .7), inset 0 0 0 1px rgba(255, 255, 255, .6); }
+.brand-logo.dark { background: #111111; box-shadow: 0 10px 24px -16px rgba(0, 0, 0, .7), inset 0 0 0 1px rgba(255, 255, 255, .14); } /* Garrett's artwork is made for a dark background */
+.brand-logo.compact { padding-block: 6px; } /* near-square logos: same visual weight as the wide ones */
+.brand-logo img { display: block; width: 100%; height: 100%; object-fit: contain; } /* whole logo, never stretched */
+@media (min-width: 768px) { .brands { --logo-w: 164px; --logo-h: 70px; --logo-gap: 22px; --marquee-time: 48s; } }
+@media (min-width: 1024px) { .brands { --logo-w: 184px; --logo-h: 76px; --logo-gap: 28px; --marquee-time: 55s; padding-block: 34px 40px; gap: 22px; } }
+@keyframes marquee { to { transform: translate3d(-50%, 0, 0); } }
+@media (prefers-reduced-motion: no-preference) {
+  .marquee-track { animation: marquee var(--marquee-time) linear infinite; }
+  .marquee.off .marquee-track { animation-play-state: paused; } /* off screen */
+}
+@media (hover: hover) { .marquee:hover .marquee-track { animation-play-state: paused; } }
+/* Reduced motion: the five logos stand still, centred, wrapping if needed */
+@media (prefers-reduced-motion: reduce) {
+  .marquee { -webkit-mask-image: none; mask-image: none; }
+  .marquee-track { width: auto; }
+  .marquee-group { flex: 1; flex-wrap: wrap; justify-content: center; padding: 0 16px; }
+  .marquee-group[aria-hidden="true"], .brand-logo.dup { display: none; }
+}
+
+/* Showroom panorama (2026-10-31): wide on desktop, a little taller on phones so it still reads; the photo covers the frame */
+.showroom { gap: 16px; }
+.showroom .eyebrow { color: var(--gold-ink); }
+.showroom-head { display: grid; gap: 6px; }
+.showroom-pic { position: relative; margin: 0; border-radius: 20px; overflow: hidden; isolation: isolate; background: var(--navy-deep);
+  box-shadow: 0 24px 48px -30px rgba(38, 41, 72, .7); }
+.showroom-pic::after { content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none;
+  box-shadow: inset 0 0 0 1px rgba(241, 200, 84, .45); background: linear-gradient(0deg, rgba(20, 22, 45, .55), transparent 38%); }
+.slot.slot-showroom { aspect-ratio: 16 / 10; border-radius: 0; }
+.slot-showroom .slot-empty { border: 0; }
+.showroom-pic figcaption { position: absolute; z-index: 1; inset-inline-start: 14px; bottom: 14px; max-width: calc(100% - 28px);
+  padding: 8px 14px 8px 10px; border-radius: 999px; display: flex; align-items: center; gap: 8px; color: #FFFFFF; font-size: 13px; font-weight: 600;
+  background: rgba(38, 41, 72, .62); border: 1px solid rgba(241, 200, 84, .5); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); }
+.showroom-pic figcaption svg { flex: none; color: var(--gold); }
+@media (hover: hover) and (prefers-reduced-motion: no-preference) { .showroom-pic:hover .slot img { transform: scale(1.03); } }
+@media (min-width: 768px) { .slot.slot-showroom { aspect-ratio: 2 / 1; } .showroom-pic figcaption { inset-inline-start: 20px; bottom: 20px; font-size: 14px; } }
+@media (min-width: 1024px) { .slot.slot-showroom { aspect-ratio: 12 / 5; } .showroom-pic { border-radius: 24px; } }
+
 /* Find my detector (2026-10-31): gold-tinted glass. Light blur on phones, stronger on desktop; hover effects only with a mouse */
 .cta-glass {
   position: relative; overflow: hidden; isolation: isolate; width: 100%; min-height: 58px; padding-block: 7px; padding-inline: 8px 18px;
@@ -589,6 +633,10 @@ html[lang="ar"] .cta-glass { font-family: var(--arabic); }
   </div>
 </header>
 <main id="view"></main>
+<section class="brands" aria-labelledby="brands-title">
+  <p class="eyebrow" id="brands-title">Brands we carry</p>
+  <div class="marquee" dir="ltr"><div class="marquee-track" id="brand-track"></div></div>
+</section>
 <footer id="contact">
   <div class="wrap">
     <span class="display" style="font-weight:700;color:var(--navy)">Golden Spark Detectors</span>
@@ -870,6 +918,7 @@ const WA_LINES = {
   ar: ["971522448875"]                  // +971 52 244 8875
 };
 const ICON = {
+  pin: '<svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11Z"/><circle cx="12" cy="10" r="2.4"/></svg>',
   detector: '<svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="7.5" cy="18" rx="5" ry="2.5"/><path d="M10 16 16.5 5"/><path d="M14.5 3.8 19 6.4"/><path d="M12.9 10.2l2.6 1.5"/></svg>',
   arrow: '<svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>',
   chev: '<svg class="chev" aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 5 7 7-7 7"/></svg>',
@@ -1293,10 +1342,36 @@ function depthFact(mode, value, show = SHOW_DEPTH) {
 const IMAGES = {
   hero: { desktop: "img/hero-desktop.webp", mobile: "img/hero-mobile.webp" },
   promo: { home: "" },
+  showroom: "", // panoramic showroom photo, e.g. img/showroom-2400w.webp (+ showroom-1200w.webp)
   categories: { mining: "img/cat-mining-800w.webp", gold: "img/cat-gold-800w.webp", longrange: "img/cat-longrange-800w.webp", treasure: "img/cat-treasure-800w.webp",
     water: "img/cat-water-800w.webp", xrf: "img/cat-xrf-800w.webp", security: "img/cat-security-800w.webp" },
   subcategories: { gates: "", handheld: "", luggage: "" },
-  products: { "niton-xl2": "img/prod-niton-xl2-1200w.webp", "niton-dxl-800": "img/prod-niton-dxl-800-960w.webp" }, // product key -> image
+  products: { "niton-xl2": "img/prod-niton-xl2-1200w.webp", "niton-dxl-800": "img/prod-niton-dxl-800-960w.webp", // product key -> image
+    // the user's product photos (2026-10-31), one per product, matched by file name
+    "okm-exp-7000-professional-plus": "img/prod-okm-exp-7000-professional-plus-1200w.webp",
+    "okm-rover-c4": "img/prod-okm-rover-c4-1200w.webp",
+    "ger-titan-x13": "img/prod-ger-titan-x13-1200w.webp",
+    "nokta-makro-gold-finder-2000": "img/prod-nokta-makro-gold-finder-2000-1200w.webp",
+    "garrett-goldmaster-24k-metal-detector": "img/prod-garrett-goldmaster-24k-metal-detector-1200w.webp",
+    "xp-deus-ii": "img/prod-xp-deus-ii-1200w.webp",
+    "nokta-magnetar-9000": "img/prod-nokta-magnetar-9000-1200w.webp",
+    "garrett-axiom-full": "img/prod-garrett-axiom-full-1200w.webp",
+    "garrett-axiom-lite": "img/prod-garrett-axiom-lite-1200w.webp",
+    "okm-delta-ranger": "img/prod-okm-delta-ranger-1200w.webp",
+    "okm-gepard-gpr-3d": "img/prod-okm-gepard-gpr-3d-1200w.webp",
+    "river-f-smart-detector": "img/prod-river-f-smart-detector-1200w.webp",
+    "fresh-result-2": "img/prod-fresh-result-2-1200w.webp",
+    "okm-geoseeker": "img/prod-okm-geoseeker-1200w.webp",
+    "river-g-device": "img/prod-river-g-device-1200w.webp",
+    "vanta-element": "img/prod-vanta-element-1200w.webp",
+    "garrett-multi-zone": "img/prod-garrett-multi-zone-1200w.webp",
+    "pd-6500i": "img/prod-pd-6500i-1200w.webp",
+    "garrett-paragon": "img/prod-garrett-paragon-1200w.webp",
+    "super-scanner-v": "img/prod-super-scanner-v-1200w.webp",
+    "superwand": "img/prod-superwand-1200w.webp",
+    "garrett-guide": "img/prod-garrett-guide-1200w.webp",
+    "eagle-eye-rjx6550": "img/prod-eagle-eye-rjx6550-1200w.webp",
+  },
   finder: { gold: "", relics: "", cavities: "", veins: "", utilities: "", water: "", unknown: "", flat: "", mountain: "", mineral: "", team: "" }
 };
 // Videos: { "titan-500-smart-device": { src: "...mp4", poster: "...jpg" } }. The Vercel test page sets window.GS_VIDEOS.
@@ -1306,10 +1381,10 @@ const SLOTS = {
   hero: [1920, 700, "cover", "Hero banner"], heroMobile: [900, 1200, "cover", "Hero banner (phone)"],
   promo: [1600, 600, "cover", "Promotional banner"], category: [800, 600, "cover", "Category image"],
   subcategory: [800, 600, "cover", "Subcategory image"], product: [1200, 1200, "contain", "Product image"],
-  finder: [800, 600, "cover", "Selection image"]
+  finder: [800, 600, "cover", "Selection image"], showroom: [2400, 1000, "cover", "Showroom photo (panoramic)"]
 };
 // Images named name-800w.webp come with a half-size name-400w.webp, so phones download the small copy.
-const SIZES = { category: "(min-width: 1024px) 300px, 104px", product: "(min-width: 1024px) 300px, 50vw", productMain: "(min-width: 1024px) 460px, 92vw" };
+const SIZES = { category: "(min-width: 1024px) 300px, 104px", product: "(min-width: 1024px) 300px, 50vw", productMain: "(min-width: 1024px) 460px, 92vw", showroom: "(min-width: 1152px) 1088px, calc(100vw - 32px)" };
 function srcset(src, sizes) {
   const m = /-(\d+)w\.webp$/.exec(src);
   if (!m || !sizes) return "";
@@ -1377,9 +1452,26 @@ function renderBar(route) {
     `<a class="chip" href="#${c.id}"${c.id === current ? ' aria-current="page"' : ""}>${L(c.title)}</a>`).join("");
 }
 
-// Brand logos in the hero (the user's files, 2026-10-31): [name, file, width at 96 px tall, dark tile]
+// Brand logos (the user's files, 2026-10-31): [name, file, width at 96 px tall, dark tile]. Shown in the strip before the footer.
 const BRAND_LOGOS = [["OKM", "img/logo-okm.webp", 91], ["GER Detect", "img/logo-ger.webp", 96], ["Garrett", "img/logo-garrett.webp", 312, true],
   ["Nokta", "img/logo-nokta.webp", 329], ["XP", "img/logo-xp.webp", 142]];
+Object.assign(T.en, { brands: "Brands we carry", showroomEyebrow: "Our showroom", showroomTitle: "Visit us in Dubai", showroomAlt: "Golden Spark Detectors showroom in Dubai" });
+Object.assign(T.fr, { brands: "Nos marques", showroomEyebrow: "Notre showroom", showroomTitle: "Venez nous voir à Dubaï", showroomAlt: "Le showroom Golden Spark Detectors à Dubaï" });
+Object.assign(T.ar, { brands: "العلامات التجارية لدينا", showroomEyebrow: "صالة العرض", showroomTitle: "زورونا في دبي", showroomAlt: "صالة عرض Golden Spark Detectors في دبي" });
+// One group = the five logos three times (wider than any screen); the track holds two identical groups.
+// Only the first five are read out; the copies are hidden from screen readers.
+function renderBrands() {
+  const track = document.getElementById("brand-track");
+  document.getElementById("brands-title").textContent = t("brands");
+  if (track.childElementCount) return;
+  const logo = ([name, src, w, dark], copy) => `<li class="brand-logo${dark ? " dark" : ""}${w < 150 ? " compact" : ""}${copy ? " dup" : ""}"${copy ? ' aria-hidden="true"' : ""}><img src="${src}" alt="${copy ? "" : name}" width="${w}" height="96" decoding="async"></li>`;
+  const five = (copy) => BRAND_LOGOS.map((b) => logo(b, copy)).join("");
+  track.innerHTML = `<ul class="marquee-group" aria-labelledby="brands-title">${five(false)}${five(true)}${five(true)}</ul>`
+    + `<ul class="marquee-group" aria-hidden="true">${five(true)}${five(true)}${five(true)}</ul>`;
+  // The strip only moves while it is on screen.
+  const strip = track.parentElement;
+  if ("IntersectionObserver" in window) new IntersectionObserver(([e]) => strip.classList.toggle("off", !e.isIntersecting)).observe(strip);
+}
 function renderHome() {
   const row = (c) => `<a class="cat" href="#${c.id}">
       ${slot("category", IMAGES.categories[c.id], "")}
@@ -1393,8 +1485,6 @@ function renderHome() {
           <h1 class="display">${t("title")}</h1>
           <p class="sub">${t("sub")}</p>
           <button type="button" class="cta-glass" id="cta"><span class="cta-icon" aria-hidden="true">${ICON.detector}</span><span class="cta-label">${t("cta")}</span><span class="cta-arrow arrow" aria-hidden="true">${ICON.arrow}</span></button>
-          <div class="logos" role="list" aria-label="Brands">${BRAND_LOGOS.map(([name, src, w, dark]) =>
-            `<span class="logo${dark ? " dark" : ""}" role="listitem"><img src="${src}" alt="${name}" width="${w}" height="96" decoding="async"></span>`).join("")}</div>
         </div>
       </div>
     </section>
@@ -1411,6 +1501,11 @@ function renderHome() {
       <section class="section">
         <h2 class="display" style="font-size:20px">${t("how")}</h2>
         <ol class="steps"><li><b>1</b>${t("s1")}</li><li><b>2</b>${t("s2")}</li><li><b>3</b>${t("s3")}</li></ol>
+      </section>
+      <section class="section showroom" aria-labelledby="showroom-title">
+        <div class="showroom-head"><p class="eyebrow">${t("showroomEyebrow")}</p><h2 class="display" id="showroom-title">${t("showroomTitle")}</h2></div>
+        <figure class="showroom-pic">${slot("showroom", IMAGES.showroom, t("showroomAlt"))}
+          <figcaption>${ICON.pin}<span>Golden Spark Detectors · Deira, Dubai</span></figcaption></figure>
       </section>
     </div>`;
 }
@@ -1659,6 +1754,7 @@ function render(scrollTop = true) {
   document.getElementById("lang-code").textContent = LANGS.find((l) => l[0] === lang)[2];
   renderTerms();
   renderFooterPhones();
+  renderBrands();
   document.getElementById("sample-note").textContent = (t("draft") ? t("draft") + " " : "") + "Sample for approval. Grey boxes are photo and video placeholders.";
   const cta = document.getElementById("cta");
   if (cta) cta.onclick = () => { location.hash = "finder-1"; }; // "Find my detector" opens the 3-step wizard
