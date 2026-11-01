@@ -1510,7 +1510,7 @@ const IMAGES = {
     "garrett-guide": "img/prod-garrett-guide-1200w.webp",
     "eagle-eye-rjx6550": "img/prod-eagle-eye-rjx6550-1200w.webp",
   },
-  finder: { gold: "", relics: "", cavities: "", veins: "", utilities: "", water: "", unknown: "", flat: "", mountain: "", mineral: "", team: "" }
+  finder: { gold: "img/finder-gold-800w.webp", relics: "img/finder-relics-800w.webp", cavities: "img/finder-cavities-800w.webp", veins: "img/finder-veins-800w.webp", utilities: "img/finder-utilities-800w.webp", water: "img/finder-water-800w.webp", unknown: "img/finder-unknown-800w.webp", flat: "img/finder-flat-800w.webp", mountain: "img/finder-mountain-800w.webp", mineral: "img/finder-mineral-800w.webp", team: "img/finder-team-800w.webp" } // the user's photos (2026-11-01)
 };
 // Videos: { "titan-500-smart-device": { src: "...mp4", poster: "...jpg" } }. The Vercel test page sets window.GS_VIDEOS.
 const VIDEOS = window.GS_VIDEOS || {};
@@ -1522,7 +1522,7 @@ const SLOTS = {
   finder: [800, 600, "cover", "Selection image"], showroom: [2000, 949, "cover", "Showroom photo (panoramic)"]
 };
 // Images named name-800w.webp come with a half-size name-400w.webp, so phones download the small copy.
-const SIZES = { category: "(min-width: 1024px) 300px, 104px", product: "(min-width: 1024px) 300px, 50vw", productMain: "(min-width: 1024px) 460px, 92vw", showroom: "(min-width: 1152px) 1088px, calc(100vw - 32px)", subcategory: "(min-width: 1024px) 360px, 33vw" };
+const SIZES = { category: "(min-width: 1024px) 300px, 104px", product: "(min-width: 1024px) 300px, 50vw", productMain: "(min-width: 1024px) 460px, 92vw", showroom: "(min-width: 1152px) 1088px, calc(100vw - 32px)", subcategory: "(min-width: 1024px) 360px, 33vw", finder: "(min-width: 1024px) 320px, 46vw" };
 function srcset(src, sizes) {
   const m = /-(\d+)w\.webp$/.exec(src);
   if (!m || !sizes) return "";
