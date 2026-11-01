@@ -483,6 +483,33 @@ html[lang="ar"] .quote-send { font-family: var(--arabic); }
   .cat:hover .chev { translate: 4px 0; }
   [dir="rtl"] .cat:hover .chev { translate: -4px 0; }
 }
+/* Is it for you? (2026-11-01): one honest line each way, by category */
+.fit { margin: 0; padding: 14px 16px; border-radius: 14px; background: var(--mist); border: 1px solid var(--line); display: grid; gap: 10px; }
+.fit-title { margin: 0; font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--gold-ink); }
+.fit-row { margin: 0; display: flex; align-items: flex-start; gap: 10px; font-size: 15px; line-height: 1.45; }
+.fit-row svg { flex: none; margin-top: 1px; }
+.fit-row b { color: var(--navy); }
+.fit-row a { color: var(--navy); font-weight: 600; text-decoration: underline; text-decoration-color: var(--gold); text-underline-offset: 3px; }
+.fit .yes svg { color: var(--wa); }
+.fit .no svg { color: #B3261E; }
+
+/* Questions we hear most (2026-11-01): native open/close, no script */
+.faq-list { display: grid; gap: 10px; }
+.faq-list details { border: 1px solid var(--line); border-radius: 14px; background: var(--paper); transition: border-color .25s ease, box-shadow .25s ease; }
+.faq-list details[open] { border-color: rgba(133, 96, 31, .45); box-shadow: 0 10px 26px -20px rgba(38, 41, 72, .55); }
+.faq-list summary { min-height: 56px; padding: 14px 16px; display: flex; align-items: center; justify-content: space-between; gap: 12px; cursor: pointer; list-style: none;
+  font: 700 16px/1.3 var(--display); color: var(--navy); -webkit-tap-highlight-color: transparent; border-radius: inherit; }
+html[lang="ar"] .faq-list summary { font-family: var(--arabic); }
+.faq-list summary::-webkit-details-marker { display: none; }
+.faq-list summary:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; }
+.faq-icon { flex: none; color: var(--gold-ink); transition: transform .25s cubic-bezier(.2, .8, .2, 1); }
+.faq-list details[open] .faq-icon { transform: rotate(180deg); }
+.faq-a { margin: 0; padding: 0 16px 16px; font-size: 15px; line-height: 1.55; }
+.faq-a a { color: var(--navy); font-weight: 600; text-decoration: underline; text-decoration-color: var(--gold); text-underline-offset: 3px; }
+@keyframes faq-in { from { opacity: 0; transform: translateY(-4px); } }
+@media (prefers-reduced-motion: no-preference) { .faq-list details[open] .faq-a { animation: faq-in .3s cubic-bezier(.2, .8, .2, 1); } }
+@media (min-width: 1024px) { .faq-list { grid-template-columns: 1fr 1fr; align-items: start; } }
+
 /* Brand strip before the footer (2026-10-31): the logos slide in one seamless loop. The track holds two identical
    groups and moves by exactly one group, so the loop has no gap or jump. Fixed tile sizes keep the speed even. */
 .brands { --logo-w: 132px; --logo-h: 60px; --logo-gap: 14px; --marquee-time: 40s;
@@ -919,6 +946,9 @@ const WA_LINES = {
   ar: ["971522448875"]                  // +971 52 244 8875
 };
 const ICON = {
+  fitYes: '<svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9.5" stroke-width="1.8"/><path d="m7.8 12.3 2.8 2.8 5.6-5.8"/></svg>',
+  fitNo: '<svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="12" cy="12" r="9.5" stroke-width="1.8"/><path d="m9 9 6 6m0-6-6 6"/></svg>',
+  faq: '<svg class="faq-icon" aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>',
   pin: '<svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11Z"/><circle cx="12" cy="10" r="2.4"/></svg>',
   detector: '<svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="7.5" cy="18" rx="5" ry="2.5"/><path d="M10 16 16.5 5"/><path d="M14.5 3.8 19 6.4"/><path d="M12.9 10.2l2.6 1.5"/></svg>',
   arrow: '<svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>',
@@ -1476,6 +1506,81 @@ const BRAND_LOGOS = [["OKM", "img/logo-okm.webp", 91], ["GER Detect", "img/logo-
 Object.assign(T.en, { brands: "Brands we carry", showroomEyebrow: "Our showroom", showroomTitle: "Visit us in Dubai", showroomAlt: "Golden Spark Detectors showroom in Dubai" });
 Object.assign(T.fr, { brands: "Nos marques", showroomEyebrow: "Notre showroom", showroomTitle: "Venez nous voir à Dubaï", showroomAlt: "Le showroom Golden Spark Detectors à Dubaï" });
 Object.assign(T.ar, { brands: "العلامات التجارية لدينا", showroomEyebrow: "صالة العرض", showroomTitle: "زورونا في دبي", showroomAlt: "صالة عرض Golden Spark Detectors في دبي" });
+Object.assign(T.en, {
+  fitTitle: "Is it for you?", fitYes: "Right for you if", fitNo: "Not for you if", see: "See",
+  fit: {
+    gold: ["you want gold nuggets close to the surface, as a beginner or a serious prospector.", "you want deep treasure, cavities or tunnels.", "treasure"],
+    mining: ["you search big areas for gold veins and deposits, as a team or a company.", "you want small nuggets near the surface.", "gold"],
+    longrange: ["you search wide areas for gold and treasure.", "you want small nuggets near the surface.", "gold"],
+    treasure: ["you look for treasure, cavities or tunnels and want a 3D picture of the ground.", "you want gold nuggets.", "gold"],
+    water: ["you look for underground water or a place for a borewell.", "you want gold or metals. These devices look for water.", ""],
+    xrf: ["you buy or sell gold and need to check its purity.", "you want to find gold in the ground.", "gold"]
+  },
+  faqTitle: "Questions we hear most",
+  faq: [
+    ["Which detector is the best?", "The best one is the one that fits what you want to find and where you search. Tap {finder} (3 quick steps) or ask us on WhatsApp."],
+    ["I only want gold. Which one?", "Gold nuggets close to the surface: {gold}. Gold veins and big deposits: {mining}. Wide areas: {longrange}."],
+    ["Does it only detect gold?", "Metal detectors react to all metals, not only gold. Many gold detectors help you tell iron junk apart from other metals, but the only way to be sure is to dig. For long range devices, the manufacturer states they can search for gold; ask us what they can and cannot do."],
+    ["Which one goes the deepest?", "It depends on what you want to find. A big target, like a treasure box or a cavity, can be found much deeper than a small nugget, which is usually close to the surface. The deepest machine is not the best one for nuggets."],
+    ["Do you ship to my country?", "Delivery in the UAE is free. Everywhere else we ship by DHL or FedEx in 3–7 working days, and most of our customers are in Africa. Customs fees are paid when it arrives. We cannot ship to countries under OFAC sanctions."],
+    ["How much is it?", "Tap WhatsApp on any machine: its name is already in the message. We reply with the price and the delivery cost to your country."]
+  ]
+});
+Object.assign(T.fr, {
+  fitTitle: "Est-ce pour vous ?", fitYes: "Pour vous si", fitNo: "Pas pour vous si", see: "Voir",
+  fit: {
+    gold: ["vous cherchez des pépites d'or près de la surface, en débutant ou en prospecteur confirmé.", "vous cherchez des trésors profonds, des cavités ou des tunnels.", "treasure"],
+    mining: ["vous prospectez de grandes zones pour trouver des filons et des gisements d'or, en équipe ou en entreprise.", "vous cherchez de petites pépites près de la surface.", "gold"],
+    longrange: ["vous cherchez de l'or et des trésors sur de grandes zones.", "vous cherchez de petites pépites près de la surface.", "gold"],
+    treasure: ["vous cherchez des trésors, des cavités ou des tunnels et voulez une image 3D du sol.", "vous cherchez des pépites d'or.", "gold"],
+    water: ["vous cherchez de l'eau souterraine ou un emplacement pour un forage.", "vous cherchez de l'or ou des métaux : ces appareils cherchent de l'eau.", ""],
+    xrf: ["vous achetez ou vendez de l'or et devez vérifier sa pureté.", "vous voulez trouver de l'or dans le sol.", "gold"]
+  },
+  faqTitle: "Les questions qu'on nous pose le plus",
+  faq: [
+    ["Quel est le meilleur détecteur ?", "Le meilleur est celui qui correspond à ce que vous cherchez et à l'endroit où vous cherchez. Touchez {finder} (3 étapes rapides) ou demandez-nous sur WhatsApp."],
+    ["Je veux seulement de l'or. Lequel choisir ?", "Pépites d'or près de la surface : {gold}. Filons et grands gisements : {mining}. Grandes zones : {longrange}."],
+    ["Est-ce qu'il détecte seulement l'or ?", "Les détecteurs de métaux réagissent à tous les métaux, pas seulement à l'or. Beaucoup de détecteurs d'or aident à distinguer le fer des autres métaux, mais la seule façon d'être sûr est de creuser. Pour les appareils longue portée, le fabricant indique qu'ils peuvent chercher l'or ; demandez-nous ce qu'ils peuvent faire et ne pas faire."],
+    ["Lequel va le plus profond ?", "Cela dépend de ce que vous cherchez. Une grande cible, comme un coffre ou une cavité, peut être trouvée bien plus profond qu'une petite pépite, qui est en général près de la surface. L'appareil le plus profond n'est pas le meilleur pour les pépites."],
+    ["Livrez-vous dans mon pays ?", "La livraison est gratuite aux Émirats. Partout ailleurs, nous livrons par DHL ou FedEx en 3 à 7 jours ouvrés, et la plupart de nos clients sont en Afrique. Les frais de douane se paient à l'arrivée. Nous ne livrons pas les pays sous sanctions de l'OFAC."],
+    ["Combien ça coûte ?", "Touchez WhatsApp sur n'importe quel appareil : son nom est déjà dans le message. Nous vous répondons avec le prix et le coût de livraison vers votre pays."]
+  ]
+});
+Object.assign(T.ar, {
+  fitTitle: "هل هو مناسب لك؟", fitYes: "مناسب لك إذا", fitNo: "غير مناسب لك إذا", see: "انظر",
+  fit: {
+    gold: ["كنت تبحث عن كتل الذهب القريبة من السطح، سواء كنت مبتدئًا أو منقبًا محترفًا.", "كنت تبحث عن كنوز عميقة أو فراغات أو أنفاق.", "treasure"],
+    mining: ["كنت تبحث في مساحات واسعة عن عروق الذهب والرواسب، ضمن فريق أو شركة.", "كنت تبحث عن كتل ذهب صغيرة قريبة من السطح.", "gold"],
+    longrange: ["كنت تبحث عن الذهب والكنوز في مساحات واسعة.", "كنت تبحث عن كتل ذهب صغيرة قريبة من السطح.", "gold"],
+    treasure: ["كنت تبحث عن كنوز أو فراغات أو أنفاق وتريد صورة ثلاثية الأبعاد لما تحت الأرض.", "كنت تبحث عن كتل الذهب.", "gold"],
+    water: ["كنت تبحث عن مياه جوفية أو مكان لحفر بئر.", "كنت تبحث عن الذهب أو المعادن، فهذه الأجهزة تبحث عن المياه.", ""],
+    xrf: ["كنت تشتري الذهب أو تبيعه وتحتاج إلى فحص نقائه.", "كنت تريد العثور على الذهب في الأرض.", "gold"]
+  },
+  faqTitle: "أكثر الأسئلة التي تصلنا",
+  faq: [
+    ["ما هو أفضل جهاز؟", "أفضل جهاز هو الذي يناسب ما تبحث عنه والمكان الذي تبحث فيه. اضغط على {finder} (3 خطوات سريعة) أو اسألنا عبر واتساب."],
+    ["أريد الذهب فقط. أي جهاز أختار؟", "كتل الذهب القريبة من السطح: {gold}. عروق الذهب والرواسب الكبيرة: {mining}. المساحات الواسعة: {longrange}."],
+    ["هل يكشف الذهب فقط؟", "أجهزة كشف المعادن تتفاعل مع كل المعادن وليس الذهب فقط. كثير من أجهزة الذهب تساعدك على تمييز الحديد عن المعادن الأخرى، لكن الطريقة الوحيدة للتأكد هي الحفر. أما الأجهزة بعيدة المدى فتذكر الشركة المصنعة أنها تستطيع البحث عن الذهب؛ اسألنا عمّا تستطيع فعله وما لا تستطيع."],
+    ["أي جهاز يصل إلى أعمق مسافة؟", "يعتمد ذلك على ما تبحث عنه. الهدف الكبير مثل صندوق كنز أو فراغ يمكن كشفه على عمق أكبر بكثير من كتلة ذهب صغيرة، التي تكون عادةً قريبة من السطح. الجهاز الأعمق ليس الأفضل لكتل الذهب."],
+    ["هل توصلون إلى بلدي؟", "التوصيل مجاني داخل الإمارات. وإلى باقي الدول نشحن عبر DHL أو FedEx خلال 3 إلى 7 أيام عمل، ومعظم عملائنا من أفريقيا. رسوم الجمارك تُدفع عند الاستلام. لا نشحن إلى الدول الخاضعة لعقوبات OFAC."],
+    ["كم السعر؟", "اضغط على واتساب في أي جهاز، وسيكون اسمه موجودًا في الرسالة. نرد عليك بالسعر وتكلفة الشحن إلى بلدك."]
+  ]
+});
+const catLink = (id) => `<a href="#${id}">${L(CATS.find((c) => c.id === id).title)}</a>`;
+const withLinks = (text) => text.replace(/\{(\w+)\}/g, (_, id) => id === "finder" ? `<a href="#finder-1">${t("cta")}</a>` : catLink(id));
+// Product page: who the machine is for, and who it is not for (same for every machine in a category).
+function fitBox(cat) {
+  const f = t("fit")[cat.id];
+  if (!f) return "";
+  const [yes, no, alt] = f;
+  return `<div class="fit" role="group" aria-labelledby="fit-title"><p class="fit-title" id="fit-title">${t("fitTitle")}</p>
+    <p class="fit-row yes">${ICON.fitYes}<span><b>${t("fitYes")}</b> ${yes}</span></p>
+    <p class="fit-row no">${ICON.fitNo}<span><b>${t("fitNo")}</b> ${no}${alt ? ` ${t("see")} ${catLink(alt)}.` : ""}</span></p></div>`;
+}
+function faqSection() {
+  return `<section class="section faq" aria-labelledby="faq-title"><h2 class="display" id="faq-title">${t("faqTitle")}</h2>
+    <div class="faq-list">${t("faq").map(([q, a]) => `<details><summary>${q}${ICON.faq}</summary><p class="faq-a">${withLinks(a)}</p></details>`).join("")}</div></section>`;
+}
 // One group = the five logos three times (wider than any screen); the track holds two identical groups.
 // Only the first five are read out; the copies are hidden from screen readers.
 function renderBrands() {
@@ -1516,6 +1621,7 @@ function renderHome() {
         <div class="cats">${CATS.filter((c) => c.group === "test").map(row).join("")}</div>
       </section>
       <section class="section promo">${VIDEOS["home-promo"] ? media("home-promo", "wide", "Golden Spark Detectors", "metadata") : slot("promo", IMAGES.promo.home, "")}</section>
+      ${faqSection()}
       <section class="section showroom" aria-labelledby="showroom-title">
         <div class="showroom-head"><p class="eyebrow">${t("showroomEyebrow")}</p><h2 class="display" id="showroom-title">${t("showroomTitle")}</h2></div>
         <figure class="showroom-pic">${slot("showroom", IMAGES.showroom, t("showroomAlt"))}
@@ -1574,6 +1680,7 @@ function renderProduct({ cat, p }, tab) {
       ${p.headline ? `<p class="headline">${p.headline}</p>` : ""}
       ${p.pkg ? `<span class="pkg">${p.pkg}</span>` : ""}
       <p class="intro">${p.blurb || `<span class="tile-later">${t("later")}</span>`}</p>
+      ${fitBox(cat)}
       <dl class="facts">
         ${showDepth ? depthFact(neutral ? "neutral" : "claim", p.depth, true) : ""}
         ${showDepth && p.range ? `<div><dt>${t("range")}</dt><dd>${t("states")} ${p.range}</dd></div>` : ""}
