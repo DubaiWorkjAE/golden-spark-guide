@@ -10,7 +10,7 @@
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}</style>
 <script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
 <script defer src="/_vercel/insights/script.js"></script>
-<script>window.GS_VIDEOS = {"home-promo":{"src":"media/home-promo.mp4","poster":"media/home-promo.webp"}}; window.GS_PHOTOS = {};</script>
+<script>window.GS_VIDEOS = {"eagle-eye-rjx6550":{"src":"videos/eagle-eye-rjx6550.mp4","poster":"videos/eagle-eye-rjx6550.webp"},"ger-titan-x13":{"src":"videos/ger-titan-x13.mp4","poster":"videos/ger-titan-x13.webp"},"garrett-multi-zone":{"src":"videos/garrett-multi-zone.mp4","poster":"videos/garrett-multi-zone.webp"},"garrett-paragon":{"src":"videos/garrett-paragon.mp4","poster":"videos/garrett-paragon.webp"},"nokta-makro-gold-finder-2000":{"src":"videos/nokta-makro-gold-finder-2000.mp4","poster":"videos/nokta-makro-gold-finder-2000.webp"},"ger-gold-hunter-smart-detector":{"src":"videos/ger-gold-hunter-smart-detector.mp4","poster":"videos/ger-gold-hunter-smart-detector.webp"},"garrett-goldmaster-24k-metal-detector":{"src":"videos/garrett-goldmaster-24k-metal-detector.mp4","poster":"videos/garrett-goldmaster-24k-metal-detector.webp"},"nokta-magnetar-9000":{"src":"videos/nokta-magnetar-9000.mp4","poster":"videos/nokta-magnetar-9000.webp"},"niton-dxl-800":{"src":"videos/niton-dxl-800.mp4","poster":"videos/niton-dxl-800.webp"},"niton-xl2":{"src":"videos/niton-xl2.mp4","poster":"videos/niton-xl2.webp"},"okm-delta-ranger":{"src":"videos/okm-delta-ranger.mp4","poster":"videos/okm-delta-ranger.webp"},"okm-geoseeker":{"src":"videos/okm-geoseeker.mp4","poster":"videos/okm-geoseeker.webp"},"okm-gepard-gpr-3d":{"src":"videos/okm-gepard-gpr-3d.mp4","poster":"videos/okm-gepard-gpr-3d.webp"},"okm-rover-c4":{"src":"videos/okm-rover-c4.mp4","poster":"videos/okm-rover-c4.webp"},"super-scanner-v":{"src":"videos/super-scanner-v.mp4","poster":"videos/super-scanner-v.webp"},"titan-500-smart-device":{"src":"videos/titan-500-smart-device.mp4","poster":"videos/titan-500-smart-device.webp"},"vanta-element":{"src":"videos/vanta-element.mp4","poster":"videos/vanta-element.webp"},"garrett-axiom-full":{"src":"videos/garrett-axiom.mp4","poster":"videos/garrett-axiom.webp"},"garrett-axiom-lite":{"src":"videos/garrett-axiom.mp4","poster":"videos/garrett-axiom.webp"},"home-promo":{"src":"media/home-promo.mp4","poster":"media/home-promo.webp"}}; window.GS_PHOTOS = {};</script>
 <title>Golden Spark Detector Guide</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -44,7 +44,7 @@
 * { box-sizing: border-box; }
 [hidden] { display: none !important; }
 body { background: var(--paper); color: var(--ink); font: 16px/1.45 var(--body); }
-html[lang="ar"] body, html[lang="ar"] .display { font-family: var(--arabic); }
+html:is([lang="ar"], [lang="fa"]) body, html:is([lang="ar"], [lang="fa"]) .display { font-family: var(--arabic); }
 body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--paper); }
 a { color: var(--navy); }
 button { font: inherit; color: inherit; cursor: pointer; }
@@ -71,7 +71,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
 .brand-name { white-space: nowrap; }
 .lang-wrap { position: relative; flex: none; }
 .contact { flex: none; height: 40px; padding-inline: 12px; border-radius: 20px; background: var(--navy); color: #FFFFFF; display: inline-flex; align-items: center; font-size: 13px; font-weight: 600; text-decoration: none; white-space: nowrap; }
-html[lang="ar"] .contact, html[lang="ar"] .lang-btn { font-family: var(--arabic); }
+html:is([lang="ar"], [lang="fa"]) .contact, html:is([lang="ar"], [lang="fa"]) .lang-btn { font-family: var(--arabic); }
 #lang-name { display: none; }
 .lang-chev { display: none; color: var(--muted); transition: transform .2s ease; }
 .lang-btn[aria-expanded="true"] .lang-chev { transform: rotate(180deg); }
@@ -117,7 +117,7 @@ html[lang="ar"] .contact, html[lang="ar"] .lang-btn { font-family: var(--arabic)
 .cat > .media { flex: 0 0 96px; height: 96px; }
 .cat-text { flex: 1; min-width: 0; display: grid; gap: 4px; }
 .cat-title { font: 700 17px var(--display); color: var(--navy); }
-html[lang="ar"] .cat-title { font-family: var(--arabic); }
+html:is([lang="ar"], [lang="fa"]) .cat-title { font-family: var(--arabic); }
 .cat-line { font-size: 13px; color: var(--muted); }
 .pill { justify-self: start; padding: 2px 9px; border-radius: 10px; background: var(--mist); font-size: 12px; font-weight: 600; }
 .chev { flex: none; color: var(--gold-ink); }
@@ -229,7 +229,7 @@ footer .wrap { padding-block: 24px 120px; display: grid; gap: 12px; }
 .finder { display: grid; gap: 14px; padding-block: 18px 36px; max-width: 820px; }
 .step { padding: 16px; border: 1px solid var(--line); border-radius: 16px; background: var(--paper); display: grid; gap: 12px; min-width: 0; }
 .step h2 { margin: 0; display: flex; align-items: center; gap: 10px; font: 700 18px/1.3 var(--display); color: var(--navy); }
-html[lang="ar"] .step h2 { font-family: var(--arabic); }
+html:is([lang="ar"], [lang="fa"]) .step h2 { font-family: var(--arabic); }
 .step-num { flex: none; width: 28px; height: 28px; border-radius: 14px; background: var(--navy); color: #FFFFFF; display: grid; place-items: center; font: 700 14px var(--body); }
 .step .hint { margin: -6px 0 0; color: var(--muted); font-size: 13px; }
 .opt-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
@@ -242,7 +242,7 @@ html[lang="ar"] .step h2 { font-family: var(--arabic); }
 .opt-card:active { transform: scale(.97); }
 @media (hover: hover) { .opt-card:hover { border-color: var(--blue); } }
 .finder-send { width: 100%; height: 56px; border: 0; cursor: pointer; font: 600 17px var(--body); }
-html[lang="ar"] .finder-send { font-family: var(--arabic); }
+html:is([lang="ar"], [lang="fa"]) .finder-send { font-family: var(--arabic); }
 @media (min-width: 640px) { .opt-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } .step { padding: 20px; } }
 @media (min-width: 1024px) { .opt-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
 /* Image placeholders: fixed shape per area, empty until an image is added (IMAGES list) */
@@ -299,7 +299,7 @@ html[lang="ar"] .finder-send { font-family: var(--arabic); }
 .pic-art { display: block; aspect-ratio: 16 / 10; overflow: hidden; background: var(--mist); }
 .pic-art svg, .pic-art img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s cubic-bezier(.2, .7, .2, 1); }
 .pic-label { padding: 12px 10px 14px; font-size: 15px; font-weight: 700; color: var(--navy); }
-html[lang="ar"] .pic-label { font-family: var(--arabic); }
+html:is([lang="ar"], [lang="fa"]) .pic-label { font-family: var(--arabic); }
 .pic-check { position: absolute; top: 10px; inset-inline-end: 10px; width: 28px; height: 28px; border-radius: 14px; background: var(--gold); display: grid; place-items: center; opacity: 0; transform: scale(.6); transition: opacity .2s ease, transform .25s cubic-bezier(.2, .8, .2, 1.4); box-shadow: 0 2px 8px rgba(0, 0, 0, .2); }
 .pic-card[aria-checked="true"] { border: 2px solid var(--navy); box-shadow: 0 10px 26px -14px rgba(38, 41, 72, .55); }
 .pic-card[aria-checked="true"] .pic-check { opacity: 1; transform: scale(1); }
@@ -310,7 +310,7 @@ html[lang="ar"] .pic-label { font-family: var(--arabic); }
 .wiz-next { height: 52px; padding-inline: 32px; border: 0; border-radius: 26px; background: var(--navy); color: #FFFFFF; font: 600 16px var(--body); cursor: pointer; transition: background-color .25s ease, opacity .25s ease; }
 .wiz-next[aria-disabled="true"] { opacity: .45; }
 .wiz-next:not([aria-disabled="true"]):hover { background: var(--blue); }
-html[lang="ar"] .wiz-next, html[lang="ar"] .wiz-back { font-family: var(--arabic); }
+html:is([lang="ar"], [lang="fa"]) .wiz-next, html:is([lang="ar"], [lang="fa"]) .wiz-back { font-family: var(--arabic); }
 .wizard .finder { padding: 0; max-width: 640px; }
 .wizard .finder-send { width: auto; flex: 1; max-width: 360px; }
 @keyframes wiz-in-fwd { from { opacity: 0; transform: translateX(28px); } }
@@ -328,7 +328,7 @@ html[lang="ar"] .wiz-next, html[lang="ar"] .wiz-back { font-family: var(--arabic
 .lang-notice svg { flex: none; margin-top: 2px; }
 .lang-notice p { margin: 0; font-size: 14px; line-height: 1.45; }
 .quote-form select { height: 48px; padding: 0 40px 0 14px; border-radius: 12px; border: 1px solid #CFCFD8; background: var(--paper) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23282C55' stroke-width='2.5'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") no-repeat right 14px center; color: var(--ink); font: 16px var(--body); appearance: none; -webkit-appearance: none; }
-html[lang="ar"] .quote-form select { padding: 0 14px 0 40px; background-position: left 14px center; font-family: var(--arabic); }
+html:is([lang="ar"], [lang="fa"]) .quote-form select { padding: 0 14px 0 40px; background-position: left 14px center; font-family: var(--arabic); }
 .quote-form select:focus { outline: 3px solid var(--gold); outline-offset: 1px; border-color: var(--navy); }
 .quote-form select[aria-invalid="true"] { border-color: #B3261E; }
 .phone-wrap .iti { width: 100%; }
@@ -350,7 +350,7 @@ html[lang="ar"] .quote-form select { padding: 0 14px 0 40px; background-position
 .quote-form .field { display: grid; gap: 6px; }
 .quote-form label { font-size: 14px; font-weight: 600; color: var(--navy); }
 .quote-form input[type="text"], .quote-form input[type="email"], .quote-form input[type="tel"] { height: 48px; padding: 0 14px; border-radius: 12px; border: 1px solid #CFCFD8; background: var(--paper); color: var(--ink); font: 16px var(--body); }
-html[lang="ar"] .quote-form input[type="text"] { font-family: var(--arabic); }
+html:is([lang="ar"], [lang="fa"]) .quote-form input[type="text"] { font-family: var(--arabic); }
 .quote-form input:focus { outline: 3px solid var(--gold); outline-offset: 1px; border-color: var(--navy); }
 .quote-form input[aria-invalid="true"] { border-color: #B3261E; }
 .quote-form .err { margin: 0; color: #B3261E; font-size: 13px; }
@@ -363,7 +363,7 @@ html[lang="ar"] .quote-form input[type="text"] { font-family: var(--arabic); }
 .chat-lang .opt:has(input:checked) { border-color: var(--navy); background: var(--mist); color: var(--navy); }
 .chat-lang .opt:has(input:focus-visible) { outline: 3px solid var(--gold); outline-offset: 2px; }
 .quote-send { margin-top: 6px; width: 100%; border: 0; cursor: pointer; font: 600 16px var(--body); }
-html[lang="ar"] .quote-send { font-family: var(--arabic); }
+html:is([lang="ar"], [lang="fa"]) .quote-send { font-family: var(--arabic); }
 .menu { position: absolute; top: calc(100% + 8px); inset-inline-end: 0; z-index: 40; width: 220px; padding: 6px; border-radius: 16px; background: var(--paper); box-shadow: 0 12px 32px rgba(0, 0, 0, 0.25); display: grid; }
 .menu p { margin: 0; padding: 8px 10px; color: var(--muted); font-size: 12px; font-weight: 600; }
 .menu button { height: 46px; padding-inline: 12px; border: 0; border-radius: 10px; background: transparent; display: flex; align-items: center; justify-content: space-between; font-size: 16px; text-align: start; }
@@ -529,7 +529,7 @@ html[lang="ar"] .quote-send { font-family: var(--arabic); }
 .faq-list details[open] { border-color: rgba(133, 96, 31, .45); box-shadow: 0 10px 26px -20px rgba(38, 41, 72, .55); }
 .faq-list summary { min-height: 56px; padding: 14px 16px; display: flex; align-items: center; justify-content: space-between; gap: 12px; cursor: pointer; list-style: none;
   font: 700 16px/1.3 var(--display); color: var(--navy); -webkit-tap-highlight-color: transparent; border-radius: inherit; }
-html[lang="ar"] .faq-list summary { font-family: var(--arabic); }
+html:is([lang="ar"], [lang="fa"]) .faq-list summary { font-family: var(--arabic); }
 .faq-list summary::-webkit-details-marker { display: none; }
 .faq-list summary:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; }
 .faq-icon { flex: none; color: var(--gold-ink); transition: transform .25s cubic-bezier(.2, .8, .2, 1); }
@@ -616,7 +616,7 @@ html, body, footer { background: var(--porcelain); }
   -webkit-backdrop-filter: blur(8px) saturate(140%); backdrop-filter: blur(8px) saturate(140%);
   transition: transform .2s cubic-bezier(.2, .8, .2, 1), box-shadow .25s ease, border-color .25s ease, background-color .25s ease;
 }
-html[lang="ar"] .cta-glass { font-family: var(--arabic); }
+html:is([lang="ar"], [lang="fa"]) .cta-glass { font-family: var(--arabic); }
 .cta-icon { flex: none; width: 42px; height: 42px; border-radius: 50%; display: grid; place-items: center; color: var(--navy-deep);
   background: linear-gradient(145deg, #F8DE8A, var(--gold) 60%, #D9AE3A); box-shadow: 0 4px 14px -4px rgba(241, 200, 84, .75), inset 0 1px 0 rgba(255, 255, 255, .65); }
 .cta-label { flex: 1; min-width: 0; text-shadow: 0 1px 2px rgba(0, 0, 0, .35); }
@@ -808,44 +808,44 @@ const SHOW_DEPTH_PRODUCT = true;
 // depth: "claim" = Max depth (manufacturer claim), "neutral" = Manufacturer states (+ "not guaranteed" line), null = no depth
 const CATS = [
   { id: "mining", group: "det", depth: "claim", items: "mining", level: "Professional",
-    title: { en: "Mining operations", fr: "Exploitations minières", ar: "عمليات التعدين" },
-    line: { en: "Gold and deposits over big areas", fr: "Or et gisements sur de grandes zones", ar: "الذهب والرواسب في مساحات واسعة" },
+    title: { en: "Mining operations", fr: "Exploitations minières", ar: "عمليات التعدين", fa: "عملیات معدن‌کاوی" },
+    line: { en: "Gold and deposits over big areas", fr: "Or et gisements sur de grandes zones", ar: "الذهب والرواسب في مساحات واسعة", fa: "طلا و ذخایر معدنی در مناطق وسیع" },
     intro: "For **mining operations**, **gold prospecting** and **treasure hunting** over big areas.",
     finds: "Gold, precious metals, buried treasure and cavities", bestFor: "Mining teams and serious treasure hunters" },
   { id: "gold", group: "det", depth: null, items: "gold", level: "Beginner → Advanced",
-    title: { en: "Gold nuggets", fr: "Pépites d'or", ar: "كتل الذهب" },
-    line: { en: "Gold nuggets near the surface", fr: "Pépites d'or près de la surface", ar: "كتل الذهب القريبة من السطح" },
+    title: { en: "Gold nuggets", fr: "Pépites d'or", ar: "كتل الذهب", fa: "قطعات طلا" },
+    line: { en: "Gold nuggets near the surface", fr: "Pépites d'or près de la surface", ar: "كتل الذهب القريبة من السطح", fa: "قطعات طلا نزدیک سطح زمین" },
     intro: "For **gold nugget** hunting near the surface. Good for your **first day** and for **serious prospecting**.",
     finds: "Gold nuggets (natural gold)", bestFor: "Targets near the surface" },
   { id: "longrange", group: "det", depth: "neutral", items: "longrange", level: "We guide you",
-    title: { en: "Long range", fr: "Longue portée", ar: "بعيد المدى" },
-    line: { en: "Manufacturer states: gold, gems and metals over a wide area", fr: "Selon le fabricant : or, pierres et métaux sur une grande zone", ar: "حسب الشركة المصنعة: ذهب وأحجار كريمة ومعادن في مساحة واسعة" },
+    title: { en: "Long range", fr: "Longue portée", ar: "بعيد المدى", fa: "دوربرد" },
+    line: { en: "Manufacturer states: gold, gems and metals over a wide area", fr: "Selon le fabricant : or, pierres et métaux sur une grande zone", ar: "حسب الشركة المصنعة: ذهب وأحجار كريمة ومعادن في مساحة واسعة", fa: "به گفته سازنده: طلا، سنگ‌های قیمتی و فلزات در منطقه‌ای وسیع" },
     intro: "For **long-range** searches for **gold** and **treasure** over a wide area. Ask us on **WhatsApp** what these devices can and cannot do.",
     finds: "Manufacturer states: gold, diamonds, gemstones and metals", bestFor: "Customers who want to search wide areas" },
   { id: "treasure", group: "det", depth: "claim", items: "treasure", level: "Beginner → Professional",
-    title: { en: "Treasure hunting", fr: "Chasse au trésor", ar: "البحث عن الكنوز" },
-    line: { en: "Treasure, cavities and tunnels", fr: "Trésors, cavités et tunnels", ar: "الكنوز والفراغات والأنفاق" },
+    title: { en: "Treasure hunting", fr: "Chasse au trésor", ar: "البحث عن الكنوز", fa: "گنج‌یابی" },
+    line: { en: "Treasure, cavities and tunnels", fr: "Trésors, cavités et tunnels", ar: "الكنوز والفراغات والأنفاق", fa: "گنج، حفره‌ها و تونل‌ها" },
     intro: "For **treasure hunting**. A **3D scanner** shows you an image of what is in the ground.",
     finds: "Treasure chests, cavities and tunnels", bestFor: "Treasure hunters, archaeology and construction" },
   { id: "water", group: "det", depth: "neutral", items: "water", level: "We guide you",
-    title: { en: "Water detectors", fr: "Détecteurs d'eau", ar: "كاشفات المياه" },
-    line: { en: "Manufacturer states: underground water for borewells", fr: "Selon le fabricant : eau souterraine pour forages", ar: "حسب الشركة المصنعة: مياه جوفية لحفر الآبار" },
+    title: { en: "Water detectors", fr: "Détecteurs d'eau", ar: "كاشفات المياه", fa: "آب‌یاب‌ها" },
+    line: { en: "Manufacturer states: underground water for borewells", fr: "Selon le fabricant : eau souterraine pour forages", ar: "حسب الشركة المصنعة: مياه جوفية لحفر الآبار", fa: "به گفته سازنده: آب زیرزمینی برای حفر چاه" },
     intro: "For groups looking for **underground water** or a place for a **borewell**.",
     finds: "Manufacturer states: groundwater, artesian wells, fresh and salt water", bestFor: "Small and big groups looking for borewell locations" },
   { id: "xrf", group: "test", depth: null, items: "xrf", level: "For gold shops",
-    title: { en: "XRF Analyzers", fr: "Analyseurs XRF", ar: "أجهزة تحليل XRF" },
-    line: { en: "Check gold purity and metal type", fr: "Vérifier la pureté de l'or et le type de métal", ar: "فحص نقاء الذهب ونوع المعدن" },
+    title: { en: "XRF Analyzers", fr: "Analyseurs XRF", ar: "أجهزة تحليل XRF", fa: "دستگاه‌های آنالیز XRF" },
+    line: { en: "Check gold purity and metal type", fr: "Vérifier la pureté de l'or et le type de métal", ar: "فحص نقاء الذهب ونوع المعدن", fa: "سنجش عیار طلا و نوع فلز" },
     intro: "For **gold shops and buyers** who need to **check purity** before they pay.",
     finds: "Gold purity and metal type (alloys)", bestFor: "Gold shops and metal buyers" },
   { id: "security", group: "test", depth: null, level: "For security teams",
-    title: { en: "Security metal detectors", fr: "Détecteurs de sécurité", ar: "أجهزة الكشف الأمنية" },
-    line: { en: "Walk-through gates, hand scanners and luggage X-ray", fr: "Portiques, détecteurs manuels et rayons X pour bagages", ar: "بوابات عبور وأجهزة يدوية وفحص الحقائب بالأشعة" },
+    title: { en: "Security metal detectors", fr: "Détecteurs de sécurité", ar: "أجهزة الكشف الأمنية", fa: "فلزیاب‌های امنیتی" },
+    line: { en: "Walk-through gates, hand scanners and luggage X-ray", fr: "Portiques, détecteurs manuels et rayons X pour bagages", ar: "بوابات عبور وأجهزة يدوية وفحص الحقائب بالأشعة", fa: "گیت‌های عبور، اسکنرهای دستی و ایکس‌ری چمدان" },
     intro: "For teams who check **people and bags** at airports, events, malls and offices.",
     finds: "Metal on people. Items inside bags (X-ray).", bestFor: "Airports, events, malls and offices",
     groups: [
-      { id: "gates", icon: "gate", title: { en: "Walk-through gates", fr: "Portiques", ar: "بوابات العبور" }, desc: "People walk through. The gate checks them for metal." },
-      { id: "handheld", icon: "wand", title: { en: "Handheld scanners", fr: "Détecteurs manuels", ar: "أجهزة يدوية" }, desc: "A guard checks one person at a time." },
-      { id: "luggage", icon: "bag", title: { en: "Luggage scanner", fr: "Scanner de bagages", ar: "جهاز فحص الحقائب" }, desc: "X-ray shows what is inside bags without opening them." }
+      { id: "gates", icon: "gate", title: { en: "Walk-through gates", fr: "Portiques", ar: "بوابات العبور", fa: "گیت‌های عبور" }, desc: "People walk through. The gate checks them for metal." },
+      { id: "handheld", icon: "wand", title: { en: "Handheld scanners", fr: "Détecteurs manuels", ar: "أجهزة يدوية", fa: "اسکنرهای دستی" }, desc: "A guard checks one person at a time." },
+      { id: "luggage", icon: "bag", title: { en: "Luggage scanner", fr: "Scanner de bagages", ar: "جهاز فحص الحقائب", fa: "اسکنر چمدان" }, desc: "X-ray shows what is inside bags without opening them." }
     ] }
 ];
 
@@ -962,7 +962,44 @@ const T = {
     msgProduct: (n) => `مرحبًا! أنا مهتم بجهاز ${n}. أود معرفة المزيد عن مميزاته ومواصفاته وسعره.`,
     msgLink: "رابط المنتج",
     msgCat: (n) => `مرحبًا Golden Spark، لست متأكدًا أي جهاز (${n}) يناسبني. هل يمكنكم مساعدتي؟`,
-    msgGeneral: "مرحبًا Golden Spark، أحتاج مساعدة في اختيار جهاز الكشف المناسب." }
+    msgGeneral: "مرحبًا Golden Spark، أحتاج مساعدة في اختيار جهاز الكشف المناسب." },
+  fa: { title: "کدام فلزیاب برای شما مناسب است؟", sub: "چیزی را که می‌خواهید پیدا کنید انتخاب کنید. ویدیو را ببینید. در واتساپ از ما بپرسید.", cta: "یافتن دستگاه مناسب",
+    find: "دنبال چه چیزی هستید؟", tap: "روی یکی بزنید تا صفحه‌اش باز شود.", det: "دستگاه‌های ردیاب", test: "سنجش و امنیت",
+    all: "همه دسته‌ها", finds: "چه چیزی پیدا می‌کند", best: "مناسب برای", level: "سطح", depth: "عمق", maxDepth: "حداکثر عمق (به گفته سازنده)",
+    states: "به گفته سازنده: تا", range: "برد رو به جلو", made: "ساخت", warranty: "گارانتی",
+    depthNote: "<b>درباره عمق:</b> اهداف بزرگ‌تر را می‌توان در عمق بیشتری پیدا کرد. اهداف کوچک‌تر، مثل قطعات طلا، معمولاً نزدیک سطح زمین پیدا می‌شوند.",
+    noGuarantee: "نتیجه به نوع زمین و شرایط بستگی دارد و تضمینی نیست.",
+    depends: "نتیجه به نوع زمین و شرایط بستگی دارد.", usedFor: "کاربرد",
+    wa: "اطلاعات بیشتر در واتساپ", ask: "مطمئن نیستید کدام؟ از ما بپرسید", photo: "عکس", video: "ویدیو", videoHere: "جای ویدیو (9:16)",
+    photoHere: "جای عکس محصول", other: "محصولات دیگر این دسته", contact: "تماس با ما", type: "یک نوع را انتخاب کنید", products: "محصول",
+    later: "توضیح کوتاه (بعداً اضافه می‌شود)", draft: "پیش‌نمایش ترجمه اولیه (نیاز به بازبینی دارد): متن محصولات هنوز به انگلیسی است.", lang: "زبان",
+    waTitle: "گفتگو در واتساپ", waSub: "زبانی را که می‌خواهید با آن گفتگو کنید انتخاب کنید.", close: "بستن",
+    requestQuote: "درخواست قیمت", quoteTitle: "درخواست قیمت", quoteSub: "مشخصات خود را وارد کنید. واتساپ با درخواست آماده ارسال باز می‌شود.",
+    fName: "نام", fEmail: "آدرس ایمیل", fPhone: "شماره تماس", fChat: "گفتگو در واتساپ به زبان", send: "ارسال در واتساپ",
+    errName: "لطفاً نام خود را وارد کنید.", errEmail: "لطفاً یک آدرس ایمیل معتبر وارد کنید.", errPhone: "لطفاً یک شماره تلفن معتبر وارد کنید.", errPhoneFor: (c) => `لطفاً یک شماره معتبر برای ${c} وارد کنید.`,
+    notice: "<b>اطلاعیه مهم:</b> تیم ما به زبان‌های مختلف گفتگو می‌کند. برای اینکه بهتر بتوانیم کمکتان کنیم، لطفاً پیش از ادامه زبان دلخواه خود را انتخاب کنید.",
+    fLang: "زبان دلخواه", pickLang: "یک زبان انتخاب کنید", errLang: "لطفاً زبان دلخواه خود را انتخاب کنید.", searchCountry: "جستجوی کشور",
+    finderTitle: "دستگاه مناسب را پیدا کنید", finderSub: "به دو سؤال کوتاه پاسخ دهید. تیم ما بهترین دستگاه را در واتساپ به شما پیشنهاد می‌دهد.",
+    q1: "دنبال چه چیزی هستید؟", q2: "محیط جستجوی شما چگونه است؟", pickMany: "یک یا چند گزینه را انتخاب کنید.", step3: "مشخصات شما",
+    fFullName: "نام و نام خانوادگی", langOther: "دیگر", otherLabel: "زبان شما", errOther: "لطفاً زبان خود را بنویسید.",
+    errQ1: "لطفاً انتخاب کنید دنبال چه چیزی هستید.", errQ2: "لطفاً محیط جستجوی خود را انتخاب کنید.", getRec: "دریافت پیشنهاد", stepOf: (n) => `مرحله ${n} از 3`, next: "بعدی", back: "بازگشت", pickOne: "برای ادامه روی یک گزینه بزنید.", opening: "در حال باز کردن واتساپ…", errPick: "لطفاً برای ادامه یک گزینه را انتخاب کنید.",
+    finderNotice: "<b>اطلاعیه مهم:</b> تیم ما به زبان‌های مختلف گفتگو می‌کند. لطفاً زبان دلخواه خود را انتخاب کنید تا بهتر بتوانیم کمکتان کنیم.",
+    termsTitle: "ارسال و پرداخت", partners: "شرکای ارسال و پرداخت",
+    terms: [
+      ["ارسال در امارات", "رایگان. آماده‌سازی و تحویل دست‌کم 2 روز زمان می‌برد (به‌جز یکشنبه‌ها و روزهای تعطیل). به آدرس و یک شماره تلفن فعال شما نیاز داریم."],
+      ["ارسال به سراسر جهان", "با DHL یا FedEx در 3 تا 7 روز کاری (به‌جز یکشنبه‌ها و روزهای تعطیل). هزینه به وزن بستگی دارد."],
+      ["عوارض گمرکی", "در قیمت نیست. هنگام رسیدن کالا، شرکت حمل برای پرداخت آن با شما تماس می‌گیرد. اگر تحویل را نپذیرید، هزینه ارسال و بازگشت از مبلغ بازپرداخت کسر می‌شود."],
+      ["زمان آماده‌سازی بیشتر", "محصولات Tero Vido و GER: 4 تا 5 روز. محصولات KS Analysis: 45 روز کاری."],
+      ["پرداخت", "پرداخت در محل نداریم. همه پرداخت‌ها آنلاین است: Visa، Mastercard، American Express یا PayPal. اگر در چند مرحله پرداخت کنید، ممکن است بیش از یک تراکنش در صورت‌حساب کارت خود ببینید."],
+      ["تحریم‌ها", "طبق قوانین امارات، به هیچ کشوری که تحت تحریم‌های OFAC است نمی‌فروشیم و خدمات نمی‌دهیم."]
+    ],
+    autoplay: "پخش خودکار · بی‌صدا · تکرار", heroVideo: "ویدیوی اصلی", zoom: "بزرگ‌نمایی آرام با نگه داشتن نشانگر",
+    soundOn: "روشن کردن صدا", soundOff: "خاموش کردن صدا", tapSound: "برای پخش صدا بزنید",
+    playVideo: "پخش ویدیو", pauseVideo: "توقف ویدیو", videoError: "این ویدیو بارگذاری نشد. اتصال اینترنت را بررسی کنید و صفحه را دوباره باز کنید.",
+    msgProduct: (n) => `سلام! به ${n} علاقه‌مندم. می‌خواهم درباره ویژگی‌ها، مشخصات فنی و قیمت آن بیشتر بدانم.`,
+    msgLink: "لینک محصول",
+    msgCat: (n) => `سلام Golden Spark، مطمئن نیستم کدام دستگاه (${n}) برای من مناسب است. می‌توانید کمکم کنید؟`,
+    msgGeneral: "سلام Golden Spark، برای انتخاب دستگاه مناسب به کمک نیاز دارم." }
 };
 
 // Shipping and payment partner logos, cut from the image you sent (2026-10-30)
@@ -989,7 +1026,7 @@ function renderTerms() {
     </div>`;
 }
 
-const LANGS = [["en", "English", "EN"], ["ar", "العربية", "عربي"], ["fr", "Français", "FR"]];
+const LANGS = [["en", "English", "EN"], ["ar", "العربية", "عربي"], ["fr", "Français", "FR"], ["fa", "فارسی", "فارسی"]];
 // WhatsApp lines per chat language (user request 2026-10-30). A language with several lines gives each
 // visitor one of them at random (kept for the visit), so chats are shared evenly between the agents.
 const WA_LINES = {
@@ -1022,7 +1059,7 @@ if (!T[lang]) lang = "en";
 const t = (k) => T[lang][k];
 const L = (o) => (typeof o === "string" ? o : o[lang] || o.en);
 function waNumber(l) {
-  const lines = WA_LINES[l];
+  const lines = WA_LINES[l] || WA_LINES.en;
   let i = null;
   try { i = sessionStorage.getItem("gs-wa-" + l); } catch (e) {}
   if (i === null || !lines[i]) {
@@ -1283,11 +1320,11 @@ const msgName = (name) => name.replace(/ · (.+)$/, " ($1)");
 // What each metal detector is used for. From each product's page on gsdetectors.com (use cases, targets,
 // long-range system) and the category you placed it in. Security, XRF and water products have none.
 const USE_LABELS = {
-  treasure: { en: "Treasure hunting", fr: "Chasse au trésor", ar: "البحث عن الكنوز" },
-  mining: { en: "Mining", fr: "Exploitation minière", ar: "التعدين" },
-  longrange: { en: "Long range", fr: "Longue portée", ar: "بعيد المدى" },
-  gold: { en: "Gold nuggets", fr: "Pépites d'or", ar: "كتل الذهب" },
-  utilities: { en: "Utilities and industry", fr: "Réseaux enterrés et industrie", ar: "المرافق والصناعة" }
+  treasure: { en: "Treasure hunting", fr: "Chasse au trésor", ar: "البحث عن الكنوز", fa: "گنج‌یابی" },
+  mining: { en: "Mining", fr: "Exploitation minière", ar: "التعدين", fa: "معدن‌کاوی" },
+  longrange: { en: "Long range", fr: "Longue portée", ar: "بعيد المدى", fa: "دوربرد" },
+  gold: { en: "Gold nuggets", fr: "Pépites d'or", ar: "كتل الذهب", fa: "قطعات طلا" },
+  utilities: { en: "Utilities and industry", fr: "Réseaux enterrés et industrie", ar: "المرافق والصناعة", fa: "تأسیسات زیرزمینی و صنعت" }
 };
 const USES = {
   "okm-exp-7000-professional-plus": ["mining", "gold", "treasure"],
@@ -1430,8 +1467,8 @@ function depthRange(items) {
 function depthFact(mode, value, show = SHOW_DEPTH) {
   if (!show || !mode || !value) return "";
   return mode === "neutral"
-    ? `<div><dt>${t("depth")}</dt><dd>${t("states")} ${value}</dd></div>`
-    : `<div><dt>${t("maxDepth")}</dt><dd>${value}</dd></div>`;
+    ? `<div><dt>${t("depth")}</dt><dd>${t("states")} <bdi>${value}</bdi></dd></div>`
+    : `<div><dt>${t("maxDepth")}</dt><dd><bdi>${value}</bdi></dd></div>`;
 }
 
 // ===== YOUR IMAGES (the user's own photos, added 2026-10-31; empty areas still show their size) =====
@@ -1530,14 +1567,14 @@ function media(key, shape, label, preload = "auto") {
 
 // Cards never play video: they show the product photo, or a placeholder until one arrives.
 function tile(p, cat) {
-  const blurb = p.blurb ? `<span class="tile-blurb">${p.blurb}</span>` : `<span class="tile-later">${t("later")}</span>`;
+  const blurb = p.blurb ? `<span class="tile-blurb"><bdi>${p.blurb}</bdi></span>` : `<span class="tile-later">${t("later")}</span>`;
   const depth = SHOW_DEPTH && cat.depth && p.depth ? `<span class="tile-meta">${cat.depth === "neutral" ? t("states") + " " + p.depth : t("depth") + ": " + p.depth}</span>` : "";
   return `<a class="tile" href="#p-${p.key}">
     ${slot("product", IMAGES.products[p.key], p.name)}
     ${p.brand ? `<span class="tile-brand">${p.brand}</span>` : ""}
     <span class="tile-name">${p.name}</span>
     ${usesOf(p.key) ? `<span class="tile-uses">${usesOf(p.key)}</span>` : ""}
-    ${p.pkg ? `<span class="pkg">${p.pkg}</span>` : ""}
+    ${p.pkg ? `<span class="pkg"><bdi>${p.pkg}</bdi></span>` : ""}
     ${blurb}${depth}
   </a>`;
 }
@@ -1557,6 +1594,7 @@ const BRAND_LOGOS = [["OKM", "img/logo-okm.webp", 91], ["GER Detect", "img/logo-
   ["Nokta", "img/logo-nokta.webp", 329], ["XP", "img/logo-xp.webp", 142]];
 Object.assign(T.en, { brands: "Brands we carry", showroomEyebrow: "Our showroom", showroomTitle: "Visit us in Dubai", showroomAlt: "Golden Spark Detectors showroom in Dubai" });
 Object.assign(T.fr, { brands: "Nos marques", showroomEyebrow: "Notre showroom", showroomTitle: "Venez nous voir à Dubaï", showroomAlt: "Le showroom Golden Spark Detectors à Dubaï" });
+Object.assign(T.fa, { brands: "برندهای ما", showroomEyebrow: "نمایشگاه ما", showroomTitle: "در دبی به ما سر بزنید", showroomAlt: "نمایشگاه Golden Spark Detectors در دبی" });
 Object.assign(T.ar, { brands: "العلامات التجارية لدينا", showroomEyebrow: "صالة العرض", showroomTitle: "زورونا في دبي", showroomAlt: "صالة عرض Golden Spark Detectors في دبي" });
 Object.assign(T.en, {
   fitTitle: "Is it for you?", fitYes: "Right for you if", fitNo: "Not for you if", see: "See",
@@ -1630,6 +1668,30 @@ Object.assign(T.ar, {
     ["كم السعر؟", "اضغط على واتساب في أي جهاز، وسيكون اسمه موجودًا في الرسالة. نرد عليك بالسعر وتكلفة الشحن إلى بلدك."]
   ]
 });
+Object.assign(T.fa, {
+  fitTitle: "آیا برای شما مناسب است؟", fitYes: "برای شما مناسب است اگر", fitNo: "برای شما مناسب نیست اگر", see: "نگاه کنید به",
+  fit: {
+    gold: ["دنبال قطعات طلا نزدیک سطح زمین هستید، چه تازه‌کار باشید چه جوینده حرفه‌ای.", "دنبال گنج‌های عمیق، حفره‌ها یا تونل‌ها هستید.", "treasure"],
+    mining: ["در مناطق وسیع به‌دنبال رگه‌ها و ذخایر طلا هستید، به‌صورت تیمی یا در قالب یک شرکت.", "فقط یک فلزیاب سبک و ساده برای قطعات طلا می‌خواهید.", "gold"],
+    longrange: ["در مناطق وسیع دنبال طلا و گنج هستید.", "دنبال قطعات کوچک طلا نزدیک سطح زمین هستید.", "gold"],
+    treasure: ["دنبال گنج، حفره یا تونل هستید و تصویری سه‌بعدی از زیر زمین می‌خواهید.", "دنبال قطعات طلا هستید.", "gold"],
+    water: ["دنبال آب زیرزمینی یا جای مناسب برای حفر چاه هستید.", "دنبال طلا یا فلزات هستید؛ این دستگاه‌ها آب را جستجو می‌کنند.", ""],
+    xrf: ["طلا می‌خرید یا می‌فروشید و باید عیار آن را بسنجید.", "می‌خواهید طلا را در زمین پیدا کنید.", "gold"]
+  },
+  fitP: {
+    "ger-titan-x13": ["در مناطق وسیع به‌دنبال طلا و ذخایر معدنی هستید، به‌صورت تیمی یا در قالب یک شرکت، و می‌خواهید قطعات طلا را هم پیدا کنید.", "فقط یک فلزیاب سبک و ساده برای قطعات طلا می‌خواهید.", "gold"],
+    "okm-gepard-gpr-3d": ["باید تأسیسات زیرزمینی را پیدا کنید یا برای کارهای صنعتی و ساختمانی از زیر زمین نقشه تهیه کنید. برای گنج‌یابی هم می‌توان از آن استفاده کرد.", "دنبال قطعات طلا هستید.", "gold"]
+  },
+  faqTitle: "پرتکرارترین سؤال‌ها",
+  faq: [
+    ["بهترین دستگاه کدام است؟", "بهترین دستگاه آن است که با چیزی که دنبالش هستید و جایی که جستجو می‌کنید جور باشد. روی {finder} بزنید (3 مرحله کوتاه) یا در واتساپ از ما بپرسید."],
+    ["فقط طلا می‌خواهم. کدام را انتخاب کنم؟", "قطعات طلا نزدیک سطح زمین: {gold}. رگه‌های طلا و ذخایر بزرگ: {mining}. مناطق وسیع: {longrange}."],
+    ["آیا فقط طلا را پیدا می‌کند؟", "فلزیاب‌ها به همه فلزات واکنش نشان می‌دهند، نه فقط طلا. بسیاری از فلزیاب‌های طلا کمک می‌کنند آهن را از فلزات دیگر تشخیص دهید، اما تنها راه مطمئن شدن، کندن زمین است. درباره دستگاه‌های دوربرد، سازنده می‌گوید که می‌توانند طلا را جستجو کنند؛ از ما بپرسید چه کارهایی از آن‌ها برمی‌آید و چه کارهایی نه."],
+    ["کدام دستگاه عمیق‌تر از همه می‌رود؟", "بستگی دارد دنبال چه چیزی باشید. یک هدف بزرگ، مثل صندوق گنج یا حفره، را می‌توان بسیار عمیق‌تر از یک قطعه طلای کوچک پیدا کرد که معمولاً نزدیک سطح زمین است. عمیق‌ترین دستگاه، بهترین دستگاه برای قطعات طلا نیست."],
+    ["به کشور من ارسال می‌کنید؟", "ارسال در امارات رایگان است. به جاهای دیگر با DHL یا FedEx در 3 تا 7 روز کاری ارسال می‌کنیم و بیشتر مشتریان ما در آفریقا هستند. عوارض گمرکی هنگام رسیدن کالا پرداخت می‌شود. به کشورهای تحت تحریم‌های OFAC ارسال نمی‌کنیم."],
+    ["قیمتش چقدر است؟", "روی دکمه واتساپ هر دستگاه بزنید؛ نام آن از قبل در پیام نوشته شده است. قیمت و هزینه ارسال به کشورتان را برایتان می‌فرستیم."]
+  ]
+});
 const catLink = (id) => `<a href="#${id}">${L(CATS.find((c) => c.id === id).title)}</a>`;
 const withLinks = (text) => text.replace(/\{(\w+)\}/g, (_, id) => id === "finder" ? `<a href="#finder-1">${t("cta")}</a>` : catLink(id));
 // Product page: who the machine is for, and who it is not for (same for every machine in a category).
@@ -1663,7 +1725,7 @@ function renderHome() {
   const row = (c) => `<a class="cat" href="#${c.id}">
       ${slot("category", IMAGES.categories[c.id], "")}
       <span class="cat-text"><span class="cat-title">${L(c.title)}</span><span class="cat-line">${L(c.line)}</span>
-      <span class="pill">${c.level} · ${itemsOf(c).length} ${t("products")}</span></span>${ICON.chev}</a>`;
+      <span class="pill"><bdi>${c.level}</bdi> · ${itemsOf(c).length} ${t("products")}</span></span>${ICON.chev}</a>`;
   return `<section class="hero">
       <div class="hero-banner${IMAGES.hero.desktop || IMAGES.hero.mobile ? " has-img" : ""}">${heroBanner()}</div>
       <div class="wrap">
@@ -1709,7 +1771,7 @@ function renderCat(cat) {
     <section class="page-head cat-head">
       <a class="crumb" href="#home">← ${t("all")}</a>
       <h1 class="display">${L(cat.title)}</h1>
-      <p class="intro">${rich(cat.intro)}</p>
+      <p class="intro"><bdi>${rich(cat.intro)}</bdi></p>
       ${groups}
     </section>
     ${list}
@@ -1741,17 +1803,17 @@ function renderProduct({ cat, p }, tab) {
       <div class="a-info">
       ${p.brand ? `<span class="tile-brand" style="font-size:12px">${p.brand}</span>` : ""}
       <h1 class="display">${p.name}</h1>
-      ${p.headline ? `<p class="headline">${p.headline}</p>` : ""}
-      ${p.pkg ? `<span class="pkg">${p.pkg}</span>` : ""}
-      <p class="intro">${p.blurb || `<span class="tile-later">${t("later")}</span>`}</p>
+      ${p.headline ? `<p class="headline"><bdi>${p.headline}</bdi></p>` : ""}
+      ${p.pkg ? `<span class="pkg"><bdi>${p.pkg}</bdi></span>` : ""}
+      <p class="intro">${p.blurb ? `<bdi>${p.blurb}</bdi>` : `<span class="tile-later">${t("later")}</span>`}</p>
       ${fitBox(cat, p)}
       <dl class="facts">
         ${showDepth ? depthFact(neutral ? "neutral" : "claim", p.depth, true) : ""}
-        ${showDepth && p.range ? `<div><dt>${t("range")}</dt><dd>${t("states")} ${p.range}</dd></div>` : ""}
+        ${showDepth && p.range ? `<div><dt>${t("range")}</dt><dd>${t("states")} <bdi>${p.range}</bdi></dd></div>` : ""}
         ${usesOf(p.key) ? `<div><dt>${t("usedFor")}</dt><dd>${usesOf(p.key)}</dd></div>` : ""}
-        ${p.made ? `<div><dt>${t("made")}</dt><dd>${p.made}</dd></div>` : ""}
-        ${p.warranty ? `<div><dt>${t("warranty")}</dt><dd>${p.warranty}</dd></div>` : ""}
-        ${cat.id === "gold" ? `<div><dt>${t("best")}</dt><dd>${cat.bestFor}</dd></div>` : ""}
+        ${p.made ? `<div><dt>${t("made")}</dt><dd><bdi>${p.made}</bdi></dd></div>` : ""}
+        ${p.warranty ? `<div><dt>${t("warranty")}</dt><dd><bdi>${p.warranty}</bdi></dd></div>` : ""}
+        ${cat.id === "gold" ? `<div><dt>${t("best")}</dt><dd><bdi>${cat.bestFor}</bdi></dd></div>` : ""}
       </dl>
       ${["mining", "gold", "longrange", "treasure"].includes(cat.id) ? `<p class="note">${t("depthNote")}</p>` : ""}
       ${cat.depth === "neutral" ? `<p class="small">${t("depends")}</p>` : ""}
@@ -1771,19 +1833,19 @@ function renderProduct({ cat, p }, tab) {
 // Answers are sent in English so the team always reads the same words.
 
 const FINDER_FIND = [
-  ["gold", { en: "Gold Nuggets", fr: "Pépites d'or", ar: "كتل الذهب" }],
-  ["relics", { en: "Relics / Treasures", fr: "Reliques / Trésors", ar: "آثار / كنوز" }],
-  ["cavities", { en: "Cavities", fr: "Cavités", ar: "فراغات" }],
-  ["veins", { en: "Gold Veins", fr: "Filons d'or", ar: "عروق الذهب" }],
-  ["utilities", { en: "Utilities", fr: "Réseaux enterrés", ar: "خطوط المرافق" }],
-  ["water", { en: "Water", fr: "Eau", ar: "مياه" }],
-  ["unknown", { en: "I Don't Know", fr: "Je ne sais pas", ar: "لا أعرف" }]
+  ["gold", { en: "Gold Nuggets", fr: "Pépites d'or", ar: "كتل الذهب", fa: "قطعات طلا" }],
+  ["relics", { en: "Relics / Treasures", fr: "Reliques / Trésors", ar: "آثار / كنوز", fa: "آثار باستانی / گنج" }],
+  ["cavities", { en: "Cavities", fr: "Cavités", ar: "فراغات", fa: "حفره‌ها" }],
+  ["veins", { en: "Gold Veins", fr: "Filons d'or", ar: "عروق الذهب", fa: "رگه‌های طلا" }],
+  ["utilities", { en: "Utilities", fr: "Réseaux enterrés", ar: "خطوط المرافق", fa: "تأسیسات زیرزمینی" }],
+  ["water", { en: "Water", fr: "Eau", ar: "مياه", fa: "آب" }],
+  ["unknown", { en: "I Don't Know", fr: "Je ne sais pas", ar: "لا أعرف", fa: "نمی‌دانم" }]
 ];
 const FINDER_ENV = [
-  ["flat", { en: "Flat / Wide Terrain", fr: "Terrain plat / étendu", ar: "أرض مستوية / واسعة" }],
-  ["mountain", { en: "Mountainous / Difficult Access", fr: "Montagneux / accès difficile", ar: "جبلية / صعبة الوصول" }],
-  ["mineral", { en: "Highly Mineralized Ground", fr: "Sol très minéralisé", ar: "أرض عالية التمعدن" }],
-  ["team", { en: "Ask Our Team", fr: "Demander à notre équipe", ar: "اسأل فريقنا" }]
+  ["flat", { en: "Flat / Wide Terrain", fr: "Terrain plat / étendu", ar: "أرض مستوية / واسعة", fa: "زمین صاف / وسیع" }],
+  ["mountain", { en: "Mountainous / Difficult Access", fr: "Montagneux / accès difficile", ar: "جبلية / صعبة الوصول", fa: "کوهستانی / دسترسی دشوار" }],
+  ["mineral", { en: "Highly Mineralized Ground", fr: "Sol très minéralisé", ar: "أرض عالية التمعدن", fa: "خاک بسیار مینرالیزه" }],
+  ["team", { en: "Ask Our Team", fr: "Demander à notre équipe", ar: "اسأل فريقنا", fa: "از تیم ما بپرسید" }]
 ];
 // Preferred language: value, label, name in the message. Each one opens its own WhatsApp line (WA_LINES).
 const FINDER_LANGS = [["en", "English", "English"], ["ar", "العربية (Arabic)", "Arabic"], ["fr", "Français (French)", "French"]];
@@ -1931,7 +1993,7 @@ function route() {
 function render(scrollTop = true) {
   const r = route();
   document.documentElement.lang = lang;
-  document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
+  document.documentElement.dir = lang === "ar" || lang === "fa" ? "rtl" : "ltr";
   renderBar(r);
   const view = document.getElementById("view");
   if (finder.phone) { finder.saved = savePhone(finder.phone); try { finder.phone.destroy(); } catch (e) {} finder.phone = null; }
@@ -2083,7 +2145,7 @@ if ("IntersectionObserver" in window) {
 const menu = document.getElementById("lang-menu");
 const langBtn = document.getElementById("lang-btn");
 function drawMenu() {
-  menu.innerHTML = `<p>Language · اللغة · Langue</p>` + LANGS.map(([code, name]) =>
+  menu.innerHTML = `<p>Language · اللغة · Langue · زبان</p>` + LANGS.map(([code, name]) =>
     `<button type="button" role="menuitemradio" aria-checked="${code === lang}" data-lang="${code}" lang="${code}">${name}${code === lang ? '<svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0B7F3D" stroke-width="2.4"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>' : ""}</button>`).join("");
   menu.querySelectorAll("[data-lang]").forEach((b) => (b.onclick = () => {
     lang = b.dataset.lang;
