@@ -58,8 +58,36 @@ button { font: inherit; color: inherit; cursor: pointer; }
 .mark { width: 32px; height: 32px; flex: none; display: block; }
 .brand { font: 700 16px var(--display); color: var(--navy); text-decoration: none; display: flex; align-items: center; gap: 10px; }
 .back { width: 40px; height: 40px; border-radius: 20px; border: 0; background: var(--mist); display: grid; place-items: center; flex: none; }
-.bar .spacer { flex: 1; }
-.contact { font-size: 14px; font-weight: 500; text-decoration: none; }
+/* Header (2026-11-01): language and Contact Us top-right; the email sits in the bar from 720 px, in a strip above it on phones */
+.topline { background: var(--navy-deep); }
+.topline .wrap { height: 36px; display: flex; align-items: center; justify-content: center; }
+.mail { display: inline-flex; align-items: center; gap: 8px; text-decoration: none; font-size: 13px; font-weight: 600; white-space: nowrap; }
+.topline .mail { min-height: 36px; color: #FFFFFF; }
+.topline .mail svg { color: var(--gold); }
+.mail-bar { display: none; min-height: 40px; padding-inline: 4px; color: var(--navy); font-size: 14px; }
+.mail-bar svg { color: var(--gold-ink); }
+.bar-nav { flex: 1; min-width: 0; display: flex; align-items: center; gap: 10px; }
+.brand { min-width: 0; }
+.brand-name { white-space: nowrap; }
+.lang-wrap { position: relative; flex: none; }
+.contact { flex: none; height: 40px; padding-inline: 12px; border-radius: 20px; background: var(--navy); color: #FFFFFF; display: inline-flex; align-items: center; font-size: 13px; font-weight: 600; text-decoration: none; white-space: nowrap; }
+html[lang="ar"] .contact, html[lang="ar"] .lang-btn { font-family: var(--arabic); }
+#lang-name { display: none; }
+.lang-chev { display: none; color: var(--muted); transition: transform .2s ease; }
+.lang-btn[aria-expanded="true"] .lang-chev { transform: rotate(180deg); }
+.phones.flash a { animation: contact-flash 1.6s ease; }
+@keyframes contact-flash { 30% { border-color: var(--gold); box-shadow: 0 0 0 4px rgba(241, 200, 84, .35); } }
+@media (prefers-reduced-motion: reduce) { .phones.flash a { animation: none; } }
+@media (max-width: 379px) { .brand-name { display: none; } }
+@media (max-width: 419px) { .bar-nav .back + .brand .brand-name { display: none; } }
+@media (min-width: 720px) {
+  .topline { display: none; }
+  .mail-bar { display: inline-flex; }
+  .contact { padding-inline: 16px; font-size: 14px; }
+  #lang-code { display: none; }
+  #lang-name, .lang-chev { display: inline; }
+}
+@media (hover: hover) { .contact:hover { background: var(--navy-deep); } .mail-bar:hover span { text-decoration: underline; text-underline-offset: 3px; } .lang-btn:hover { border-color: var(--navy); } }
 .chips { display: flex; gap: 8px; overflow-x: auto; padding-block: 8px 10px; scrollbar-width: none; }
 .chips::-webkit-scrollbar { display: none; }
 .chip { flex: none; height: 36px; padding-inline: 14px; border-radius: 18px; background: var(--mist); color: var(--ink); display: flex; align-items: center; font-size: 14px; text-decoration: none; white-space: nowrap; }
@@ -170,8 +198,8 @@ footer .wrap { padding-block: 24px 120px; display: grid; gap: 12px; }
 
 /* Floating language + WhatsApp: always bottom-right */
 .float { position: fixed; z-index: 30; right: calc(16px + env(safe-area-inset-right, 0px)); bottom: calc(20px + env(safe-area-inset-bottom, 0px)); display: flex; align-items: center; gap: 10px; direction: ltr; }
-.lang-btn { height: 44px; padding-inline: 14px; border-radius: 22px; border: 1px solid #D5D5DC; background: var(--paper); display: flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 600; box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12); }
-.wa-fab { width: 56px; height: 56px; border-radius: 28px; background: var(--wa); display: grid; place-items: center; box-shadow: 0 6px 18px rgba(0, 0, 0, 0.22); }
+.lang-btn { height: 40px; padding-inline: 10px; border-radius: 20px; border: 1px solid var(--line); background: var(--paper); color: var(--navy); display: flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 600; cursor: pointer; }
+.wa-fab { width: 64px; height: 64px; border-radius: 32px; background: var(--wa); display: grid; place-items: center; box-shadow: 0 6px 18px rgba(0, 0, 0, 0.22); }
 /* WhatsApp language chooser: bottom sheet on phones, centred card on larger screens */
 .wa-dialog { width: 100%; max-width: 100%; margin: auto 0 0; padding: 0; border: 0; border-radius: 20px 20px 0 0; background: var(--paper); color: var(--ink); }
 .wa-dialog::backdrop { background: rgba(20, 22, 45, 0.55); }
@@ -336,7 +364,7 @@ html[lang="ar"] .quote-form input[type="text"] { font-family: var(--arabic); }
 .chat-lang .opt:has(input:focus-visible) { outline: 3px solid var(--gold); outline-offset: 2px; }
 .quote-send { margin-top: 6px; width: 100%; border: 0; cursor: pointer; font: 600 16px var(--body); }
 html[lang="ar"] .quote-send { font-family: var(--arabic); }
-.menu { position: absolute; right: 0; bottom: 64px; width: 220px; padding: 6px; border-radius: 16px; background: var(--paper); box-shadow: 0 12px 32px rgba(0, 0, 0, 0.25); display: grid; }
+.menu { position: absolute; top: calc(100% + 8px); inset-inline-end: 0; z-index: 40; width: 220px; padding: 6px; border-radius: 16px; background: var(--paper); box-shadow: 0 12px 32px rgba(0, 0, 0, 0.25); display: grid; }
 .menu p { margin: 0; padding: 8px 10px; color: var(--muted); font-size: 12px; font-weight: 600; }
 .menu button { height: 46px; padding-inline: 12px; border: 0; border-radius: 10px; background: transparent; display: flex; align-items: center; justify-content: space-between; font-size: 16px; text-align: start; }
 .menu button[aria-checked="true"] { background: var(--mist); color: var(--navy); font-weight: 700; }
@@ -375,6 +403,7 @@ html[lang="ar"] .quote-send { font-family: var(--arabic); }
 /* Smooth entries: WhatsApp panel slides up (pops in on larger screens), options follow one by one, pages fade in */
 @keyframes sheet-up { from { transform: translateY(100%); } }
 @keyframes sheet-down { to { transform: translateY(100%); } }
+@keyframes menu-drop { from { opacity: 0; transform: translateY(-6px) scale(.98); } }
 @keyframes pop-in { from { opacity: 0; transform: translateY(10px) scale(.97); } }
 @keyframes pop-out { to { opacity: 0; transform: scale(.97); } }
 @keyframes fade-in { from { opacity: 0; } }
@@ -389,7 +418,8 @@ html[lang="ar"] .quote-send { font-family: var(--arabic); }
   .wa-dialog[open] .wa-opt:nth-child(1) { animation-delay: .08s; }
   .wa-dialog[open] .wa-opt:nth-child(2) { animation-delay: .14s; }
   .wa-dialog[open] .wa-opt:nth-child(3) { animation-delay: .2s; }
-  .menu:not([hidden]) { animation: pop-in .22s cubic-bezier(.2, .8, .2, 1); transform-origin: bottom right; }
+  .menu:not([hidden]) { animation: menu-drop .2s cubic-bezier(.2, .8, .2, 1); transform-origin: top right; }
+  [dir="rtl"] .menu:not([hidden]) { transform-origin: top left; }
   #view.enter { animation: rise-in .3s cubic-bezier(.2, .8, .2, 1); }
   @media (min-width: 640px) {
     .wa-dialog[open] { animation: pop-in .3s cubic-bezier(.2, .8, .2, 1); }
@@ -655,9 +685,22 @@ html[lang="ar"] .cta-glass { font-family: var(--arabic); }
 <body>
 
 
+<div class="topline"><div class="wrap"><a class="mail" href="mailto:Info@gsdetectors.com"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="m4 7 8 6 8-6"/></svg><span>Info@gsdetectors.com</span></a></div></div>
 <header class="top">
   <div class="wrap">
-    <div class="bar" id="bar"></div>
+    <div class="bar">
+      <div class="bar-nav" id="bar"></div>
+      <a class="mail mail-bar" href="mailto:Info@gsdetectors.com"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="m4 7 8 6 8-6"/></svg><span>Info@gsdetectors.com</span></a>
+      <div class="lang-wrap">
+        <button type="button" class="lang-btn" id="lang-btn" aria-haspopup="menu" aria-expanded="false" aria-controls="lang-menu" aria-label="Language: English">
+          <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 3.8 5.7 3.8 9s-1.3 6.3-3.8 9c-2.5-2.7-3.8-5.7-3.8-9S9.5 5.7 12 3Z"/></svg>
+          <span id="lang-code">EN</span><span id="lang-name">English</span>
+          <svg class="lang-chev" aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+        </button>
+        <div class="menu" id="lang-menu" role="menu" hidden></div>
+      </div>
+      <a class="contact" id="contact-link" href="#contact">Contact Us</a>
+    </div>
     <nav class="chips" id="chips" aria-label="Categories"></nav>
   </div>
 </header>
@@ -725,13 +768,8 @@ html[lang="ar"] .cta-glass { font-family: var(--arabic); }
 </dialog>
 
 <div class="float">
-  <div class="menu" id="lang-menu" role="menu" hidden></div>
-  <button type="button" class="lang-btn" id="lang-btn" aria-haspopup="menu" aria-expanded="false" aria-controls="lang-menu">
-    <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#282C55" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 3.8 5.7 3.8 9s-1.3 6.3-3.8 9c-2.5-2.7-3.8-5.7-3.8-9S9.5 5.7 12 3Z"/></svg>
-    <span id="lang-code">EN</span>
-  </button>
   <a class="wa-fab" id="wa-fab" target="_blank" rel="noopener" aria-label="Chat on WhatsApp" data-wa-kind="general">
-    <svg aria-hidden="true" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8"><path d="M4 20l1.3-3.9A8 8 0 1 1 8 19z"/><path d="M9 9.5c.3 2 2.2 4.2 4.8 5l1-1.2 2 .9-.4 1.6c-3.6.4-7.8-3.3-8-7l1.6-.5.9 2z"/></svg>
+    <svg aria-hidden="true" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8"><path d="M4 20l1.3-3.9A8 8 0 1 1 8 19z"/><path d="M9 9.5c.3 2 2.2 4.2 4.8 5l1-1.2 2 .9-.4 1.6c-3.6.4-7.8-3.3-8-7l1.6-.5.9 2z"/></svg>
   </a>
 </div>
 
@@ -739,15 +777,15 @@ html[lang="ar"] .cta-glass { font-family: var(--arabic); }
 // Product data comes from gsdetectors.com (names, depth, made in, warranty) and the approved blurbs.
 // [key, name, brand, blurb, depth, forwardRange, madeIn, warranty, package]
 const P = {
-  mining: [["okm-exp-7000-professional-plus","OKM eXp 7000 Professional Plus","OKM","For big mining operations who want to find gold veins and small nuggets.","25 m",null,"Germany",null,null],["okm-rover-c4","OKM Rover C4","OKM","For miners and treasure hunters who want to scan for big deposits like gold veins.","25 m",null,"Germany","2 Years",null],["ger-titan-x13","GER Titan X13","GER Detect","For big mining teams and treasure hunters who want to find gold nuggets and deposits.","60 m",null,"Germany","2 Years",null]],
-  gold: [["nokta-makro-gold-finder-2000","Gold Finder 2000","Nokta Makro","For beginners who want to start gold prospecting.","2 ft",null,"Turkey","2 Years",null],["garrett-goldmaster-24k-metal-detector","Goldmaster 24K","Garrett","For people who want to start finding gold nuggets.","2 ft",null,"USA","2 Years",null],["xp-deus-ii","XP Deus II","XP","For prospectors who want to search for gold nuggets, or who want to start prospecting.","2 m",null,"France","5 Years",null],["nokta-magnetar-9000","Nokta Magnetar 9000","Nokta Makro","For beginners and experienced prospectors who want to find gold nuggets.","2.5 m",null,"Turkey","3 Years",null],["garrett-axiom-full","Garrett Axiom · Full package","Garrett","For advanced prospectors who want the complete package for gold nuggets.","1 m",null,"USA","2 Years","Comes with 2 coils"],["garrett-axiom-lite","Garrett Axiom · Lite package","Garrett","For advanced prospectors who want the lite package for gold nuggets.","1 m",null,"USA","2 Years","Comes with 1 coil"]],
+  mining: [["okm-exp-7000-professional-plus","OKM eXp 7000 Professional Plus","OKM","For large-scale mining operations and demanding professional work, from gold veins to small nuggets.","25 m",null,"Germany",null,null],["okm-rover-c4","OKM Rover C4","OKM","A great choice for mining operations: it scans big areas for deposits like gold veins. Treasure hunters use it too.","25 m",null,"Germany","2 Years",null],["ger-titan-x13","GER Titan X13","GER Detect","A complete detection system for mining teams and treasure hunters. It finds deposits, and it can also detect gold nuggets.","60 m",null,"Germany","2 Years",null]],
+  gold: [["nokta-makro-gold-finder-2000","Gold Finder 2000","Nokta Makro","For beginners who want to start gold prospecting.","2 ft",null,"Turkey","2 Years",null],["garrett-goldmaster-24k-metal-detector","Goldmaster 24K","Garrett","For people who want to start finding gold nuggets.","2 ft",null,"USA","2 Years",null],["xp-deus-ii","XP Deus HF2 Gold","XP","For beginners and experienced prospectors looking for gold nuggets near the surface, including in riverbeds and highly mineralized ground. A strong choice for gold prospecting in Africa.","2 m",null,"France","5 Years",null],["nokta-magnetar-9000","Nokta Magnetar 9000","Nokta Makro","For beginners and experienced prospectors who want to find gold nuggets.","2.5 m",null,"Turkey","3 Years",null],["garrett-axiom-full","Garrett Axiom · Full package","Garrett","For advanced prospectors who want the complete package for gold nuggets.","1 m",null,"USA","2 Years","Comes with 2 coils"],["garrett-axiom-lite","Garrett Axiom · Lite package","Garrett","For advanced prospectors who want the lite package for gold nuggets.","1 m",null,"USA","2 Years","Comes with 1 coil"]],
   longrange: [["titan-500-smart-device","TITAN 500 SMART Device","GER Detect","For people who want to search for diamonds, gemstones and gold.","120 m","3000 m","Germany","2 Years",null],["ger-gold-hunter-smart-detector","Gold Hunter Smart","GER Detect","For people who want to find gold, diamonds, metals and underground cavities.","50 m",null,"Germany","2 Years",null]],
-  treasure: [["okm-fusion-light-standard","OKM Fusion Light · Standard","OKM","For people who want to start treasure hunting with the complete package.","8 m",null,"Germany","2 Years","Comes with laptop and phone"],["okm-fusion-light-lite","OKM Fusion Light · Lite","OKM","For people who want the lightest, easiest start in treasure hunting.","8 m",null,"Germany","2 Years","Without laptop and phone"],["okm-delta-ranger","OKM Delta Ranger","OKM","For serious treasure hunters and archaeologists.","18 m",null,"Germany","2 Years",null],["okm-gepard-gpr-3d","OKM Gepard GPR 3D","OKM","For companies and professionals who need to map what is underground, like for construction.","40 m",null,"Germany","2 Years",null]],
+  treasure: [["okm-fusion-light-standard","OKM Fusion Light · Standard","OKM","For people who want to start treasure hunting with the complete package.","8 m",null,"Germany","2 Years","Comes with laptop and phone"],["okm-fusion-light-lite","OKM Fusion Light · Lite","OKM","For people who want the lightest, easiest start in treasure hunting.","8 m",null,"Germany","2 Years","Without laptop and phone"],["okm-delta-ranger","OKM Delta Ranger","OKM","For serious treasure hunters and archaeologists.","18 m",null,"Germany","2 Years",null],["okm-gepard-gpr-3d","OKM Gepard GPR 3D","OKM","For companies and professionals who need to find underground utilities and map the ground for industrial and construction work. It can also be used for treasure hunting.","40 m",null,"Germany","2 Years",null]],
   water: [["river-f-smart-detector","RIVER-F SMART DETECTOR","GER Detect","For small groups who want to start looking for borewell locations.","1200 m","3000 m","Germany","2 Years",null],["fresh-result-2","FRESH RESULT 2 SYSTEM","GER Detect","For small and big groups who want to find underground water for borewells.","1200 m","2500 m","Germany","2 Years",null],["okm-geoseeker","OKM GeoSeeker","OKM","For big mining companies who need to find water.","250 m",null,null,null,null],["river-g-device","RIVER G Device","GER Detect","For big mining companies who need to find water.","1500 m",null,"Germany","2 Years",null]],
   xrf: [["niton-xl2","Niton XL2","Thermo",null,null,null,null,null,null],["vanta-element","Vanta Element",null,null,null,null,null,null,null],["niton-dxl-800","Niton DXL 800","Thermo",null,null,null,null,null,null]],
-  gates: [["garrett-multi-zone","Garrett Multi Zone","Garrett",null,null,null,"USA","2 Years",null],["pd-6500i","PD 6500i","Garrett",null,null,null,"USA","2 Years",null],["garrett-paragon","Garrett Paragon","Garrett",null,null,null,"USA","3 Years",null]],
-  handheld: [["super-scanner","Super Scanner","Garrett",null,null,null,null,null,null],["super-scanner-v","Super Scanner V","Garrett",null,null,null,"USA","2 Years",null],["superwand","SuperWand","Garrett",null,null,null,"USA","2 Years",null],["garrett-guide","Garrett Guide","Garrett",null,null,null,"USA","3 Years",null]],
-  luggage: [["eagle-eye-rjx6550","RJX6550 X-Ray Luggage Scanner","Eagle Eye",null,null,null,null,"1 Year",null]]
+  gates: [["garrett-multi-zone","Garrett Multi Zone","Garrett",null,null,null,"USA",null,null],["pd-6500i","PD 6500i","Garrett",null,null,null,"USA",null,null],["garrett-paragon","Garrett Paragon","Garrett",null,null,null,"USA",null,null]],
+  handheld: [["super-scanner","Super Scanner","Garrett",null,null,null,null,null,null],["super-scanner-v","Super Scanner V","Garrett",null,null,null,"USA",null,null],["superwand","SuperWand","Garrett",null,null,null,"USA",null,null],["garrett-guide","Garrett Guide","Garrett",null,null,null,"USA",null,null]],
+  luggage: [["eagle-eye-rjx6550","RJX6550 X-Ray Luggage Scanner","Eagle Eye",null,null,null,null,null,null]]
 };
 
 // Depth (user request 2026-10-30): hidden on category pages and their product cards, shown on the product page itself.
@@ -807,7 +845,7 @@ const T = {
     noGuarantee: "Results depend on the ground and conditions and are not guaranteed.",
     depends: "Results depend on the ground and conditions.", usedFor: "Used for",
     wa: "Learn more on WhatsApp", ask: "Not sure which one? Ask us", photo: "Photo", video: "Video", videoHere: "Video goes here (9:16)",
-    photoHere: "Product photo goes here", other: "Other products in this category", contact: "Contact", type: "Choose a type", products: "products",
+    photoHere: "Product photo goes here", other: "Other products in this category", contact: "Contact Us", type: "Choose a type", products: "products",
     later: "One-line blurb (added later)", draft: "", lang: "Language",
     waTitle: "Chat on WhatsApp", waSub: "Choose the language you want to chat in.", close: "Close",
     requestQuote: "Request Quote", quoteTitle: "Request a quote", quoteSub: "Leave your details. WhatsApp opens with your request ready to send.",
@@ -845,7 +883,7 @@ const T = {
     noGuarantee: "Les résultats dépendent du terrain et des conditions et ne sont pas garantis.",
     depends: "Les résultats dépendent du terrain et des conditions.", usedFor: "Utilisé pour",
     wa: "En savoir plus sur WhatsApp", ask: "Pas sûr ? Demandez-nous", photo: "Photo", video: "Vidéo", videoHere: "Emplacement vidéo (9:16)",
-    photoHere: "Emplacement photo du produit", other: "Autres produits de cette catégorie", contact: "Contact", type: "Choisissez un type", products: "produits",
+    photoHere: "Emplacement photo du produit", other: "Autres produits de cette catégorie", contact: "Contactez-nous", type: "Choisissez un type", products: "produits",
     later: "Phrase courte (ajoutée plus tard)", draft: "Aperçu de traduction (brouillon à relire) : les textes produits sont encore en anglais.", lang: "Langue",
     waTitle: "Discuter sur WhatsApp", waSub: "Choisissez la langue de la conversation.", close: "Fermer",
     requestQuote: "Demander un devis", quoteTitle: "Demander un devis", quoteSub: "Laissez vos coordonnées. WhatsApp s'ouvre avec votre demande prête à envoyer.",
@@ -1234,7 +1272,8 @@ const USE_LABELS = {
   treasure: { en: "Treasure hunting", fr: "Chasse au trésor", ar: "البحث عن الكنوز" },
   mining: { en: "Mining", fr: "Exploitation minière", ar: "التعدين" },
   longrange: { en: "Long range", fr: "Longue portée", ar: "بعيد المدى" },
-  gold: { en: "Gold nuggets", fr: "Pépites d'or", ar: "كتل الذهب" }
+  gold: { en: "Gold nuggets", fr: "Pépites d'or", ar: "كتل الذهب" },
+  utilities: { en: "Utilities and industry", fr: "Réseaux enterrés et industrie", ar: "المرافق والصناعة" }
 };
 const USES = {
   "okm-exp-7000-professional-plus": ["mining", "gold", "treasure"],
@@ -1251,7 +1290,7 @@ const USES = {
   "okm-fusion-light-standard": ["treasure"],
   "okm-fusion-light-lite": ["treasure"],
   "okm-delta-ranger": ["treasure", "longrange"],
-  "okm-gepard-gpr-3d": ["treasure"]
+  "okm-gepard-gpr-3d": ["utilities", "treasure"]
 };
 const usesOf = (key) => (USES[key] || []).map((u) => L(USE_LABELS[u])).join(" · ");
 
@@ -1300,7 +1339,7 @@ const COPY = {
   "Smartphone treasure detector"
  ],
  "okm-gepard-gpr-3d": [
-  "Ground radar for professionals"
+  "Ground radar for utilities and industry"
  ],
  "river-f-smart-detector": [
   "Start your borewell search"
@@ -1391,7 +1430,7 @@ const IMAGES = {
   showroom: "img/showroom-2000w.webp", // the user's showroom panorama (2026-10-31), with showroom-1000w.webp for phones
   categories: { mining: "img/cat-mining-800w.webp", gold: "img/cat-gold-800w.webp", longrange: "img/cat-longrange-800w.webp", treasure: "img/cat-treasure-800w.webp",
     water: "img/cat-water-800w.webp", xrf: "img/cat-xrf-800w.webp", security: "img/cat-security-800w.webp" },
-  subcategories: { gates: "", handheld: "", luggage: "" },
+  subcategories: { gates: "img/sub-gates-800w.webp", handheld: "img/sub-handheld-800w.webp", luggage: "img/sub-luggage-800w.webp" }, // PD 6500i, Super Scanner V, RJX6550
   products: { "niton-xl2": "img/prod-niton-xl2-1200w.webp", "niton-dxl-800": "img/prod-niton-dxl-800-960w.webp", // product key -> image
     // the user's product photos (2026-10-31), one per product, matched by file name
     "titan-500-smart-device": "img/prod-titan-500-smart-device-1200w.webp",
@@ -1432,7 +1471,7 @@ const SLOTS = {
   finder: [800, 600, "cover", "Selection image"], showroom: [2000, 949, "cover", "Showroom photo (panoramic)"]
 };
 // Images named name-800w.webp come with a half-size name-400w.webp, so phones download the small copy.
-const SIZES = { category: "(min-width: 1024px) 300px, 104px", product: "(min-width: 1024px) 300px, 50vw", productMain: "(min-width: 1024px) 460px, 92vw", showroom: "(min-width: 1152px) 1088px, calc(100vw - 32px)" };
+const SIZES = { category: "(min-width: 1024px) 300px, 104px", product: "(min-width: 1024px) 300px, 50vw", productMain: "(min-width: 1024px) 460px, 92vw", showroom: "(min-width: 1152px) 1088px, calc(100vw - 32px)", subcategory: "(min-width: 1024px) 360px, 33vw" };
 function srcset(src, sizes) {
   const m = /-(\d+)w\.webp$/.exec(src);
   if (!m || !sizes) return "";
@@ -1493,8 +1532,7 @@ function renderBar(route) {
   const bar = document.getElementById("bar");
   const backTo = route.view === "product" ? `#${route.cat.id}` : route.view === "cat" || route.view === "finder" ? "#home" : null;
   bar.innerHTML = `${backTo ? `<a class="back" href="${backTo}" aria-label="${t("all")}">${ICON.back}</a>` : ""}
-    <a class="brand" href="#home"><img class="mark" src="img/logo-shield.webp" width="32" height="32" alt="">Golden Spark</a>
-    <span class="spacer"></span><a class="contact" href="#contact">${t("contact")}</a>`;
+    <a class="brand" href="#home"><img class="mark" src="img/logo-shield.webp" width="32" height="32" alt=""><span class="brand-name">Golden Spark</span></a>`;
   const current = route.cat && route.cat.id;
   document.getElementById("chips").innerHTML = CATS.map((c) =>
     `<a class="chip" href="#${c.id}"${c.id === current ? ' aria-current="page"' : ""}>${L(c.title)}</a>`).join("");
@@ -1510,11 +1548,15 @@ Object.assign(T.en, {
   fitTitle: "Is it for you?", fitYes: "Right for you if", fitNo: "Not for you if", see: "See",
   fit: {
     gold: ["you want gold nuggets close to the surface, as a beginner or a serious prospector.", "you want deep treasure, cavities or tunnels.", "treasure"],
-    mining: ["you search big areas for gold veins and deposits, as a team or a company.", "you want small nuggets near the surface.", "gold"],
+    mining: ["you search big areas for gold veins and deposits, as a team or a company.", "you only want a light, simple detector for nuggets.", "gold"],
     longrange: ["you search wide areas for gold and treasure.", "you want small nuggets near the surface.", "gold"],
     treasure: ["you look for treasure, cavities or tunnels and want a 3D picture of the ground.", "you want gold nuggets.", "gold"],
     water: ["you look for underground water or a place for a borewell.", "you want gold or metals. These devices look for water.", ""],
     xrf: ["you buy or sell gold and need to check its purity.", "you want to find gold in the ground.", "gold"]
+  },
+  fitP: {
+    "ger-titan-x13": ["you search big areas for gold and deposits, as a team or a company, and also want to find gold nuggets.", "you only want a light, simple detector for nuggets.", "gold"],
+    "okm-gepard-gpr-3d": ["you need to find underground utilities or map the ground for industrial and construction work. It can also be used for treasure hunting.", "you want gold nuggets.", "gold"]
   },
   faqTitle: "Questions we hear most",
   faq: [
@@ -1530,11 +1572,15 @@ Object.assign(T.fr, {
   fitTitle: "Est-ce pour vous ?", fitYes: "Pour vous si", fitNo: "Pas pour vous si", see: "Voir",
   fit: {
     gold: ["vous cherchez des pépites d'or près de la surface, en débutant ou en prospecteur confirmé.", "vous cherchez des trésors profonds, des cavités ou des tunnels.", "treasure"],
-    mining: ["vous prospectez de grandes zones pour trouver des filons et des gisements d'or, en équipe ou en entreprise.", "vous cherchez de petites pépites près de la surface.", "gold"],
+    mining: ["vous prospectez de grandes zones pour trouver des filons et des gisements d'or, en équipe ou en entreprise.", "vous voulez seulement un détecteur léger et simple pour les pépites.", "gold"],
     longrange: ["vous cherchez de l'or et des trésors sur de grandes zones.", "vous cherchez de petites pépites près de la surface.", "gold"],
     treasure: ["vous cherchez des trésors, des cavités ou des tunnels et voulez une image 3D du sol.", "vous cherchez des pépites d'or.", "gold"],
     water: ["vous cherchez de l'eau souterraine ou un emplacement pour un forage.", "vous cherchez de l'or ou des métaux : ces appareils cherchent de l'eau.", ""],
     xrf: ["vous achetez ou vendez de l'or et devez vérifier sa pureté.", "vous voulez trouver de l'or dans le sol.", "gold"]
+  },
+  fitP: {
+    "ger-titan-x13": ["vous prospectez de grandes zones pour trouver de l'or et des gisements, en équipe ou en entreprise, et voulez aussi trouver des pépites.", "vous voulez seulement un détecteur léger et simple pour les pépites.", "gold"],
+    "okm-gepard-gpr-3d": ["vous devez repérer des réseaux enterrés ou cartographier le sol pour des travaux industriels et de construction. Il peut aussi servir à la chasse au trésor.", "vous cherchez des pépites d'or.", "gold"]
   },
   faqTitle: "Les questions qu'on nous pose le plus",
   faq: [
@@ -1550,11 +1596,15 @@ Object.assign(T.ar, {
   fitTitle: "هل هو مناسب لك؟", fitYes: "مناسب لك إذا", fitNo: "غير مناسب لك إذا", see: "انظر",
   fit: {
     gold: ["كنت تبحث عن كتل الذهب القريبة من السطح، سواء كنت مبتدئًا أو منقبًا محترفًا.", "كنت تبحث عن كنوز عميقة أو فراغات أو أنفاق.", "treasure"],
-    mining: ["كنت تبحث في مساحات واسعة عن عروق الذهب والرواسب، ضمن فريق أو شركة.", "كنت تبحث عن كتل ذهب صغيرة قريبة من السطح.", "gold"],
+    mining: ["كنت تبحث في مساحات واسعة عن عروق الذهب والرواسب، ضمن فريق أو شركة.", "كنت تريد فقط جهازًا خفيفًا وبسيطًا لكتل الذهب.", "gold"],
     longrange: ["كنت تبحث عن الذهب والكنوز في مساحات واسعة.", "كنت تبحث عن كتل ذهب صغيرة قريبة من السطح.", "gold"],
     treasure: ["كنت تبحث عن كنوز أو فراغات أو أنفاق وتريد صورة ثلاثية الأبعاد لما تحت الأرض.", "كنت تبحث عن كتل الذهب.", "gold"],
     water: ["كنت تبحث عن مياه جوفية أو مكان لحفر بئر.", "كنت تبحث عن الذهب أو المعادن، فهذه الأجهزة تبحث عن المياه.", ""],
     xrf: ["كنت تشتري الذهب أو تبيعه وتحتاج إلى فحص نقائه.", "كنت تريد العثور على الذهب في الأرض.", "gold"]
+  },
+  fitP: {
+    "ger-titan-x13": ["كنت تبحث في مساحات واسعة عن الذهب والرواسب ضمن فريق أو شركة، وتريد أيضًا العثور على كتل الذهب.", "كنت تريد فقط جهازًا خفيفًا وبسيطًا لكتل الذهب.", "gold"],
+    "okm-gepard-gpr-3d": ["كنت تحتاج إلى كشف خطوط المرافق تحت الأرض أو مسح الأرض لأعمال الصناعة والبناء. ويمكن استخدامه أيضًا في البحث عن الكنوز.", "كنت تبحث عن كتل الذهب.", "gold"]
   },
   faqTitle: "أكثر الأسئلة التي تصلنا",
   faq: [
@@ -1569,8 +1619,8 @@ Object.assign(T.ar, {
 const catLink = (id) => `<a href="#${id}">${L(CATS.find((c) => c.id === id).title)}</a>`;
 const withLinks = (text) => text.replace(/\{(\w+)\}/g, (_, id) => id === "finder" ? `<a href="#finder-1">${t("cta")}</a>` : catLink(id));
 // Product page: who the machine is for, and who it is not for (same for every machine in a category).
-function fitBox(cat) {
-  const f = t("fit")[cat.id];
+function fitBox(cat, p) {
+  const f = t("fitP")[p.key] || t("fit")[cat.id];
   if (!f) return "";
   const [yes, no, alt] = f;
   return `<div class="fit" role="group" aria-labelledby="fit-title"><p class="fit-title" id="fit-title">${t("fitTitle")}</p>
@@ -1680,7 +1730,7 @@ function renderProduct({ cat, p }, tab) {
       ${p.headline ? `<p class="headline">${p.headline}</p>` : ""}
       ${p.pkg ? `<span class="pkg">${p.pkg}</span>` : ""}
       <p class="intro">${p.blurb || `<span class="tile-later">${t("later")}</span>`}</p>
-      ${fitBox(cat)}
+      ${fitBox(cat, p)}
       <dl class="facts">
         ${showDepth ? depthFact(neutral ? "neutral" : "claim", p.depth, true) : ""}
         ${showDepth && p.range ? `<div><dt>${t("range")}</dt><dd>${t("states")} ${p.range}</dd></div>` : ""}
@@ -1873,7 +1923,11 @@ function render(scrollTop = true) {
   if (finder.phone) { finder.saved = savePhone(finder.phone); try { finder.phone.destroy(); } catch (e) {} finder.phone = null; }
   view.innerHTML = r.view === "finder" ? renderFinder(r.step) : r.view === "product" ? renderProduct(r, tab) : r.view === "cat" ? renderCat(r.cat) : renderHome();
   document.getElementById("wa-fab").href = wa(t("msgGeneral"));
-  document.getElementById("lang-code").textContent = LANGS.find((l) => l[0] === lang)[2];
+  const shownLang = LANGS.find((l) => l[0] === lang);
+  document.getElementById("lang-code").textContent = shownLang[2];
+  document.getElementById("lang-name").textContent = shownLang[1];
+  document.getElementById("lang-btn").setAttribute("aria-label", t("lang") + ": " + shownLang[1]);
+  document.getElementById("contact-link").textContent = t("contact");
   renderTerms();
   renderFooterPhones();
   renderBrands();
@@ -2030,7 +2084,16 @@ function toggleMenu(open) {
   if (open) { drawMenu(); menu.querySelector("[aria-checked='true']").focus(); }
 }
 langBtn.onclick = () => toggleMenu(menu.hidden);
-document.addEventListener("click", (e) => { if (!menu.hidden && !e.target.closest(".float")) toggleMenu(false); });
+document.addEventListener("click", (e) => { if (!menu.hidden && !e.target.closest(".lang-wrap")) toggleMenu(false); });
+// Contact Us: straight to the WhatsApp numbers in the footer, on any page (no page change)
+document.getElementById("contact-link").onclick = (e) => {
+  e.preventDefault();
+  const phones = document.getElementById("footer-phones");
+  phones.scrollIntoView({ behavior: calmMotion.matches ? "auto" : "smooth", block: "center" });
+  const first = phones.querySelector("a");
+  if (first) first.focus({ preventScroll: true });
+  phones.classList.remove("flash"); void phones.offsetWidth; phones.classList.add("flash");
+};
 document.addEventListener("keydown", (e) => { if (e.key === "Escape" && !menu.hidden) { toggleMenu(false); langBtn.focus(); } });
 
 window.addEventListener("hashchange", () => { tab = "auto"; render(); });
