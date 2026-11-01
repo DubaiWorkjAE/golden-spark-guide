@@ -6,4 +6,5 @@ data/videos.local.json
 public/local-videos
 *.mp4
 !public/media/home-promo.mp4
+!public/videos/*.mp4
 *.mov
